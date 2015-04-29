@@ -1,0 +1,35 @@
+#!/bin/bash
+
+ruby_install_dir="$2/Applications/${CMAKE_PROJECT_NAME} ${OPENSTUDIO_VERSION}/Ruby"
+
+#---------- Create Symbolic Links to the Ruby bindings ----------
+ln -sf "$2/Applications/${CMAKE_PROJECT_NAME} ${OPENSTUDIO_VERSION}/Ruby/openstudio.rb" /Library/Ruby/Site/
+ln -sFf "$2/Applications/${CMAKE_PROJECT_NAME} ${OPENSTUDIO_VERSION}/Ruby/openstudio" /Library/Ruby/Site/
+
+
+#---------- Write a plugin-config.rb file for later installation ----------
+# And put it in the install folder for later reuse by the user if needed
+config_file="$ruby_install_dir/Plugins/OpenStudio/OpenStudio-config.rb"
+echo "require '$2/Applications/${CMAKE_PROJECT_NAME} ${OPENSTUDIO_VERSION}/Ruby/openstudio'" > "$config_file"
+chmod 755 "$config_file"
+chown $USER "$config_file"
+
+
+#---------- Install plugin for SketchUp 2015 ----------
+# Check for the SketchUp 15 Application Support directory
+SU15_support_dir="/Library/Application Support/SketchUp 2015"
+mkdir -p "$SU15_support_dir/SketchUp/Plugins/OpenStudio"
+# copy the plugin into the directory
+cp "$ruby_install_dir/Plugins/OpenStudio.rb" "$SU15_support_dir/SketchUp/Plugins/OpenStudio.rb"
+cp "$ruby_install_dir/Plugins/OpenStudio/Startup.rb" "$SU15_support_dir/SketchUp/Plugins/OpenStudio/Startup.rb"
+cp "$config_file" "$SU15_support_dir/SketchUp/Plugins/OpenStudio/OpenStudio-config.rb"
+
+
+#---------- Installation Directory Icon ----------
+icon="$2/Applications/${CMAKE_PROJECT_NAME} ${OPENSTUDIO_VERSION}/$(printf 'Icon\r')"
+touch "$icon"
+chflags hidden "$icon"
+# copy the icon into the resource fork
+cp "$2/Applications/${CMAKE_PROJECT_NAME} ${OPENSTUDIO_VERSION}/OpenStudio.app/Contents/Resources/folder_icon.rsrc" "$icon/..namedfork/rsrc"
+# set the custom icon extended attribute on the directory
+xattr -wx com.apple.FinderInfo 0000000000000000040000000000000000000000000000000000000000000000 "$2/Applications/${CMAKE_PROJECT_NAME} ${OPENSTUDIO_VERSION}/"
