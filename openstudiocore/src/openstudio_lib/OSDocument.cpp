@@ -615,7 +615,7 @@ void OSDocument::createTab(int verticalId)
     case SITE:
       // Location
 
-      m_mainTabController = std::shared_ptr<MainTabController>(new LocationTabController(m_model, m_modelTempDir));
+		m_mainTabController = std::shared_ptr<MainTabController>(new LocationTabController(m_model, m_modelTempDir, toQString(m_resourcesPath)));
       m_mainWindow->setView(m_mainTabController->mainContentWidget(), SITE);
 
       connect(m_mainTabController->mainContentWidget(), &MainTabView::tabSelected, m_mainRightColumnController.get(), &MainRightColumnController::configureForSiteSubTab);
