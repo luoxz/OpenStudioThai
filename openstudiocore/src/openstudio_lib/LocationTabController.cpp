@@ -39,11 +39,10 @@
 namespace openstudio {
 
 LocationTabController::LocationTabController(const model::Model & model,
-                                             const QString& modelTempDir,
-											 const QString& resourceDir)
-  : MainTabController(new LocationTabView(model,modelTempDir,resourceDir))
+                                             const QString& modelTempDir)
+  : MainTabController(new LocationTabView(model,modelTempDir))
 {
-	LocationView * locationView = new LocationView(model, modelTempDir, resourceDir);
+  LocationView * locationView = new LocationView(model, modelTempDir);
   mainContentWidget()->addSubTab("Weather File && Design Days",locationView,WEATHER_FILE);
 
   LifeCycleCostsView * lifeCycleCostsView = new LifeCycleCostsView(model);
