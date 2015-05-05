@@ -41,7 +41,8 @@ class LocationView : public QWidget
 
 public:
   LocationView(const model::Model & model,
-               const QString& modelTempDir);
+               const QString& modelTempDir,
+			   const QString& resourceDir);
   virtual ~LocationView() {}
 
 private slots:
@@ -52,9 +53,11 @@ private slots:
 
 private:
   void update();
-
+  void setDefaultWeather(const QString fileName);
+  void setDefaultDDY(const QString fileName);
   model::Model m_model;
   QString m_modelTempDir;
+  QString m_resourceDir;
   QComboBox * m_ashraeClimateZone;
   QComboBox * m_cecClimateZone;
   QLabel * m_weatherFileLbl;
@@ -76,6 +79,7 @@ class LocationTabView : public MainTabView
 public:
   LocationTabView(const model::Model & model,
                   const QString& modelTempDir,
+				  const QString& resourceDir,
                   QWidget * parent = 0);
   virtual ~LocationTabView() {}
 
