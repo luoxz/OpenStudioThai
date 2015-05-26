@@ -146,6 +146,8 @@ RunView::RunView(const model::Model & model,
   m_radianceButton = new QRadioButton("Radiance");
   m_radianceGroup->addButton(m_radianceButton,buttonCount++);
 
+  m_becButton = new QRadioButton("New BEC");
+  m_radianceGroup->addButton(m_becButton, buttonCount++);
 
   // "Radiance" Button Layout
  
@@ -161,6 +163,9 @@ RunView::RunView(const model::Model & model,
   radianceInteriorLayout->addWidget(m_energyPlusButton);
   radianceInteriorLayout->addStretch();
   radianceInteriorLayout->addWidget(m_radianceButton);
+  radianceInteriorLayout->addStretch();
+  radianceInteriorLayout->addWidget(m_becButton);
+
 
 /*
   radianceHLayout->addSpacing(100);

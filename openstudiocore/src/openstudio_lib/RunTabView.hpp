@@ -148,6 +148,7 @@ namespace openstudio {
       QPlainTextEdit * m_outputWindow;
       QButtonGroup * m_radianceGroup;
       QRadioButton * m_radianceButton;
+	  QRadioButton * m_becButton;
       QRadioButton * m_energyPlusButton;
       std::vector<std::string> m_radianceWarnings;
       std::vector<std::string> m_radianceErrors;
