@@ -4,11 +4,14 @@
 !- Supported By	: To-Be-One Technology Co, Ltd.
 !- Craated Date : 22/05/2015
 !- Modified By  : Narongsak Mala (narongsak.mala@gmail.com)
-!- Modified Date : 25/05/2015
+!- Modified Date : 29/05/2015
 !-----------------------------------------------------------------
 
 
 !- Revision			Details
+!- 0.0.2-000		Updated material.
+					(1) Solar Absorptance,
+					(2) Visible Absorptance,
 !- 0.0.1-000 		Initialize.
 !-					Added Split type air, Added Lighting system.
 !-----------------------------------------------------------------
@@ -311,9 +314,8 @@ OS:OtherEquipment:Definition,
   ;                                       !- Watts per Person {W/Person}
   
   !----------------------- Materials ----------------------
- 
 OS:Material,
-  {84d77143-614b-4312-be09-4f69a3338ae6},	!- Handle
+  {17a9a9f8-84bb-4fde-b5e1-38ee17df3097},	!- Handle
   กระดาษอัด,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -321,11 +323,11 @@ OS:Material,
   400,										!- Density {kg/m3}
   1380,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {ba3371fb-343b-42cb-8d58-05bc562d366b},	!- Handle
+  {6843698b-52c2-40e6-89d6-929ed3a3b360},	!- Handle
   กระเบื้องคอนกรีต ซีแพคโมเนีย สีแดง,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -337,7 +339,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {6ce8ad54-047f-47c3-a6ad-c5fea6909237},	!- Handle
+  {41bb79c9-a58c-475e-b0c9-b631de3600bd},	!- Handle
   กระเบื้องซีเมนต์ใยหินแผ่นเรียบ,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -345,11 +347,11 @@ OS:Material,
   1700,										!- Density {kg/m3}
   1000,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {642d8a4b-dfa4-4ec6-a670-4bc537ad2c4f},	!- Handle
+  {505b72ac-f0e4-4114-a916-7ddb2a0df5cd},	!- Handle
   กระเบื้องซีเมนต์ใยหินแผ่นเรียบ หนา 6 มม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -357,11 +359,11 @@ OS:Material,
   1722,										!- Density {kg/m3}
   1000,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {e6ba7974-5c27-4d14-8348-8a302e33ba0c},	!- Handle
+  {57f96456-dd73-4907-b6a1-c916d7520db1},	!- Handle
   กระเบื้องซีเมนต์ใยหินแผ่นเรียบ หนา 8 มม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -369,11 +371,11 @@ OS:Material,
   1708,										!- Density {kg/m3}
   1000,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {463df8a4-833b-4676-8a34-fb96d7f13bd4},	!- Handle
+  {0138ab85-d038-4bd3-aed6-2c70094bc79e},	!- Handle
   กระเบื้องซีเมนต์ใยหินลอนคู่,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -381,11 +383,11 @@ OS:Material,
   2000,										!- Density {kg/m3}
   1000,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {6985233c-9b20-46cf-b637-85e2905fdf0d},	!- Handle
+  {65786f79-b0e4-4f50-abbf-f31694e05a3c},	!- Handle
   กระเบื้องซีเมนต์ใยหินลอนคู่สีเขียวเข้ม,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -393,11 +395,11 @@ OS:Material,
   2000,										!- Density {kg/m3}
   1000,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {d45c28e2-9de8-48c1-ad82-3506bc884cc5},	!- Handle
+  {9da8d86a-8bf0-49e0-9ecf-7f824856e42d},	!- Handle
   กระเบื้องซีเมนต์ใยหินลอนคู่สีหมากสุก,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -405,11 +407,11 @@ OS:Material,
   1800,										!- Density {kg/m3}
   1000,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {0407b0a9-2eae-4972-9729-96486b5a43aa},	!- Handle
+  {c783699b-79fe-45b3-8080-0b724e041aa4},	!- Handle
   กระเบื้องซีเมนต์ใยหินลอนเล็ก,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -417,11 +419,11 @@ OS:Material,
   1700,										!- Density {kg/m3}
   1000,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {40eb9cf7-aad9-43c2-9b5e-d1e01de0ed4f},	!- Handle
+  {9d2f64d4-8989-4471-bb5d-a85258181d67},	!- Handle
   กระเบื้องซีเมนต์ใยหินลอนเล็กไม่มีสี,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -429,11 +431,11 @@ OS:Material,
   1700,										!- Density {kg/m3}
   1000,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {fccd332d-5057-4488-b4de-f202ef2e116d},	!- Handle
+  {b77a8353-1e0c-4f8f-b5f4-ea1a097b10de},	!- Handle
   กระเบื้องซีเมนต์ใยหินลอนเล็กสีเขียว,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -441,11 +443,11 @@ OS:Material,
   2055,										!- Density {kg/m3}
   1000,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {82e3cd2d-6019-47d3-8c0e-c7d577210d47},	!- Handle
+  {6d09739c-d56f-4ad4-a245-ad5dd410e08e},	!- Handle
   กระเบื้องซีเมนต์ใยหินลอนเล็กสีเหลือง,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -453,11 +455,11 @@ OS:Material,
   1800,										!- Density {kg/m3}
   1000,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {07b5c01f-c762-4aeb-b4aa-4acc43b5b965},	!- Handle
+  {92de02f2-7bf3-421d-8c80-cafcdbe3ee4d},	!- Handle
   กระเบื้องซีเมนต์ใยหินลอนใหญ่,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -465,11 +467,11 @@ OS:Material,
   2000,										!- Density {kg/m3}
   1000,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {02b1282f-2c9f-4cab-9a1c-8a2e94994023},	!- Handle
+  {bd65d898-bc3c-4035-bf14-016a592a030a},	!- Handle
   กระเบื้องซีเมนต์ใยหินลอนใหญ่ไม่มีสี,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -477,11 +479,11 @@ OS:Material,
   2000,										!- Density {kg/m3}
   1000,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {06078efe-3b31-4ae8-95ae-ebd61423e3de},	!- Handle
+  {b9d46957-292a-4b2b-90c6-0270f74dac2b},	!- Handle
   กระเบื้องเซรามิค,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -489,11 +491,11 @@ OS:Material,
   2100,										!- Density {kg/m3}
   800,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {0454b660-9580-42f9-80f6-cf561cacaaf7},	!- Handle
+  {519c199a-6f14-477f-a0c6-53cc66e70899},	!- Handle
   กระเบื้องปูดาดฟ้ามวลเบา,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -501,11 +503,11 @@ OS:Material,
   930,										!- Density {kg/m3}
   880,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {8e9b6203-a7e1-485e-8df2-8feaae0b2aeb},	!- Handle
+  {2e6396ae-e6d1-4536-8eff-a10c698022c2},	!- Handle
   กระเบื้องปูพื้น คัมพานา,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -517,7 +519,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {8c78765e-c5b6-4576-b3f6-78ed7a7161cf},	!- Handle
+  {ec281eef-0554-43fd-ad69-448c02d698fe},	!- Handle
   กระเบื้องปูพื้น โซซูโก้,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -529,7 +531,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {45d14596-d8e0-411f-8394-b5bbc48304bf},	!- Handle
+  {081367cb-cf90-4be1-bd73-c858da258089},	!- Handle
   กระเบื้องยาง,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -541,7 +543,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {4db4c8e5-9fc8-4c94-9b3c-fc528e38bb26},	!- Handle
+  {c8b55219-02bc-449f-91ce-05fb1c2f4c5c},	!- Handle
   กระเบื้องใยแก้วโปร่งแสงแผ่นเรียบสีขาวขุ่น,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -549,11 +551,11 @@ OS:Material,
   1325,										!- Density {kg/m3}
   1880,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {b8b102e6-406c-49ae-bd07-4bc6cf28283e},	!- Handle
+  {59ee01a8-4e30-42ff-a3d7-14c7550cb439},	!- Handle
   กระเบื้องใยแก้วโปร่งแสงแผ่นเรียบสีขาวใส,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -561,11 +563,11 @@ OS:Material,
   1342,										!- Density {kg/m3}
   1880,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {40a71ff3-5257-42a7-8bc1-41e651fe6879},	!- Handle
+  {e23d7b22-efab-4a85-a66a-3b6d3635f84f},	!- Handle
   กระเบื้องใยแก้วโปร่งแสงเรียบ,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -573,11 +575,11 @@ OS:Material,
   1340,										!- Density {kg/m3}
   1880,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {38ce160d-93aa-4478-84f8-754bd77ecaff},	!- Handle
+  {75f2f157-133b-4ac0-86da-e8b339b1bf80},	!- Handle
   กระเบื้องใยแก้วโปร่งแสงลอนใหญ่,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -585,11 +587,11 @@ OS:Material,
   1700,										!- Density {kg/m3}
   1880,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {5776b779-fce8-4905-9f35-5a26dd1144ec},	!- Handle
+  {e4606444-6dd6-4c31-b0e7-27cdc761046e},	!- Handle
   กระเบื้องใยแก้วลอนคู่สีขาวขุ่น,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -597,11 +599,11 @@ OS:Material,
   1500,										!- Density {kg/m3}
   1880,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {2bea0794-f81c-4998-8ccc-e9df7fa78948},	!- Handle
+  {4751acd9-bd51-42a3-8658-1f5838d37927},	!- Handle
   กระเบื้องลูกฟูกโปร่งแสง,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -609,11 +611,11 @@ OS:Material,
   1340,										!- Density {kg/m3}
   1880,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {a3f2e99a-c834-40dd-8d13-81094f7f289e},	!- Handle
+  {5e722cb8-069f-447f-b16b-81ec414c649a},	!- Handle
   กระเบื้องลูกฟูกโปร่งแสง ซีแพคโมเนีย,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -621,11 +623,11 @@ OS:Material,
   1344,										!- Density {kg/m3}
   1880,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {afcc1cbf-4812-4142-aeb4-23da85bae147},	!- Handle
+  {b9880f23-2d61-441b-9368-889b844b1b12},	!- Handle
   กระเบื้องหลังคาคอนกรีต,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -637,7 +639,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {3dbd5215-5e81-4397-8129-ad5836cb5c14},	!- Handle
+  {9128b6e7-f71b-4f97-8209-6f95a5104f01},	!- Handle
   คอนกรีต,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -649,7 +651,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {8f8c2060-dd59-4d28-a703-efc965818922},	!- Handle
+  {b93f4ec5-c2ee-4ee1-92c1-9af29ae7c268},	!- Handle
   คอนกรีตบล็อกกลวง 80 มม. ไม่ฉาบ,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -661,7 +663,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {f513bc3d-831b-400d-a8f0-233e02b2f93a},	!- Handle
+  {106704ec-96f4-4d8f-bae8-b15c6031c4fd},	!- Handle
   คอนกรีตมวลเบา,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -669,11 +671,11 @@ OS:Material,
   1280,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {579ab81c-b6a2-4978-952d-a62d82cbe329},	!- Handle
+  {10dd9eb5-aa47-46b1-adb9-471eec277918},	!- Handle
   คอนกรีตมวลเบา ความหนาแน่น 1120 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -681,11 +683,11 @@ OS:Material,
   1120,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {c2addb5f-636a-4427-8ac4-06443f30895b},	!- Handle
+  {b60d4385-0d12-46a2-b432-4c3811e8848c},	!- Handle
   คอนกรีตมวลเบา ความหนาแน่น 1280 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -693,11 +695,11 @@ OS:Material,
   1280,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {2cf0beaa-6c79-4f2f-8eea-9861975dfab7},	!- Handle
+  {62a552bc-2fd9-455e-b380-64584bf41d47},	!- Handle
   คอนกรีตมวลเบา ความหนาแน่น 620 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -705,11 +707,11 @@ OS:Material,
   620,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {10094df8-54fc-494f-ae7f-adc622fbc443},	!- Handle
+  {f576e343-1be8-4c25-ad13-60a61adb0b20},	!- Handle
   คอนกรีตมวลเบา ความหนาแน่น 700 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -717,11 +719,11 @@ OS:Material,
   700,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {b550eca9-4855-46e8-8606-b9ba36d62e21},	!- Handle
+  {b5b04f6f-95ef-4dc3-84de-e578c21f1d27},	!- Handle
   คอนกรีตมวลเบา ความหนาแน่น 960 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -729,11 +731,11 @@ OS:Material,
   960,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {cb571043-2a69-42d2-a618-c512083592c8},	!- Handle
+  {f9e72095-c478-440f-a111-3a2d732d2b87},	!- Handle
   คอนกรีตสแลบ,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -741,11 +743,11 @@ OS:Material,
   2400,										!- Density {kg/m3}
   920,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {d265851f-e5ed-44c7-b137-c52e96e61065},	!- Handle
+  {c4f2cf63-d809-4fae-9984-4919b9d9e22e},	!- Handle
   ฉนวนกันความร้อนใต้หลังคา ตราช้าง FSO-G-CRB-G 1625 -25mm,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -753,11 +755,11 @@ OS:Material,
   16,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {2614d20e-6b63-416f-bdda-9292eda03a48},	!- Handle
+  {cf6d650f-751c-4b66-9dcd-e9ee5514571d},	!- Handle
   ฉนวนกันความร้อนใต้หลังคา ตราช้าง FSO-G-CRB-G 1650 -50mm,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -765,11 +767,11 @@ OS:Material,
   16,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {092d7cec-b8fb-4dd3-932f-8bcd994d0fbc},	!- Handle
+  {61be5653-6c5e-483d-8561-633c7b9e4d57},	!- Handle
   ฉนวนกันความร้อนใต้หลังคา ตราช้าง FSO-G-CRB-G 2425 -25mm,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -777,11 +779,11 @@ OS:Material,
   24,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {deaab96f-4969-465c-9a7e-8f66fd5e4abb},	!- Handle
+  {1c5a275e-efa7-4d1a-adca-e6807efc5cb0},	!- Handle
   ฉนวนกันความร้อนใต้หลังคา ตราช้าง FSO-G-CRB-G 2450 -50mm,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -789,11 +791,11 @@ OS:Material,
   24,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {e7bab84f-b8c7-4edf-bcb3-175b29efd19f},	!- Handle
+  {eb5997e0-5e48-4ce7-81eb-21c73a05e7ae},	!- Handle
   ฉนวนกันความร้อนใต้หลังคา ตราช้าง FSO-G-CRB-G 3225 -25mm,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -801,11 +803,11 @@ OS:Material,
   32,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {7843bddb-75a0-491c-a4df-b293775b05cc},	!- Handle
+  {1a037b4b-0c88-43d6-b40e-786ea3a400ef},	!- Handle
   ฉนวนกันความร้อนใต้หลังคา ตราช้าง FSO-G-CRB-G 3250 -50mm,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -813,11 +815,11 @@ OS:Material,
   32,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {f51e0601-ea39-4188-a552-f8ece215b961},	!- Handle
+  {019cd67a-12ce-4dc6-8098-3939ebfbecbf},	!- Handle
   ฉนวนกันความร้อนใต้หลังคา ตราช้าง FSO-G-CRB-G 4825 -25mm,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -825,11 +827,11 @@ OS:Material,
   48,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {0707a83e-0aca-426d-8604-a5d7ac534750},	!- Handle
+  {c7763f95-a1ef-475a-9f1e-9b685a1143c5},	!- Handle
   ฉนวนกันความร้อนใต้หลังคา ตราช้าง FSO-G-CRB-G 4850 -50mm,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -837,11 +839,11 @@ OS:Material,
   48,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {75ef6aac-6bae-4742-8873-a3954da909e2},	!- Handle
+  {c6417f6c-525d-4621-b4c3-a18631e91fe1},	!- Handle
   ฉนวนกันความร้อนใต้หลังคา ตราช้าง SUPER COOL-G 1250 -50mm,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -849,11 +851,11 @@ OS:Material,
   12,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {9140bfe1-abce-4ee3-abfb-8aa8a04a82bf},	!- Handle
+  {b3fc2824-7c0c-45ef-8f8e-dc72bfdd6b08},	!- Handle
   ฉนวนกันความร้อนใต้หลังคา ตราช้าง SUPER COOL-G 1275 -75mm,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -861,11 +863,11 @@ OS:Material,
   12,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {68af6e92-c930-44da-960b-d0cdd7a4fac3},	!- Handle
+  {26b25d35-fe2f-4269-a016-a5984e78b709},	!- Handle
   ฉนวนกันความร้อนใต้หลังคา ตราช้าง SUPER COOL-G 1625 -25mm,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -873,11 +875,11 @@ OS:Material,
   12,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {de85fde9-9081-4efb-aa71-7385d5cb57a5},	!- Handle
+  {b855d36d-6740-4416-97c5-b1868fd11eef},	!- Handle
   ฉนวนกันความร้อนใต้หลังคา ตราช้าง SUPER COOL-G 1650 -50mm,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -885,11 +887,11 @@ OS:Material,
   12,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {e29ea3cb-2cde-49e8-b9d5-e3a8cbc785d6},	!- Handle
+  {3610d15c-fc20-4024-8066-5a017cb9be76},	!- Handle
   ฉนวนกันความร้อนใต้หลังคา ตราช้าง SUPER COOL-G 2425 -25mm,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -897,11 +899,11 @@ OS:Material,
   24,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {d9889ec2-9d3c-40b3-bbfe-82f1de9089aa},	!- Handle
+  {7aeb96ba-875d-41bb-905d-a335651eaf4d},	!- Handle
   ฉนวนกันความร้อนใต้หลังคา ตราช้าง SUPER COOL-G 2450 -50mm,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -909,11 +911,11 @@ OS:Material,
   24,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {acbad166-68a8-46a1-aa56-5f2fbcfcbc72},	!- Handle
+  {f07de9e7-06c3-463e-8b2c-578435d92259},	!- Handle
   ฉนวนชนิดโฟมโพลีสไตรีน ความหนาแน่น 16 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -921,11 +923,11 @@ OS:Material,
   16,										!- Density {kg/m3}
   1210,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {834e91ae-a456-40f9-9aa8-739ab732c956},	!- Handle
+  {c4708cc0-1e9d-489e-a534-82c58fd558ff},	!- Handle
   ฉนวนชนิดโฟมโพลีสไตรีน ความหนาแน่น 20 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -933,11 +935,11 @@ OS:Material,
   20,										!- Density {kg/m3}
   1210,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {bcaf0497-bae3-4ead-97f4-47fb6784ac3e},	!- Handle
+  {21b940bc-b5e0-414c-91fb-af245a300908},	!- Handle
   ฉนวนชนิดโฟมโพลีสไตรีน ความหนาแน่น 24 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -945,11 +947,11 @@ OS:Material,
   24,										!- Density {kg/m3}
   1210,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {d2d939c3-271c-44a0-a7a1-bf0011acdef8},	!- Handle
+  {eb8c777d-11e3-43ef-b1d7-372af77af3a9},	!- Handle
   ฉนวนชนิดโฟมโพลีสไตรีน ความหนาแน่น 25 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -957,11 +959,11 @@ OS:Material,
   25,										!- Density {kg/m3}
   1210,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {6e6994d0-3082-47e6-8e16-b4cd1a83db41},	!- Handle
+  {0ce2a9b3-d5a2-4ae5-a83b-6256bb84751c},	!- Handle
   ฉนวนชนิดโฟมโพลีสไตรีน ความหนาแน่น 26 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -969,11 +971,11 @@ OS:Material,
   26,										!- Density {kg/m3}
   1210,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {fa7a3ddf-f204-4c24-9faf-68e27174d1b1},	!- Handle
+  {a5888b2d-599f-41d3-919a-932824e79841},	!- Handle
   ฉนวนชนิดโฟมโพลีสไตรีน ความหนาแน่น 27 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -981,11 +983,11 @@ OS:Material,
   27,										!- Density {kg/m3}
   1210,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {e0412c0e-0e75-4773-a8f0-c4a16e2b251c},	!- Handle
+  {18b914c4-3db5-46b1-a744-a26950fa2919},	!- Handle
   ฉนวนชนิดโฟมโพลีสไตรีน ความหนาแน่น 28 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -993,11 +995,11 @@ OS:Material,
   28,										!- Density {kg/m3}
   1210,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {a97e6c42-028e-45c7-88ee-f74a7472a2ee},	!- Handle
+  {d6e61b7b-4e87-4047-aac6-3096bdaf0056},	!- Handle
   ฉนวนชนิดโฟมโพลีสไตรีน ความหนาแน่น 29 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1005,11 +1007,11 @@ OS:Material,
   29,										!- Density {kg/m3}
   1210,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {1b6e6cb9-158f-4e93-b883-5236a5fb401d},	!- Handle
+  {9ec86330-ec79-423c-b433-27b13333d910},	!- Handle
   ฉนวนชนิดโฟมโพลีสไตรีน ความหนาแน่น 30 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1017,11 +1019,11 @@ OS:Material,
   30,										!- Density {kg/m3}
   1210,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {f23462be-e9d4-4122-b82f-44b583de54e7},	!- Handle
+  {b909de08-8b77-4f5b-a409-63fc189ccb5b},	!- Handle
   ฉนวนชนิดโฟมโพลีสไตรีน ความหนาแน่น 31 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1029,11 +1031,11 @@ OS:Material,
   31,										!- Density {kg/m3}
   1210,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {970be315-d8d9-41b7-a488-70a012a0bee4},	!- Handle
+  {46ac02d0-1494-4ffa-8c27-8c06d16b55fa},	!- Handle
   ฉนวนชนิดโฟมโพลีสไตรีน ความหนาแน่น 32 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1041,11 +1043,11 @@ OS:Material,
   32,										!- Density {kg/m3}
   1210,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {e3718c6e-3cce-4e8e-a889-967c604191d5},	!- Handle
+  {815d27e1-6e75-43b2-a1a7-dd7b5788edfc},	!- Handle
   ฉนวนชนิดโฟมโพลีสไตรีน ความหนาแน่น 9 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1053,11 +1055,11 @@ OS:Material,
   9,										!- Density {kg/m3}
   1210,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {1a7aff5f-d7e0-44f3-b24c-12368c66cb68},	!- Handle
+  {77400bbc-0902-4e76-97c5-82dd11491267},	!- Handle
   ฉนวนใยแก้ว,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1065,11 +1067,11 @@ OS:Material,
   32,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {057e9411-5d21-47e6-a781-8834f1661e41},	!- Handle
+  {1c58f77c-2955-4d32-8b18-59a24d2cc600},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 10 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1077,11 +1079,11 @@ OS:Material,
   10,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {a958112e-2fa0-4c98-9b3e-f333e3f2c1ce},	!- Handle
+  {91dc4e38-2192-41ad-af8c-ef1b049282b2},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 12 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1089,11 +1091,11 @@ OS:Material,
   12,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {88e07e6c-602b-4271-ab1a-e392da7a1dac},	!- Handle
+  {71316d87-4299-4e66-8ef0-c811c0cce908},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 16 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1101,11 +1103,11 @@ OS:Material,
   16,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {d8d02697-c9f1-4f2b-8920-dacb5535d53d},	!- Handle
+  {a76b7aca-b01c-48b9-bf3d-e88289163655},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 24 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1113,11 +1115,11 @@ OS:Material,
   24,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {9cf3cbba-b3a6-4e26-b6c2-de13e63287c4},	!- Handle
+  {dba3000b-5e7b-421e-8d9a-963d4749dbb2},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 32 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1125,11 +1127,11 @@ OS:Material,
   32,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {066e66b9-a651-4c45-a7bd-ac44625eec68},	!- Handle
+  {0068f01a-6498-4d47-8947-a1b7ee4ec8ce},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 33 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1137,11 +1139,11 @@ OS:Material,
   33,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {8d6a632e-f772-4482-aeb7-cf204f6abcdf},	!- Handle
+  {f179d0d3-0138-49c7-8fb7-e1338e1651cb},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 34 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1149,11 +1151,11 @@ OS:Material,
   34,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {df0ac04b-4505-46f7-a2b1-39b4c97d067a},	!- Handle
+  {a77c052c-78ff-4fe0-9f29-972100d3079b},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 35 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1161,11 +1163,11 @@ OS:Material,
   35,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {d94f4e8d-0383-4346-afe2-21bdd6c3ef2d},	!- Handle
+  {8000c3d6-4647-467c-b4ae-6a8b68e4ab74},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 36 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1173,11 +1175,11 @@ OS:Material,
   36,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {47991126-11d8-495b-93f9-8953022f2194},	!- Handle
+  {0356eed5-62cf-479c-983e-6185b356c138},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 37 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1185,11 +1187,11 @@ OS:Material,
   37,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {edd38c52-4753-475b-8533-8f1ed5739031},	!- Handle
+  {6058ad3a-526d-438f-9eb0-a22ddbc1423e},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 38 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1197,11 +1199,11 @@ OS:Material,
   38,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {04b403ff-4617-4778-83e3-31a62992b58c},	!- Handle
+  {894f2bb1-cb61-4902-954a-b087e02ea4c2},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 39 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1209,11 +1211,11 @@ OS:Material,
   39,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {7179ae03-b4bc-4715-b654-f61a642f2932},	!- Handle
+  {9541341b-0421-41c3-b6e5-c98df1f50455},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 40 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1221,11 +1223,11 @@ OS:Material,
   40,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {a172c0df-38aa-458b-b600-ee4a8a4b60e0},	!- Handle
+  {a8b1d9e4-af2d-4b05-9bcf-5808a07f6325},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 41 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1233,11 +1235,11 @@ OS:Material,
   41,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {712b64b1-c99f-4dc9-a19e-aa85c1f37588},	!- Handle
+  {f13a4258-0547-4219-9dbf-1dad48bcc1f7},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 42 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1245,11 +1247,11 @@ OS:Material,
   42,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {0ad52cd5-6953-46d0-be47-a128edcf4318},	!- Handle
+  {afd41f04-9abf-4928-82cd-4ae1d114e24b},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 43 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1257,11 +1259,11 @@ OS:Material,
   43,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {18eb39c2-7111-47db-bae5-0805207f7bbf},	!- Handle
+  {f1f4d2ee-f7dd-4e15-b9bc-a09c3cba70c1},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 44 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1269,11 +1271,11 @@ OS:Material,
   44,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {4e53f030-3ee6-48d1-bfea-c36c1f7f21cb},	!- Handle
+  {d869c6e6-47c2-436a-9423-5d89fe8aea54},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 45 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1281,11 +1283,11 @@ OS:Material,
   45,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {3c625d1b-0544-4cc2-9463-85528d9a623e},	!- Handle
+  {a98de7e3-df43-4c25-a8ac-135be76a96e6},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 46 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1293,11 +1295,11 @@ OS:Material,
   46,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {ed731a91-16e2-4e89-8951-6005ecb6e8a9},	!- Handle
+  {f39aaae0-2958-4e31-b8ea-db475adea39d},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 47 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1305,11 +1307,11 @@ OS:Material,
   47,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {0e6c4d0e-a56c-436a-b077-a7d541d51471},	!- Handle
+  {56577938-652c-4774-a9b1-2c0546876d00},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 48 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1317,11 +1319,11 @@ OS:Material,
   48,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {4604f382-110c-4acf-a586-761c03433a77},	!- Handle
+  {53462c3f-0d41-483e-974e-5b4eacbc4112},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 56 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1329,11 +1331,11 @@ OS:Material,
   56,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {6fb00c08-bb9a-4559-ab83-f8a25aad03d9},	!- Handle
+  {2e9a5819-4b40-485f-ad6c-5c2cd02f9fa7},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 57 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1341,11 +1343,11 @@ OS:Material,
   57,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {8a3d75d7-c4ef-4b63-8082-4173087d9235},	!- Handle
+  {63c598fc-9f6d-4698-ab50-42612c84599f},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 58 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1353,11 +1355,11 @@ OS:Material,
   58,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {4a7efa6f-440d-41f8-925c-487be339d746},	!- Handle
+  {d33a1e9b-c512-4214-81ca-17e907d1787d},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 59 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1365,11 +1367,11 @@ OS:Material,
   59,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {05a4adf1-2442-4634-8fed-7c071daafd6f},	!- Handle
+  {719c52b4-05da-4363-be1d-e790e9f22e56},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 60 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1377,11 +1379,11 @@ OS:Material,
   60,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {4d8ba42b-8f2b-49c7-b199-37f7d7432049},	!- Handle
+  {c093d5a6-7f97-445a-8e8e-d457c4e70c1c},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 61 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1389,11 +1391,11 @@ OS:Material,
   61,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {cc15e4a6-526b-42c9-99b8-3cf6f1be6ecd},	!- Handle
+  {e9b68d9a-9f6a-4a1c-806f-dc5417b58965},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 62 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1401,11 +1403,11 @@ OS:Material,
   62,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {284f9d23-96e2-475a-bb3e-a6d53684c883},	!- Handle
+  {db6031c9-af47-4787-ad0e-156dc1471354},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 63 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1413,11 +1415,11 @@ OS:Material,
   63,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {5f021f6f-08ef-4086-8e32-3775f9fce1c3},	!- Handle
+  {de841a95-9f2e-43f4-8ba8-b4ec7d268b87},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 64 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1425,11 +1427,11 @@ OS:Material,
   64,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {0e71609e-9db0-4b04-bddf-1d5be26cfd1a},	!- Handle
+  {0bdbfd15-95f2-4882-84f9-cad9549c38c2},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 65 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1437,11 +1439,11 @@ OS:Material,
   65,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {3297d8fe-7abf-4865-a267-676bcd4d89c2},	!- Handle
+  {b1f673e8-2d32-4af4-b34f-83a51437e573},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 66 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1449,11 +1451,11 @@ OS:Material,
   66,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {c572e02a-cc4b-4364-8723-4fb59b308b2b},	!- Handle
+  {155325e4-da14-4784-8a9b-202df6990543},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 67 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1461,11 +1463,11 @@ OS:Material,
   67,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {5806d2a2-4a4a-48ad-afad-6e452c06531c},	!- Handle
+  {0edeabff-218d-4608-8bb2-a3270b33f3d5},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 68 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1473,11 +1475,11 @@ OS:Material,
   68,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {ec3e4dc3-0505-4029-b8f8-1329d598dc87},	!- Handle
+  {cfec68ae-19cb-444e-99a8-18a71fa2807e},	!- Handle
   ฉนวนใยแก้ว ความหนาแน่น 69 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1485,11 +1487,11 @@ OS:Material,
   69,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {435ea715-c5a9-40ba-86ce-8b66854e11f6},	!- Handle
+  {1275b73e-0452-4fb2-a103-6c67db414dc8},	!- Handle
   ฉนวนใยแก้วที่ได้รับฉลากประสิทธิภาพสูง Stay Cool 3" Premium,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1497,11 +1499,11 @@ OS:Material,
   12,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {07018612-152c-4f62-addc-e0ede5709c21},	!- Handle
+  {8abb579a-d914-42b3-a5f1-0511e7ac5ae5},	!- Handle
   ฉนวนใยแก้วที่ได้รับฉลากประสิทธิภาพสูง Stay Cool 3" Super Save,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1509,11 +1511,11 @@ OS:Material,
   12,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {0a7ceab3-9ade-461a-9631-b5537e6a003c},	!- Handle
+  {2011db10-12c5-4d47-845e-476fc8b19173},	!- Handle
   ฉนวนใยแก้วที่ได้รับฉลากประสิทธิภาพสูง Stay Cool 6" Premium,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1521,11 +1523,11 @@ OS:Material,
   12,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {26394d3c-0a03-4e13-b247-e15a07eb50ff},	!- Handle
+  {5d5cdded-bf8a-4352-930b-27b097b4c268},	!- Handle
   ฉนวนใยหิน ความหนาแน่น 16 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1533,11 +1535,11 @@ OS:Material,
   16,										!- Density {kg/m3}
   800,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {c37cb3ff-5590-48d5-b189-ca44b06b9ed9},	!- Handle
+  {8488f607-cf58-447c-b716-1d68945b79ea},	!- Handle
   ฉนวนใยหิน ความหนาแน่น 24 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1545,11 +1547,11 @@ OS:Material,
   24,										!- Density {kg/m3}
   800,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {1b4866a7-9647-4923-915a-5a6fa46be465},	!- Handle
+  {358bb29c-2ecd-4c18-8a3b-01302e304092},	!- Handle
   ฉนวนใยหิน ความหนาแน่น 32 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1557,11 +1559,11 @@ OS:Material,
   32,										!- Density {kg/m3}
   800,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {fb47b0d6-d068-46dd-9fc0-76b0eb2172e4},	!- Handle
+  {25f3c80e-3a6f-4334-88d4-d2df1ad4959a},	!- Handle
   ฉนวนใยหิน ความหนาแน่น 6.4 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1569,11 +1571,11 @@ OS:Material,
   6.4,										!- Density {kg/m3}
   800,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {e45fdaa8-83b8-4db1-90f8-9b3b49edde6b},	!- Handle
+  {2eb0b5b0-43ab-4cc9-930f-c664d8d71197},	!- Handle
   ฉนวนใยหิน ความหนาแน่น 8 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1581,11 +1583,11 @@ OS:Material,
   8,										!- Density {kg/m3}
   800,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {2f1774c8-f3c8-4847-bdca-3df77e27d3d4},	!- Handle
+  {b6d13ab1-9d9a-4e9f-a31d-2930b3af6a60},	!- Handle
   ซุปเปอร์บล็อค หนา 31 มม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1593,11 +1595,11 @@ OS:Material,
   695,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {aaf91db0-8e37-4056-b2b5-bc694e362b44},	!- Handle
+  {e623a62b-2e64-48af-82d5-0eb8dcf81056},	!- Handle
   ซุปเปอร์บล็อค หนา 50 มม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1605,11 +1607,11 @@ OS:Material,
   624,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {1be41058-8b93-4569-aee1-5280a5f9bdb6},	!- Handle
+  {fcbb0396-fbe4-4639-942d-c4d575b6d8f2},	!- Handle
   ซุปเปอร์บล็อค หนา 74.2 มม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1617,11 +1619,11 @@ OS:Material,
   600,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {a2c7f468-6ebc-47fe-883e-32a908fbba59},	!- Handle
+  {446ae58d-f146-4c1a-adc3-c1c8431adb35},	!- Handle
   เซลโลกรีตชนิดธรรมดา,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1629,11 +1631,11 @@ OS:Material,
   500,										!- Density {kg/m3}
   1300,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {e394c177-8674-4caa-9195-a33086eb20ea},	!- Handle
+  {a079529b-5000-4235-9dd2-c0ae9ed47113},	!- Handle
   เซลโลกรีตชนิดธรรมดา หนา 1 1/2”,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1641,11 +1643,11 @@ OS:Material,
   384,										!- Density {kg/m3}
   1300,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {e2f622b1-4c5c-4e1a-bfa2-e91865844b22},	!- Handle
+  {5dc40248-4e7b-4111-9350-af0ce5dc2e82},	!- Handle
   เซลโลกรีตชนิดธรรมดา หนา 1/2”,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1653,11 +1655,11 @@ OS:Material,
   608,										!- Density {kg/m3}
   1300,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {cd44edd3-063d-4763-9e8e-bd33a2b4f896},	!- Handle
+  {b1044489-c82e-4587-a0e0-c207c5e5e754},	!- Handle
   เซลโลกรีตชนิดธรรมดา หนา 1”,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1665,11 +1667,11 @@ OS:Material,
   392,										!- Density {kg/m3}
   1300,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {5042bc01-52e4-4fbf-af41-0fc2b98b2148},	!- Handle
+  {fd384165-db63-499c-bca0-4da085a7178c},	!- Handle
   เซลโลกรีตชนิดธรรมดา หนา 2”,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1677,11 +1679,11 @@ OS:Material,
   388,										!- Density {kg/m3}
   1300,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {5e3f1106-cab7-4a69-a107-6560984949f2},	!- Handle
+  {84e87a27-f3df-4f33-b11d-86cd834f66b8},	!- Handle
   เซลโลกรีตชนิดธรรมดา หนา 3/4”,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1689,11 +1691,11 @@ OS:Material,
   529,										!- Density {kg/m3}
   1300,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {21f9d218-5c14-4259-b8a2-99a9f452a038},	!- Handle
+  {17fbca37-628e-40d2-9009-f84b1f0dbefd},	!- Handle
   เซลโลกรีตชนิดโฟม,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1701,11 +1703,11 @@ OS:Material,
   300,										!- Density {kg/m3}
   1300,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {7902341c-f937-4e1a-b41b-bd181cbe4282},	!- Handle
+  {68c15692-cd5c-4134-b513-6a4faf783299},	!- Handle
   เซลโลกรีตชนิดโฟม หนา 1/2”,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1713,11 +1715,11 @@ OS:Material,
   377,										!- Density {kg/m3}
   1300,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {2588a85c-7b6f-4652-b5f0-81d0fddcb872},	!- Handle
+  {74571f11-9ccd-4e46-ba47-9dddc84b67c9},	!- Handle
   เซลโลกรีตชนิดโฟม หนา 1”,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1725,11 +1727,11 @@ OS:Material,
   299,										!- Density {kg/m3}
   1300,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {f5d3d5f2-4600-428e-af3d-a9fa23cd94bd},	!- Handle
+  {bf693f10-efa7-474d-8c19-231def5e82b7},	!- Handle
   เซลโลกรีตชนิดโฟม หนา 3/4”,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1737,11 +1739,11 @@ OS:Material,
   272,										!- Density {kg/m3}
   1300,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {b0fc8c25-0e66-42bc-9946-dbf90564d754},	!- Handle
+  {e6aaac48-7ea0-4b38-ad26-b6b0e50f77d8},	!- Handle
   ทราย,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1753,7 +1755,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {3b273ab1-a226-4bf0-ba61-61e476d5b92c},	!- Handle
+  {d45de691-c854-4e98-a5ae-9be273a44571},	!- Handle
   ทองแดง,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1761,11 +1763,11 @@ OS:Material,
   8784,										!- Density {kg/m3}
   390,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.9,										!- Solar Absorptance
+  0.9;										!- Visible Absorptance
 
 OS:Material,
-  {bbc9aa73-161e-4ad2-88b9-c7eff69760e3},	!- Handle
+  {5c7d99a7-21eb-41f5-99f3-26f1bef47b27},	!- Handle
   ปูนฉาบ (ซีเมนต์ผสมทราย),									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1773,11 +1775,11 @@ OS:Material,
   1860,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {67f42e6a-f6f6-4f81-a2b1-594792a52614},	!- Handle
+  {56d8905a-9c59-451d-bb35-1e0177527b3e},	!- Handle
   ปูนฉาบผสมเสร็จสำหรับคอนกรีตมวลเบา,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1785,11 +1787,11 @@ OS:Material,
   1182,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {8f192eaa-d954-4bde-bd95-696c907c1df5},	!- Handle
+  {bac984f9-2b67-4925-9b7a-147d74e5b855},	!- Handle
   ปูนฉาบสำหรับคอนกรีตมวลเบา,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1797,11 +1799,11 @@ OS:Material,
   1200,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {2295e87f-a951-469f-b92c-bbe480f79091},	!- Handle
+  {4df36f9b-995e-4e2e-b70f-9b2fcae100ab},	!- Handle
   ปูนซีเมนต์,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1809,11 +1811,11 @@ OS:Material,
   1568,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {d118014b-264d-499c-ba46-ae63cd9cbb78},	!- Handle
+  {20f394fc-6b18-477c-b50f-2c41b56dee79},	!- Handle
   แผ่นไฟเบอร์ (fiber board),									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1825,7 +1827,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {15cd56d7-60f1-4fb9-82d1-5ff354ea9366},	!- Handle
+  {42d9a050-7103-4f56-a301-7e541de8e60f},	!- Handle
   แผ่นไฟเบอร์ชานอ้อย,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1837,7 +1839,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {0543175c-2b79-4d64-8b55-323d1d8ef2ce},	!- Handle
+  {a04ff86f-6c94-456b-aace-ee5f550365db},	!- Handle
   แผ่นไม้ก๊อก,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1849,7 +1851,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {0b7be1ec-53ca-457b-9b33-f7bad9eccdb1},	!- Handle
+  {c50d18d6-e5b4-4b3c-bd40-8b628a40fc3a},	!- Handle
   แผ่นยิบซัมตราช้างชนิดทนความชื้น,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1857,11 +1859,11 @@ OS:Material,
   775,										!- Density {kg/m3}
   1090,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {8805cda5-4653-4d49-b972-98f491c5fe7f},	!- Handle
+  {43cd01e1-b10c-428d-94f7-3684d70c9f8c},	!- Handle
   แผ่นยิบซัมตราช้างชนิดทนไฟ,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1869,11 +1871,11 @@ OS:Material,
   885,										!- Density {kg/m3}
   1090,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {5f4924b6-1ebb-45ac-a464-22ae165e1048},	!- Handle
+  {46ee1a35-986b-432d-9148-9a6339f2f048},	!- Handle
   แผ่นยิบซัมตราช้างชนิดธรรมดา หนา 12 มม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1881,11 +1883,11 @@ OS:Material,
   760,										!- Density {kg/m3}
   1090,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {a26e99ec-0ad2-4bc5-a5a3-9f20a8533dad},	!- Handle
+  {96fd29bb-a17d-4beb-a9f1-a76718594334},	!- Handle
   แผ่นยิบซัมตราช้างชนิดธรรมดา หนา 9 มม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1893,11 +1895,11 @@ OS:Material,
   725,										!- Density {kg/m3}
   1090,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {a5c48e30-7370-4096-84cc-a02d21b932d3},	!- Handle
+  {f03c1d32-b809-4bfb-a933-b52388bbb33c},	!- Handle
   แผ่นยิบซัมตราช้างชนิดปรุลายรุ่นพินโฮล,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1905,11 +1907,11 @@ OS:Material,
   745,										!- Density {kg/m3}
   1090,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {a5ecdbc9-bf1f-431a-9f7a-ab3e3405ca17},	!- Handle
+  {94c8cf78-53a8-4aba-b0ca-9b0fca43f39d},	!- Handle
   แผ่นยิบซัมตราช้างชนิดพีวีซี,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1917,11 +1919,11 @@ OS:Material,
   684,										!- Density {kg/m3}
   1090,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {0fbf5493-6bab-4fd6-a2d1-a9a76530ad6d},	!- Handle
+  {c996a836-788a-4e8b-ad22-2670adf892cf},	!- Handle
   แผ่นยิบซัมตราช้างชนิดอลูมิเนียมฟอยล์,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1929,11 +1931,11 @@ OS:Material,
   745,										!- Density {kg/m3}
   1090,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {caa31e2c-1091-4b2c-889f-31c8e5f65202},	!- Handle
+  {e207c8ab-15ef-4b60-88bd-66ef6041c3d8},	!- Handle
   แผ่นยิปซั่ม,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1941,11 +1943,11 @@ OS:Material,
   800,										!- Density {kg/m3}
   1090,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {8f542a03-5aa3-49e1-b7b1-618efaa25a40},	!- Handle
+  {abc74710-066f-4760-b2d3-e76b2e71133e},	!- Handle
   แผ่นยิปซั่มบอร์ด,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1953,11 +1955,11 @@ OS:Material,
   880,										!- Density {kg/m3}
   1090,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {3beea102-dc3f-4d74-9de4-bde60f8eeb56},	!- Handle
+  {2a3aa085-9b70-4125-bc12-d9de8f5ec584},	!- Handle
   แผ่นอลูคาร์บอน     ,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1965,11 +1967,11 @@ OS:Material,
   1375,										!- Density {kg/m3}
   897,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {9e5c155d-ad87-4ca8-b6bf-f90f48f92d24},	!- Handle
+  {053b4de6-f50a-434f-8e60-3ffd1123ce51},	!- Handle
   พลาสเตอร์ฉาบยิบซั่ม,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1977,11 +1979,11 @@ OS:Material,
   720,										!- Density {kg/m3}
   1090,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {0e6319b6-3485-4969-93a6-2dd14dda6615},	!- Handle
+  {34d4428e-1011-436d-97b5-293298e95e7b},	!- Handle
   โพลียูรีเทนโฟม,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -1989,11 +1991,11 @@ OS:Material,
   55,										!- Density {kg/m3}
   1590,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {ba7ded2d-4fb5-4203-bbf7-4546a9acb901},	!- Handle
+  {03c65d20-cc93-4f72-be5a-7d4950d9d73f},	!- Handle
   โฟม (ความหนาแน่น 20 kg/m3),									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2001,11 +2003,11 @@ OS:Material,
   20,										!- Density {kg/m3}
   1210,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {cf8b77d3-85ce-4034-8814-144ee6851887},	!- Handle
+  {abda0db7-3eab-488c-8624-01cadbe4ed16},	!- Handle
   โฟม (ความหนาแน่น 200 kg/m3),									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2013,11 +2015,11 @@ OS:Material,
   200,										!- Density {kg/m3}
   1210,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {7ebcc954-74cc-4c88-8b86-70115068d62c},	!- Handle
+  {fdb7931a-d1e2-4f66-922a-00c223051005},	!- Handle
   โฟม (ความหนาแน่น 9 kg/m3),									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2025,11 +2027,11 @@ OS:Material,
   9,										!- Density {kg/m3}
   1210,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {256ab67d-d01d-4b46-8cab-6747751b3542},	!- Handle
+  {970bf0c8-6a34-4f34-9e0f-60c7998bcf56},	!- Handle
   โฟมโพลียูรีเทน ความหนานแน่น 24 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2037,11 +2039,11 @@ OS:Material,
   24,										!- Density {kg/m3}
   1590,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {594c6a83-e6e1-4701-8198-d46656bb3f53},	!- Handle
+  {a3c1192a-e2c0-400e-9b3e-8933af072c58},	!- Handle
   โฟมโพลียูรีเทน ความหนานแน่น 40 กก./ลบ.ม.,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2049,11 +2051,11 @@ OS:Material,
   40,										!- Density {kg/m3}
   1590,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {395fd18a-4a67-43d3-885d-2a710de4f1bb},	!- Handle
+  {5d701857-938b-477f-8d32-c15d863954dd},	!- Handle
   โฟมโพลีเอทิลีน,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2061,11 +2063,11 @@ OS:Material,
   45,										!- Density {kg/m3}
   1210,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {03eb7dd6-102f-480e-9f5f-6cc0ed7857ce},	!- Handle
+  {3dba9be4-71ba-4f64-bfc6-fb861588f904},	!- Handle
   ไม้จำปา,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2077,7 +2079,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {a9c30914-9517-428a-bdff-fd9b050f6c21},	!- Handle
+  {6477b611-01d0-40ed-bf41-405e2893875f},	!- Handle
   ไม้แดง,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2089,7 +2091,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {e83961d8-c789-43d2-9090-a38880045e07},	!- Handle
+  {6f0503d0-b8b9-4f5b-b3d9-bfcee779e55f},	!- Handle
   ไม้เต็ง,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2101,7 +2103,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {5d8700a8-86be-4af6-86a0-dbfa2a74d70b},	!- Handle
+  {45aafcff-d0c8-4ee2-bec8-1bc3fd90fbd2},	!- Handle
   ไม้ทุเรียน,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2113,7 +2115,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {7f50c777-36fd-4ea9-9330-eff91813e9ba},	!- Handle
+  {ce1e1b02-56c0-478e-9e05-0a4f8f64553b},	!- Handle
   ไม้เนื้อแข็ง,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2125,7 +2127,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {679a10b5-3b81-4e31-9beb-556b259eb3c2},	!- Handle
+  {4ffeea4b-e4c9-4803-9326-e07a49c03bc5},	!- Handle
   ไม้เนื้อแข็งปานกลาง,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2137,7 +2139,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {df155c93-880d-439e-af5c-34eb224dccbd},	!- Handle
+  {0daf8e7a-82ba-4547-b6cf-81d97488ae60},	!- Handle
   ไม้เนื้ออ่อน,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2149,7 +2151,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {5810972c-c7d9-4895-8c57-f8a6510a9be9},	!- Handle
+  {4012111f-60df-404f-93f4-71bfdbca35fe},	!- Handle
   ไม้ป๊อปปลา,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2161,7 +2163,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {1c7429a6-4955-46c9-9ef9-b6ba3c190085},	!- Handle
+  {f3ed6b94-ea75-4ff7-a45c-ec593e981bf9},	!- Handle
   ไม้ปาร์เก้,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2173,7 +2175,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {5b12255b-49f7-42fe-8057-8323680313df},	!- Handle
+  {df115680-3601-4c34-8b62-a5ecda447bcc},	!- Handle
   ไม้มะค่า,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2185,7 +2187,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {6dada60e-50a6-4369-ad00-e0587f2d8592},	!- Handle
+  {2a20a04e-d2f4-4b31-9a39-e6f3e818456a},	!- Handle
   ไม้เมเปิ้ล,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2197,7 +2199,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {a7e49c8d-0f22-447d-9b37-dd4e39efceac},	!- Handle
+  {b4b5a87c-de49-4940-a3c3-61f423d4dee3},	!- Handle
   ไม้สน,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2209,7 +2211,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {94cded77-2624-49cf-bb2b-d79ecffbec43},	!- Handle
+  {78d93317-c0a3-4abf-9e90-49af97925c3c},	!- Handle
   ไม้สัก,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2221,7 +2223,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {c811f327-07ef-4495-9d98-50037a948132},	!- Handle
+  {e62c1a21-a70a-4a0d-8371-d87cff4ec8bb},	!- Handle
   ไม้อัด,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2233,7 +2235,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {786a40ba-2a1f-49b1-b684-c3baa0336285},	!- Handle
+  {4e9b9ee5-f517-4df6-8d8f-6c0098435770},	!- Handle
   ไม้อัดชิพบอร์ด,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2245,7 +2247,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {4d0a7646-d215-4a1f-8bf9-cf9cd8780b9e},	!- Handle
+  {5fa00c58-4fc2-4836-ad2c-2bc4b0c06b55},	!- Handle
   ไม้แอช,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2257,7 +2259,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {a568548d-8775-49ce-8b99-d7bceb3ea281},	!- Handle
+  {4a40548b-9295-49ad-885c-2987bafd6fda},	!- Handle
   ใยแก้ว,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2265,11 +2267,11 @@ OS:Material,
   69,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {65db8a31-efd0-4878-bf72-5e7b85c73a1d},	!- Handle
+  {d28a7dbd-9e2a-4f1b-b3cd-67162012f8f9},	!- Handle
   ใยแก้วติดอลูมิเนียมฟอยล์ 1 ด้าน,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2277,11 +2279,11 @@ OS:Material,
   130,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {be3e9768-213b-47aa-9e83-9b69cc239776},	!- Handle
+  {7db8eb44-491b-4a5a-8d93-145f821cf3a8},	!- Handle
   ลิโนเลียม,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2289,11 +2291,11 @@ OS:Material,
   1194,										!- Density {kg/m3}
   1260,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {cf3fb2b0-5c05-4310-9ea4-df9e94699f2f},	!- Handle
+  {0ec0855a-b7e9-462a-9cd2-c624177e112f},	!- Handle
   โลหะผสมของอลูมิเนียม แบบธรรมดา,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2301,11 +2303,11 @@ OS:Material,
   2672,										!- Density {kg/m3}
   896,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.3,										!- Solar Absorptance
+  0.3;										!- Visible Absorptance
 
 OS:Material,
-  {ca962775-b48c-44c2-818f-1c8c7012d33a},	!- Handle
+  {7bf14561-34bb-4f81-9c35-b2cf21089a8b},	!- Handle
   ไลโนเลียม (พรมน้ำมัน),									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2317,7 +2319,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {49d62878-a4cd-46b5-a724-e79f1751a391},	!- Handle
+  {6c1bc3ff-d77c-4e02-8a0e-9a2432c7f436},	!- Handle
   วัสดุมุงหลังคาแอสฟัลต์,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2325,11 +2327,11 @@ OS:Material,
   1500,										!- Density {kg/m3}
   1510,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.9,										!- Solar Absorptance
+  0.9;										!- Visible Absorptance
 
 OS:Material,
-  {301e1be0-43d1-4ade-9461-e3208da641af},	!- Handle
+  {3dde63b1-d64a-43de-aeaf-fea239b702b8},	!- Handle
   หินกาบ,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2341,7 +2343,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {78cdbbac-629b-489c-bed2-e053260b695a},	!- Handle
+  {0b46a3ff-0e78-4a63-b8da-1d0b57e2cd2c},	!- Handle
   หินแกรนิต,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2349,11 +2351,11 @@ OS:Material,
   2600,										!- Density {kg/m3}
   790,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {fe8e35ff-3627-4558-a4cd-ef5e2af0a991},	!- Handle
+  {59e90ebd-efb6-4853-a70f-6220024fbc3a},	!- Handle
   หินแกรนิตสีแดง,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2365,7 +2367,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {27e191a9-ef61-479c-9a77-72b0f4b756fc},	!- Handle
+  {5783139a-0559-4516-ad1d-08be4aa8af85},	!- Handle
   หินแกรนิตสีเทา,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2373,11 +2375,11 @@ OS:Material,
   2603,										!- Density {kg/m3}
   790,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.9,										!- Solar Absorptance
+  0.9;										!- Visible Absorptance
 
 OS:Material,
-  {f8f7d40a-ed93-47c8-86fe-5af1ab2506c8},	!- Handle
+  {1b64f0fc-4a31-4b78-b695-d595e29ecae4},	!- Handle
   หินทราย,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2385,11 +2387,11 @@ OS:Material,
   2440,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.9,										!- Solar Absorptance
+  0.9;										!- Visible Absorptance
 
 OS:Material,
-  {4ee62b90-44c1-43db-b8b3-2e6094d0a8e1},	!- Handle
+  {bdb41f10-fd19-4b43-bed3-46d7b125d79c},	!- Handle
   หินอ่อน,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2397,11 +2399,11 @@ OS:Material,
   2700,										!- Density {kg/m3}
   800,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {620f7366-4b80-48e4-844f-2d863cc05397},	!- Handle
+  {7c911b66-54e1-420d-a486-81755a89f95f},	!- Handle
   หินอ่อนสีขาว,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2409,11 +2411,11 @@ OS:Material,
   2726,										!- Density {kg/m3}
   800,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {ef76495b-8cf6-4a5f-a33b-d4b1d897b0e3},	!- Handle
+  {114d0182-33ea-4ba5-a5d4-b6bf4a421d31},	!- Handle
   หินอ่อนสีแดง,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2425,7 +2427,7 @@ OS:Material,
   0.7;										!- Visible Absorptance
 
 OS:Material,
-  {10b68e7a-a450-4109-b479-dc5c6d48997c},	!- Handle
+  {fc7073ec-da11-46b6-9fa0-cb0a7e5ae845},	!- Handle
   เหล็กกล้า,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2433,11 +2435,11 @@ OS:Material,
   7840,										!- Density {kg/m3}
   500,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.9,										!- Solar Absorptance
+  0.9;										!- Visible Absorptance
 
 OS:Material,
-  {39b1b42e-a90c-42ea-86e9-1ee8153fe097},	!- Handle
+  {b6af8abc-d748-4d15-9d61-c23130d8aa5c},	!- Handle
   อิฐฉาบปูนปิดด้วยกระเบื้องหน้าเดียว,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2445,11 +2447,11 @@ OS:Material,
   1760,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {4498caed-6447-427b-9128-cb9917a64ae2},	!- Handle
+  {d6947867-7f2d-4dbd-8be8-061012258349},	!- Handle
   อิฐฉาบปูนปิดด้วยแผ่นโมเสด,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2457,11 +2459,11 @@ OS:Material,
   1760,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {4ef5fdd3-a837-4b27-a6ba-1cdddc525d25},	!- Handle
+  {a4730f25-632b-4634-99cb-ace187c7b7ea},	!- Handle
   อิฐมอญ,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2469,11 +2471,11 @@ OS:Material,
   1615,										!- Density {kg/m3}
   790,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.9,										!- Solar Absorptance
+  0.9;										!- Visible Absorptance
 
 OS:Material,
-  {8d6d6d57-0630-4a44-a762-15f512230d36},	!- Handle
+  {b758faa0-aa74-494b-a7a2-642e766d00b7},	!- Handle
   อิฐมอญฉาบปูนสองหน้า,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2481,11 +2483,11 @@ OS:Material,
   1700,										!- Density {kg/m3}
   790,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {d69dbd13-1b0a-4f87-9796-59e4706bef75},	!- Handle
+  {a732e4da-f945-4630-b833-2cebc386c853},	!- Handle
   อิฐมอญฉาบสองหน้า,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2493,11 +2495,11 @@ OS:Material,
   1700,										!- Density {kg/m3}
   790,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.5,										!- Solar Absorptance
+  0.5;										!- Visible Absorptance
 
 OS:Material,
-  {74fe20ef-5c4d-4ee1-8d3d-d3b87130eca2},	!- Handle
+  {05ed33ca-ace7-44bd-8e03-0a97139d4adf},	!- Handle
   อิฐมอญไม่ฉาบ,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2505,11 +2507,11 @@ OS:Material,
   1600,										!- Density {kg/m3}
   790,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.9,										!- Solar Absorptance
+  0.9;										!- Visible Absorptance
 
 OS:Material,
-  {1f6087c2-7e4e-4205-8106-1387fb7c4aca},	!- Handle
+  {d31d147b-e2c2-4ff7-acd7-faa1019e9283},	!- Handle
   อิฐมอญแห้ง,									!- Name
   Smooth,									!- Roughness
   0.012,									!- Thickness {m}
@@ -2517,57 +2519,11 @@ OS:Material,
   1760,										!- Density {kg/m3}
   790,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.7,										!- Solar Absorptance
-  0.7;										!- Visible Absorptance
+  0.9,										!- Solar Absorptance
+  0.9;										!- Visible Absorptance
 
- OS:Material,
-  {ca8a182d-6baa-4755-a6c3-25cf7271311c}, !- Handle
-    กระเบื้องซีเมนต์ใยหินแผ่นเรียบ,                                           !- Name
-  Smooth,                                 !- Roughness
-  0.006,                                !- Thickness {m}
-  0.507,                                  !- Conductivity {W/m-K}
-  1722,                                   !- Density {kg/m3}
-  1000,                                   !- Specific Heat {J/kg-K}
-  0.507,                                  !- Thermal Absorptance
-  0.4,                                    !- Solar Absorptance
-  0.4;                                    !- Visible Absorptance
 
-!- OS:StandardsInformation:Material,
-!-  {e88b490e-e06f-4d02-9f21-37adaed2f3fg}, !- Handle
-!-  {ca8a182d-6baa-4755-a6c3-25cf7271311c}; !- Material Name
-  
-  OS:Material,
-  {ca8a182d-6baa-4755-a6c3-25cf7271311b}, !- Handle
-    แผ่นยิบซัมตราช้างชนิดทนไฟ,                                             !- Name
-  Smooth,                                 !- Roughness
-  0.012,                                  !- Thickness {m}
-  0.318,                                  !- Conductivity {W/m-K}
-  885,                                    !- Density {kg/m3}
-  1009,                                   !- Specific Heat {J/kg-K}
-  0.507,                                  !- Thermal Absorptance
-  0.4,                                    !- Solar Absorptance
-  0.4;                                    !- Visible Absorptance
-
-!-  OS:StandardsInformation:Material,
-!-  {e88b490e-e06f-4d02-9f21-37adaed2f3f0}, !- Handle
-!-  {ca8a182d-6baa-4755-a6c3-25cf7271311b}; !- Material Name
-  
-  OS:Material,
-  {ca8a182d-6baa-4755-a6c3-25cf7271b11c}, !- Handle
-    แผ่นยิบซัมตราช้างชนิดธรรมดา,                                          !- Name
-  Smooth,                                 !- Roughness
-  0.009,                                  !- Thickness {m}
-  0.306,                                  !- Conductivity {W/m-K}
-  760,                                    !- Density {kg/m3}
-  1009,                                   !- Specific Heat {J/kg-K}
-  0.507,                                  !- Thermal Absorptance
-  0.4,                                    !- Solar Absorptance
-  0.4;                                    !- Visible Absorptance
-  
-!-  OS:StandardsInformation:Material,
-!-  {e88b490e-e06f-4d02-9f21-37adaed2f3fa}, !- Handle
-!-  {ca8a182d-6baa-4755-a6c3-25cf7271b11c}; !- Material Name  
-  !----------------------------------------------------------
+  !-------------------------End Materails---------------------------
   
 OS:Material,
   {ca8a182d-6baa-4755-a6c3-25cf72713114}, !- Handle
