@@ -10,8 +10,8 @@
 
 !- Revision			Details
 !- 0.0.2-000		Updated material.
-					(1) Solar Absorptance,
-					(2) Visible Absorptance,
+!-					(1) Solar Absorptance,
+!-					(2) Visible Absorptance,
 !- 0.0.1-000 		Initialize.
 !-					Added Split type air, Added Lighting system.
 !-----------------------------------------------------------------
