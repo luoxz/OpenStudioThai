@@ -21,7 +21,7 @@
   Var IS_DEFAULT_INSTALLDIR
 ;--------------------------------
 ;Include Modern UI
-
+  !include x64.nsh
   !include "MUI.nsh"
   !include "LogicLib.nsh"
   ;!include "WinVer.nsh"
@@ -788,10 +788,18 @@ Section "-Core installation"
 
   su15found:
   IntOp $sketchupFound $sketchupFound + 1
-  ; SketchUp 2015 32-bit
-  StrCmp $sketchup15Dir "C:\Program Files (x86)\SketchUp\SketchUp 2015\" su15-32 0
-  ; SketchUp 2015 64-bit
-  StrCmp $sketchup15Dir "C:\Program Files\SketchUp\SketchUp 2015\" su15-64 0
+  
+  ${If} ${RunningX64}
+    ; Windows 64 bit
+    ; SketchUp 2015 32-bit
+    StrCmp $sketchup15Dir "C:\Program Files (x86)\SketchUp\SketchUp 2015\" su15-32 0
+    ; SketchUp 2015 64-bit
+    StrCmp $sketchup15Dir "C:\Program Files\SketchUp\SketchUp 2015\" su15-64 0
+  ${Else}
+    ; Windows 32 bit
+    StrCmp $sketchup15Dir "C:\Program Files\SketchUp\SketchUp 2015\" su15-32 0
+  ${EndIf}   
+  
   ; Unknown install location
   MessageBox MB_OK "Unrecognized SketchUp 2015 install location.  The OpenStudio SketchUp Plug-in will not be installed."
   Goto su15done
