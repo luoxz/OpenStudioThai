@@ -334,6 +334,7 @@ OSDocument::OSDocument( openstudio::model::Model library,
   connect(m_mainWindow, &MainWindow::importSDDClicked, this, &OSDocument::importSDDClicked);
   connect(m_mainWindow, &MainWindow::loadFileClicked, this, &OSDocument::loadFileClicked);
   connect(m_mainWindow, &MainWindow::loadLibraryClicked, this, &OSDocument::loadLibraryClicked);
+  connect(m_mainWindow, &MainWindow::addLibraryClicked, this, &OSDocument::addLibraryClicked);
   connect(m_mainWindow, &MainWindow::newClicked, this, &OSDocument::newClicked);
   connect(m_mainWindow, &MainWindow::exitClicked, this, &OSDocument::exitClicked);
   connect(m_mainWindow, &MainWindow::helpClicked, this, &OSDocument::helpClicked);
@@ -1347,6 +1348,16 @@ void OSDocument::setComponentLibrary(const openstudio::model::Model& model)
   m_combinedCompLibrary.insertObjects(m_hvacCompLibrary.objects());
 
   onVerticalTabSelected(m_mainTabId);
+}
+
+void OSDocument::addComponentLibrary(const openstudio::model::Model& model){
+	model::Model n_model = model::Model(model.clone());;
+
+	m_combinedCompLibrary = model::Model(m_compLibrary.clone());
+	m_combinedCompLibrary.insertObjects(n_model.objects());
+	m_combinedCompLibrary.insertObjects(m_hvacCompLibrary.objects());
+
+	onVerticalTabSelected(m_mainTabId);
 }
 
 openstudio::model::Model OSDocument::hvacComponentLibrary() const

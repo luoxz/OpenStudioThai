@@ -54,6 +54,8 @@ class MainMenu : public QMenuBar
 
   void loadLibraryClicked();
 
+  void addLibraryClicked();
+
   void revertFileClicked(); 
 
   void saveAsFileClicked(); 

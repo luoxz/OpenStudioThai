@@ -108,6 +108,7 @@ MainWindow::MainWindow(bool isPlugin, QWidget *parent) :
   connect(mainMenu, &MainMenu::importSDDClicked, this, &MainWindow::importSDDClicked);
   connect(mainMenu, &MainMenu::loadFileClicked, this, &MainWindow::loadFileClicked);
   connect(mainMenu, &MainMenu::loadLibraryClicked, this, &MainWindow::loadLibraryClicked);
+  connect(mainMenu, &MainMenu::addLibraryClicked, this, &MainWindow::addLibraryClicked);
   connect(mainMenu, &MainMenu::saveAsFileClicked, this, &MainWindow::saveAsFileClicked);
   connect(mainMenu, &MainMenu::saveFileClicked, this, &MainWindow::saveFileClicked);
   connect(mainMenu, &MainMenu::revertFileClicked, this, &MainWindow::revertFileClicked);

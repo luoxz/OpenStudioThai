@@ -193,6 +193,7 @@ OpenStudioApp::OpenStudioApp( int & argc, char ** argv, const QSharedPointer<rul
       connect(m_osDocument.get(), &OSDocument::loadFileClicked, this, &OpenStudioApp::open);
       connect(m_osDocument.get(), &OSDocument::osmDropped, this, &OpenStudioApp::openFromDrag);
       connect(m_osDocument.get(), &OSDocument::loadLibraryClicked, this, &OpenStudioApp::loadLibrary);
+	  connect(m_osDocument.get(), &OSDocument::addLibraryClicked, this, &OpenStudioApp::addLibrary);
       connect(m_osDocument.get(), &OSDocument::newClicked, this, &OpenStudioApp::newModel);
       connect(m_osDocument.get(), &OSDocument::helpClicked, this, &OpenStudioApp::showHelp);
       connect(m_osDocument.get(), &OSDocument::aboutClicked, this, &OpenStudioApp::showAbout);
@@ -291,6 +292,7 @@ bool OpenStudioApp::openFile(const QString& fileName, bool restoreTabs)
       connect(m_osDocument.get(), &OSDocument::loadFileClicked, this, &OpenStudioApp::open);
       connect(m_osDocument.get(), &OSDocument::osmDropped, this, &OpenStudioApp::openFromDrag);
       connect(m_osDocument.get(), &OSDocument::loadLibraryClicked, this, &OpenStudioApp::loadLibrary);
+	  connect(m_osDocument.get(), &OSDocument::addLibraryClicked, this, &OpenStudioApp::addLibrary);
       connect(m_osDocument.get(), &OSDocument::newClicked, this, &OpenStudioApp::newModel);
       connect(m_osDocument.get(), &OSDocument::helpClicked, this, &OpenStudioApp::showHelp);
       connect(m_osDocument.get(), &OSDocument::aboutClicked, this, &OpenStudioApp::showAbout);
@@ -317,7 +319,7 @@ void OpenStudioApp::buildCompLibraries()
   osversion::VersionTranslator versionTranslator;
   versionTranslator.setAllowNewerVersions(false);
 
-  path p = resourcesPath() / toPath("MinimalTemplate.osm");
+  path p = resourcesPath() / toPath("ThaiLibrary.osm");
   OS_ASSERT(exists(p));
   boost::optional<Model> temp = versionTranslator.loadModel(p);
   OS_ASSERT(temp);
@@ -372,6 +374,7 @@ void OpenStudioApp::newFromTemplateSlot( NewFromTemplateEnum newFromTemplateEnum
   connect(m_osDocument.get(), &OSDocument::loadFileClicked, this, &OpenStudioApp::open);
   connect(m_osDocument.get(), &OSDocument::osmDropped, this, &OpenStudioApp::openFromDrag);
   connect(m_osDocument.get(), &OSDocument::loadLibraryClicked, this, &OpenStudioApp::loadLibrary);
+  connect(m_osDocument.get(), &OSDocument::addLibraryClicked, this, &OpenStudioApp::addLibrary);
   connect(m_osDocument.get(), &OSDocument::newClicked, this, &OpenStudioApp::newModel);
   connect(m_osDocument.get(), &OSDocument::helpClicked, this, &OpenStudioApp::showHelp);
   connect(m_osDocument.get(), &OSDocument::aboutClicked, this, &OpenStudioApp::showAbout);
@@ -454,6 +457,7 @@ void OpenStudioApp::importIdf()
         connect(m_osDocument.get(), &OSDocument::loadFileClicked, this, &OpenStudioApp::open);
         connect(m_osDocument.get(), &OSDocument::osmDropped, this, &OpenStudioApp::openFromDrag);
         connect(m_osDocument.get(), &OSDocument::loadLibraryClicked, this, &OpenStudioApp::loadLibrary);
+		connect(m_osDocument.get(), &OSDocument::addLibraryClicked, this, &OpenStudioApp::addLibrary);
         connect(m_osDocument.get(), &OSDocument::newClicked, this, &OpenStudioApp::newModel);
         connect(m_osDocument.get(), &OSDocument::helpClicked, this, &OpenStudioApp::showHelp);
         connect(m_osDocument.get(), &OSDocument::aboutClicked, this, &OpenStudioApp::showAbout);
@@ -591,6 +595,7 @@ void OpenStudioApp::import(OpenStudioApp::fileType type)
       connect(m_osDocument.get(), &OSDocument::loadFileClicked, this, &OpenStudioApp::open);
       connect(m_osDocument.get(), &OSDocument::osmDropped, this, &OpenStudioApp::openFromDrag);
       connect(m_osDocument.get(), &OSDocument::loadLibraryClicked, this, &OpenStudioApp::loadLibrary);
+	  connect(m_osDocument.get(), &OSDocument::addLibraryClicked, this, &OpenStudioApp::addLibrary);
       connect(m_osDocument.get(), &OSDocument::newClicked, this, &OpenStudioApp::newModel);
       connect(m_osDocument.get(), &OSDocument::helpClicked, this, &OpenStudioApp::showHelp);
       connect(m_osDocument.get(), &OSDocument::aboutClicked, this, &OpenStudioApp::showAbout);
@@ -769,6 +774,36 @@ void OpenStudioApp::loadLibrary()
       }
     }
   }
+}
+
+void OpenStudioApp::addLibrary()
+{
+	if (this->currentDocument())
+	{
+		QWidget * parent = this->currentDocument()->mainWindow();
+
+
+		QString fileName = QFileDialog::getOpenFileName(parent,
+			tr("Select Library"),
+			toQString(resourcesPath()),
+			tr("(*.osm)"));
+
+		if (!(fileName == ""))
+		{
+			osversion::VersionTranslator versionTranslator;
+			versionTranslator.setAllowNewerVersions(false);
+
+			boost::optional<openstudio::model::Model> model = modelFromOSM(toPath(fileName), versionTranslator);
+			if (model) {
+				this->currentDocument()->addComponentLibrary(*model);
+				versionUpdateMessageBox(versionTranslator, true, fileName, openstudio::path());
+			}
+			else{
+				LOG_FREE(Warn, "OpenStudio", "Could not open file at " << toString(fileName));
+				versionUpdateMessageBox(versionTranslator, false, fileName, openstudio::path());
+			}
+		}
+	}
 }
 
 void OpenStudioApp::newModel()

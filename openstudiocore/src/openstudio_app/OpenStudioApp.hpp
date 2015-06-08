@@ -117,6 +117,7 @@ class OpenStudioApp : public OSAppBase
 
   void loadLibrary();
 
+  void addLibrary();
   void newModel();
 
   void showHelp();

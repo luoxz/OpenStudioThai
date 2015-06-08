@@ -106,6 +106,10 @@ MainMenu::MainMenu(bool isIP, bool isPlugin, QWidget *parent) :
   m_fileMenu->addAction(action);
   connect(action, &QAction::triggered, this, &MainMenu::loadLibraryClicked);
 
+  action = new QAction(tr("&Add Library"), this);
+  m_fileMenu->addAction(action);
+  connect(action, &QAction::triggered, this, &MainMenu::addLibraryClicked);
+
   if (!m_isPlugin){
 
     m_fileMenu->addSeparator();

@@ -113,6 +113,9 @@ class OPENSTUDIO_API OSDocument : public OSQObjectController {
   // Sets the component library associated with this document.
   void setComponentLibrary(const openstudio::model::Model& model);
 
+  // Adds the component to current library 
+  void addComponentLibrary(const openstudio::model::Model& model);
+
   // Returns the hvac component library associated with this document.
   openstudio::model::Model hvacComponentLibrary() const;
 
@@ -203,6 +206,8 @@ class OPENSTUDIO_API OSDocument : public OSQObjectController {
   void osmDropped(QString path);
 
   void loadLibraryClicked();
+
+  void addLibraryClicked();
 
   void newClicked();
 
