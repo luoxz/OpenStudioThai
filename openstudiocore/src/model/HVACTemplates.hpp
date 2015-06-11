@@ -53,6 +53,8 @@ MODEL_API Loop addSystemType9(Model & model);
 
 MODEL_API Loop addSystemType10(Model & model);
 
+MODEL_API Loop airLoopHVACTHAI(Model & model);
+
 } // model
 
 } // openstudio
