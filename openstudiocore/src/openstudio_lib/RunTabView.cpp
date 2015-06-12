@@ -575,6 +575,9 @@ void RunView::on_radianceGroupClicked(int idx)
       showRadianceWarningsAndErrors(m_radianceWarnings,m_radianceErrors);
     }
   }
+  else if(button == m_becButton){
+     //TODO:IMPLEMENT.
+  }
   else{
     emit useRadianceStateChanged(false);
   }

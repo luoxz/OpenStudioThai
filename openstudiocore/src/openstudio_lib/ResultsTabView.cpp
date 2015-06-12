@@ -38,6 +38,7 @@
 #include <QPushButton>
 #include <QString>
 #include <QRegExp>
+#include <QFileDialog>
 
 #include "../runmanager/lib/FileInfo.hpp"
 #include "../runmanager/lib/JobStatusWidget.hpp"
@@ -86,6 +87,7 @@ void ResultsTabView::resultsGenerated(const openstudio::path &t_sqlFilePath, con
 ResultsView::ResultsView(QWidget *t_parent)
   : QWidget(t_parent),
     m_isIP(true),
+    m_compareBtn((new QPushButton("Compare other result.")),
     m_openResultsViewerBtn(new QPushButton("Open ResultsViewer\nfor Detailed Reports"))
 {
 
@@ -93,7 +95,7 @@ ResultsView::ResultsView(QWidget *t_parent)
   setLayout(mainLayout);
 
   connect(m_openResultsViewerBtn, &QPushButton::clicked, this, &ResultsView::openResultsViewerClicked);
-  
+  connect(m_compareBtn, &QPushButton::clicked, this, &ResultsView::compareResultsClicked);
   QHBoxLayout * hLayout = new QHBoxLayout(this);
   mainLayout->addLayout(hLayout);
 
@@ -107,7 +109,7 @@ ResultsView::ResultsView(QWidget *t_parent)
   hLayout->addWidget(m_comboBox, 0, Qt::AlignLeft | Qt::AlignVCenter);
 
   hLayout->addStretch();
-
+  hLayout->addWidget(m_compareBtn, 0, Qt::AlignCenter);
   hLayout->addWidget(m_openResultsViewerBtn, 0, Qt::AlignVCenter);
 
   m_view = new ResultsWebView(this);
@@ -155,7 +157,18 @@ void ResultsView::openResultsViewerClicked()
   if (!QProcess::startDetached(openstudio::toQString(resultsviewer), args))
   {
     QMessageBox::critical(this, "Unable to launch ResultsViewer", "ResultsViewer was not found in the expected location:\n" + openstudio::toQString(resultsviewer));
-  }
+}
+}
+
+//TODO:Implement compare windows.
+void ResultsView::compareResultsClicked()
+{
+    QString fn1 = m_comboBox->currentData().toString();
+    QString fn2 = QFileDialog::getOpenFileName(this,
+        tr("Open Result html."), "", tr("Result Files (*.html)"));
+    if(!fn2.isEmpty()){
+
+    }
 }
 
 void ResultsView::onUnitSystemChange(bool t_isIP) 
@@ -347,8 +360,18 @@ void ResultsView::populateComboBox(std::vector<openstudio::path> reports)
 
 void ResultsView::comboBoxChanged(int index)
 {
-  QString filename = m_comboBox->itemData(index).toString();
-  m_view->load(QUrl(filename));
+    if(m_comboBox->currentText() == "EnergyPlus Results"
+            || m_comboBox->currentText() == "Results | OpenStud"
+            || m_comboBox->currentText() == "BEC Report")
+    {
+        qDebug() << "\""<< m_comboBox->currentText() << "\"";
+        m_compareBtn->setVisible(true);
+    }else {
+        m_compareBtn->setVisible(false);
+    }
+
+    QString filename = m_comboBox->itemData(index).toString();
+    m_view->load(QUrl(filename));
 }
 
 ResultsWebView::ResultsWebView(QWidget * parent) :
