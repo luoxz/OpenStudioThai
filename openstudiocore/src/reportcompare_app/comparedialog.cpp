@@ -34,7 +34,7 @@ void CompareDialog::SetParam(int argc, char *argv[])
         SetParam(argv[1], argv[2], argv[3]);
     }
     else {
-        qDebug() << "Parameter is not correct.";
+        QMessageBox::critical(this, "Enexpected to launch ReportCompare", "ReportCompare was unexpected parameter size.\n");
     }
 }
 
@@ -81,6 +81,8 @@ void CompareDialog::SetParam(const QString& file1, const QString &file2, const Q
     }
     else{
         SetCmpType(CMPTYPE_UNKNOW);
+        modeStr = "??????";
+        QMessageBox::critical(this, "Enexpected to launch ReportCompare", "ReportCompare was not support argument is "+type);
     }
 
     ui->lbInfo->setText(QString("Compare report source file is %1 in mode of %2")

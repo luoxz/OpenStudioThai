@@ -128,46 +128,83 @@ ResultsView::~ResultsView()
 
 void ResultsView::openResultsViewerClicked()
 {
-  LOG(Debug, "openResultsViewerClicked");
+    LOG(Debug, "openResultsViewerClicked");
 
 #ifdef Q_OS_MAC
-  openstudio::path resultsviewer
-    = openstudio::getApplicationRunDirectory() / openstudio::toPath("../../../ResultsViewer.app/Contents/MacOS/ResultsViewer");
+    openstudio::path resultsviewer
+            = openstudio::getApplicationRunDirectory() / openstudio::toPath("../../../ResultsViewer.app/Contents/MacOS/ResultsViewer");
 #else
-  openstudio::path resultsviewer
-    = openstudio::getApplicationRunDirectory() / openstudio::toPath("ResultsViewer");
+    openstudio::path resultsviewer
+            = openstudio::getApplicationRunDirectory() / openstudio::toPath("ResultsViewer");
 #endif
 
-  QStringList args;
+    QStringList args;
 
-  // instruct ResultsViewer to make its own copies of the sql files passed in and to clean them up
-  // when done
-  args.push_back("--maketempcopies"); 
+    // instruct ResultsViewer to make its own copies of the sql files passed in and to clean them up
+    // when done
+    args.push_back("--maketempcopies");
 
-  if (!m_sqlFilePath.empty())
-  {
-    args.push_back(openstudio::toQString(m_sqlFilePath));
-  }
+    if (!m_sqlFilePath.empty())
+    {
+        args.push_back(openstudio::toQString(m_sqlFilePath));
+    }
 
-  if (!m_radianceResultsPath.empty())
-  {
-    args.push_back(openstudio::toQString(m_radianceResultsPath));
-  }
+    if (!m_radianceResultsPath.empty())
+    {
+        args.push_back(openstudio::toQString(m_radianceResultsPath));
+    }
 
-  if (!QProcess::startDetached(openstudio::toQString(resultsviewer), args))
-  {
-    QMessageBox::critical(this, "Unable to launch ResultsViewer", "ResultsViewer was not found in the expected location:\n" + openstudio::toQString(resultsviewer));
-}
+    if (!QProcess::startDetached(openstudio::toQString(resultsviewer), args))
+    {
+        QMessageBox::critical(this, "Unable to launch ResultsViewer", "ResultsViewer was not found in the expected location:\n" + openstudio::toQString(resultsviewer));
+    }
 }
 
 //TODO:Implement compare windows.
 void ResultsView::compareResultsClicked()
 {
     QString fn1 = m_comboBox->currentData().toString();
-    QString fn2 = QFileDialog::getOpenFileName(this,
-        tr("Open Result html."), "", tr("Result Files (*.html)"));
-    if(!fn2.isEmpty()){
+    QString fn2 = QFileDialog::getExistingDirectory(this,tr("Open project output folder."));
 
+    LOG(Debug, "compareResultsClicked");
+
+#ifdef Q_OS_MAC
+    openstudio::path resultsviewer
+            = openstudio::getApplicationRunDirectory() / openstudio::toPath("../../../ReportCompare.app/Contents/MacOS/ReportCompare");
+#else
+    openstudio::path reportcompare
+            = openstudio::getApplicationRunDirectory() / openstudio::toPath("ReportCompare");
+#endif
+
+    QStringList args;
+
+    // instruct ResultsViewer to make its own copies of the sql files passed in and to clean them up
+    // when done
+    args.push_back("--maketempcopies");
+
+    if (!fn1.isEmpty())
+    {
+        args.push_back(fn1);
+    }
+
+    if (!fn2.isEmpty())
+    {
+        args.push_back(fn2);
+    }
+
+    if(m_comboBox->currentText() == "EnergyPlus Results"){
+        args.push_back("e");
+    }
+    else if( m_comboBox->currentText() == "Results | OpenStud"){
+        args.push_back("o");
+    }
+    else if( m_comboBox->currentText() == "BEC Report"){
+        args.push_back("b");
+    }
+
+    if (!QProcess::startDetached(openstudio::toQString(reportcompare), args))
+    {
+        QMessageBox::critical(this, "Unable to launch ReportCompare", "ReportCompare was not found in the expected location:\n" + openstudio::toQString(reportcompare));
     }
 }
 

@@ -221,23 +221,71 @@ void writeEnvelopeSystem(QDomElement& root, QFile& file){
     }
 }
 
-QString doVerticalTable(QDomNode &node){
+QString doVerticalTable(QDomNode &root, QDomNode &ntable){
     QString table =
         "<table border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n"
         "<tbody>\n";
 
-    while(!node.isNull()) {
-        QDomElement e = node.toElement();
+    while(!ntable.isNull()) {
+        QDomElement e = ntable.toElement();
         if(!e.text().isEmpty()){
             table += QString("<tr><td align=\"left\">%1</td>"
                              "<td align=\"right\">%2</td></tr>\n")
                             .arg(insertSpaceInTag(e.tagName()))
                             .arg(e.text());
         }
-        node = node.nextSibling();
+        ntable = ntable.nextSibling();
     }
     table += "</tr>\n"
              "</tbody>\n"
+             "</table>\n";
+    return table;
+}
+
+QString doHorizontalTable(QDomNode &root, QDomNode &node){
+    QString table =
+        "<table border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n"
+        "<tbody>\n";
+
+    QString row1="<tr>", row2="<tr>";
+
+    while(!node.isNull()) {
+        QDomElement e = node.toElement();
+        if(!e.text().isEmpty()){
+            row1 += QString("<td align=\"left\">%1</td>").arg(insertSpaceInTag(e.tagName()));
+            row2 += QString("<td align=\"right\">%1</td>").arg(e.text());
+        }
+        node = node.nextSibling();
+    }
+    row1 += "</tr>\n";
+    row2 += "</tr>\n";
+
+    table += row1;
+    table += row2;
+
+    QDomElement re = root.toElement();
+    QDomNode tmproot = root.nextSibling();
+    while(1) {
+        QDomElement enext = tmproot.toElement();
+        if(re.tagName() == enext.tagName()){
+            node = tmproot.firstChild();
+            QString rown="<tr>";
+            while(!node.isNull()) {
+                QDomElement e = node.toElement();
+                if(!e.text().isEmpty()){
+                    rown += QString("<td align=\"right\">%1</td>").arg(e.text());
+                }
+                node = node.nextSibling();
+            }
+            table += rown;
+            tmproot = tmproot.nextSibling();
+        }
+        else{
+            root = node;
+            break;
+        }
+    }
+    table += "</tbody>\n"
              "</table>\n";
     return table;
 }
@@ -265,11 +313,10 @@ void doTable(const QString &title, QDomElement& root, QFile& file, int level){
         e = node.toElement();
         fe = e.firstChildElement();
         if(fe.isNull()){
-            QString table = doVerticalTable(node);
+            QString table = doHorizontalTable(root,node);
             file.write(table.toStdString().c_str());
         }
         else{
-            //qDebug()<< "Title:" << out << ", tagname:" << e.tagName() << ", type:" << e.nodeType() << " , val:" << e.nodeValue();
             doTable(e.tagName(), e, file, level+1);
         }
         if(!node.isNull())
