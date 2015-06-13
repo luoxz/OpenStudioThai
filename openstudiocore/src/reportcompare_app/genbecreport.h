@@ -3,6 +3,6 @@
 
 #include <QString>
 
-bool doBecReport(const QString &path, QString& err);
+bool doBecReport(const QString &path, QString& outpath, QString& err);
 void testInsertSpaceInTag();
 #endif // GENBECREPORT_H

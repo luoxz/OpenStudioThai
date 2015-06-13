@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-QT += core gui webenginewidgets xml
+QT += core gui xml
+QT += webkitwidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 

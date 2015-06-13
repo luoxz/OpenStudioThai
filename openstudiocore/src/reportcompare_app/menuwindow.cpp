@@ -5,6 +5,8 @@
 #include <QMessageBox>
 #include "genbecreport.h"
 #include <QDebug>
+#include <QDesktopServices>
+#include <QUrl>
 
 MenuWindow::MenuWindow(QWidget *parent)
     :QMainWindow(parent)
@@ -28,9 +30,16 @@ MenuWindow::~MenuWindow()
 
 void MenuWindow::on_btGenBEC_clicked()
 {
-    QString err;
-    if(!doBecReport("C:/Users/Gorn/Desktop/BEC XML Sample Output/bec.xml", err))
+    const QString file = "C:/Users/Gorn/Desktop/BEC XML Sample Output/bec.xml";
+    QString outpath, err;
+    if(!doBecReport("C:/Users/Gorn/Desktop/BEC XML Sample Output/bec.xml", outpath, err))
         qDebug() << err;
+    else{
+        QString foutpath = QString("file:///") + outpath;
+        QUrl url(foutpath);
+        qDebug() << foutpath;
+        QDesktopServices::openUrl(url);
+    }
 }
 
 void MenuWindow::on_btTest_clicked()

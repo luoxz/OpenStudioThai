@@ -6,6 +6,7 @@
 #include <QDomElement>
 #include <QColor>
 #include <vector>
+#include <math.h>
 
 bool isSupportTitle(const QString& title){
     if(title == "BEC Report")return true;
@@ -84,6 +85,10 @@ const QHash<QString,QString> Dic::map =  Dic::create_map();
 
 QString Bold(const QString& text){
     return QString("<b>%1%2").arg(text).arg("</b>");
+}
+
+QString PTag(const QString& text){
+    return QString("<p>%1</p>").arg(text);
 }
 
 QString hn(size_t id, const QString& text){
@@ -216,7 +221,7 @@ void writeEnvelopeSystem(QDomElement& root, QFile& file){
     }
 }
 
-QString doVerticalTable(QDomNode node){
+QString doVerticalTable(QDomNode &node){
     QString table =
         "<table border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n"
         "<tbody>\n";
@@ -238,44 +243,48 @@ QString doVerticalTable(QDomNode node){
 }
 
 void doTable(const QString &title, QDomElement& root, QFile& file, int level){
-    if(level == 0){
-        QString out = hn(1, insertSpaceInTag(title));
-        file.write(out.toStdString().c_str());
-        QDomNode node = root.firstChild();
-        while(!node.isNull()) {
-            QDomElement e = node.toElement();
-            doTable(e.tagName(), e, file, level+1);
-            node = node.nextSibling();
-        }
-    }
-    if(level == 1){
-        QString out = hn(2, insertSpaceInTag(title));
-        file.write(out.toStdString().c_str());
-        QDomNode node = root.firstChild();
+    if(title == "LightingSystem")
+        return;
 
-        if(!node.isNull()) {
-            QDomElement e = node.toElement();
-            if(e.firstChild().isNull()){
-                qDebug("Make table.");
-                QString table = doVerticalTable(node);
-                file.write(table.toStdString().c_str());
-            }
-            else{ //TODO:MAKE 2D TABLE.
-                qDebug() << "Can't make table." << e.tagName();
-                doTable(e.tagName(), e, file, level+1);
-            }
-            node = node.nextSibling();
-        }
+    //if(level == 7)return;
+    QDomNode node = root.firstChild();
+    QDomElement e = node.toElement();
+    QDomElement fe = e.firstChildElement();
+
+    if(fe.isNull()){
+        QString out = PTag(Bold(insertSpaceInTag(title)));
+        file.write(out.toStdString().c_str());
     }
-    file.write("<p>Ending report</p>");
+    else{
+        int ihn = fmin(level+1, 3);
+        QString out = hn(ihn, insertSpaceInTag(title));
+        file.write(out.toStdString().c_str());
+    }
+
+    while(!node.isNull()) {
+        e = node.toElement();
+        fe = e.firstChildElement();
+        if(fe.isNull()){
+            QString table = doVerticalTable(node);
+            file.write(table.toStdString().c_str());
+        }
+        else{
+            //qDebug()<< "Title:" << out << ", tagname:" << e.tagName() << ", type:" << e.nodeType() << " , val:" << e.nodeValue();
+            doTable(e.tagName(), e, file, level+1);
+        }
+        if(!node.isNull())
+            node = node.nextSibling();
+        else
+            break;
+    }
 }
 
-bool doBecReport(const QString &path, QString &err){
+bool doBecReport(const QString &path, QString& outpath, QString &err){
     QDomDocument doc("becreport");
 
     QFileInfo fi(path);
     QString output = fi.absolutePath()+"/report.html";
-
+    outpath = output;
     QFile file(output);
     if (file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
