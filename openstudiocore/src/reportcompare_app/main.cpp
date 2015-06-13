@@ -3,7 +3,7 @@
 #include <QApplication>
 #include <QDebug>
 
-//#define ONLY_COMPARE_DIALOG_START
+#define ONLY_COMPARE_DIALOG_START
 
 int main(int argc, char *argv[])
 {
@@ -11,10 +11,16 @@ int main(int argc, char *argv[])
     qDebug() << "argc=" <<argc;
 #ifdef ONLY_COMPARE_DIALOG_START
     CompareDialog w;
-    w.SetParam(argc, argv);
+    if(!w.SetParam(argc, argv))
+        a.exit(0);
+    else{
+        w.show();
+        return a.exec();
+    }
 #else
     MenuWindow w;
-#endif
     w.show();
     return a.exec();
+#endif
+
 }

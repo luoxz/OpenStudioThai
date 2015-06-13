@@ -43,9 +43,13 @@ private:
     QWebElement elm;
     TableCompare table;
     int rowCount, columnCount;
-    void doTable(QWebElement elm, const QString& header);
+    void doTable(QWebElement elm, const QString& projectName);
 };
 
+
+//TODO:MAKE ENEGY PLUS DOC TO INTERFACE DOC
+// ::nextTable || nextMergElement
+// ::find return QSharedPointer<IMergElement>
 class EnegyPlusDoc
 {
 public:
@@ -62,8 +66,8 @@ public:
     enum CMPTYPE { CMPTYPE_UNKNOW, CMPTYPE_OPENSTUDIO, CMPTYPE_ENYGYPLUS, CMPTYPE_BEC };
     enum FINDTARGETRES { FINDTARGETRES_NONE=0, FINDTARGETRES_DUP, FINDTARGETRES_CANTFIND};
     explicit CompareDialog(QWidget *parent = 0);
-    void SetParam(int argc, char *argv[]);
-    void SetParam(const QString &file1, const QString &file2, const QString &type);
+    bool SetParam(int argc, char *argv[]);
+    bool SetParam(const QString &file1, const QString &file2, const QString &type);
     ~CompareDialog();
     QString loadHtml(const QString &path);
     QWebElement getBody(QWebView *webView);

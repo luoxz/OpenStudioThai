@@ -180,7 +180,6 @@ void ResultsView::compareResultsClicked()
 
     // instruct ResultsViewer to make its own copies of the sql files passed in and to clean them up
     // when done
-    args.push_back("--maketempcopies");
 
     if (!fn1.isEmpty())
     {
@@ -195,7 +194,7 @@ void ResultsView::compareResultsClicked()
     if(m_comboBox->currentText() == "EnergyPlus Results"){
         args.push_back("e");
     }
-    else if( m_comboBox->currentText() == "Results | OpenStud"){
+    else if( m_comboBox->currentText() == "Results | OpenStudio"){
         args.push_back("o");
     }
     else if( m_comboBox->currentText() == "BEC Report"){
@@ -398,7 +397,7 @@ void ResultsView::populateComboBox(std::vector<openstudio::path> reports)
 void ResultsView::comboBoxChanged(int index)
 {
     if(m_comboBox->currentText() == "EnergyPlus Results"
-            || m_comboBox->currentText() == "Results | OpenStud"
+            || m_comboBox->currentText() == "Results | OpenStud" //Results | OpenStudio
             || m_comboBox->currentText() == "BEC Report")
     {
         qDebug() << "\""<< m_comboBox->currentText() << "\"";

@@ -28,13 +28,19 @@ CompareDialog::CompareDialog(QWidget *parent)
     setWindowFlags( flags );
 }
 
-void CompareDialog::SetParam(int argc, char *argv[])
+bool CompareDialog::SetParam(int argc, char *argv[])
 {
     if(argc>=4){
-        SetParam(argv[1], argv[2], argv[3]);
+        return SetParam(argv[1], argv[2], argv[3]);
     }
     else {
-        QMessageBox::critical(this, "Enexpected to launch ReportCompare", "ReportCompare was unexpected parameter size.\n");
+
+        QMessageBox msgBox;
+        msgBox.setText("Unexpected parameter to launch ReportCompare");
+        msgBox.setIcon(QMessageBox::Warning);
+        msgBox;
+        msgBox.exec();
+        return false;
     }
 }
 
@@ -60,7 +66,7 @@ QString CompareDialog::loadFileToWebView(const QString& fn, QWebView* webView)
     return target;
 }
 
-void CompareDialog::SetParam(const QString& file1, const QString &file2, const QString& type)
+bool CompareDialog::SetParam(const QString& file1, const QString &file2, const QString& type)
 {
     this->type = type;
     this->file1 = file1;
@@ -82,7 +88,10 @@ void CompareDialog::SetParam(const QString& file1, const QString &file2, const Q
     else{
         SetCmpType(CMPTYPE_UNKNOW);
         modeStr = "??????";
-        QMessageBox::critical(this, "Enexpected to launch ReportCompare", "ReportCompare was not support argument is "+type);
+        QString msg = QString("ReportCompare was not support path1:'%1'\n, path2:'%2'\n, type:'%3'\n")
+                .arg(file1).arg(file2).arg(type);
+        QMessageBox::critical(this, "Enexpected to launch ReportCompare", msg);
+        return false;
     }
 
     ui->lbInfo->setText(QString("Compare report source file is %1 in %2 mode")
@@ -93,6 +102,7 @@ void CompareDialog::SetParam(const QString& file1, const QString &file2, const Q
     ui->chkShowTree->setVisible(false);
     ui->chkShowTree->setChecked(false);
     on_chkShowTree_clicked(false);
+    return true;
 }
 
 QString CompareDialog::loadHtml(const QString &path)
@@ -159,9 +169,17 @@ bool CompareDialog::nextTable(QString &title, QWebElement &elm)
     QString lastTitle;
     bool isnext=false;
     while (!elm.isNull()) {
-        if(elm.tagName() == "B"){
+        if(elm.tagName() == "B"||
+                elm.tagName() == "H1"||
+                elm.tagName() == "H2"||
+                elm.tagName() == "H3"||
+                elm.tagName() == "H4"||
+                elm.tagName() == "H5"||
+                elm.tagName() == "H6")
+        {
             lastTitle = elm.toInnerXml();
-        }else if(elm.tagName() == "TABLE"){
+        }
+        else if(elm.tagName() == "TABLE"){
             isnext = true;
             break;
         }
@@ -214,7 +232,33 @@ void CompareDialog::makeEnegyPlusCmp()
 
 void CompareDialog::makeOpenStudioPlusCmp()
 {
+    QWebElement body = getBody(ui->webView2);
+    QWebElement elmit = body.firstChild();
+    enegyPlusDoc->resetTables();
 
+    QProgressDialog progress("Doing compare BEC plus.", "Abort", 0, enegyPlusDoc->tables.count(), this);
+    progress.setWindowModality(Qt::WindowModal);
+    progress.show();
+    QCoreApplication::processEvents();
+
+    QString title;
+    bool isnext = nextTable(title, elmit);
+    int i=0;
+    while(isnext){
+        qDebug()  << "Create At title : " << title;
+        QSharedPointer<TableElement> tbelm = enegyPlusDoc->find(title);
+        if(!tbelm.isNull()){
+            tbelm->AddTable(elmit, reportName2);
+            tbelm->updateTableElement();
+            tbelm->setUse(true);
+        }
+        elmit = elmit.nextSibling();
+        isnext = nextTable(title, elmit);
+        progress.setValue(i++);
+        QCoreApplication::processEvents();
+    }
+    progress.setValue(enegyPlusDoc->tables.count());
+    QCoreApplication::processEvents();
 }
 
 void CompareDialog::makeBecPlusCmp()
@@ -547,12 +591,20 @@ void TableElement::updateTableElement()
     elm.setInnerXml(toInsideTBODY());
 }
 
-void TableElement::doTable(QWebElement elm, const QString &header){
+void TableElement::doTable(QWebElement elm, const QString &projectName){
     bool isFirst = true;
     QWebElementCollection trs = elm.findAll("TR");
+    QString tagRow = "TD";
     for(int r=0;r<trs.count();r++){
-        QWebElementCollection tds = trs[r].findAll("TD");
-
+        qDebug() << "TagRow=" << tagRow;
+        QWebElementCollection tds = trs[r].findAll(tagRow);
+        qDebug() << "xx tds.count = " << tds.count();
+        if(tds.count()==0){
+            tagRow = "TH";
+            tds = trs[r].findAll(tagRow);
+            QWebElement elm = trs[r].firstChild();
+            qDebug() << "tds.count = " << tds.count() << ", tr.count=" << trs.count() << ", elmname:" << elm.tagName();
+        }
         if(isFirst){
             if(rowCount < 0 || columnCount < 0){
                 rowCount = trs.count();
@@ -560,15 +612,15 @@ void TableElement::doTable(QWebElement elm, const QString &header){
                 table.resize(trs.count(), tds.count());
             }
 
-            qDebug() << "#" << header << rowCount << ":" << trs.count();
-            qDebug() << "#" << header << columnCount << ":" << tds.count();
+            qDebug() << "!!!# " << projectName << rowCount << ":" << trs.count();
+            qDebug() << "!!!# " << projectName << columnCount << ":" << tds.count();
 
             if(rowCount != trs.count()||columnCount != tds.count()){
                 QMessageBox msgBox;
                 QString msg = QString("The table label %1 is mismatch.\n\
                                       Source row is %2 and compare row is %3.\n\
                                       Source column is %4 and compare column is %5."
-                                      ).arg(header)
+                                      ).arg(projectName)
                                        .arg(rowCount).arg(trs.count())
                                        .arg(columnCount).arg(tds.count());
                 msgBox.setText(msg);
@@ -580,8 +632,8 @@ void TableElement::doTable(QWebElement elm, const QString &header){
         }
 
         for(int c=0;c<tds.count();c++){
-            if(r==0&&c!=0&&(!header.isEmpty())){
-                table.pushValue(r,c, tds[c].toPlainText()+QString("<br>(%1)").arg(header));
+            if(r==0&&c!=0&&(!projectName.isEmpty())){
+                table.pushValue(r,c, tds[c].toPlainText()+QString("<br>(%1)").arg(projectName));
             }
             else{
                 table.pushValue(r,c, tds[c].toPlainText());
@@ -602,13 +654,21 @@ void TableCompare::resize(size_t row, size_t col) {
 }
 
 void TableCompare::pushValue(size_t row, size_t col, QString value){
-    int idx = _col*row+col;
+    int index = _col*row+col;
     //qDebug() << "IDX:" << idx << ", value:" << value << ", data.size = " << datas.count();
-    datas[idx].append(value);
+    if(index>=datas.length())
+        return;
+    else
+        datas[index].append(value);
 }
 
 QStringList &TableCompare::at(size_t row, size_t col){
-    return datas[_col*row+col];
+    int index = _col*row+col;
+    if(index >= datas.length()){
+        return datas[0];
+    }
+    else
+        return datas[_col*row+col];
 }
 
 QSharedPointer<TableElement> EnegyPlusDoc::find(const QString &key)
