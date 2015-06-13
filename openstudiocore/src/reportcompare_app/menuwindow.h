@@ -18,6 +18,9 @@ public:
 private slots:
     void on_btGenBEC_clicked();
     void on_btTest_clicked();
+    void on_btCPBEC_clicked();
+    void on_btCPEnergyPlus_clicked();
+    void on_btCPOPenStudio_clicked();
 
 private:
     Ui::MenuWindow *ui;

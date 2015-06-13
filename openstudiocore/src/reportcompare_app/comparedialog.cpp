@@ -85,7 +85,7 @@ void CompareDialog::SetParam(const QString& file1, const QString &file2, const Q
         QMessageBox::critical(this, "Enexpected to launch ReportCompare", "ReportCompare was not support argument is "+type);
     }
 
-    ui->lbInfo->setText(QString("Compare report source file is %1 in mode of %2")
+    ui->lbInfo->setText(QString("Compare report source file is %1 in %2 mode")
                         .arg(file1)
                         .arg(modeStr));
 
@@ -219,7 +219,33 @@ void CompareDialog::makeOpenStudioPlusCmp()
 
 void CompareDialog::makeBecPlusCmp()
 {
+    QWebElement body = getBody(ui->webView2);
+    QWebElement elmit = body.firstChild();
+    enegyPlusDoc->resetTables();
 
+    QProgressDialog progress("Doing compare BEC plus.", "Abort", 0, enegyPlusDoc->tables.count(), this);
+    progress.setWindowModality(Qt::WindowModal);
+    progress.show();
+    QCoreApplication::processEvents();
+
+    QString title;
+    bool isnext = nextTable(title, elmit);
+    int i=0;
+    while(isnext){
+        qDebug()  << "Create At title : " << title;
+        QSharedPointer<TableElement> tbelm = enegyPlusDoc->find(title);
+        if(!tbelm.isNull()){
+            tbelm->AddTable(elmit, reportName2);
+            tbelm->updateTableElement();
+            tbelm->setUse(true);
+        }
+        elmit = elmit.nextSibling();
+        isnext = nextTable(title, elmit);
+        progress.setValue(i++);
+        QCoreApplication::processEvents();
+    }
+    progress.setValue(enegyPlusDoc->tables.count());
+    QCoreApplication::processEvents();
 }
 
 EnegyPlusDoc *CompareDialog::createEnegyPlusDoc()
@@ -349,7 +375,7 @@ void CompareDialog::doCmp(QString filePath)
 
 QString CompareDialog::findTargetPath(const QString &filePath, CompareDialog::FINDTARGETRES& res)
 {
-    static QRegExp becRegEx("(run[\\\\/]\\d[-]Bec[-]\\d[\\\\/]becreport\\.html)$");
+    static QRegExp becRegEx("(run[\\\\/]\\d[-]BEC[-]\\d[\\\\/]report\\.html)$");
     static QRegExp energyPlusRegEx("(run[\\\\/]\\d[-]EnergyPlus[-]\\d[\\\\/]eplustbl\\.htm)$");
     static QRegExp openStudioRegEx("(run[\\\\/]\\d[-]UserScript[-]\\d[\\\\/]report\\.html)$");
 
@@ -415,7 +441,8 @@ void CompareDialog::on_webView_loadFinished(bool arg1)
         LoadCompareFile(this->file2);
     }
     else if(cmpType == CMPTYPE_BEC){
-
+        enegyPlusDoc = createEnegyPlusDoc();
+        LoadCompareFile(this->file2);
     }
     else if(cmpType == CMPTYPE_OPENSTUDIO){
 

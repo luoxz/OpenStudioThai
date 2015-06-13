@@ -20,6 +20,7 @@ void MenuWindow::ShowCompare(const QString& file1, const QString &file2, const Q
     if(!file1.isEmpty() && !file2.isEmpty() && !type.isEmpty()){
         CompareDialog* dlg = new CompareDialog();
         dlg->SetParam(file1, file2, type);
+        dlg->show();
     }
 }
 
@@ -45,4 +46,19 @@ void MenuWindow::on_btGenBEC_clicked()
 void MenuWindow::on_btTest_clicked()
 {
     testInsertSpaceInTag();
+}
+
+void MenuWindow::on_btCPBEC_clicked()
+{
+    ShowCompare("C:/cmpres/demo", "C:/Users/Gorn/Desktop/DEMO-OS/demo/run", "b");
+}
+
+void MenuWindow::on_btCPEnergyPlus_clicked()
+{
+    ShowCompare("C:/cmpres/demo", "C:/Users/Gorn/Desktop/DEMO-OS/demo/run", "e");
+}
+
+void MenuWindow::on_btCPOPenStudio_clicked()
+{
+    ShowCompare("C:/cmpres/demo", "C:/Users/Gorn/Desktop/DEMO-OS/demo/run", "o");
 }

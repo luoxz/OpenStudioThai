@@ -314,7 +314,7 @@ void doTable(const QString &title, QDomNode& root, QFile& file, int level){
         escapeTitle.clear();
 
     if(fe.isNull()){
-        QString out = PTag(Bold(insertSpaceInTag(title)));
+        QString out = Bold(insertSpaceInTag(title))+"<br>";
         file.write(out.toStdString().c_str());
     }
     else{
