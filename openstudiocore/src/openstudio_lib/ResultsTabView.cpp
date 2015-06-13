@@ -87,7 +87,7 @@ void ResultsTabView::resultsGenerated(const openstudio::path &t_sqlFilePath, con
 ResultsView::ResultsView(QWidget *t_parent)
   : QWidget(t_parent),
     m_isIP(true),
-    m_compareBtn((new QPushButton("Compare other result.")),
+    m_compareBtn(new QPushButton("Compare other result.")),
     m_openResultsViewerBtn(new QPushButton("Open ResultsViewer\nfor Detailed Reports"))
 {
 
