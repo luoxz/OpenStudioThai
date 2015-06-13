@@ -1,0 +1,4292 @@
+OS:Version,
+  {439fedb6-b807-40dc-ab5d-efae455c4797},	!- Handle
+  1.6.0;									!- Version Identifier
+
+OS:Lights:Definition,
+  {7d74576e-8f7a-4a95-ad94-1a9d0affc606},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ BIOBULB BNU01D-11 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {63b493d9-73d0-475d-baae-811ff9e21e2f},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ ELEKTRA CDU 13 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {9f3ca70a-579e-4282-9343-c84aee4beb22},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ ELEKTRA CDU 13 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {69ac9a0f-f008-486b-a3ae-e33286304631},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ ELEKTRA MSL-2 11W/EX-D เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {9819ddd4-7f05-497a-a23e-dccb390e548b},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ ELEKTRA MSL-2 11W/EX-WW วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {04238718-fbc4-40ae-9cbc-cda37498b779},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ ELEKTRA MSL-2 15W/EX-D เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  15,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {62ccac54-af28-4e05-ae98-8897ffa6c6e1},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ ELEKTRA MSL-2 15W/EX-WW วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  15,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {bf45b203-acd8-48f4-8e4c-22fac42c238b},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ ELEKTRA MSL-2 9W/EX-D เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {83fb05b0-5bd2-4941-836d-a3cf0f0acfae},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ ELEKTRA MSL-2 9W/EX-WW วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {2cbb4414-299b-4cca-a485-0ac5a67213ba},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ EVE LIGHTING MINI 11W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {50598f04-26f5-4dcb-a113-ae09941aa830},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ EVE LIGHTING MINI 14W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {67c23a96-8382-4830-a5fa-3ebc28777b4c},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ EVE LIGHTING MINI 8W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {080ea22e-d7a6-4e84-863e-80f03e121747},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ EVE LIGHTING MINI X FIRE 13W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {61a8b6d3-934c-43ce-87c3-d10f3a80e66d},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ EVE LIGHTING MINI X FIRE 9W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {688c2a0c-71ae-4375-b28e-c54b70d4ee66},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ EVE LIGHTING STANDARD 11W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {16449b5f-a184-450e-adf1-b7471e6a1c8d},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ EVE LIGHTING STANDARD 13W วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {7fdeaaf0-382f-4668-a72e-d38b204f359d},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ EVE LIGHTING STANDARD 13W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f10ae157-6c13-4635-a464-29c9dcd780ce},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ EVE LIGHTING STANDARD 18W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {324ba139-cf51-4a30-a807-1c6939d2c0d1},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ EVE LIGHTING STANDARD 20W วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {70d91ccf-cdfc-48d5-999c-404d14a0e21a},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ EVE LIGHTING STANDARD 20W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {ed927770-67a6-4c1f-b2ef-d479bcfc478c},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ EVE LIGHTING STANDARD 9W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {9bd39e63-77f8-41fa-a44c-66f051290025},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ EVE LIGHTING X FIRE 11W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {92ae14ae-a1c5-45eb-b19f-22a0f9a84960},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ EVE LIGHTING X-FIRE 15W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  15,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {3e429425-1571-4a93-9e1f-b802c57e1b31},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ EVE LIGHTING X-FIRE 20W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {b9140649-b756-4f52-b6db-a0e22b6a023f},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ EVE LIGHTING STANDARD CFL เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {4ddbbeb6-e5d5-4d8c-9982-d391df821e8a},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ EVE LIGHTING STANDARD CFL เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {451a48d4-6979-4bd7-af4c-51100c5523f1},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GATA TMI 2U 11W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {dd46fcdd-73aa-4b4e-bdc0-64124d8f8ea0},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GATA TMI 2U 14W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {ca09b3b8-96a8-4de1-9814-cb5db1cd08fc},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GATA TMI 2U 14W วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {16345b47-7a99-448f-8a83-0273d8506b92},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GATA TMI 3U 14W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {4a510352-1fc4-491f-8a01-d0674d44606f},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GATA TMI 3U 14W วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {4bf21dfb-9906-48e5-929c-ebf42b800fed},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GATA TMI 3U 18W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {1997faa5-85c5-475a-b465-1f976e9c26c3},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GATA TMI 3U 18W วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {ff0e73cf-235f-4d7b-8c07-b6278c350454},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GATA TMI SPI 12W วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  12,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {477ea57c-f5b3-4799-bee5-771be135ff13},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GATA TMI SPI 15W วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  15,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {8bd46043-475c-4172-b945-bd810544f222},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GATA TMI SPI 20W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {9ba58c9d-86ad-4382-ad11-d3b58e0ac804},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GATA TMI SPI 20W วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {6eb98ca0-6cc1-4126-8c9e-d8fff385aa07},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GATA TMI SPI 23W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  23,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {0de19855-2d50-438d-9121-ca7c196117a6},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GATA TMI SPI 23W วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  23,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {154a12f2-d8ac-4175-bcf0-b6170e2ef25d},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GATA TMI SPI 8W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {b9ac14ee-0556-4c2f-9522-1e8d36666fd3},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GATA TMI SPI 8W วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {47d9035a-6486-4ef7-a3a0-e7fc5437a609},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GE FLE11/DBX/827 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {549cb9a2-06f0-4ee9-80a1-f6e9c04d00d0},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GE FLE11/DBX/864 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {bd14e290-dc36-4f45-936f-fdf1674cee28},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GE FLE12HLX/827/E27/T2/BX 220-240V วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  12,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {a8e2bbcd-18b3-47c0-bac2-b03e0cdd2cf5},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GE FLE12HLX/865/E27/T2/BX 220-240V เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  12,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {d5db859c-035c-4c24-9571-12fffe3f3fe7},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GE FLE14HLX/827 Edison Plus วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {fc370b77-e06f-44a9-9223-d1eccdf20b88},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GE FLE14HLX/827/E27/T3 Edison Plus วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {309c4c9f-ae0c-4e69-be9d-9c1d22ded7d7},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GE FLE14HLX/865 Edison Plus เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {38f9f00b-b0fe-4926-ad50-475bad0c4bb9},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GE FLE14HLX/865/E27/T3 Edison Plus เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {022873ec-cbdc-41eb-be81-6e8c935b9d01},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GE FLE15/TBX/864 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  15,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {26fe61a7-3a56-4acb-95e1-cbb4218286f9},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GE FLE15/TBX/865 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  15,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {159b64a8-6094-42a3-88dd-621aae7175a9},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GE FLE20/TBX/864 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {71387cee-0842-4b18-8579-1d0493e62b15},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GE FLE20HLX/827/E27/T3 220-240V วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {58a0d340-0fe8-4e97-b08d-c3b0a289a23d},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GE FLE20HLX/865/E27/T3 220-240V เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {8666e37f-b462-45a3-b337-962d0b8aeaca},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GE FLE8DBX/827/E27/T3 220-240V วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f3196eb6-67ec-4578-8f59-d38cdd22fe08},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GE FLE8DBX/865/E27/T3 220-240V เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {773a3c37-f30c-4029-b3f4-7d1c83731298},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GE FLE8HLX/827/E27/T2/BX 220-240V วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {40a06867-1bef-40c0-8b8c-f085fbc2c6a4},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GE FLE8HLX/865/E27/T2/BX 220-240V เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {4dea8649-b330-43fa-b6fc-5cb193cd374a},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GE FLE9/DBX/864 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {cb2b7cc1-4c7b-483a-9214-5acfe68dd0db},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GE FLE9/TBX/865 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {22756df4-37f9-4ae1-8911-15c397c66fe6},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GE FLE9HLX/827/E27/T3 220-240V วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {d5cde4ff-bb37-46ff-a674-3f3f45ebbcc2},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ GE FLE9HLX/865/E27/T3 220-240V เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {84c287e8-1cac-4204-8942-6b2fafee4cb9},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ HI-TEK หลอดประหยัดไฟ วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {a7a39925-c650-4633-b5dc-fd1da9d247d9},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LAMPTAN 11W/2U วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {19fb6346-1556-4283-9781-dc6cfaecc62e},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LAMPTAN 13W/3U เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {a8a840d1-97ed-4c76-8625-202848204afa},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LAMPTAN 13W/3U วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {7ed2e227-0cef-48c8-b35f-9714039428dc},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LAMPTAN 20W/3U เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {3e33597c-8081-420a-9ab0-72835ff03da0},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LAMPTAN 20W/3U วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {db5b7388-29f7-4c03-8865-08689cb41971},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LAMPTAN 20W-SP เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {339b88ad-6931-44ec-8c0a-d2be0b3d6d91},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LAMPTAN 20W-SP วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {e98da015-ccf7-4f7a-baef-3c6f5eb66f30},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LAMPTAN 24W-SP เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  24,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {da26be83-1d40-42c6-ae25-d3b32fe7f2ea},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LAMPTAN 24W-SP วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  24,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {8bb06ece-324e-4284-ad06-3fd53bae16c5},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LAMPTAN 7W/2U เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {42cb868a-a8e2-4be2-9a69-2eb8e8249c48},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LAMPTAN 7W/2U วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f8a944d8-c61b-4bfc-b259-e4a62fe44124},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LAMPTAN SPIRAL 9W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {eee37f02-d3a1-4b3c-8a87-cd3d1a03e417},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LAMPTAN SPIRAL 13W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {4296cf1c-2372-46d7-aca5-be040a01b95f},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LAMPTAN SPIRAL 13W วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {e13e2b4f-7100-4256-9fd4-798910891e9d},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LAMPTAN SPIRAL 18W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {aa6c6e34-c705-4f49-bec2-4b69c9fd1111},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LAMPTAN SPIRAL 18W วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {0282378b-1241-43ea-b4f7-d0ff234f471f},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LAMPTAN SPIRAL 7W วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f8412369-696f-458d-84fb-c7123c7e44bd},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LEKISE CFL SPIRAL 13W/EX-WW วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {783e06f0-b9d0-4f9d-93b8-9f50d1919d07},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LEKISE CFL SPIRAL 7W/EX-D เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {b26a6449-424d-49dc-bcbf-985382fa2886},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LEKISE CFL SPIRAL 7W/EX-WW วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {0b2eb961-271e-478e-8f1a-951a7b55c945},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LEKISE CFL SPIRAL 9W/EX-WW วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {481938d9-9df4-4499-bf86-4dc2525482da},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LEKISE CFL SPIRAL T2 11W/EX-D เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {88807601-2c8f-4b6a-a7b9-40352e2745e8},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LEKISE CFL SPIRAL T2 9W/EX-D เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {2ed171f6-534b-4303-ae0b-799abdc1b010},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LKS DAI-ICHI CFL 13W EX-D เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {73ef9256-b808-405d-88da-c6ad2161f213},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LKS DAI-ICHI CFL 13W EX-W วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {e274a8ce-4ac8-4aef-9254-e63a548453ca},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LKS DAI-ICHI CFL 15W EX-W วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  15,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f30a2604-e7fa-4c17-b0b7-823242bf226e},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LKS DAI-ICHI CFL 20W EX-D เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {40df4b61-ffe9-46a4-9fdc-4bdb6fb5b603},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LKS DAI-ICHI CFL 20W EX-W วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {151262b6-49ad-4d87-b226-30f45278ce21},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LKS DAI-ICHI CFL SPIRAL 11W/EX-D เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {a7d3f6e8-accb-48aa-a12e-2a9978a1a545},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LKS DAI-ICHI CFL SPIRAL 11W/EX-WW วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {85c5411e-aaa9-4421-ab4c-735fac477af0},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LKS DAI-ICHI CFL SPIRAL 13W/EX-WW วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {dfb9049f-c430-42db-8eb5-de3908613b87},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LKS DAI-ICHI CFL SPIRAL 15W/EX-WW วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  15,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {e7839cf9-297a-41a2-b5c6-c197629cd6a2},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LKS DAI-ICHI CFL SPIRAL 9W/EX-WW วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {0b345c1a-1501-492d-b44b-fcec6342b180},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LKS DAI-ICHI M2U-1 5W/EX-D เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {cc4d11f4-68b2-4494-8abb-36761932e46a},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LKS DAI-ICHI M2U-1 5W/EX-WW วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {5d0a9da2-8e32-4b9e-a284-c68d0f78f96f},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LKS DAI-ICHI M2U-2 13W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {b5977c08-8826-4a6d-b53c-ab04f8d34f40},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LKS DAI-ICHI M2U-2 13W วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {a1bfd15a-b3e9-4597-a3e3-d772b856add6},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LKS DAI-ICHI M2U-2 7W/EX-D เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {cab5ea3b-2559-42fa-87ca-f0fca4ab390c},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LKS DAI-ICHI M2U-2 7W/EX-WW วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {2978b86c-4b3c-49be-b6f2-a4099be7d5db},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LKS DAI-ICHI M3U-2 20W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {63fcc561-d1c2-4f76-8254-e199108fcc2e},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LKS DAI-ICHI M3U-2 20W วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f6dca899-b7db-4f10-a7e2-ce57a858f1ab},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LKS DAI-ICHI M3U-2 23W/EX-D เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  23,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {6b9a71e7-e7c1-46c7-ab07-6cf9bdf38d92},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LKS DAI-ICHI M3U-2 23W/EX-WW วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  23,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f0e67b95-0944-474d-8533-b2605ec1901c},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LKS DAI-ICHI SSL-1 20W/EX-D เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {7235d43c-93d7-453a-ba00-6091a9599136},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LKS DAI-ICHI SSL-1 20W/EX-WW วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {2ade9227-11cd-46df-b777-ae7b34e3e3a3},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LUMAX LCF 11W/D-3U เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {44011010-5c9b-4dc2-bfba-663c6b449304},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LUMAX LCF 11W/W-3U วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {76b8587e-663f-472e-acbe-97505d7a2ef9},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LUMAX LCF 23W/D-SP เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  23,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {323ee33e-67ab-463e-8c6b-cca0c542bcf5},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ LUMAX LCF 23W/W-SP วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  23,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {7dac31b5-833a-4329-a865-021011300759},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ MEGAMAN 3P408 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {ee120792-d92c-42b9-a93e-489aaab37fdd},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ MEGAMAN 3P408 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {d4cb65c4-1694-4bbe-88c7-092f0c6d1621},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ MEGAMAN 3P411 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {5e17ee7c-4189-4d7f-98ed-86bf67b73b1c},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ MEGAMAN 3P414 คูลไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {ecc29eb4-2cf2-4291-831c-be8b90aeda36},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ MEGAMAN 3P414 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {a500d79b-1699-4b99-af89-e183da71b3fe},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ MEGAMAN 3P414 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {c510ad16-4032-44d0-9114-9720448d802b},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ MEGAMAN SP0205 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {afc71471-18c2-4285-89fa-d795c1b32c7c},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ MEGAMAN SP0205 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {6895d6dd-d65c-453c-addf-25b6b3e83718},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ MEGAMAN SP0208 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {6025bbc1-dc0e-4068-9ba9-35685e9a4470},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ MEGAMAN SP0208 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {5df06db2-d099-4066-9432-ab766b1246f1},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ MEGAMAN SP0211 คูลไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f20d76c3-3b2d-4aaf-8274-0daa4395e62e},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ MEGAMAN SP0211 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {5d233ca8-9688-4f8c-a589-a21fa8186b75},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ MEGAMAN SP0211 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {e013ac6e-334a-4514-ac45-93c4df2d27b2},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ MEGAMAN SP0214 คูลไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {72517e10-a6c6-4391-ac54-57fba1b1f734},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ MEGAMAN SP0214 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {a3c14ec6-b442-424a-aa27-63c9e6698770},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ MEGAMAN SP0214 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {49f64b12-2884-4f71-92be-7b1e89663d9f},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ MEGAMAN SP0220 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {174546a1-c0a7-497a-8d4b-1b93caeb37a1},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OKES HYJ2U-07W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {8d9d62dd-1b19-42e6-af58-a6b966769c45},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OKES HYJ2U-O5W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {175da642-a30b-4753-89ff-5c88c200450a},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OKES HYJ3U-11W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {5c49d255-28ce-47d0-abe5-de946917ad02},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OKES HYJ3U-18W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {6a414cc6-b694-47de-845b-ca0e6e340fbe},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OKES HYJ3U-9W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {0c379ae3-3fd0-43fd-9077-6806ae2a9507},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OKES MK-O13W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {d589a4be-59af-458d-b562-db3f9f08bc73},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OPPLE YPZ 220/11W-2U 2700K E27 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {76d7381e-922e-4854-9fba-ff774bddbcba},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OPPLE YPZ 220/11W-2U 6400K E27 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {abd00bc9-d016-4e0a-b90a-41aa77385eeb},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OPPLE YPZ 220/13-2S วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {913c9cb0-bed6-4269-ae48-29386bbd0fb1},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OPPLE YPZ 220/13-SS เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {799cb1ee-b564-4f01-a0c6-a9f677c81036},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OPPLE YPZ 220/13-SS วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {9b378dae-0fdd-4ceb-865f-a537677be21e},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OPPLE YPZ 220/13W-2U 2700K E27 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {42125dcb-8a27-4726-9330-3ec2bbaeed32},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OPPLE YPZ 220/13W-2U 6400K E27 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {8a4b325f-e542-4f4c-ab2a-91a01947237e},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OPPLE YPZ 220/15W-3US 2700K E27 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  15,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {885b8ed8-a474-4130-bc23-b8180a40685e},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OPPLE YPZ 220/20-2S วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {12dac7fa-7a7b-48c7-b7ec-35d59f3d1ba3},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OPPLE YPZ 220/20-SS เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {91ae7a42-e2a0-4436-b620-4e882ee63eae},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OPPLE YPZ 220/20-SS วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {c4b1e0a1-caad-4fe3-a27b-a533ce428dec},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OPPLE YPZ 220/20W-3U 2700K E27 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {3ee14be7-25c5-4ccc-887e-1a590ed88373},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OPPLE YPZ 220/20W-3U 6400K E27 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {d76fae67-6a94-40a6-978e-21397036542a},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OPPLE YPZ 220/7W-2US 6400K E27 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {41393fed-6fd2-456b-8261-41a395c382da},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OPPLE YPZ 220/9-2S เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {d81afb29-3f8f-4174-a18e-d272eaeae9b3},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OPPLE YPZ 220/9-2S วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {4883475b-9c41-4271-b24c-2e9db74bc8c9},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OPPLE YPZ 220/9-SS เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {80bcfce5-7dbc-4356-ab2b-e5fed578fa7c},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OPPLE YPZ 220/9-SS วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {d7ead2a7-7775-4b23-a1fb-617652d54b97},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OPPLE YPZ220/13-2S เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {745ba7b2-aa7d-4de6-b795-4c9dfff90a12},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {cfbd1a0a-0d45-42ca-8c97-edd58b08b29a},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {45295317-b62a-4059-88bf-7cc398dc7540},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  23,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {76a60b3d-8896-4cf8-b289-f3295cd27146},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR COMPACT เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {ce066226-6742-4bea-8fc9-f086c5301242},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR COMPACT วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {88f2b81f-e9a5-4b42-9b9a-f369f7c2a36e},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR COMPACT เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {76f871b5-6524-40ab-9efa-5f4d93e35e20},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR COMPACT วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {4db3779a-1d76-4557-b1f7-160911b490d1},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR COMPACT เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {15a8d61d-338f-4398-be1c-14ab70772037},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR COMPACT วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f6be5e0a-d916-44d5-af5a-39b5101870d9},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR MINITWIST เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f1785387-a273-494e-a77a-04d8463fab28},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR MINITWIST วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {0c8c4ac6-9f6c-4ed6-9a7a-3a9d2e1fc761},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR MINITWIST เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f2bb1eb5-dfed-4384-9230-1d40c5a7af8f},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR MINITWIST วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {758f9e82-58c1-4cb0-944f-88ca83f3250d},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR MINITWIST เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {55cfe66a-be70-4b97-bfcf-b071ece72d06},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR MINITWIST เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {2a5e47a0-c55b-4e47-9831-81118731c724},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR MINITWIST วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {342dc027-80f3-4f1d-98aa-70bfa0c0d1e0},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR MINITWIST เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {17fc4270-895a-4aff-a6e8-1700e781e48b},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR MINITWIST วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {cd408e59-e887-42bd-ae82-da37805cfb0e},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR MINITWIST E14 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {86084c61-5e0d-480d-8097-79703501b515},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR MINITWIST E14 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {24c55592-dc13-40a1-8a46-22529ca00973},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PANASONIC EFU11E272V ซอฟท์วอร์ม,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {de925c8e-0c66-4221-beb9-bfb82ffe88c4},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PANASONIC EFU11E652V คูลเดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {b78c6b37-2ee8-465f-b31c-2a7c9aae4bdb},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PANASONIC EFU14E272V ซอฟท์วอร์ม,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {b80c7425-ac51-4c37-8c55-2b9c109faa44},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PANASONIC EFU14E652V คูลเดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {6d2c62df-ab3c-404f-b515-9436fd2a8953},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PANASONIC EFU18E272V ซอฟท์วอร์ม,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {c95a14c3-3560-4642-b32c-e67397699fb3},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PANASONIC EFU18E652V คูลเดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {ee7db472-a509-44d5-b58d-d9b31030f3e3},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PANASONIC EFU5E282V ซอฟท์วอร์ม,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {66ca3039-2e5e-4e46-b5de-8b41fd76eb74},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PANASONIC EFU5E672V คูลเดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {dc60e134-2609-4133-95c0-dd0ca5f7d99e},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PANASONIC EFU8E272V ซอฟท์วอร์ม,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {03e3b1d0-e192-47e4-9d5a-7f109d47041b},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ECOTONE HS คูลเดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {576c7783-63d5-4505-9d4f-2169188927c1},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ECOTONE HS คูลเดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {87294bfe-cae9-4b93-8554-a33e87dc6b59},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ECOTONE HS วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {ccd17a22-13f8-42d9-b549-5c5656f8e45d},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ECOTONE HS วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {5c763e42-6080-4246-b789-d14fe3cbe7ba},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ECOTONE HS วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f86b976f-5235-47e5-ae83-7b34fbdbfed9},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ECOTONE HS คูลเดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {6516cd84-db98-4978-ae22-5942b3bc58a1},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ECOTONE HS วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {ee303032-510e-4bbd-8a9f-7b464f1e469a},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ECOTONE HS คูลเดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  23,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {0582ea08-613a-4cda-b235-6030ee4c566b},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ECOTONE HS วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  23,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {6b18ce72-40d6-42dc-be4a-284421389f2f},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS EHL TWISTER คูลเดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  45,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {b6b66ff8-a548-4ad9-bb06-72039acb06aa},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS EHL TWISTER คูลไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  45,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {fec92367-6f73-4f58-9fba-f8759f2fd335},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ESSENTIAL วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {4477e51d-0dda-41c0-9449-e801811e0ecc},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ESSENTIAL คูลเดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {108740e9-0c9d-4e35-b32c-9e8648a5c408},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ESSENTIAL วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {6154361e-d8d8-4219-8d52-72af01de9a3d},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ESSENTIAL คูลเดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {78316cfa-3fe6-4553-863f-c956b7b95d1c},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ESSENTIAL ซูเปอร์คุ้ม วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {7755d90f-710c-48f1-a52f-e5285941cc01},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ESSENTIAL ซูเปอร์คุ้ม วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  23,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f9db5a38-d971-4545-b73b-21dfa2f8e62a},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS GENIE คูลไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {51e914ca-2da3-4d06-9864-43b242a10b44},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS GENIE คูลไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {6ddf8ac5-9ead-48e5-b4f0-663140f9857d},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS TORNADO วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  12,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {7b27b031-67b5-4bc4-acd0-2605ce43919f},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS TORNADO คูลเดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  15,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {dc7004d2-8642-40b9-b27b-a901c3769967},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS TORNADO วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  15,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {024f1828-ace4-416a-b5c0-b1ec2fe4ff5d},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS TORNADO คูลเดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {34839029-cbfe-46b5-ac99-c4d4495e370d},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS TORNADO วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {7aed9009-6bdd-4081-b368-78c40429018c},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS จีนี่ คูลเดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {635b32c9-1f18-49aa-9f7c-4e5df3b520da},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS จีนี่ คูลเดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {544fcd9f-d160-495e-a403-19aba0bad5b4},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS จีนี่ วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {3e0d64fe-65f7-43ef-a17f-65d8d70fcacb},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS จีนี่ คูลเดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {6978d9bd-b6ce-47d4-a2b8-0ecd4e7f323d},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS จีนี่ คูลเดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {8c1ed0b9-1c5d-43c2-840d-c38b9c9ec384},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS จีนี่ วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {76ef7987-3305-4a5d-8b5d-52a1cefc0457},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ RACER RCF-11/3U เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {51f5b31b-47d3-4029-8502-615c0d894678},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ RACER RCF-11/3U วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {68c60697-8f1d-4c8d-9859-fa12fe43de7b},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ RACER RCF-11/S เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {989dc151-bd66-44fd-b3a5-67c89d5c6966},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ RACER RCF-11/S วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {6405e255-65c4-4e58-aa1c-b9406812a88c},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ RACER RCF-13/2U วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {12fec6a8-cd72-4e3b-9b38-214fddf98071},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ RACER RCF-13/2U เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {fc4bacee-e6e0-4067-945a-ace0d4d550b7},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ RACER RCF-13/3U วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {820222bb-4818-49fc-a1f6-31ef44197381},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ RACER RCF-13/S วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {231bc0e6-d899-4bf5-a08c-28eecf5d4685},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ RACER RCF-15/3U วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  15,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {266bccac-2b94-48f4-ac98-3fe8724637f4},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ RACER RCF-15/S เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  15,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {bb4855f7-044f-4872-8867-b6557417b9df},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ RACER RCF-20/3U เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {2e118ed6-0560-44a9-8d11-a53b14eb12df},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ RACER RCF-20/3U วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {5000dff8-b125-4f7d-b26a-394ccb0a0535},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ RACER RCF-20/S เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {c78f7f0b-f5ff-416f-b1cf-e683ead513ad},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ RACER RCF-20/S วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {db494fc4-30ff-4e6b-b950-beae4beef1d8},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ RACER RCF-7/3U เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {44b812c8-68d2-4dc6-8088-9eee6c5c0c9a},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ RACER RCF-9/3U เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {45407d37-6722-4a61-974e-fe4ed8229c2f},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ RACER RCF-9/S เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {e583a433-1477-4d1a-802a-d48cd34739c5},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ RACER RCF-9/S วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {65041b13-b62a-4327-ad38-458275fe9906},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SILVER LIGHT CFL 11-SP วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {6f5e40a7-68bf-4759-bb17-00f326b5d9ac},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SILVER LIGHT CFL 11W2U เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {dbc93d27-479f-4854-9b07-8b4c6a47b659},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SILVER LIGHT CFL 11W2U วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {e15e89a7-8405-4f32-b63e-95441f9b81b9},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SILVER LIGHT CFL 13W / SPIRAL เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {74899e8a-77b2-416b-a54f-dbe169a3f057},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SILVER LIGHT CFL 13W / SPIRAL วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {25198e78-b149-4c15-8367-599916a22ed4},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SILVER LIGHT CFL 13W 2U เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {ae2934cf-8367-4fef-b9b7-f6d7620d6f54},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SILVER LIGHT CFL 13W 2U วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {0d86a206-e254-40c1-9373-0c334f0e7c17},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SILVER LIGHT CFL 20W / SPIRAL เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {9d3d02c1-8f13-4a72-8ee6-2e286d11d19c},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SILVER LIGHT CFL 20W 3U เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {6f365a38-f6fd-451c-96ff-fbf5c677e053},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SILVER LIGHT CFL 20W 3U วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {ab1342cb-dfca-4e8b-a12e-404102e76264},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SILVER LIGHT CFL MH2U07 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {dd3d46bd-40ea-44c9-b829-804f5d31f9c6},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SILVER LIGHT CFL MH2U07 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {86a5a663-535e-4c8a-9e7d-0afa9b1d7166},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SILVER LIGHT CFL MHSP07 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {5ac8125a-84a4-4ebd-9c24-ac973124b442},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SILVER LIGHT CFL MHSP09 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {5b73a263-5efe-4551-a568-bf537f137db1},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SILVER LIGHT CFL MHSP09 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f8d858e5-0ea4-4cfe-aef5-5f71eba476ba},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SILVER LIGHT CFU 13W/2U เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {b430eea9-11b5-41e4-afe9-851886711420},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SILVER LIGHT SL 13W/2U เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f47f5bc7-d6de-4551-a732-4a48ca8e2d6c},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SILVER LIGHT SL 20W/3U เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {95fdc492-d0e1-4a9d-93c7-ab1c286397bb},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SYLVANIA Minilynx Economy 2U วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  15,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {e7ece829-e186-4e37-b2b3-e9bb7d1f80b3},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SYLVANIA MINILYNX ECONOMY 2U 11W/827 E27 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {78d0a210-7bb0-4615-a8c8-6b70c3d2c763},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SYLVANIA MINILYNX ECONOMY 2U 11W/865 E27 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {486a9ca4-073a-4ee8-bf76-25ec29cf6a1b},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SYLVANIA Minilynx Economy 3U วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  15,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {94c09fd7-eb8a-4920-ba35-9719f9080d66},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SYLVANIA Minilynx Economy 3U เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {fdfa7191-b619-4de7-8b04-5c1b1ec1b75d},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SYLVANIA Minilynx Economy 3U วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {ed52311e-bd8d-4b7d-9541-f153937c20b4},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SYLVANIA MINILYNX ECONOMY 3U 11W/827 E27 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {0afe4eca-d63f-41d3-b5e1-d868406481e6},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SYLVANIA MINILYNX ECONOMY 3U 11W/865 E27 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {b229a850-ccff-4399-9307-4f86a6299cde},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SYLVANIA MINILYNX ECONOMY 3U 15W/827 E27 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  15,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {1ca94cf5-7ef4-43d8-a11c-32c248a2455f},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SYLVANIA MINILYNX ECONOMY 3U 15W/865 E27 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  15,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {31944084-d9a8-4983-86ee-de962cb619f7},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SYLVANIA Minilynx Mini-Twister T2 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {5a2f0e23-c7b2-4aac-88b6-82aff7c16699},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SYLVANIA XEU23-13T E27 2700K วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {174ba2b3-6661-48dd-a519-e7532eef5e77},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ SYLVANIA XEU23-13T E27 6500K เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {4753081f-8611-47d4-8563-fa1e6309dd1b},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TESCO 2U T3 5W 827 E27 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {0fb095f8-66c6-44b4-8762-05d0512e7675},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TESCO 2U T3 5W 865 E27 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {b161719c-c498-4dcd-9409-02f02e818c48},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TESCO 2U T4 13W 827 E27 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f50cba3b-cb91-49a9-9cc6-ffb6b0cebc45},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TESCO 2U T4 13W 865 E27 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {88bbdb18-ab7f-40c7-ab1f-487032e47702},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TESCO 2U T4 14W 827 E27 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {dd0b16d2-d8a1-41ac-b0b4-29e79717894c},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TESCO 2U T4 14W 865 E27 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f0892bef-742d-4e14-bb31-156391529a5d},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TESCO 2U T4 8W 827 E27 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {2e44002c-cfe0-4ef5-8920-ea6d24ba3967},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TESCO 2U T4 8W 865 E27 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {0dda09ef-f26e-4fe1-ac4d-f589c8f80dd7},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TESCO 3U T4 20W 827 E27 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {eaaf3241-3605-47e7-941e-500347a7382d},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TESCO 3U T4 20W 865 E27 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {45bde34b-3ef5-454b-a04c-c8af3bdcb9f0},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TESCO SP T3 20W 827 E27 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {15bc5718-94d8-4fbf-9bb8-f75bc60ee7f2},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TESCO SP T3 20W 865 E27 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {43ffab8f-1e2f-4202-a5ab-b29368258000},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TESCO SP T3 9W 827 E27 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {e2e0c8c6-1eb6-493a-8b46-e8b750011d77},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TESCO SP T3 9W 865 E27 เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {fceeaa4c-fa87-4882-8020-800626fe1bab},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TOSHIBA EFA7D/65-E เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {b0dbb14e-4cd2-4ac4-ae99-3a797dc9cc3c},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TOSHIBA EFA7L/27-E วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {2dceffd3-3b2d-474b-b9af-a993804dc703},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TOSHIBA EFD11L/27-E2U วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {a02afedb-2a91-48ff-b37c-ded0124c4ba9},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TOSHIBA EFD13D/65-E2U เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {c32a9c76-8936-44fa-9d01-6272a2b0c16f},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TOSHIBA EFD13D/65-E3U เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {08a4d467-a372-41a9-a0cd-bf5607df5962},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TOSHIBA EFD13L/27-E2U วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {2da1a5ad-ff00-49cf-8ea9-04753acd5f78},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TOSHIBA EFD13L/27-E3U วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {74658068-03e2-4aca-921a-b15141f7a75a},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TOSHIBA EFD18D/65-E3U เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {b4e8420d-3267-4e21-988e-15320fcd9949},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TOSHIBA EFD18L/27-E3U วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {075d5904-2d3f-43bd-86c0-c491db54eaff},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TOSHIBA EFD5L/27-E วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {bd6abea9-9330-4a44-a63c-078ba444aeb0},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TOSHIBA EFD9D/65-E3U เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {c72e010f-fa2e-4d43-8858-42d60a89c9da},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TOSHIBA EFD9L/27-E3U วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {b42f2fd4-d0d9-49af-8a7e-49a48f0ba063},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ TOSHIBA EFS8L/27 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {3bcca5a0-5d48-4ef4-83f3-56a65e6db37d},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ WORK MINI X-FIRE 13W วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {48fd1afc-2a1e-499a-a421-5affa5de43e0},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ WORK MINI X-FIRE 20W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {d15d052e-b993-44b5-853c-f0e1667c76df},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ WORK MINI X-FIRE 20W วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {ec602a1c-7d82-4003-8cfa-ba6b1ebe8330},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ WORK MINI X-FIRE 9W เดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {667407c4-3733-45d2-bd96-167f70e1e866},	!- Handle
+  TH : คอมแพคฟลูออเรสเซนต์ WORK MINI X-FIRE 9W วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {a9fed621-d504-4aa6-8342-99a0403397b5},	!- Handle
+  TH : ฟลูออเรสเซนต์ ALICO FHE 28T5 เดย์ไลต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {faf41175-7bc3-42f1-9dee-b58d860cc427},	!- Handle
+  TH : ฟลูออเรสเซนต์ EVE LIGHTING PERFORMAX PLUS 14W วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {0a5713d6-8865-426e-98ec-d6c08ba0b562},	!- Handle
+  TH : ฟลูออเรสเซนต์ EVE LIGHTING PERFORMAX PLUS 28W วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {876f6977-6f87-4fbf-b21c-1c4d4b6c8649},	!- Handle
+  TH : ฟลูออเรสเซนต์ GE 28W/830 T5/StarV วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {20793fa2-960c-47e4-b040-bf716dc89fcc},	!- Handle
+  TH : ฟลูออเรสเซนต์ GE F14W/830 T5/StarV วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {92fdc518-2b25-4351-a4e6-22054cc1eb0a},	!- Handle
+  TH : ฟลูออเรสเซนต์ GE F14W/T5/830/STARCOAT/40 วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {ceecf5ce-826e-48a3-be28-e7405f28d58a},	!- Handle
+  TH : ฟลูออเรสเซนต์ GE F14W/T5/840/STARCOAT/40 คูลไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {2e5c0e90-2c01-43f8-aa18-6808fd525d29},	!- Handle
+  TH : ฟลูออเรสเซนต์ GE F14W/T5/865/STARCOAT/40 เดย์ไลต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {9a87ce99-5aec-4947-a383-8400bf2e8f77},	!- Handle
+  TH : ฟลูออเรสเซนต์ GE F28W/T5/830/STARCOAT/40 วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {3e231108-8e19-4cb7-892b-89c0ecc08686},	!- Handle
+  TH : ฟลูออเรสเซนต์ GE F28W/T5/840/STARCOAT/40 คูลไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {6142a73c-304b-49aa-b77b-3e52938a5988},	!- Handle
+  TH : ฟลูออเรสเซนต์ HI-LAMP HIT-28W คูลไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {5e0089bf-7e31-436c-85ba-ed4916d3a17c},	!- Handle
+  TH : ฟลูออเรสเซนต์ HI-LAMP HIT-28W วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {de96cacd-7deb-4900-ab7c-b234474fb070},	!- Handle
+  TH : ฟลูออเรสเซนต์ KONWA NSL 14W/T5 เดย์ไลต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {6f215bd7-5579-433b-b40b-5cc0e8f072e9},	!- Handle
+  TH : ฟลูออเรสเซนต์ KONWA NSL 28W/T5 เดย์ไลต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {477948fa-50b3-4747-bef3-4694ccc0ae8f},	!- Handle
+  TH : ฟลูออเรสเซนต์ LAMPTAN 14W/830 วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {3a21e3c7-b53e-4973-b737-0786ce588b21},	!- Handle
+  TH : ฟลูออเรสเซนต์ LAMPTAN 14W/840 คูลไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {53f75355-56ad-4d7b-9123-bbf8ff962517},	!- Handle
+  TH : ฟลูออเรสเซนต์ LAMPTAN 14W/865 เดย์ไลต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {2b162ba6-510d-44b5-953f-be0f71fc6344},	!- Handle
+  TH : ฟลูออเรสเซนต์ LAMPTAN 28W/830 วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {3e72436e-4da0-45fb-9b3b-1e1b250f4f4f},	!- Handle
+  TH : ฟลูออเรสเซนต์ LAMPTAN 28W/840 คูลไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {a2f96d56-d989-4884-8704-07ef6d62b26f},	!- Handle
+  TH : ฟลูออเรสเซนต์ LEKISE F14T5/EX-CW คูลไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {558c9996-f5ce-434f-9799-5e48a32c3655},	!- Handle
+  TH : ฟลูออเรสเซนต์ LEKISE F14T5/EX-WW วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {1831d6e7-9b10-4449-94a3-0e8b48f156e6},	!- Handle
+  TH : ฟลูออเรสเซนต์ LEKISE F28T5/EX-CW คูลไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {03eec4e6-8997-4d13-895a-dafd614e43ae},	!- Handle
+  TH : ฟลูออเรสเซนต์ LEKISE F28T5/EX-WW วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {dc5d14c9-ac88-4a8d-93f5-0a6df9b3c5d5},	!- Handle
+  TH : ฟลูออเรสเซนต์ LKS DAI-ICHI F14W T5/EX-WW วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {c36791ac-8f09-41f6-8c21-16af2ac46115},	!- Handle
+  TH : ฟลูออเรสเซนต์ LKS DAI-ICHI F28W T5/EX-WW วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {3fef06f5-1f87-4b75-944c-a73e32982f61},	!- Handle
+  TH : ฟลูออเรสเซนต์ LUMAX HF14W/840 คูลไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {cabfac43-8196-4f13-aef8-97f996fc373d},	!- Handle
+  TH : ฟลูออเรสเซนต์ LUMAX HF28W/840 คูลไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {3fc7a626-6dad-430d-9827-0d0c3b17c239},	!- Handle
+  TH : ฟลูออเรสเซนต์ LUMAX HF28W/T5/830 วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {8c67eb1c-f637-4656-8911-5082269e1144},	!- Handle
+  TH : ฟลูออเรสเซนต์ LUMAX HF28W/T5/840 คูลไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {3e6627ba-d166-4cff-9a6c-0d9d65360997},	!- Handle
+  TH : ฟลูออเรสเซนต์ OPPLE T5-14W เดย์ไลต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {3b445d0c-8da1-4f9d-a746-e2737e4bc4cf},	!- Handle
+  TH : ฟลูออเรสเซนต์ OPPLE T5-14W วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {31d48b52-63ad-4d8e-ad3b-6724fc12bc04},	!- Handle
+  TH : ฟลูออเรสเซนต์ OPPLE T5-28W เดย์ไลต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {715c8407-54bf-40dd-aa98-09650ca92128},	!- Handle
+  TH : ฟลูออเรสเซนต์ OPPLE T5-28W วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {5acd43b0-a106-41bc-a195-c707a5f1f066},	!- Handle
+  TH : ฟลูออเรสเซนต์ OSRAM FH 28W/840 HE คูลไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {23415575-b9c4-424f-8fb7-02bea68a0750},	!- Handle
+  TH : ฟลูออเรสเซนต์ OSRAM FH 28W/865 HE เดย์ไลต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f8883786-0b2a-4d8d-8369-47c20b61ea32},	!- Handle
+  TH : ฟลูออเรสเซนต์ OSRAM HE 14W/840 SL คูลไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {d8082eaa-84ef-4a35-bffa-275be628bf86},	!- Handle
+  TH : ฟลูออเรสเซนต์ OSRAM HE 28W/840 คูลไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {8e3c9dcb-bd45-4175-bfdc-270e612b0369},	!- Handle
+  TH : ฟลูออเรสเซนต์ OSRAM HE 28W/840 SL คูลไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {082cf94c-9200-4b82-a45d-cd1e36178a6b},	!- Handle
+  TH : ฟลูออเรสเซนต์ OSRAM HE 28W/865 เดย์ไลต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {ad06b56d-0fc4-4cfd-b422-6b081046565e},	!- Handle
+  TH : ฟลูออเรสเซนต์ OSRAM SMARTLUX HE 14W 840 คูลไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {11cf302f-97e2-4460-bc72-9a13cbe7d5c5},	!- Handle
+  TH : ฟลูออเรสเซนต์ OSRAM SMARTLUX HE 14W 865 คูลเดย์ไลท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {8ba7957a-fc95-430a-9657-7c776e535151},	!- Handle
+  TH : ฟลูออเรสเซนต์ OSRAM SMARTLUX HE 28W 840 คูลไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {8265f466-86ce-4b90-93ac-af0cbb582d6d},	!- Handle
+  TH : ฟลูออเรสเซนต์ PHILIPS ESSENTIAL TL5 14W/840 คูลไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {e4af4d3a-54d0-46b8-bfc7-664ab60942c8},	!- Handle
+  TH : ฟลูออเรสเซนต์ PHILIPS ESSENTIAL TL5 14W/865 คูลเดย์ไลต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {e611e1b7-9bb4-4348-a9f0-5683c1112865},	!- Handle
+  TH : ฟลูออเรสเซนต์ PHILIPS ESSENTIAL TL5 28W/830 วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {2ee83e39-ca9c-45a3-9663-abb1784501ba},	!- Handle
+  TH : ฟลูออเรสเซนต์ PHILIPS ESSENTIAL TL5 28W/840 คูลไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {66663a2a-9c05-42ba-879e-c60715302fe0},	!- Handle
+  TH : ฟลูออเรสเซนต์ PHILIPS ESSENTIAL TL5 28W/865 คูลเดย์ไลต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {15ad7ca0-f2b3-4c4e-b968-a4fef89418af},	!- Handle
+  TH : ฟลูออเรสเซนต์ PHILIPS TL-5 ESSENTAIL Th 28W/865 คูลเดย์ไลต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {ef6c525b-6397-47d4-8245-e1ad1cfa41e6},	!- Handle
+  TH : ฟลูออเรสเซนต์ PHILIPS TL-5 ESSENTIAL Th 14W/830 วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {fd933e5e-f469-410f-8730-ba1eead16092},	!- Handle
+  TH : ฟลูออเรสเซนต์ PHILIPS TL-5 ESSENTIAL Th 14W/840 คูลไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {036f214f-6ba4-48f5-873a-0ff5f3c3945b},	!- Handle
+  TH : ฟลูออเรสเซนต์ PHILIPS TL-5 ESSENTIAL Th 14W/865 คูลเดย์ไลต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {68cbb3df-192e-441e-afaa-a96332266235},	!- Handle
+  TH : ฟลูออเรสเซนต์ PHILIPS TL-5 ESSENTIAL Th 28W/830 วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {9ad1605a-209a-4c49-85ec-bdb1abd65614},	!- Handle
+  TH : ฟลูออเรสเซนต์ PHILIPS TL5 HE SUPER 80 14W/840 คูลไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {15a898a5-944a-4ed6-a3b9-3552e9ade583},	!- Handle
+  TH : ฟลูออเรสเซนต์ PHILIPS TL5 HE SUPER 80 28W/830 วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {4d74711a-37c2-4b65-b47e-871bf0282b04},	!- Handle
+  TH : ฟลูออเรสเซนต์ PHILIPS TL5 HE SUPER 80 28W/840 คูลไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {85b4e724-2fe2-4669-9ddd-f8cc4014e8f2},	!- Handle
+  TH : ฟลูออเรสเซนต์ PHILIPS TL5 HE SUPER 80 28W/865 คูลเดย์ไลต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {1255ca94-3509-4c96-a994-cc93c790731b},	!- Handle
+  TH : ฟลูออเรสเซนต์ RACER F14T5/EX-CW คูลไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {a0cdda27-760b-4f56-b31c-942c6726cfe1},	!- Handle
+  TH : ฟลูออเรสเซนต์ RACER F14T5/EX-D เดย์ไลต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {11549e43-4caf-41d4-841d-c030605f72f3},	!- Handle
+  TH : ฟลูออเรสเซนต์ RACER F14T5/EX-WW วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {b3a4a5d1-b762-4d3b-858f-985db10c8fdf},	!- Handle
+  TH : ฟลูออเรสเซนต์ RACER F28T5/EX-CW คูลไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {10d140b5-948f-434e-ad85-3cf92895b5a4},	!- Handle
+  TH : ฟลูออเรสเซนต์ RACER F28T5/EX-D เดย์ไลต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {b5e41aac-5bbe-4e15-ad50-c5dad2404cad},	!- Handle
+  TH : ฟลูออเรสเซนต์ RACER F28T5/EX-WW วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {36bab4fa-838f-4d73-a94a-0b8f8c9d1a06},	!- Handle
+  TH : ฟลูออเรสเซนต์ RAMPPLUS T5-14 วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {b87ac6de-2973-4c7a-b19c-8c493401629a},	!- Handle
+  TH : ฟลูออเรสเซนต์ RAMPPLUS T5-28 วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {9e471ca3-2426-4d17-b10b-f1a945f472b8},	!- Handle
+  TH : ฟลูออเรสเซนต์ RAMPPLUS T5-28 เดย์ไลต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {dc130e88-c22b-42a3-b2c3-efb53a88c08a},	!- Handle
+  TH : ฟลูออเรสเซนต์ SILVER LIGHT FHE 14T5 คูลไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {a39e14d3-8b4a-4dfb-9696-7327e7eb3e59},	!- Handle
+  TH : ฟลูออเรสเซนต์ SILVER LIGHT FHE 14T5 เดย์ไลต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {0cf3d477-c6f7-48d4-b8b8-ab71dfdbdca2},	!- Handle
+  TH : ฟลูออเรสเซนต์ SILVER LIGHT FHE 14T5 วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {8706439f-920b-49ef-836e-9973130f4be0},	!- Handle
+  TH : ฟลูออเรสเซนต์ SILVER LIGHT FHE 28T5 คูลไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {ab7c2406-4731-4663-a166-0cacfe99b53b},	!- Handle
+  TH : ฟลูออเรสเซนต์ SILVER LIGHT FHE 28T5 วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {5660e659-7c75-403e-a5f7-cc8dc0bab9ca},	!- Handle
+  TH : ฟลูออเรสเซนต์ SYLVANIA FHE T5 14W/865 เดย์ไลต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {b5d8eed7-04ee-406b-9aa4-31e929428910},	!- Handle
+  TH : ฟลูออเรสเซนต์ SYLVANIA FHE T5 28W/830 วอร์มไวท์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {703cc12c-8015-49a3-aabd-5d7a024520d3},	!- Handle
+  TH : ฟลูออเรสเซนต์ SYLVANIA FHE T5 28W/840 คูลไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {03e90ea1-3aa9-4133-880b-57d53a042006},	!- Handle
+  TH : ฟลูออเรสเซนต์ SYLVANIA HE T5 28W/865 เดย์ไลต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {24d99eb6-4b63-469d-9c56-1a31658f8d9d},	!- Handle
+  TH : ฟลูออเรสเซนต์ TASAKI FHE-5/28Z เดย์ไลต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f4f6e695-c0ac-4850-9d40-1e49c59ab94b},	!- Handle
+  TH : ฟลูออเรสเซนต์ TOSHIBA FL14W/T5/EX-D เดย์ไลต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {d5e24c5f-ccf2-4565-8244-91ec20d9b3d5},	!- Handle
+  TH : ฟลูออเรสเซนต์ TOSHIBA FL14W/T5/EX-WW วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {8b01d66a-5be9-476c-a66a-9f80c7fbdfa0},	!- Handle
+  TH : ฟลูออเรสเซนต์ TOSHIBA FL28W/T5/EX-D เดย์ไลต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {6351fd56-32d9-4874-99aa-c0f8fd7b24d3},	!- Handle
+  TH : ฟลูออเรสเซนต์ TOSHIBA FL28W/T5/EX-W คูลไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {df55fb65-08be-4e7a-b5c1-a387f105c12c},	!- Handle
+  TH : ฟลูออเรสเซนต์ TOSHIBA FL28W/T5/EX-WW วอร์มไวต์,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  28,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {4aa4ad16-b026-4ec4-92ab-c454ba2c86b9},	!- Handle
+  TH : แอลอีดี (T8) ACROLUX LED T8P-60CM (PC),	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {3c7f039a-26e2-4f7f-9fbf-01b840531df1},	!- Handle
+  TH : แอลอีดี (T8) ACROLUX LED T8P-60CM (SG),	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f39699e1-8bde-4803-9e82-89b52316d81d},	!- Handle
+  TH : แอลอีดี (T8) CM LIGHTING T8-18W-T-65K,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {66bc3a41-206c-41cb-b7e5-9e7f2db9b704},	!- Handle
+  TH : แอลอีดี (T8) DELIGHT DLED-T8-5703,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {a9f309c5-d40d-460f-bb7f-6d3ae5fcb8cf},	!- Handle
+  TH : แอลอีดี (T8) DELIGHT DLED-T8-5704,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {09da025b-3f9a-4724-82dd-ab8f7c45cef2},	!- Handle
+  TH : แอลอีดี (E27) DL BL1G-C07CE7R8,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {21be21b3-757c-407b-985d-fa50eea907fe},	!- Handle
+  TH : แอลอีดี (E27) DL BL1G-C10CE7R8,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  10,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {ed5598f0-c41f-45eb-9e68-4923aed4805a},	!- Handle
+  TH : แอลอีดี (E27) DL BL1G-W07CE7R8,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {33e3e479-dc3f-46d0-94f7-276746b0ff1b},	!- Handle
+  TH : แอลอีดี (E27) DL BL1G-W12CE7R8,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  12,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {274aedde-716b-4e0b-bfa6-f31fb5b603da},	!- Handle
+  TH : แอลอีดี (E27) DL BL60123-10-0-0,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9.3,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {4d3617a2-fb07-4c55-b897-2f5a9740e7d7},	!- Handle
+  TH : แอลอีดี (E27) DL BL60123-10-1-0,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9.3,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {564f6d91-b4c3-455c-b47b-8718e71556cd},	!- Handle
+  TH : แอลอีดี (MR16) DL MR122C-W05A02,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  4.2,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f0e98748-05d6-4a22-b96a-9a733a32f129},	!- Handle
+  TH : แอลอีดี (T8) DL TL42B-C20BP7,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {9e46637b-9ea3-4ffc-af5e-b8762ed9f9dd},	!- Handle
+  TH : แอลอีดี (E27) EVE LIGHTING A60 6W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  6,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {3a4fce56-d6b7-4cb9-9fbd-90e88b37abe3},	!- Handle
+  TH : แอลอีดี (E27) EVE LIGHTING A60 7W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {565ee611-133a-488a-a333-132f5648c2a5},	!- Handle
+  TH : แอลอีดี (E27) EVE LIGHTING A60 8W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {e71db794-fb15-462b-bff8-40daf2b5589f},	!- Handle
+  TH : แอลอีดี (E27) EVE LIGHTING A60 9W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {acd447c3-a90a-49c4-9ea3-3a2c070c52f1},	!- Handle
+  TH : แอลอีดี (E27) EVE LIGHTING A60-5W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {9d7ec431-e9fd-47c3-802e-39d406aa4051},	!- Handle
+  TH : แอลอีดี (MR16) EVE LIGHTING LED MR-16 4W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  4,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {a74f219c-5ff5-4c3d-8855-d74dee052d83},	!- Handle
+  TH : แอลอีดี (MR16) EVE LIGHTING LED MR-16 6W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  6,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {b60d4688-aee9-4849-9020-a234b5b6fb28},	!- Handle
+  TH : แอลอีดี (E27) G ENERGY E-27-REMOTE-GREEN,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  6.5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {d41542dd-49f3-4a7d-a4d7-5db73b3d4c0d},	!- Handle
+  TH : แอลอีดี (E27) G ENERGY E-27-REMOTE-SILVER,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f5480ad7-b822-49a4-9384-bc995557bee4},	!- Handle
+  TH : แอลอีดี (E27) GATA TMI 5W E27,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {d373d3c4-73ce-4c04-af1b-9ac3b971500a},	!- Handle
+  TH : แอลอีดี (E27) GATA TMI 8W E27,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {71fce2f1-bd2f-44a4-a1cf-887a9cc5ba78},	!- Handle
+  TH : แอลอีดี (MR16) GATA MR16,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {57f2cc15-ff46-424d-ae37-f1833f6440fa},	!- Handle
+  TH : แอลอีดี (T8) GE LED12T8I865AH/BK,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  12,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {fe618f28-b166-4ea9-ae4a-8487e054ccdf},	!- Handle
+  TH : แอลอีดี (T8) GE LED18T8I865AH/BK,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {e7393eec-4ec6-41a0-a5b8-cebb10af2ebd},	!- Handle
+  TH : แอลอีดี (T8) GE LED23T8I865AH/BK,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  23,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {8ba293cb-9cfb-45c6-a6b5-8c694501d4bd},	!- Handle
+  TH : แอลอีดี (E27) HIET A60,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f3b8c503-fc96-4ea1-a53b-2893737266cf},	!- Handle
+  TH : แอลอีดี (E27) HIET A60,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {955e9a48-d9ee-4270-a5a6-69e68064030e},	!- Handle
+  TH : แอลอีดี (E27) HIET A60,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {acd4eafd-07c7-49ee-a645-204e2e1a72ff},	!- Handle
+  TH : แอลอีดี (E27) HIET A60,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {2a181598-b8a3-457a-9ffd-110de8f0b5ba},	!- Handle
+  TH : แอลอีดี (MR16) HIGHLIGHT P04-MR16-12V,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  4.5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {aabd2d09-1df1-40c4-97b7-30e24e0e092c},	!- Handle
+  TH : แอลอีดี (MR16) HIGHLIGHT P04-MR16-12V,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  4.5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {dfa4ad10-d34f-45d7-a091-0cc30dd83de7},	!- Handle
+  TH : แอลอีดี (T8) HIKARI NS-T8-4H18,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {9f180886-e7e0-480c-aa87-66af49ccdf56},	!- Handle
+  TH : แอลอีดี (MR16) KINGSUN SM 160302,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  3,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {ac10a760-433e-462f-8294-d5efe8e641df},	!- Handle
+  TH : แอลอีดี (E27) L&E LED-BULB 600LM/830,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {a4726aee-9495-4b41-955a-cdeb43e86b7b},	!- Handle
+  TH : แอลอีดี (E27) L&E LED-BULB 600LM/830-DIM,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {b3f8b765-ed21-4dfa-b31f-534bb775fcba},	!- Handle
+  TH : แอลอีดี (E27) L&E LED-BULB 600LM/865,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {c2c1e315-4ca5-4fee-b039-77e8ef36729b},	!- Handle
+  TH : แอลอีดี (E27) L&E LED-BULB-350LM,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {bbfc90cc-e415-41fd-9ebe-5c68763e83fb},	!- Handle
+  TH : แอลอีดี (E27) L&E LED-BULB-350LM/830,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  4,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {83660205-de7d-4bb8-8cbf-f4c44409ebf6},	!- Handle
+  TH : แอลอีดี (E27) L&E LED-BULB-350LM/865,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  4,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {b68b1a67-5714-4ced-b943-bb2751caf917},	!- Handle
+  TH : แอลอีดี (E27) L&E LED-BULB-800LM,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9.5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {af6928d8-b4b2-4c4b-8d63-f2de8e8de8d7},	!- Handle
+  TH : แอลอีดี (E27) L&E LED-BULB-800LM,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9.5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {8ca3b36e-fd24-4fd7-bc50-944695629d91},	!- Handle
+  TH : แอลอีดี (E27) L&E LED-BULB-800LM,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9.5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {6299c9c9-3c31-4cb2-85ab-9199d71b9063},	!- Handle
+  TH : แอลอีดี (MR16) L&E SMR301-10,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  3,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {e1a1c5d4-4de5-490c-9080-f528b53b95be},	!- Handle
+  TH : แอลอีดี (PAR30) L&E LED-PAR-350LM/7W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {63f5b81e-f8c1-4438-b5c0-1eb72ab86266},	!- Handle
+  TH : แอลอีดี (T8) L&E LED-T8-1050LM,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {a971ac0d-cfe5-427c-ab87-4dd1297e8b04},	!- Handle
+  TH : แอลอีดี (T8) L&E LED-T8-1800LM,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {549b8094-74c0-48f5-8a86-d40fdc8cee4b},	!- Handle
+  TH : แอลอีดี (T8) L&E LED-T8-1800LM/865,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {18c4270f-d8a6-4ce3-99b7-ca5754eaaf60},	!- Handle
+  TH : แอลอีดี (T8) L&E LED-T8-2100LM/865,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  22,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {8bef7cc1-4482-4c9a-8757-02ea57ad12af},	!- Handle
+  TH : แอลอีดี (E27) LAMPTAN A60-11W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {a68177a6-a63d-4dee-8643-2e3c3daefdea},	!- Handle
+  TH : แอลอีดี (E27) LAMPTAN A60-8W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {4f2e3277-04f9-4c1b-8447-121b4e07d08d},	!- Handle
+  TH : แอลอีดี (E27) LAMPTAN A65-13W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {9fd5efdb-7ed8-4d4c-8df6-4f5c91657f26},	!- Handle
+  TH : แอลอีดี (E27) LAMPTAN LED A60-11W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  11,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {ab6c27dc-0f97-4110-91d8-7c4f8ac84b2c},	!- Handle
+  TH : แอลอีดี (E27) LAMPTAN LLT-SA-A60-5W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {1c685916-a349-4609-b19d-a04c30889cdc},	!- Handle
+  TH : แอลอีดี (E27) LEKISE A60 5W/D,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {97d61bbe-69f8-4ba4-a4c5-27c368b68622},	!- Handle
+  TH : แอลอีดี (E27) LEKISE A60 8W/D,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {ed323652-dc31-42d2-a5cb-aee4f5405d03},	!- Handle
+  TH : แอลอีดี (E27) LEKISE LED A60 5W/D,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {6890b918-c3f0-402a-9e5e-23a1344886cf},	!- Handle
+  TH : แอลอีดี (E27) LEKISE LED A60 5W/WW,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {2cc91f9f-48b7-4396-b7f8-493e87047510},	!- Handle
+  TH : แอลอีดี (E27) LEKISE LED A60 8W/WW,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {23c4b3a1-7b00-419d-87d8-d7e38d392680},	!- Handle
+  TH : แอลอีดี (MR16) LEKISE LED MR16 3W/CW,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  3,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {5c13744c-7c1f-4c1f-9448-abefc6a63517},	!- Handle
+  TH : แอลอีดี (PAR38) LEKISE LED PARLIGHT PAR38,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {14d09ad7-8160-4cae-b281-ba0a7488d989},	!- Handle
+  TH : แอลอีดี (T8) LEKISE LED TUBE 9W/D,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {0834c27f-64cd-493c-8168-605d8d951585},	!- Handle
+  TH : แอลอีดี (T8) LEKISE LED TUBE 9W/WW,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f4a15d2e-fbde-4cc0-83a4-88a556b81162},	!- Handle
+  TH : แอลอีดี (T8) LEKISE LED TUBET8 18W/D-CLEAR,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {5001f309-f43a-4c99-8a2a-9074b14d86be},	!- Handle
+  TH : แอลอีดี (T8) LEKISE LED TUBET8 18W/D-MILKY,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {d7024c3c-adcb-4a06-8834-4a05e8fd3333},	!- Handle
+  TH : แอลอีดี (T8) LEKISE LED TUBET8 18W/WW-CLEAR,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {4840730d-ae54-44d8-ab56-f629725ec874},	!- Handle
+  TH : แอลอีดี (T8) LEKISE LED TUBET8 18W/WW-MILKY,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {7f573cf7-f1c7-496d-8ba7-ccc5d2d80b81},	!- Handle
+  TH : แอลอีดี (T8) LEMNIS TL-T8-22,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  22,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {41b239ae-5a42-4e54-8802-4859d5ee8cc0},	!- Handle
+  TH : แอลอีดี (E27) OPPLE LED A60 E27 5W 3000K,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {acfb0f22-cc07-437a-b4bc-cfd6c8de7397},	!- Handle
+  TH : แอลอีดี (E27) OPPLE LED G40 E27 5W DAY,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {966eb967-0025-4532-8872-aedfaae8726a},	!- Handle
+  TH : แอลอีดี (E27) OSRAM LS CLA70 10W/827,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  10,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {d7c02491-9354-448d-bf71-158b22db8dd1},	!- Handle
+  TH : แอลอีดี (E27) OSRAM LS CLA70 10W/865,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  10,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {8c477661-f8e5-4df8-9ce1-c3d9bf3c3c8f},	!- Handle
+  TH : แอลอีดี (E27) OSRAM LS CLP25 4W/827,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  4,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {a1c8c8bb-9776-4443-9ed1-1d86a25da657},	!- Handle
+  TH : แอลอีดี (E27) OSRAM S CLA40 6W/827,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  6,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {7229287b-0ee9-4c6f-8057-873753f8310d},	!- Handle
+  TH : แอลอีดี (E27) OSRAM S CLA40 6W/865,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  6,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {00068be1-fd67-4229-9157-fd97263a46e5},	!- Handle
+  TH : แอลอีดี (MR16) OSRAM PARATHOM PRO MR16,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {1389a05f-4c4a-4312-a96a-9573cbac3cfb},	!- Handle
+  TH : แอลอีดี (MR16) OSRAM S MR16 50 24 8W/827,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {bb4566f6-e993-4344-a496-54df2411f410},	!- Handle
+  TH : แอลอีดี (MR16) OSRAM S MR16 50 36 8W/827,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {51a8cae8-6733-4b01-9da1-3f8935abe1bd},	!- Handle
+  TH : แอลอีดี (MR16) OSRAM S MR16 50 36 8W/865,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {baf9c16a-c75f-440e-a1a9-63eb12eaf1c9},	!- Handle
+  TH : แอลอีดี (MR16) OSRAM SSMR16 35 36A 6.5W/830,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  6.5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {2db8eab1-8d8d-4d32-a271-c551eaf1d3d9},	!- Handle
+  TH : แอลอีดี (MR16) OSRAM SSMR16 35 36A 6.8W/827,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  6.8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {7ebd0de3-1178-4c29-a59a-94f53f67255f},	!- Handle
+  TH : แอลอีดี (MR16) OSRAM SSMR16 50 8W/827,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {26ae7439-5ec3-4573-999a-410298eec736},	!- Handle
+  TH : แอลอีดี (PAR30) OSRAM SSPAR3010030 13W/830,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {09b9ddff-2d3b-493b-b7db-919530cd2a39},	!- Handle
+  TH : แอลอีดี (T8) OSRAM ST8-HB2-080-830 9W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {d0a784fc-7c25-4d2c-9eb3-151969db4a83},	!- Handle
+  TH : แอลอีดี (T8) OSRAM ST8-HB2-090-840 9W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f47635f8-c157-4cc7-b30e-dbb8adb26c61},	!- Handle
+  TH : แอลอีดี (T8) OSRAM ST8-HB2-090-865 9W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f02d754a-2b02-4a3a-9731-de2c0bfe32f5},	!- Handle
+  TH : แอลอีดี (T8) OSRAM ST8-HB4-175-830 18W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {ad4a30a9-0129-4823-92ef-09657b00a9c3},	!- Handle
+  TH : แอลอีดี (T8) OSRAM ST8-HB4-190-840 18W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {4f96f028-bf60-489d-82ce-53a7982cb6be},	!- Handle
+  TH : แอลอีดี (T8) OSRAM ST8-HB4-190-865 18W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {e01cc2cf-c65f-45e4-ba89-bed2226a86e1},	!- Handle
+  TH : แอลอีดี (T8) OSRAM ST8-HT4-150 20W/830,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {2fd0b24f-08ef-40bc-be87-bac4d04b48fb},	!- Handle
+  TH : แอลอีดี (T8) OSRAM ST8-HT4-170 20W/840,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {8c20cc40-175b-45f4-aa7a-c7e32fc58b8b},	!- Handle
+  TH : แอลอีดี (T8) OSRAM ST8-HT4-170 20W/865,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {e2bd3cb4-e97e-4e62-80e7-ec6abc8ce473},	!- Handle
+  TH : แอลอีดี (T8) OSRAM ST8-HT4-200 23W/830,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  23,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {4d0954b2-0151-4d07-8643-24aecfd34a2a},	!- Handle
+  TH : แอลอีดี (T8) OSRAM ST8-HT4-220 23W/840,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  23,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {9e37456e-b301-4735-83e8-4729d5b06a68},	!- Handle
+  TH : แอลอีดี (T8) OSRAM ST8-HT4-220 23W/865,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  23,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {030bc74d-d2b7-4673-b67a-3447bf591d51},	!- Handle
+  TH : แอลอีดี (E27) PHILIPS LED 12.5W E27 3000K,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  12.5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {18620aa1-b2bf-48f6-b877-34f19920a45a},	!- Handle
+  TH : แอลอีดี (E27) PHILIPS LED 12.5W E27 6500K,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  12,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {4844b49c-a793-4c0a-a219-3beb345c0d89},	!- Handle
+  TH : แอลอีดี (E27) PHILIPS LED 14W E27 3000K,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {23ec96db-9f74-4aef-a9c9-3554a90506f8},	!- Handle
+  TH : แอลอีดี (E27) PHILIPS LED 14W E27 6500K,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  14,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {4487cf72-baea-49c7-ab1c-d6b1c8f3967e},	!- Handle
+  TH : แอลอีดี (E27) PHILIPS LED 4W E27 6500K,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  4,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {3c1ac799-306a-4e17-a28d-a7ecde441118},	!- Handle
+  TH : แอลอีดี (E27) PHILIPS LED 5W E27 3000K,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  4,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {d6d31888-9018-4fe9-bb60-80a0368fa805},	!- Handle
+  TH : แอลอีดี (E27) PHILIPS LED 7.5W E27 3000K,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7.5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {3b3f2c27-977b-4c87-b633-65eb9371ed67},	!- Handle
+  TH : แอลอีดี (E27) PHILIPS LED 7W E27 6500K,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {fd403720-a497-41e1-8e61-ff01e455fd12},	!- Handle
+  TH : แอลอีดี (E27) PHILIPS LED 9.5W E27 3000K,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9.5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {88bcd561-f53d-431d-8aa4-30fd28787e3d},	!- Handle
+  TH : แอลอีดี (E27) PHILIPS LED 9W E27 6500K,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {3ca10174-e9a4-4266-8994-675b19bb62b7},	!- Handle
+  TH : แอลอีดี (E27) PHILIPS LEDBULB 10W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  10,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {e98dc07c-525e-4371-8abe-fb3b3c4be24c},	!- Handle
+  TH : แอลอีดี (E27) PHILIPS LEDBULB 10W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  10,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {0f0180ba-7992-4e09-91ac-a8341ae90354},	!- Handle
+  TH : แอลอีดี (E27) PHILIPS LEDBULB 13W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {f76f3706-b366-4580-b5b8-cfc57d05a5cd},	!- Handle
+  TH : แอลอีดี (E27) PHILIPS LEDBULB 13W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  13,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {b13cc9a0-b629-4b25-9d78-86126e1c3b28},	!- Handle
+  TH : แอลอีดี (E27) PHILIPS LEDBULB 5W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {a9fda5fd-c35e-4382-8cee-cd38237aacc5},	!- Handle
+  TH : แอลอีดี (E27) PHILIPS LEDBULB 5W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {6add64b3-42b9-4613-b058-ea1008aeb526},	!- Handle
+  TH : แอลอีดี (E27) PHILIPS LEDBULB 7W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {dbe84a47-d241-4f73-ad98-331ca90de2f1},	!- Handle
+  TH : แอลอีดี (E27) PHILIPS LEDBULB 8W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {4e314e6e-7bc3-42f2-a0b2-a346c1ce5551},	!- Handle
+  TH : แอลอีดี (MR16) PHILIPS ESSENTIAL 5-50W 2700K MR16,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {fe748745-f0bd-4a68-829b-95dee852392a},	!- Handle
+  TH : แอลอีดี (MR16) PHILIPS ESSENTIAL LED 2.6W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  2.6,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {c0053e45-6b8c-4b63-9f9a-c250d4c4c249},	!- Handle
+  TH : แอลอีดี (MR16) PHILIPS ESSENTIAL LED 4.2W 2700K,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  4.2,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {649a4ab6-ae19-43d5-a838-a47fc4c9dfca},	!- Handle
+  TH : แอลอีดี (MR16) PHILIPS MASTER LED,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  4,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {0dd2b90c-7c89-435b-9304-7fc831c4a3cc},	!- Handle
+  TH : แอลอีดี (MR16) PHILIPS MASTER LED,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  4,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {9896bb43-534c-43ff-9f8b-6e8a756c45cd},	!- Handle
+  TH : แอลอีดี (MR16) PHILIPS MASTER LED,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5.5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {93160c70-1c45-42da-ab5e-33efb40aa10c},	!- Handle
+  TH : แอลอีดี (MR16) PHILIPS MASTER LED,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  6.5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {1fffde7d-606a-44f2-8148-b7e0fcaa273e},	!- Handle
+  TH : แอลอีดี (MR16) PHILIPS MASTER LED 6.5W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  6.5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {0c077a4d-3091-4b5c-8632-abe85a169729},	!- Handle
+  TH : แอลอีดี (MR16) PHILIPS MYAMBIANCE 4W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  4,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {e450cab7-435a-4a0a-bb18-214c31e9eb68},	!- Handle
+  TH : แอลอีดี (MR16) PHILIPS MYAMBIANCE 5.5W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5.5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {c5df371c-7be2-42e6-9f6c-45925039e4a1},	!- Handle
+  TH : แอลอีดี (MR16) PHILIPS MYAMBIANCE 6.5W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  6.5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {b17361a7-8635-49d9-990a-b8b30e26f6be},	!- Handle
+  TH : แอลอีดี (T8) PHILIPS ESS LEDTUBE 20W 865,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {1376a77b-622a-41f9-85ad-4b3486159edf},	!- Handle
+  TH : แอลอีดี (E27) RACER KATIE LED A60,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {eeb0c936-26e8-4a8c-9aaa-86dba1a0fb13},	!- Handle
+  TH : แอลอีดี (E27) RACER KATIE LED A60,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {93123385-a7c2-448f-aa8b-d27c81af3a6e},	!- Handle
+  TH : แอลอีดี (E27) RACER KATIE LED A60,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {54cddba1-33ea-4cba-85b9-46d2ad248a72},	!- Handle
+  TH : แอลอีดี (E27) RACER KATIE LED A60,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {75127e0b-5bd3-4e65-9a5a-62f6d870acfe},	!- Handle
+  TH : แอลอีดี (MR16) RACER DECTOP,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  6,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {02e81e20-563d-468c-ac69-2b0f8004d988},	!- Handle
+  TH : แอลอีดี (MR16) RACER DECTOP,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  6,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {86eaa90d-49b4-426d-a420-6dcee21e8d9d},	!- Handle
+  TH : แอลอีดี (MR16) RACER DECTOP 4W 2700K,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  4,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {46bf99ef-4b1d-4cc7-90c9-b126df52ed8e},	!- Handle
+  TH : แอลอีดี (MR16) RACER DECTOP 4W 6500K,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  4,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {c676e3da-abb2-4887-b10e-d043681f036a},	!- Handle
+  TH : แอลอีดี (T8) RACER KIMMIE LED RETRO,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {e0fbe454-c633-416a-a161-5949ed666efe},	!- Handle
+  TH : แอลอีดี (T8) RACER KIMMIE LED RETRO,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {4843f0e9-8608-486e-a72f-58326ebc46b0},	!- Handle
+  TH : แอลอีดี (E27) SILVER LIGHT LED-A 5W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {d2b69505-9d05-4d94-aaff-3591b188b9c0},	!- Handle
+  TH : แอลอีดี (E27) SILVER LIGHT LED-A 5W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {b02f9cef-03bd-40b5-979f-2070ad7beeb4},	!- Handle
+  TH : แอลอีดี (E27) SILVER LIGHT LED-A 7W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {6cba8ea9-1960-4e4a-a964-05cce6c92e67},	!- Handle
+  TH : แอลอีดี (E27) SILVER LIGHT LED-A 7W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  7,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {ad011070-9e12-401e-9640-636caea7d436},	!- Handle
+  TH : แอลอีดี (E27) SILVER LIGHT LED-A 8W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {3042d230-769b-4efc-ad49-aa721a2bf087},	!- Handle
+  TH : แอลอีดี (E27) SILVER LIGHT LED-A 8W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {41613a69-cd50-4a81-98ae-97efac2f5478},	!- Handle
+  TH : แอลอีดี (E27) SILVER LIGHT LED-B 5W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {ae8dee23-96da-4c3f-a737-c28eb563a74c},	!- Handle
+  TH : แอลอีดี (E27) SILVER LIGHT LED-B 5W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {a6f6435a-689e-4aff-a86a-a3f62fa4dfcf},	!- Handle
+  TH : แอลอีดี (E27) SILVER LIGHT LED-B 8W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {069ca499-fa72-41db-a6c1-94efcdcec1a6},	!- Handle
+  TH : แอลอีดี (E27) SILVER LIGHT LED-B 8W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  8,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {1907b7a4-16a1-4804-a2e6-3b455cd55380},	!- Handle
+  TH : แอลอีดี (T8) SILVER LIGHT LED-T09H-DL,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {ed8b15b4-9f08-433f-81ba-7f89bc0b377d},	!- Handle
+  TH : แอลอีดี (T8) SILVER LIGHT LED-T09H-WW,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {6f7e0fb3-86ea-4643-86a0-1eeac6484e5d},	!- Handle
+  TH : แอลอีดี (T8) SILVER LIGHT LED-T18H-DL,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {fa3404a4-1dd7-40d0-98ad-b71b84b6d5c3},	!- Handle
+  TH : แอลอีดี (T8) SILVER LIGHT LED-T18H-WW,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {eab0e5f1-a514-404f-9ff5-b63c4ee37563},	!- Handle
+  TH : แอลอีดี (T8) SILVER LIGHT LED-T20H-DL,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {9f359706-0e6d-471f-ac70-1ec8a31cc9c0},	!- Handle
+  TH : แอลอีดี (T8) SILVER LIGHT LED-T20H-WW,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {de9873a7-4e5b-4ab9-91bf-6f540095e91a},	!- Handle
+  TH : แอลอีดี (E27) SOLUXIMA LED BULB-9W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {497a80dd-2979-4dfa-8b23-dfa6ed50406f},	!- Handle
+  TH : แอลอีดี (T8) SPECTRUM T8-18W-SMD-CW,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  18,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {792fb432-23dc-455f-9fc4-947002f27381},	!- Handle
+  TH : แอลอีดี (T8) SPECTRUM T8-22W-SMD-CW,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  22,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {5a44a0ba-c7d5-4b16-b172-735ff8b3053d},	!- Handle
+  TH : แอลอีดี (E27) TOSHIBA LDA001D6510-TH,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5.3,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {895af745-832f-4dd6-9e03-9a8e3e694759},	!- Handle
+  TH : แอลอีดี (MR16) TOSHIBA LDRA0930WU5,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {cb5b00af-ab90-4fe0-85e0-8c97451e718e},	!- Handle
+  TH : แอลอีดี (MR16) TOSHIBA LDRA0940WU5,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  9,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {9f389515-42db-413f-9dbb-1d0e3d5b2157},	!- Handle
+  TH : แอลอีดี (T8) TP TPT8P-D020,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {cb74f7e9-ec19-4b0b-aa2b-600fc4e69040},	!- Handle
+  TH : แอลอีดี (MR16) TTC LED TTC-MR16-5W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  5,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
+OS:Lights:Definition,
+  {542df697-46fc-4c47-b17b-a0d1a83fb609},	!- Handle
+  TH : แอลอีดี (T8) VICTOR LED TUBE T8 20W,	!- Name
+  LightingLevel,								!- Design Level Calculation Method
+  20,									!- Lighting Level {W}
+  , 									!- Watts per Space Floor Area {W/m2}
+  ; 									!- Watts per Person {W/person}
+
