@@ -221,7 +221,7 @@ void writeEnvelopeSystem(QDomElement& root, QFile& file){
     }
 }
 
-QString doVerticalTable(QDomNode &root, QDomNode &ntable){
+QString doVerticalTable(QDomElement &root, QDomNode &ntable){
     QString table =
         "<table border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n"
         "<tbody>\n";
@@ -242,7 +242,12 @@ QString doVerticalTable(QDomNode &root, QDomNode &ntable){
     return table;
 }
 
-QString doHorizontalTable(QDomNode &root, QDomNode &node){
+static int levelsub=-1;
+
+QString doHorizontalTable(QDomNode& root, QDomNode &node, int& level){
+
+    level = 0;
+
     QString table =
         "<table border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n"
         "<tbody>\n";
@@ -263,11 +268,14 @@ QString doHorizontalTable(QDomNode &root, QDomNode &node){
     table += row1;
     table += row2;
 
+    level++;
+
     QDomElement re = root.toElement();
     QDomNode tmproot = root.nextSibling();
     while(1) {
         QDomElement enext = tmproot.toElement();
         if(re.tagName() == enext.tagName()){
+            level++;
             node = tmproot.firstChild();
             QString rown="<tr>";
             while(!node.isNull()) {
@@ -279,9 +287,10 @@ QString doHorizontalTable(QDomNode &root, QDomNode &node){
             }
             table += rown;
             tmproot = tmproot.nextSibling();
+            levelsub = level-1;
         }
         else{
-            root = node;
+            root = tmproot.toElement();
             break;
         }
     }
@@ -290,14 +299,19 @@ QString doHorizontalTable(QDomNode &root, QDomNode &node){
     return table;
 }
 
-void doTable(const QString &title, QDomElement& root, QFile& file, int level){
-    if(title == "LightingSystem")
-        return;
+QString escapeTitle;
+
+void doTable(const QString &title, QDomNode& root, QFile& file, int level){
 
     //if(level == 7)return;
     QDomNode node = root.firstChild();
-    QDomElement e = node.toElement();
-    QDomElement fe = e.firstChildElement();
+    QDomElement elm = node.toElement();
+    QDomElement fe = elm.firstChildElement();
+
+    if(escapeTitle == title && !escapeTitle.isEmpty())
+        return;
+    else
+        escapeTitle.clear();
 
     if(fe.isNull()){
         QString out = PTag(Bold(insertSpaceInTag(title)));
@@ -309,15 +323,21 @@ void doTable(const QString &title, QDomElement& root, QFile& file, int level){
         file.write(out.toStdString().c_str());
     }
 
+    qDebug() << "------------------\n" << title << ":" << root.toElement().tagName() << ", " << level;
+
     while(!node.isNull()) {
-        e = node.toElement();
-        fe = e.firstChildElement();
+        elm = node.toElement();
+        fe = elm.firstChildElement();
         if(fe.isNull()){
-            QString table = doHorizontalTable(root,node);
+            int mylevel=0;
+            QString table = doHorizontalTable(root, node, mylevel);
+            qDebug() << "mylevel:" << mylevel;
             file.write(table.toStdString().c_str());
+            escapeTitle = title;
+            return;
         }
         else{
-            doTable(e.tagName(), e, file, level+1);
+            doTable(elm.tagName(), elm, file, level+1);
         }
         if(!node.isNull())
             node = node.nextSibling();
