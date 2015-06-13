@@ -56,7 +56,14 @@ QString CompareDialog::loadFileToWebView(const QString& fn, QWebView* webView)
 {
     FINDTARGETRES res;
     qDebug() << "File : " << fn;
-    QString target = findTargetPath(fn, res);
+    QString target;
+    if(fn.endsWith(".html") || fn.endsWith(".htm")){
+        target = fn;
+    }
+    else{
+        target = findTargetPath(fn, res);
+    }
+
     qDebug() << "Target : " << target;
     if(!target.isEmpty()){
         webView->load("file:///"+target);
@@ -71,6 +78,9 @@ bool CompareDialog::SetParam(const QString& file1, const QString &file2, const Q
     this->type = type;
     this->file1 = file1;
     this->file2 = file2;
+
+    this->file1.replace("file:///", "");
+    this->file2.replace("file:///", "");
 
     QString modeStr;
     if(type.toLower() == "enegyplus" || type.toLower() == "e"){
@@ -89,16 +99,17 @@ bool CompareDialog::SetParam(const QString& file1, const QString &file2, const Q
         SetCmpType(CMPTYPE_UNKNOW);
         modeStr = "??????";
         QString msg = QString("ReportCompare was not support path1:'%1'\n, path2:'%2'\n, type:'%3'\n")
-                .arg(file1).arg(file2).arg(type);
+                .arg(this->file1).arg(file2).arg(type);
         QMessageBox::critical(this, "Enexpected to launch ReportCompare", msg);
         return false;
     }
 
+    this->file1 = loadFileToWebView(this->file1, ui->webView);
+
     ui->lbInfo->setText(QString("Compare report source file is %1 in %2 mode")
-                        .arg(file1)
+                        .arg(this->file1)
                         .arg(modeStr));
 
-    this->file1 = loadFileToWebView(file1, ui->webView);
     ui->chkShowTree->setVisible(false);
     ui->chkShowTree->setChecked(false);
     on_chkShowTree_clicked(false);
@@ -478,8 +489,24 @@ void CompareDialog::LoadCompareFile(const QString& filePath)
     qDebug() << "reportName2=" << reportName2;
 }
 
+CompareDialog::CMPTYPE CompareDialog::getDocTypeFromTitle(const QString &title){
+    if(title == "BEC Report")return CMPTYPE_BEC;
+    if(title == "Results | OpenStudio")return CMPTYPE_OPENSTUDIO;
+    if(title.indexOf("EnergyPlus")>=0) return CMPTYPE_ENYGYPLUS;
+    return CMPTYPE_UNKNOW;
+}
+
 void CompareDialog::on_webView_loadFinished(bool arg1)
 {
+    CMPTYPE type = getDocTypeFromTitle(ui->webView->title());
+    if(type != cmpType){
+        QString str = QString("File '%1' is unexpected type %2:%3..%4.").arg("")
+                .arg(type).arg(cmpType).arg(ui->webView->title());
+        QMessageBox::warning(this, "Warning", str);
+        ui->btAddCmpPath->setDisabled(true);
+        return;
+    }
+
     if(cmpType == CMPTYPE_ENYGYPLUS){
         enegyPlusDoc = createEnegyPlusDoc();
         LoadCompareFile(this->file2);
@@ -498,6 +525,14 @@ void CompareDialog::on_webView_loadFinished(bool arg1)
 
 void CompareDialog::on_webView2_loadFinished(bool arg1)
 {
+    CMPTYPE type = getDocTypeFromTitle(ui->webView2->title());
+    if(type != cmpType){
+        QString str = QString("File '%1' is unexpected type.").arg(this->file2);
+        QMessageBox::warning(this, "Warning", str);
+        ui->btAddCmpPath->setDisabled(true);
+        return;
+    }
+
     fileCmps.append(this->file2);
     if(cmpType == CMPTYPE_ENYGYPLUS){
         makeEnegyPlusCmp();

@@ -8,13 +8,6 @@
 #include <vector>
 #include <math.h>
 
-bool isSupportTitle(const QString& title){
-    if(title == "BEC Report")return true;
-    if(title == "Results | OpenStudio")return true;
-    if(title.indexOf("EnergyPlus")>=0) return true;
-    return false;
-}
-
 QString insertSpaceInTag(const QString& tagName){
     QChar ch0 = 'A';
     QString out;

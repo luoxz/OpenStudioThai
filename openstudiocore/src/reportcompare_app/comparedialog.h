@@ -79,6 +79,9 @@ public:
     void msgRes(FINDTARGETRES res, QString filePath);
     QString loadFileToWebView(const QString& fn, QWebView *webView);
     void LoadCompareFile(const QString &filePath);
+
+    CMPTYPE getDocTypeFromTitle(const QString& title);
+
 private slots:
     void on_chkShowTree_clicked(bool checked);
     void on_btAddCmpPath_clicked();
