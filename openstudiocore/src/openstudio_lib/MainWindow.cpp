@@ -103,6 +103,7 @@ MainWindow::MainWindow(bool isPlugin, QWidget *parent) :
   connect(mainMenu, &MainMenu::exportClicked, this, &MainWindow::exportClicked);
   connect(mainMenu, &MainMenu::exportgbXMLClicked, this, &MainWindow::exportgbXMLClicked);
   connect(mainMenu, &MainMenu::exportSDDClicked, this, &MainWindow::exportSDDClicked);
+  connect(mainMenu, &MainMenu::exportBECClicked, this, &MainWindow::exportBECClicked);
   connect(mainMenu, &MainMenu::importClicked, this, &MainWindow::importClicked);
   connect(mainMenu, &MainMenu::importgbXMLClicked, this, &MainWindow::importgbXMLClicked);
   connect(mainMenu, &MainMenu::importSDDClicked, this, &MainWindow::importSDDClicked);

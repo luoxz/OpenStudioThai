@@ -209,6 +209,7 @@ set(project_directories
   openstudio_app
   pat_app
   sdd
+  bec
 )
 
 
@@ -938,6 +939,7 @@ set(all_lib_targets
   openstudio_isomodel
   openstudio_lib
   openstudio_sdd
+  openstudio_bec
   openstudio_airflow
   ${QTWINMIGRATE_EXPORT}
   zkexpat

@@ -1,0 +1,1588 @@
+/**********************************************************************
+ *  Copyright (c) 2008-2015, Alliance for Sustainable Energy.
+ *  All rights reserved.
+ *
+ *  This library is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU Lesser General Public
+ *  License as published by the Free Software Foundation; either
+ *  version 2.1 of the License, or (at your option) any later version.
+ *
+ *  This library is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *  Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public
+ *  License along with this library; if not, write to the Free Software
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ **********************************************************************/
+
+#include "ReverseTranslator.hpp"
+#include "../model/Model.hpp"
+#include "../model/Component.hpp"
+#include "../model/ModelObject.hpp"
+#include "../model/ModelObject_Impl.hpp"
+#include "../model/Node.hpp"
+#include "../model/Node_Impl.hpp"
+#include "../model/AirLoopHVAC.hpp"
+#include "../model/AirLoopHVAC_Impl.hpp"
+#include "../model/AirLoopHVACOutdoorAirSystem.hpp"
+#include "../model/AirLoopHVACOutdoorAirSystem_Impl.hpp"
+#include "../model/Facility.hpp"
+#include "../model/Facility_Impl.hpp"
+#include "../model/Building.hpp"
+#include "../model/Building_Impl.hpp"
+#include "../model/ThermalZone.hpp"
+#include "../model/ThermalZone_Impl.hpp"
+#include "../model/ShadingSurfaceGroup.hpp"
+#include "../model/ShadingSurfaceGroup_Impl.hpp"
+#include "../model/Site.hpp"
+#include "../model/Site_Impl.hpp"
+#include "../model/WeatherFile.hpp"
+#include "../model/WeatherFile_Impl.hpp"
+#include "../model/Construction.hpp"
+#include "../model/SimpleGlazing.hpp"
+#include "../model/StandardOpaqueMaterial.hpp"
+#include "../model/PlantLoop.hpp"
+#include "../model/PlantLoop_Impl.hpp"
+#include "../model/Timestep.hpp"
+#include "../model/Timestep_Impl.hpp"
+#include "../model/Meter.hpp"
+#include "../model/OutputVariable.hpp"
+#include "../model/SimulationControl.hpp"
+#include "../model/SimulationControl_Impl.hpp"
+#include "../model/RunPeriod.hpp"
+#include "../model/RunPeriod_Impl.hpp"
+#include "../model/YearDescription.hpp"
+#include "../model/YearDescription_Impl.hpp"
+#include "../model/OutputControlReportingTolerances.hpp"
+#include "../model/OutputControlReportingTolerances_Impl.hpp"
+#include "../model/ChillerElectricEIR.hpp"
+#include "../model/ChillerElectricEIR_Impl.hpp"
+#include "../model/CoolingTowerSingleSpeed.hpp"
+#include "../model/CoolingTowerSingleSpeed_Impl.hpp"
+#include "../model/BoilerHotWater.hpp"
+#include "../model/BoilerHotWater_Impl.hpp"
+#include "../model/SizingParameters.hpp"
+#include "../model/SizingParameters_Impl.hpp"
+#include "../model/SiteWaterMainsTemperature.hpp"
+#include "../model/SiteWaterMainsTemperature_Impl.hpp"
+#include "../model/Schedule.hpp"
+#include "../model/Schedule_Impl.hpp"
+#include "../model/Splitter.hpp"
+#include "../model/Splitter_Impl.hpp"
+#include "../model/Mixer.hpp"
+#include "../model/Mixer_Impl.hpp"
+#include "../model/WaterToWaterComponent.hpp"
+#include "../model/WaterToWaterComponent_Impl.hpp"
+#include "../model/WaterToAirComponent.hpp"
+#include "../model/WaterToAirComponent_Impl.hpp"
+#include "../model/ZoneHVACComponent.hpp"
+#include "../model/ZoneHVACComponent_Impl.hpp"
+#include "../model/PortList.hpp"
+#include "../model/PortList_Impl.hpp"
+#include "../energyplus/ReverseTranslator.hpp"
+#include "../osversion/VersionTranslator.hpp"
+#include "../utilities/filetypes/EpwFile.hpp"
+#include "../utilities/plot/ProgressBar.hpp"
+#include "../utilities/core/Assert.hpp"
+#include "../utilities/units/QuantityConverter.hpp"
+#include "../utilities/units/IPUnit.hpp"
+#include "../utilities/units/SIUnit.hpp"
+#include "../utilities/units/BTUUnit.hpp"
+#include "../utilities/units/CFMUnit.hpp"
+#include "../utilities/units/FahrenheitUnit.hpp"
+#include "../utilities/units/MPHUnit.hpp"
+#include "../utilities/units/WhUnit.hpp"
+#include "../utilities/time/Time.hpp"
+#include "../utilities/units/UnitFactory.hpp"
+#include "../utilities/units/Unit.hpp"
+
+#include <QFile>
+#include <QDomDocument>
+#include <QDomElement>
+#include <QThread>
+#include <QFileInfo>
+
+namespace openstudio {
+namespace bec {
+
+  std::ostream& operator<<(std::ostream& os, const QDomElement& element)
+  {
+    QString str;
+    QTextStream qts(&str);
+    element.save(qts, 2);
+    os << str.toStdString();
+    return os;
+  }
+
+  ReverseTranslator::ReverseTranslator( bool masterAutosize )
+    : m_isInputXML(false), m_autosize(true),
+      m_masterAutosize(masterAutosize)
+  {
+    m_logSink.setLogLevel(Warn);
+    m_logSink.setChannelRegex(boost::regex("openstudio\\.bec\\.ReverseTranslator"));
+    m_logSink.setThreadId(QThread::currentThread());
+  }
+
+  ReverseTranslator::~ReverseTranslator()
+  {
+  }
+
+  boost::optional<openstudio::model::Model> ReverseTranslator::loadModel(const openstudio::path& path, ProgressBar* progressBar){
+    
+    m_path = path;
+
+    m_progressBar = progressBar;
+
+    m_logSink.setThreadId(QThread::currentThread());
+
+    m_logSink.resetStringStream();
+
+    boost::optional<openstudio::model::Model> result;
+
+    if (boost::filesystem::exists(path)){
+
+      QFile file(toQString(path));
+      if (file.open(QFile::ReadOnly)){
+        QDomDocument doc;
+        bool ok = doc.setContent(&file);
+        file.close();
+
+        if (ok) {
+          result = this->convert(doc);
+        } else{
+          LOG(Error, "Could not open file '" << toString(path) << "'");
+        }
+      } else {
+        LOG(Error, "Could not open file '" << toString(path) << "'");
+      }
+    } else {
+      LOG(Error, "File '" << toString(path) << "' does not exist");
+    }
+
+    return result;
+  }
+
+  std::vector<LogMessage> ReverseTranslator::warnings() const
+  {
+    std::vector<LogMessage> result;
+
+    for (LogMessage logMessage : m_logSink.logMessages()){
+      if (logMessage.logLevel() == Warn){
+        result.push_back(logMessage);
+      }
+    }
+
+    return result;
+  }
+
+  std::vector<LogMessage> ReverseTranslator::errors() const
+  {
+    std::vector<LogMessage> result;
+
+    for (LogMessage logMessage : m_logSink.logMessages()){
+      if (logMessage.logLevel() > Warn){
+        result.push_back(logMessage);
+      }
+    }
+
+    return result;
+  }
+
+  std::string ReverseTranslator::escapeName(QString name)
+  {
+    return name.replace(',', '-').replace(';', '-').toStdString();
+  }
+
+  boost::optional<model::Model> ReverseTranslator::convert(const QDomDocument& doc)
+  {
+    return translateBEC(doc.documentElement(), doc);
+  }
+
+  boost::optional<model::Model> ReverseTranslator::translateBEC(const QDomElement& element, const QDomDocument& doc)
+  {
+    boost::optional<model::Model> result;
+
+    // get project, assume one project per file
+    QDomElement projectElement = element.firstChildElement("Proj");
+    if (projectElement.isNull()){
+      LOG(Error, "Could not find required element 'Proj'");
+      return boost::none;
+    }else{
+
+      // check if this is a simulation xml or input xml
+      QDomElement simFlagElement = projectElement.firstChildElement("SimFlag");
+      if (simFlagElement.isNull()){
+        m_isInputXML = true;
+        LOG(Error, "Import of Input BEC XML type is not currently supported");
+        return boost::none;
+      } else {
+        m_isInputXML = false;
+      }
+
+      result = openstudio::model::Model();
+      result->setFastNaming(true);
+
+      // do runperiod
+      boost::optional<model::ModelObject> runPeriod = translateRunPeriod(projectElement, doc, *result);
+      //OS_ASSERT(!runPeriod.empty()); // what type of error handling do we want?
+
+      // do design days
+      std::vector<WorkspaceObject> designDays = translateDesignDays(projectElement, doc, *result);
+      //OS_ASSERT(!designDays.empty()); // what type of error handling do we want?
+
+      // do weather file
+      boost::optional<model::ModelObject> weatherFile = translateWeatherFile(projectElement, doc, *result);
+      //OS_ASSERT(weatherFile); // what type of error handling do we want?
+
+      // do site after design days and weather file
+      boost::optional<model::ModelObject> site = translateSite(projectElement, doc, *result);
+      //OS_ASSERT(site); // what type of error handling do we want?
+      if (!site){
+        LOG(Error, "Could not find site information in BEC");
+      }
+
+      // Shading Model
+      QDomElement solDistributionElement = projectElement.firstChildElement("SolDistribution");
+      if(istringEqual("FullExterior",solDistributionElement.text().toStdString()))
+      {
+        model::SimulationControl simulationControl = result->getUniqueModelObject<model::SimulationControl>();
+        simulationControl.setSolarDistribution("FullExterior");
+      }
+      else if(istringEqual("MinimalShadowing",solDistributionElement.text().toStdString()))
+      {
+        model::SimulationControl simulationControl = result->getUniqueModelObject<model::SimulationControl>();
+        simulationControl.setSolarDistribution("MinimalShadowing");
+      }
+
+      // HVACAutoSizing
+      QDomElement hvacAutoSizingElement = projectElement.firstChildElement("HVACAutoSizing");
+      if( hvacAutoSizingElement.text().toInt() == 0 )
+      {
+        m_autosize = false;
+      }
+
+      model::SizingParameters sp = result->getUniqueModelObject<model::SizingParameters>();
+      sp.setHeatingSizingFactor(1.0);
+      sp.setCoolingSizingFactor(1.0);
+
+      // do materials before constructions
+      QDomNodeList materialElements = projectElement.elementsByTagName("Mat");
+      if (m_progressBar){
+        m_progressBar->setWindowTitle(toString("Translating Materials"));
+        m_progressBar->setMinimum(0);
+        m_progressBar->setMaximum(materialElements.count()); 
+        m_progressBar->setValue(0);
+      }
+
+      for (int i = 0; i < materialElements.count(); i++){
+        QDomElement materialElement = materialElements.at(i).toElement();
+        boost::optional<model::ModelObject> material = translateMaterial(materialElement, doc, *result);
+        OS_ASSERT(material); // what type of error handling do we want?
+
+        if (m_progressBar){
+          m_progressBar->setValue(m_progressBar->value() + 1);
+        }
+      }
+
+      // do constructions before geometry
+
+      // layered constructions
+      QDomNodeList constructionElements = projectElement.elementsByTagName("ConsAssm");
+      if (m_progressBar){
+        m_progressBar->setWindowTitle(toString("Translating Constructions"));
+        m_progressBar->setMinimum(0);
+        m_progressBar->setMaximum(constructionElements.count()); 
+        m_progressBar->setValue(0);
+      }
+
+      for (int i = 0; i < constructionElements.count(); i++){
+        QDomElement constructionElement = constructionElements.at(i).toElement();
+        boost::optional<model::ModelObject> construction = translateConstructAssembly(constructionElement, doc, *result);
+        OS_ASSERT(construction); // what type of error handling do we want?
+                
+        if (m_progressBar){
+          m_progressBar->setValue(m_progressBar->value() + 1);
+        }
+      }
+
+      // door constructions
+      QDomNodeList doorConstructionElements = projectElement.elementsByTagName("DrCons");
+      if (m_progressBar){
+        m_progressBar->setWindowTitle(toString("Translating Door Constructions"));
+        m_progressBar->setMinimum(0);
+        m_progressBar->setMaximum(doorConstructionElements.count()); 
+        m_progressBar->setValue(0);
+      }
+
+      for (int i = 0; i < doorConstructionElements.count(); i++){
+        QDomElement doorConstructionElement = doorConstructionElements.at(i).toElement();
+        boost::optional<model::ModelObject> doorConstruction = translateDoorConstruction(doorConstructionElement, doc, *result);
+        OS_ASSERT(doorConstruction); // what type of error handling do we want?
+
+        if (m_progressBar){
+          m_progressBar->setValue(m_progressBar->value() + 1);
+        }
+      }
+
+      // fenestration constructions
+      QDomNodeList fenestrationConstructionElements = projectElement.elementsByTagName("FenCons");
+      if (m_progressBar){
+        m_progressBar->setWindowTitle(toString("Translating Fenestration Constructions"));
+        m_progressBar->setMinimum(0);
+        m_progressBar->setMaximum(fenestrationConstructionElements.count()); 
+        m_progressBar->setValue(0);
+      }
+
+      for (int i = 0; i < fenestrationConstructionElements.count(); i++){
+        QDomElement fenestrationConstructionElement = fenestrationConstructionElements.at(i).toElement();
+        boost::optional<model::ModelObject> fenestrationConstruction = translateFenestrationConstruction(fenestrationConstructionElement, doc, *result);
+        OS_ASSERT(fenestrationConstruction); // what type of error handling do we want?
+
+        if (m_progressBar){
+          m_progressBar->setValue(m_progressBar->value() + 1);
+        }
+      }
+
+      QDomNodeList crvDblQuadElements = projectElement.elementsByTagName("CrvDblQuad");
+      for (int i = 0; i < crvDblQuadElements.count(); i++){
+        QDomElement crvDblQuadElement = crvDblQuadElements.at(i).toElement();
+        boost::optional<model::ModelObject> curve = translateCrvDblQuad(crvDblQuadElement, doc, *result);
+        OS_ASSERT(curve);
+      }
+
+      QDomNodeList crvCubicElements = projectElement.elementsByTagName("CrvCubic");
+      for (int i = 0; i < crvCubicElements.count(); i++){
+        QDomElement crvCubicElement = crvCubicElements.at(i).toElement();
+        boost::optional<model::ModelObject> curve = translateCrvCubic(crvCubicElement, doc, *result);
+        OS_ASSERT(curve);
+      }
+
+      QDomNodeList crvQuadElements = projectElement.elementsByTagName("CrvQuad");
+      for (int i = 0; i < crvQuadElements.count(); i++){
+        QDomElement crvQuadElement = crvQuadElements.at(i).toElement();
+        boost::optional<model::ModelObject> curve = translateCrvQuad(crvQuadElement, doc, *result);
+        OS_ASSERT(curve);
+      }
+
+      // do schedules before loads
+      QDomNodeList scheduleDayElements = projectElement.elementsByTagName("SchDay");
+      if (m_progressBar){
+        m_progressBar->setWindowTitle(toString("Translating Day Schedules"));
+        m_progressBar->setMinimum(0);
+        m_progressBar->setMaximum(scheduleDayElements.count()); 
+        m_progressBar->setValue(0);
+      }
+
+      for (int i = 0; i < scheduleDayElements.count(); i++){
+        QDomElement scheduleDayElement = scheduleDayElements.at(i).toElement();
+        boost::optional<model::ModelObject> scheduleDay = translateScheduleDay(scheduleDayElement, doc, *result);
+        OS_ASSERT(scheduleDay); // what type of error handling do we want?
+
+        if (m_progressBar){
+          m_progressBar->setValue(m_progressBar->value() + 1);
+        }
+      }
+
+      QDomNodeList scheduleWeekElements = projectElement.elementsByTagName("SchWeek");
+      if (m_progressBar){
+        m_progressBar->setWindowTitle(toString("Translating Week Schedules"));
+        m_progressBar->setMinimum(0);
+        m_progressBar->setMaximum(scheduleWeekElements.count()); 
+        m_progressBar->setValue(0);
+      }
+
+      for (int i = 0; i < scheduleWeekElements.count(); i++){
+        QDomElement scheduleWeekElement = scheduleWeekElements.at(i).toElement();
+        boost::optional<model::ModelObject> scheduleWeek = translateScheduleWeek(scheduleWeekElement, doc, *result);
+        OS_ASSERT(scheduleWeek); // what type of error handling do we want?
+
+        if (m_progressBar){
+          m_progressBar->setValue(m_progressBar->value() + 1);
+        }
+      }
+
+      QDomNodeList scheduleElements = projectElement.elementsByTagName("Sch");
+      if (m_progressBar){
+        m_progressBar->setWindowTitle(toString("Translating Year Schedules"));
+        m_progressBar->setMinimum(0);
+        m_progressBar->setMaximum(scheduleElements.count()); 
+        m_progressBar->setValue(0);
+      }
+
+      for (int i = 0; i < scheduleElements.count(); i++){
+        QDomElement scheduleElement = scheduleElements.at(i).toElement();
+        boost::optional<model::ModelObject> schedule = translateSchedule(scheduleElement, doc, *result);
+        OS_ASSERT(schedule); // what type of error handling do we want?
+
+        if (m_progressBar){
+          m_progressBar->setValue(m_progressBar->value() + 1);
+        }
+      }
+
+      QDomNodeList holidayElements = projectElement.elementsByTagName("Hol");
+      if (m_progressBar){
+        m_progressBar->setWindowTitle(toString("Translating Holidays"));
+        m_progressBar->setMinimum(0);
+        m_progressBar->setMaximum(holidayElements.count()); 
+        m_progressBar->setValue(0);
+      }
+
+      for (int i = 0; i < holidayElements.count(); i++){
+        QDomElement holidayElement = holidayElements.at(i).toElement();
+        boost::optional<model::ModelObject> holiday = translateHoliday(holidayElement, doc, *result);
+        OS_ASSERT(holiday); // what type of error handling do we want?
+
+        if (m_progressBar){
+          m_progressBar->setValue(m_progressBar->value() + 1);
+        }
+      }
+
+      // do water mains temperatures, do after schedules
+      boost::optional<model::ModelObject> waterMainsTemperature = translateWaterMainsTemperature(projectElement, doc, *result);
+      //OS_ASSERT(waterMainsTemperature); // what type of error handling do we want?
+
+      // FluidSys
+      QDomNodeList fluidSysElements = projectElement.elementsByTagName("FluidSys");
+      if (m_progressBar){
+        m_progressBar->setWindowTitle(toString("Translating Fluid Systems"));
+        m_progressBar->setMinimum(0);
+        m_progressBar->setMaximum(fluidSysElements.count()); 
+        m_progressBar->setValue(0);
+      }
+
+      // Translate condenser systems
+      for (int i = 0; i < fluidSysElements.count(); i++){
+        if (fluidSysElements.at(i).firstChildElement("Name").isNull()){
+          continue;
+        }
+        if (fluidSysElements.at(i).firstChildElement("Type").text().toLower() != "condenserwater"){
+          continue;
+        }
+
+        QDomElement fluidSysElement = fluidSysElements.at(i).toElement();
+        boost::optional<model::ModelObject> plantLoop = translateFluidSys(fluidSysElement,doc,*result);
+        OS_ASSERT(plantLoop);
+
+        if (m_progressBar){
+          m_progressBar->setValue(m_progressBar->value() + 1);
+        }
+      }
+
+      // Translate chilled and hot water systems
+      for (int i = 0; i < fluidSysElements.count(); i++){
+        if (fluidSysElements.at(i).firstChildElement("Name").isNull()){
+          continue;
+        }
+        if (fluidSysElements.at(i).firstChildElement("Type").text().toLower() == "servicehotwater"){
+          continue;
+        }
+        if (fluidSysElements.at(i).firstChildElement("Type").text().toLower() == "condenserwater"){
+          continue;
+        }
+
+        QDomElement fluidSysElement = fluidSysElements.at(i).toElement();
+        boost::optional<model::ModelObject> plantLoop = translateFluidSys(fluidSysElement,doc,*result);
+        OS_ASSERT(plantLoop);
+
+        if (m_progressBar){
+          m_progressBar->setValue(m_progressBar->value() + 1);
+        }
+      }
+
+      // translate shadingSurfaces
+      QDomNodeList exteriorShadingElements = element.elementsByTagName("ExtShdgObj");
+      model::ShadingSurfaceGroup shadingSurfaceGroup(*result);
+      shadingSurfaceGroup.setName("Site ShadingGroup");
+      shadingSurfaceGroup.setShadingSurfaceType("Site");
+      for (int i = 0; i < exteriorShadingElements.count(); ++i){
+        if (exteriorShadingElements.at(i).parentNode() == projectElement){
+          boost::optional<model::ModelObject> exteriorShading = translateShadingSurface(exteriorShadingElements.at(i).toElement(), doc, shadingSurfaceGroup);
+          OS_ASSERT(exteriorShading);
+        }
+      }
+
+      // translate the building
+      QDomElement buildingElement = projectElement.firstChildElement("Bldg");
+      OS_ASSERT(!buildingElement.isNull()); // what type of error handling do we want?
+
+      openstudio::model::Facility facility = result->getUniqueModelObject<openstudio::model::Facility>();
+
+      boost::optional<model::ModelObject> building = translateBuilding(buildingElement, doc, *result);
+      OS_ASSERT(building); // what type of error handling do we want?
+
+      result->setFastNaming(false);
+
+      // AirSystem
+      QDomNodeList airSystemElements = buildingElement.elementsByTagName("AirSys");
+      if (m_progressBar){
+        m_progressBar->setWindowTitle(toString("Translating Air Systems"));
+        m_progressBar->setMinimum(0);
+        m_progressBar->setMaximum(airSystemElements.count()); 
+        m_progressBar->setValue(0);
+      }
+
+      for (int i = 0; i < airSystemElements.count(); i++){
+        if (airSystemElements.at(i).firstChildElement("Name").isNull()){
+          continue;
+        }
+
+        QDomElement airSystemElement = airSystemElements.at(i).toElement();
+        translateAirSystem(airSystemElement,doc,*result);
+
+        if (m_progressBar){
+          m_progressBar->setValue(m_progressBar->value() + 1);
+        }
+      }
+
+      // ThermalZone
+      QDomNodeList thermalZoneElements = buildingElement.elementsByTagName("ThrmlZn");
+      if (m_progressBar){
+        m_progressBar->setWindowTitle(toString("Translating Thermal Zones"));
+        m_progressBar->setMinimum(0);
+        m_progressBar->setMaximum(airSystemElements.count()); 
+        m_progressBar->setValue(0);
+      }
+
+      for (int i = 0; i < thermalZoneElements.count(); i++){
+        if (thermalZoneElements.at(i).firstChildElement("Name").isNull()){
+          continue;
+        }
+
+        QDomElement thermalZoneElement = thermalZoneElements.at(i).toElement();
+        boost::optional<model::ModelObject> thermalZone = translateThermalZone(thermalZoneElement,doc,*result);
+        OS_ASSERT(thermalZone);
+
+        if (m_progressBar){
+          m_progressBar->setValue(m_progressBar->value() + 1);
+        }
+      }
+
+      // Give the nodes better names
+      // We do this here because the loops need to be completely assembled 
+      // with their supply AND demand sides.  ie. After zones are attached.
+      std::vector<model::PlantLoop> plantLoops = result->getModelObjects<model::PlantLoop>();
+
+      for( std::vector<model::PlantLoop>::iterator plantLoop = plantLoops.begin();
+           plantLoop != plantLoops.end();
+           ++plantLoop )
+      {
+        std::string plantName = plantLoop->name().get();
+        plantLoop->supplyInletNode().setName(plantName + " Supply Inlet Node");
+        plantLoop->demandInletNode().setName(plantName + " Demand Inlet Node");
+        plantLoop->demandSplitter().setName(plantName + " Demand Splitter"); 
+        plantLoop->demandMixer().setName(plantName + " Demand Mixer"); 
+        plantLoop->supplySplitter().setName(plantName + " Supply Splitter"); 
+        plantLoop->supplyMixer().setName(plantName + " Supply Mixer"); 
+
+        std::vector<model::ModelObject> comps = plantLoop->components();
+        for( std::vector<model::ModelObject>::iterator it = comps.begin();
+             it != comps.end();
+             ++it )
+        {
+          if( ! it->optionalCast<model::Node>() )
+          {
+            if( boost::optional<model::StraightComponent> comp = it->optionalCast<model::StraightComponent>() )
+            {
+              if( boost::optional<model::ModelObject> mo = comp->outletModelObject() )
+              {
+                mo->setName(comp->name().get() + " Outlet Node");
+              }
+            }
+            else if( boost::optional<model::WaterToAirComponent> comp = it->optionalCast<model::WaterToAirComponent>() )
+            {
+              if( boost::optional<model::ModelObject> mo = comp->waterOutletModelObject() )
+              {
+                mo->setName(comp->name().get() + " Water Outlet Node");
+              }
+            }
+            else if( boost::optional<model::WaterToWaterComponent> comp = it->optionalCast<model::WaterToWaterComponent>() )
+            {
+              if( boost::optional<model::ModelObject> mo = comp->supplyOutletModelObject() )
+              {
+                mo->setName(comp->name().get() + " Supply Outlet Node");
+              }
+              if( boost::optional<model::ModelObject> mo = comp->demandOutletModelObject() )
+              {
+                mo->setName(comp->name().get() + " Demand Outlet Node");
+              }
+            }
+            else if( boost::optional<model::Splitter> comp = it->optionalCast<model::Splitter>() )
+            {
+              int branchI = 1;
+              std::vector<model::ModelObject> splitterOutletObjects = 
+                comp->outletModelObjects();
+              for( std::vector<model::ModelObject>::iterator it = splitterOutletObjects.begin();
+                   it != splitterOutletObjects.end();
+                   ++it )
+              {
+                if( it->optionalCast<model::Node>() )
+                {
+                  std::string branchOutuletName = 
+                    comp->name().get() + " Outlet Node " + boost::lexical_cast<std::string>(branchI);
+                  it->setName(branchOutuletName);
+                  ++branchI;
+                }
+              } 
+            }
+            else if( boost::optional<model::Mixer> comp = it->optionalCast<model::Mixer>() )
+            {
+              if( boost::optional<model::ModelObject> mixerOutlet = comp->outletModelObject() )
+              {
+                mixerOutlet->setName(comp->name().get() + " Outlet Node");
+              }
+            }
+          }
+        }
+      }
+
+      std::vector<model::AirLoopHVAC> airSystems = result->getModelObjects<model::AirLoopHVAC>();
+
+      for( std::vector<model::AirLoopHVAC>::iterator airSystem = airSystems.begin();
+           airSystem != airSystems.end();
+           ++airSystem )
+      {
+        std::string systemName = airSystem->name().get();
+        airSystem->supplyInletNode().setName(systemName + " Supply Side (Return Air) Inlet Node");
+        airSystem->demandInletNode().setName(systemName + " Demand Side (Supply Air) Inlet Node");
+        airSystem->demandSplitter().setName(systemName + " Zone Splitter"); 
+        airSystem->demandMixer().setName(systemName + " Zone Mixer"); 
+
+        std::vector<model::ModelObject> comps = airSystem->components();
+        for( std::vector<model::ModelObject>::iterator it = comps.begin();
+             it != comps.end();
+             ++it )
+        {
+          if( ! it->optionalCast<model::Node>() )
+          {
+            if( boost::optional<model::StraightComponent> comp = it->optionalCast<model::StraightComponent>() )
+            {
+              if( boost::optional<model::ModelObject> mo = comp->outletModelObject() )
+              {
+                mo->setName(comp->name().get() + " Outlet Node");
+              }
+            }
+            else if( boost::optional<model::WaterToAirComponent> comp = it->optionalCast<model::WaterToAirComponent>() )
+            {
+              if( boost::optional<model::ModelObject> mo = comp->airOutletModelObject() )
+              {
+                mo->setName(comp->name().get() + " Air Outlet Node");
+              }
+            }
+            else if( boost::optional<model::Splitter> comp = it->optionalCast<model::Splitter>() )
+            {
+              int branchI = 1;
+              std::vector<model::ModelObject> splitterOutletObjects = 
+                comp->outletModelObjects();
+              for( std::vector<model::ModelObject>::iterator it = splitterOutletObjects.begin();
+                   it != splitterOutletObjects.end();
+                   ++it )
+              {
+                if( it->optionalCast<model::Node>() )
+                {
+                  std::string branchOutuletName = 
+                    comp->name().get() + " Outlet Node " + boost::lexical_cast<std::string>(branchI);
+                  it->setName(branchOutuletName);
+                  ++branchI;
+                }
+              } 
+            }
+            else if( boost::optional<model::ThermalZone> comp = it->optionalCast<model::ThermalZone>() )
+            {
+              if( boost::optional<model::ModelObject> returnAir = comp->returnAirModelObject() )
+              {
+                returnAir->setName(comp->name().get() + " Return Air Node");
+              }
+            }
+            else if( boost::optional<model::AirLoopHVACOutdoorAirSystem> comp = it->optionalCast<model::AirLoopHVACOutdoorAirSystem>() )
+            {
+              if( boost::optional<model::ModelObject> mixedAir = comp->mixedAirModelObject() )
+              {
+                mixedAir->setName(comp->name().get() + " Mixed Air Node");
+              }
+              if( boost::optional<model::Node> oaNode = comp->outboardOANode() )
+              {
+                oaNode->setName(comp->name().get() + " OA Node");
+              }
+              if( boost::optional<model::Node> reliefNode = comp->outboardReliefNode() )
+              {
+                reliefNode->setName(comp->name().get() + " Relief Node");
+              }
+            }
+            else if( boost::optional<model::Mixer> comp = it->optionalCast<model::Mixer>() )
+            {
+              if( boost::optional<model::ModelObject> mixerOutlet = comp->outletModelObject() )
+              {
+                mixerOutlet->setName(comp->name().get() + " Outlet Node");
+              }
+            }
+          }
+        }
+      }
+
+      std::vector<model::ZoneHVACComponent> zoneEquipment = result->getModelObjects<model::ZoneHVACComponent>();
+      for( std::vector<model::ZoneHVACComponent>::iterator zoneComp = zoneEquipment.begin();
+           zoneComp != zoneEquipment.end();
+           ++zoneComp )
+      {
+        if( boost::optional<model::Node> inlet = zoneComp->inletNode() )
+        {
+          inlet->setName(zoneComp->name().get() + " Inlet Node");
+        }
+        if( boost::optional<model::Node> outlet = zoneComp->outletNode() )
+        {
+          outlet->setName(zoneComp->name().get() + " Outlet Node");
+        }
+      }
+
+      bool ok;
+      // timestep
+      QDomElement numTimeStepsPerHrElement = projectElement.firstChildElement("NumTimeStepsPerHr");
+      int numTimeStepsPerHr = numTimeStepsPerHrElement.text().toInt(&ok);
+      if( ok )
+      {
+        model::Timestep timestep = result->getUniqueModelObject<model::Timestep>();
+        timestep.setNumberOfTimestepsPerHour(numTimeStepsPerHr);
+      }
+      else
+      {
+        model::Timestep timestep = result->getUniqueModelObject<model::Timestep>();
+        timestep.setNumberOfTimestepsPerHour(4);
+      }
+
+      // request output meters for TDV calculations
+      std::set<int> fuelTypes = FuelType::getValues();
+      for (int fuelType : fuelTypes){
+
+        if (fuelType == FuelType::Gasoline ||
+            fuelType == FuelType::Diesel ||
+            fuelType == FuelType::FuelOil_1 ||
+            fuelType == FuelType::FuelOil_2 ||
+            fuelType == FuelType::Propane ||
+            fuelType == FuelType::Water ||
+            fuelType == FuelType::Steam ||
+            fuelType == FuelType::EnergyTransfer){
+          // skip these to avoid E+ warning, EnergyTransfer is internal to the simulation
+          continue;
+        }
+
+        // overall meter for this fuel type
+        model::Meter meter(*result);
+        meter.setFuelType(FuelType(fuelType));
+        meter.setInstallLocationType(InstallLocationType::Facility);
+        meter.setReportingFrequency("Hourly");
+
+        std::set<int> endUseTypes = EndUseType::getValues();
+        for (int endUseType : endUseTypes){
+
+          if (endUseType == EndUseType::HeatingCoils ||
+              endUseType == EndUseType::CoolingCoils ||
+              endUseType == EndUseType::Boilers ||
+              endUseType == EndUseType::Baseboard ||
+              endUseType == EndUseType::HeatRecoveryForCooling ||
+              endUseType == EndUseType::HeatRecoveryForHeating){
+            // ignore energy transfer meters
+            continue;
+          }
+
+          // meter for this fuel type and end use
+          // DLM: many of these will not be applicable and will cause E+ warnings
+          model::Meter meter(*result);
+          meter.setFuelType(FuelType(fuelType));
+          meter.setEndUseType(EndUseType(endUseType));
+          meter.setInstallLocationType(InstallLocationType::Facility);
+          meter.setReportingFrequency("Hourly");
+        }
+      }
+
+      // request specific meters
+      // ElectricEquipment - Receptacle, Process, Refrig
+      model::Meter meter(*result);
+      meter.setFuelType(FuelType::Electricity);
+      meter.setEndUseType(EndUseType::InteriorEquipment);
+      meter.setSpecificEndUse("Receptacle");
+      meter.setInstallLocationType(InstallLocationType::Facility);
+      meter.setReportingFrequency("Hourly");
+
+      meter = model::Meter(*result);
+      meter.setFuelType(FuelType::Electricity);
+      meter.setEndUseType(EndUseType::InteriorEquipment);
+      meter.setSpecificEndUse("Process");
+      meter.setInstallLocationType(InstallLocationType::Facility);
+      meter.setReportingFrequency("Hourly");
+
+      meter = model::Meter(*result);
+      meter.setFuelType(FuelType::Electricity);
+      meter.setEndUseType(EndUseType::InteriorEquipment);
+      meter.setSpecificEndUse("Refrig");
+      meter.setInstallLocationType(InstallLocationType::Facility);
+      meter.setReportingFrequency("Hourly");
+
+      meter = model::Meter(*result);
+      meter.setFuelType(FuelType::Electricity);
+      meter.setEndUseType(EndUseType::InteriorEquipment);
+      meter.setSpecificEndUse("Internal Transport");
+      meter.setInstallLocationType(InstallLocationType::Facility);
+      meter.setReportingFrequency("Hourly"); 
+
+      meter = model::Meter(*result);
+      meter.setFuelType(FuelType::Electricity);
+      meter.setEndUseType(EndUseType::ExteriorEquipment);
+      meter.setSpecificEndUse("Receptacle");
+      meter.setInstallLocationType(InstallLocationType::Facility);
+      meter.setReportingFrequency("Hourly");
+
+      meter = model::Meter(*result);
+      meter.setFuelType(FuelType::Electricity);
+      meter.setEndUseType(EndUseType::ExteriorEquipment);
+      meter.setSpecificEndUse("Process");
+      meter.setInstallLocationType(InstallLocationType::Facility);
+      meter.setReportingFrequency("Hourly");
+
+      meter = model::Meter(*result);
+      meter.setFuelType(FuelType::Electricity);
+      meter.setEndUseType(EndUseType::ExteriorEquipment);
+      meter.setSpecificEndUse("Refrig");
+      meter.setInstallLocationType(InstallLocationType::Facility);
+      meter.setReportingFrequency("Hourly");
+
+      // GasEquipment - Receptacle, Process
+      meter = model::Meter(*result);
+      meter.setFuelType(FuelType::Gas);
+      meter.setEndUseType(EndUseType::InteriorEquipment);
+      meter.setSpecificEndUse("Receptacle");
+      meter.setInstallLocationType(InstallLocationType::Facility);
+      meter.setReportingFrequency("Hourly");
+
+      meter = model::Meter(*result);
+      meter.setFuelType(FuelType::Gas);
+      meter.setEndUseType(EndUseType::InteriorEquipment);
+      meter.setSpecificEndUse("Process");
+      meter.setInstallLocationType(InstallLocationType::Facility);
+      meter.setReportingFrequency("Hourly");
+
+      meter = model::Meter(*result);
+      meter.setFuelType(FuelType::Gas);
+      meter.setEndUseType(EndUseType::ExteriorEquipment);
+      meter.setSpecificEndUse("Receptacle");
+      meter.setInstallLocationType(InstallLocationType::Facility);
+      meter.setReportingFrequency("Hourly");
+
+      meter = model::Meter(*result);
+      meter.setFuelType(FuelType::Gas);
+      meter.setEndUseType(EndUseType::ExteriorEquipment);
+      meter.setSpecificEndUse("Process");
+      meter.setInstallLocationType(InstallLocationType::Facility);
+      meter.setReportingFrequency("Hourly");
+
+      // Lights - Reg Ltg, NonReg Ltg
+      meter = model::Meter(*result);
+      meter.setFuelType(FuelType::Electricity);
+      meter.setEndUseType(EndUseType::InteriorLights);
+      meter.setSpecificEndUse("Reg Ltg");
+      meter.setInstallLocationType(InstallLocationType::Facility);
+      meter.setReportingFrequency("Hourly");
+
+      meter = model::Meter(*result);
+      meter.setFuelType(FuelType::Electricity);
+      meter.setEndUseType(EndUseType::InteriorLights);
+      meter.setSpecificEndUse("NonReg Ltg");
+      meter.setInstallLocationType(InstallLocationType::Facility);
+      meter.setReportingFrequency("Hourly");
+
+      meter = model::Meter(*result);
+      meter.setFuelType(FuelType::Electricity);
+      meter.setEndUseType(EndUseType::ExteriorLights);
+      meter.setSpecificEndUse("Reg Ltg");
+      meter.setInstallLocationType(InstallLocationType::Facility);
+      meter.setReportingFrequency("Hourly");
+
+      meter = model::Meter(*result);
+      meter.setFuelType(FuelType::Electricity);
+      meter.setEndUseType(EndUseType::ExteriorLights);
+      meter.setSpecificEndUse("NonReg Ltg");
+      meter.setInstallLocationType(InstallLocationType::Facility);
+      meter.setReportingFrequency("Hourly");
+
+      // Output Variables
+
+      QDomElement simVarsIntervalElement = projectElement.firstChildElement("SimVarsInterval");
+
+      std::string interval = simVarsIntervalElement.text().toStdString();
+
+      // SimVarsSite
+
+      QDomElement simVarsSiteElement = projectElement.firstChildElement("SimVarsSite");
+
+      if( simVarsSiteElement.text().toInt() == 1 )
+      {
+        model::OutputVariable var("Site Outdoor Air Drybulb Temperature",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Site Outdoor Air Wetbulb Temperature",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Site Direct Solar Radiation Rate per Area",*result);
+        var.setReportingFrequency(interval);
+      }
+
+      // SimVarsDayltg
+      QDomElement simVarsDayltgElement = projectElement.firstChildElement("SimVarsDayltg");
+      if( simVarsDayltgElement.text().toInt() == 1 )
+      {
+        model::OutputVariable var("Zone Lights Electric Power",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Daylighting Reference Point 1 Illuminance",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Daylighting Reference Point 2 Illuminance",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Daylighting Lighting Power Multiplier",*result);
+        var.setReportingFrequency(interval);
+      }
+
+      // SimVarsThrmlZn
+
+      QDomElement simVarsThrmlZnElement = projectElement.firstChildElement("SimVarsThrmlZn");      
+
+      if( simVarsThrmlZnElement.text().toInt() == 1 )
+      {
+        model::OutputVariable var("Zone Air Temperature",*result);
+        var.setReportingFrequency(interval);
+
+        std::vector<model::ThermalZone> zones = result->getModelObjects<model::ThermalZone>();
+        for( std::vector<model::ThermalZone>::iterator it = zones.begin();
+             it != zones.end();
+             ++it )
+        {
+          if( boost::optional<model::ModelObject> returnAirNode = it->returnAirModelObject() )
+          {
+            var = model::OutputVariable("System Node Temperature",*result);
+            var.setReportingFrequency(interval);
+            var.setKeyValue(returnAirNode->name().get());
+
+            var = model::OutputVariable("System Node Standard Density Volume Flow Rate",*result);
+            var.setReportingFrequency(interval);
+            var.setKeyValue(returnAirNode->name().get());
+          }
+
+          std::vector<model::ModelObject> objects = it->inletPortList().modelObjects();
+          for( std::vector<model::ModelObject>::iterator inletIt = objects.begin();
+               inletIt != objects.end();
+               ++inletIt )
+          {
+            var = model::OutputVariable("System Node Temperature",*result);
+            var.setReportingFrequency(interval);
+            var.setKeyValue(inletIt->name().get());
+
+            var = model::OutputVariable("System Node Standard Density Volume Flow Rate",*result);
+            var.setReportingFrequency(interval);
+            var.setKeyValue(inletIt->name().get());
+          }
+
+          objects = it->exhaustPortList().modelObjects();
+          for( std::vector<model::ModelObject>::iterator exhIt = objects.begin();
+               exhIt != objects.end();
+               ++exhIt )
+          {
+            var = model::OutputVariable("System Node Temperature",*result);
+            var.setReportingFrequency(interval);
+            var.setKeyValue(exhIt->name().get());
+
+            var = model::OutputVariable("System Node Standard Density Volume Flow Rate",*result);
+            var.setReportingFrequency(interval);
+            var.setKeyValue(exhIt->name().get());
+          }
+        }
+      }
+
+      // SimVarsHVACZn
+
+      QDomElement simVarsHVACZnElement = projectElement.firstChildElement("SimVarsHVACZn");
+
+      if( simVarsHVACZnElement.text().toInt() == 1 )
+      {
+        model::OutputVariable var("Zone Air Terminal VAV Damper Position",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Zone Air Terminal Outdoor Air Volume Flow Rate",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Zone Packaged Terminal Heat Pump Total Heating Rate",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Zone Packaged Terminal Heat Pump Total Cooling Rate",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Zone Packaged Terminal Air Conditioner Total Heating Rate",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Zone Packaged Terminal Air Conditioner Total Cooling Rate",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Baseboard Total Heating Rate",*result);
+        var.setReportingFrequency(interval);
+      }
+
+      // SimVarsHVACSec
+
+      QDomElement simVarsHVACSecElement = projectElement.firstChildElement("SimVarsHVACSec");
+
+      if( simVarsHVACSecElement.text().toInt() == 1 )
+      {
+        model::OutputVariable var("Heating Coil Air Heating Rate",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Heating Coil Heating Rate",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Cooling Coil Total Cooling Rate",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Fan Electric Power",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Heating Coil Gas Rate",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Heating Coil Electric Power",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Evaporative Cooler Electric Power",*result);
+        var.setReportingFrequency(interval);
+
+        std::vector<model::AirLoopHVAC> airloops = result->getModelObjects<model::AirLoopHVAC>();
+
+        for( auto & airloop : airloops)
+        {
+          var = model::OutputVariable("System Node Temperature",*result);
+          var.setReportingFrequency(interval);
+          var.setKeyValue(airloop.supplyInletNode().name().get());
+
+          var = model::OutputVariable("System Node Temperature",*result);
+          var.setReportingFrequency(interval);
+          var.setKeyValue(airloop.supplyOutletNode().name().get());
+
+          var = model::OutputVariable("System Node Standard Density Volume Flow Rate",*result);
+          var.setReportingFrequency(interval);
+          var.setKeyValue(airloop.supplyOutletNode().name().get());
+
+          var = model::OutputVariable("System Node Temperature",*result);
+          var.setReportingFrequency(interval);
+          var.setKeyValue(airloop.demandInletNode().name().get());
+
+          var = model::OutputVariable("System Node Standard Density Volume Flow Rate",*result);
+          var.setReportingFrequency(interval);
+          var.setKeyValue(airloop.demandInletNode().name().get());
+
+          if( boost::optional<model::Node> node = airloop.mixedAirNode() )
+          {
+            var = model::OutputVariable("System Node Temperature",*result);
+            var.setReportingFrequency(interval);
+            var.setKeyValue(node->name().get());
+
+            var = model::OutputVariable("System Node Standard Density Volume Flow Rate",*result);
+            var.setReportingFrequency(interval);
+            var.setKeyValue(node->name().get());
+          }
+
+          if( boost::optional<model::AirLoopHVACOutdoorAirSystem> oaSystem = airloop.airLoopHVACOutdoorAirSystem() )
+          {
+            if( boost::optional<model::ModelObject> node = oaSystem->reliefAirModelObject() )
+            {
+              var = model::OutputVariable("System Node Temperature",*result);
+              var.setReportingFrequency(interval);
+              var.setKeyValue(node->name().get());
+
+              var = model::OutputVariable("System Node Standard Density Volume Flow Rate",*result);
+              var.setReportingFrequency(interval);
+              var.setKeyValue(node->name().get());
+            }
+
+            if( boost::optional<model::Node> node = oaSystem->outboardOANode() )
+            {
+              var = model::OutputVariable("System Node Temperature",*result);
+              var.setReportingFrequency(interval);
+              var.setKeyValue(node->name().get());
+
+              var = model::OutputVariable("System Node Standard Density Volume Flow Rate",*result);
+              var.setReportingFrequency(interval);
+              var.setKeyValue(node->name().get());
+            }
+          }
+        }
+      }
+
+      // SimVarsHVACPri
+
+      QDomElement simVarsHVACPriElement = projectElement.firstChildElement("SimVarsHVACPri");
+
+      if( (simVarsHVACPriElement.text().toInt() == 1) ||
+          autosize() )
+      {
+        model::OutputVariable var("Chiller Evaporator Cooling Rate",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Cooling Tower Heat Transfer Rate",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Boiler Heating Rate",*result);
+        var.setReportingFrequency(interval);
+      }
+
+      if( simVarsHVACPriElement.text().toInt() == 1 )
+      {
+        model::OutputVariable var("Pump Electric Power",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Pump Mass Flow Rate",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Pump Outlet Temperature",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Debug Plant Loop Bypass Fraction",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Debug Plant Loop Bypass Fraction",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Chiller Condenser Heat Transfer Rate",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Chiller Electric Power",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Cooling Tower Heat Transfer Rate",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Cooling Tower Fan Electric Power",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Boiler Gas Rate",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Boiler Ancillary Electric Power",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Plant Supply Side Cooling Demand Rate",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Plant Supply Side Heating Demand Rate",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Chiller Evaporator Cooling Rate",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Boiler Heating Rate",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Plant Supply Side Inlet Temperature",*result);
+        var.setReportingFrequency(interval);
+
+        var = model::OutputVariable("Plant Supply Side Outlet Temperature",*result);
+        var.setReportingFrequency(interval);
+
+        std::vector<model::PlantLoop> plants = result->getModelObjects<model::PlantLoop>();
+        for( auto & plant : plants ) {
+          var = model::OutputVariable("System Node Mass Flow Rate",*result);
+          var.setReportingFrequency(interval);
+          var.setKeyValue(plant.demandOutletNode().name().get());
+        }
+      }
+
+      model::OutputControlReportingTolerances rt = result->getUniqueModelObject<model::OutputControlReportingTolerances>();
+      rt.setToleranceforTimeCoolingSetpointNotMet(0.56);
+      rt.setToleranceforTimeHeatingSetpointNotMet(0.56);
+    }
+    
+    return result;
+  }
+
+  boost::optional<openstudio::model::ModelObject> ReverseTranslator::translateRunPeriod(const QDomElement& element, const QDomDocument& doc, openstudio::model::Model& model)
+  {
+    //<HVACAutoSizing>1</HVACAutoSizing>
+    //<SimDsgnDays>0</SimDsgnDays>
+    //<RunPeriodBeginMonth>1</RunPeriodBeginMonth>
+    //<RunPeriodBeginDay>1</RunPeriodBeginDay>
+    //<RunPeriodEndMonth>12</RunPeriodEndMonth>
+    //<RunPeriodEndDay>31</RunPeriodEndDay>
+    //<RunPeriodYear>1991</RunPeriodYear>
+
+    boost::optional<openstudio::model::ModelObject> result;
+
+    QDomElement hvacAutoSizingElement = element.firstChildElement("HVACAutoSizing");
+    QDomElement runDesignDaysElement = element.firstChildElement("SimDsgnDays");
+    QDomElement beginMonthElement = element.firstChildElement("RunPeriodBeginMonth");
+    QDomElement beginDayElement = element.firstChildElement("RunPeriodBeginDay");
+    QDomElement endMonthElement = element.firstChildElement("RunPeriodEndMonth");
+    QDomElement endDayElement = element.firstChildElement("RunPeriodEndDay");
+    QDomElement yearElement = element.firstChildElement("RunPeriodYear");
+
+    bool test = true;
+
+    if (hvacAutoSizingElement.isNull()){
+      test = false;
+      LOG(Error, "HVACAutoSizing not specified");
+    }
+    if (runDesignDaysElement.isNull()){
+      test = false;
+      LOG(Error, "SimDsgnDays not specified");
+    }
+    if (beginMonthElement.isNull()){
+      test = false;
+      LOG(Error, "RunPeriodBeginMonth not specified");
+    }
+    if (beginDayElement.isNull()){
+      test = false;
+      LOG(Error, "RunPeriodBeginDay not specified");
+    }
+    if (endMonthElement.isNull()){
+      test = false;
+      LOG(Error, "RunPeriodEndMonth not specified");
+    }
+    if (endDayElement.isNull()){
+      test = false;
+      LOG(Error, "RunPeriodEndDay not specified");
+    }
+    if (yearElement.isNull()){
+      test = false;
+      LOG(Error, "RunPeriodYear not specified");
+    }
+
+    if (!test){
+      return boost::none;
+    }
+
+    model::SimulationControl simulationControl = model.getUniqueModelObject<model::SimulationControl>();
+
+    simulationControl.setMaximumNumberofWarmupDays(50);
+    
+    if( (runDesignDaysElement.text().toInt() == 1) || (hvacAutoSizingElement.text().toInt() == 1) || m_masterAutosize )
+    {
+      simulationControl.setRunSimulationforSizingPeriods(true);
+    }
+    else
+    {
+      simulationControl.setRunSimulationforSizingPeriods(false);
+    }
+
+    if (beginMonthElement.text().toInt() == 0){
+      simulationControl.setRunSimulationforWeatherFileRunPeriods(false);
+
+      // remove any existing run periods
+      boost::optional<model::RunPeriod> runPeriod = model.getOptionalUniqueModelObject<model::RunPeriod>();
+      if (runPeriod){
+        runPeriod->remove();
+      }
+
+    }else{
+      simulationControl.setRunSimulationforWeatherFileRunPeriods(true);
+
+      model::YearDescription yearDescription = model.getUniqueModelObject<model::YearDescription>();
+      yearDescription.setCalendarYear(yearElement.text().toInt());
+
+      std::string runPeriodName = "Run Period";
+      QDomElement annualWeatherFileElement = element.firstChildElement("AnnualWeatherFile");
+      if (!annualWeatherFileElement.isNull()){
+        QFileInfo annualWeatherFile(annualWeatherFileElement.text());
+        runPeriodName = toString(annualWeatherFile.baseName());
+      }
+
+      model::RunPeriod runPeriod = model.getUniqueModelObject<model::RunPeriod>();
+      runPeriod.setName(runPeriodName);
+      runPeriod.setBeginMonth(beginMonthElement.text().toInt());
+      runPeriod.setBeginDayOfMonth(beginDayElement.text().toInt());
+      runPeriod.setEndMonth(endMonthElement.text().toInt());
+      runPeriod.setEndDayOfMonth(endDayElement.text().toInt());
+      runPeriod.setUseWeatherFileHolidays(false);
+      runPeriod.setUseWeatherFileDaylightSavings(false);
+      runPeriod.setApplyWeekendHolidayRule(true);
+      result = runPeriod;
+    }
+
+    return result;
+  }
+
+  boost::optional<openstudio::model::ModelObject> ReverseTranslator::translateSite(const QDomElement& element, const QDomDocument& doc, openstudio::model::Model& model)
+  {
+    //<CliZn>ClimateZone12</CliZn>
+    //<Lat>38.58</Lat>
+    //<Long>-121.49</Long>
+    //<Elevation>839.9</Elevation>
+
+    QDomElement climateZoneElement = element.firstChildElement("CliZn");
+    QDomElement latElement = element.firstChildElement("Lat");
+    QDomElement longElement = element.firstChildElement("Long");
+    QDomElement elevationElement = element.firstChildElement("Elevation");
+
+    bool test = true;
+
+    if (climateZoneElement.isNull()){
+      //test = false;
+      LOG(Error, "No climate zone specified");
+    }
+    if (latElement.isNull()){
+      test = false;
+      LOG(Error, "No lattitude specified");
+    }
+    if (longElement.isNull()){
+      test = false;
+      LOG(Error, "No longitude specified");
+    }
+    if (elevationElement.isNull()){
+      test = false;
+      LOG(Error, "No elevation specified");
+    }
+
+    if (!test){
+      return boost::none;
+    }
+
+    // set lat, lon, elev
+    model::Site site = model.getUniqueModelObject<model::Site>();
+
+    // DLM: what about time zone and terrain?
+
+    double latitude = latElement.text().toDouble();
+    double longitude = longElement.text().toDouble();
+    double elevationIP = elevationElement.text().toDouble();
+    double elevationSI = 0.3048*elevationIP;
+
+    site.setLatitude(latitude);
+    site.setLongitude(longitude);
+    site.setElevation(elevationSI);
+
+    // DLM: always assume California?
+    site.setTimeZone(-8.0);
+
+    return site;
+  }
+
+  boost::optional<openstudio::model::ModelObject> ReverseTranslator::translateWaterMainsTemperature(const QDomElement& element, const QDomDocument& doc, openstudio::model::Model& model)
+  {
+    //<WtrMnTempSchRef>WaterMainCZ12</WtrMnTempSchRef>
+
+    QDomElement wtrMnTempSchRefElement = element.firstChildElement("WtrMnTempSchRef");
+    if (!wtrMnTempSchRefElement.isNull()){
+      boost::optional<model::Schedule> schedule = model.getModelObjectByName<model::Schedule>(wtrMnTempSchRefElement.text().toStdString());
+      if (schedule){
+        model::SiteWaterMainsTemperature waterMains = model.getUniqueModelObject<model::SiteWaterMainsTemperature>();
+        waterMains.setTemperatureSchedule(*schedule);
+        return waterMains;
+      }
+    }
+
+    return boost::none;
+  }
+
+  std::vector<WorkspaceObject> ReverseTranslator::translateDesignDays(const QDomElement& element, const QDomDocument& doc, openstudio::model::Model& model)
+  {
+    std::vector<WorkspaceObject> result;
+
+    //<DDWeatherFile>F:/360Local/AEC/CBECCn/CBECC Source Files/CBECC-Com13/Data/EPW/SACRAMENTO-EXECUTIVE_724830_CZ2010.ddy</DDWeatherFile>
+
+    QDomElement ddWeatherFileElement = element.firstChildElement("DDWeatherFile");
+
+    if (ddWeatherFileElement.isNull()){
+      LOG(Error, "No design day file specified");
+      return result;
+    }
+
+    openstudio::path ddyFilePath = toPath(ddWeatherFileElement.text());
+    if (!ddyFilePath.is_complete()){
+      ddyFilePath = complete(ddyFilePath, m_path.parent_path());
+    }
+
+    if (!exists(ddyFilePath)){
+      LOG(Error, "Design day file '" << toString(ddyFilePath) << "' does not exist");
+      return result;
+    }
+
+    boost::optional<Workspace> ddyFile = Workspace::load(ddyFilePath);
+    if (!ddyFile){
+      LOG(Error, "Could not open design day file '" << toString(ddyFilePath) << "'");
+      return result;
+    }
+
+    // convert ddy file to osm and add objects
+    energyplus::ReverseTranslator rt;
+    model::Model ddyModel = rt.translateWorkspace(*ddyFile);
+    result = model.addObjects(ddyModel.objects());
+    if (result.empty()){
+      LOG(Error, "Failed to add design days to model");
+    }
+
+    return result;
+  }
+
+  boost::optional<openstudio::model::ModelObject> ReverseTranslator::translateWeatherFile(const QDomElement& element, const QDomDocument& doc, openstudio::model::Model& model)
+  {
+    //<AnnualWeatherFile>F:/360Local/AEC/CBECCn/CBECC Source Files/CBECC-Com13/Data/EPW/SACRAMENTO-EXECUTIVE_724830_CZ2010.epw</AnnualWeatherFile>
+
+    QDomElement annualWeatherFileElement = element.firstChildElement("AnnualWeatherFile");
+
+    if (annualWeatherFileElement.isNull()){
+      LOG(Error, "No annual weather file specified");
+      return boost::none;
+    }
+
+    openstudio::path epwFilePath = toPath(annualWeatherFileElement.text());
+    if (!epwFilePath.is_complete()){
+      epwFilePath = complete(epwFilePath, m_path.parent_path());
+    }
+
+    if (!exists(epwFilePath)){
+      LOG(Error, "Annual weather file '" << toString(epwFilePath) << "' does not exist");
+      return boost::none;
+    }
+
+    boost::optional<EpwFile> epwFile;
+    try{
+      epwFile = EpwFile(epwFilePath);
+      OS_ASSERT(epwFile);
+    }catch(std::exception&){
+      LOG(Error, "Could not open epw file '" << toString(epwFilePath) << "'");
+    }
+
+    if (!epwFile){
+      return boost::none;
+    }
+
+    // set weatherfile
+    boost::optional<model::WeatherFile> weatherFile = model::WeatherFile::setWeatherFile(model, *epwFile);
+    if (!weatherFile){
+      LOG(Error, "Failed to set weather file for model");
+      return boost::none;
+    }
+
+    return weatherFile.get();
+  }
+
+boost::optional<model::PlantLoop> ReverseTranslator::loopForSupplySegment(const QString & fluidSegmentName, const QDomDocument& doc, openstudio::model::Model& model)
+{
+  boost::optional<model::PlantLoop> result;
+
+  QDomNodeList fluidSysElements = doc.documentElement().firstChildElement("Proj").elementsByTagName("FluidSys");
+
+  for (int i = 0; i < fluidSysElements.count(); i++)
+  {
+    QDomElement fluidSysElement = fluidSysElements.at(i).toElement();
+
+    QDomElement fluidSysNameElement = fluidSysElement.firstChildElement("Name");
+
+    QDomNodeList fluidSegmentElements = fluidSysElement.elementsByTagName("FluidSeg");
+
+    for (int i = 0; i < fluidSegmentElements.count(); i++)
+    {
+      QDomElement fluidSegmentElement = fluidSegmentElements.at(i).toElement();
+
+      QDomElement nameElement = fluidSegmentElement.firstChildElement("Name");
+      QDomElement typeElement = fluidSegmentElement.firstChildElement("Type");
+
+      if( (typeElement.text().toLower() == "secondarysupply" ||
+           typeElement.text().toLower() == "primarysupply" ) &&
+          nameElement.text().toLower() == fluidSegmentName.toLower()
+        )
+      {
+        boost::optional<model::PlantLoop> loop = model.getModelObjectByName<model::PlantLoop>(fluidSysNameElement.text().toStdString());
+
+        return loop; 
+      }
+    }
+  }
+
+  return result;
+}
+
+boost::optional<model::PlantLoop> ReverseTranslator::serviceHotWaterLoopForSupplySegment(const QString & fluidSegmentName, const QDomDocument & doc, openstudio::model::Model& model)
+{
+  boost::optional<model::PlantLoop> result;
+
+  QDomNodeList fluidSysElements = doc.documentElement().firstChildElement("Proj").elementsByTagName("FluidSys");
+
+  for (int i = 0; i < fluidSysElements.count(); i++)
+  {
+    QDomElement fluidSysElement = fluidSysElements.at(i).toElement();
+
+    QDomElement fluidSysNameElement = fluidSysElement.firstChildElement("Name");
+
+    QDomElement fluidSysTypeElement = fluidSysElement.firstChildElement("Type");
+
+    if( fluidSysTypeElement.text().toLower() == "servicehotwater" )
+    {
+      QDomNodeList fluidSegmentElements = fluidSysElement.elementsByTagName("FluidSeg");
+
+      for (int i = 0; i < fluidSegmentElements.count(); i++)
+      {
+        QDomElement fluidSegmentElement = fluidSegmentElements.at(i).toElement();
+
+        QDomElement nameElement = fluidSegmentElement.firstChildElement("Name");
+        QDomElement typeElement = fluidSegmentElement.firstChildElement("Type");
+
+        if( (typeElement.text().toLower() == "secondarysupply" ||
+             typeElement.text().toLower() == "primarysupply" ) &&
+            nameElement.text().toLower() == fluidSegmentName.toLower()
+          )
+        {
+          if( boost::optional<model::PlantLoop> loop = model.getModelObjectByName<model::PlantLoop>(fluidSysNameElement.text().toStdString()) )
+          {
+            return loop; 
+          }
+          else
+          {
+            if( boost::optional<model::ModelObject> mo = translateFluidSys(fluidSysElement,doc,model) )
+            {
+              return mo->optionalCast<model::PlantLoop>();
+            }
+          }
+        }
+      }
+    }
+  }
+
+  return result;
+}
+
+//TODO probably should be in OS proper
+//helper method to do unit conversions;
+boost::optional<double> ReverseTranslator::unitToUnit(const double& val, const std::string& fstUnitString, const std::string& secUnitString)
+{
+  //create the units from the strings
+  boost::optional<Unit> fstUnit = UnitFactory::instance().createUnit(fstUnitString);
+  boost::optional<Unit> secUnit = UnitFactory::instance().createUnit(secUnitString);
+
+  //make sure both unit strings were valid
+  if (fstUnit && secUnit) {
+
+    //make the IP quantity
+    Quantity ipQuant = Quantity(val, *fstUnit);
+
+    //convert the IP quantity from IP to SI
+    boost::optional<Quantity> siQuant = QuantityConverter::instance().convert(ipQuant, *secUnit);
+  
+    //if the conversion 
+    if (siQuant) {
+      return siQuant->value();
+    }
+  }
+
+  return boost::none;
+}
+
+
+bool ReverseTranslator::autosize() const
+{
+  if( m_masterAutosize )
+  {
+    return true;
+  }
+
+  return m_autosize;
+}
+
+} // bec
+} // openstudio

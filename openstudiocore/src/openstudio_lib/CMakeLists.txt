@@ -727,6 +727,7 @@ set(depends
   openstudio_analysisdriver
   openstudio_sdd
   openstudio_gbxml
+  openstudio_bec
   ${QT_LIBS}
   #${RUBY_LIBRARY}
 )
