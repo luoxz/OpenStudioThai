@@ -708,6 +708,12 @@ void HVACSystemsController::addToModel(AddToModelEnum addToModelEnum)
 
   switch (addToModelEnum)
   {
+	case ADDTOMODEL_AIRLOOPHVAC_THAI:
+	  {
+		  loop = model::airLoopHVACTHAI(m_model);
+		  break;
+	  }
+	  break;
     case ADDTOMODEL_AIRLOOPHVAC:
     {
       model::AirLoopHVAC airLoopHVAC(m_model);

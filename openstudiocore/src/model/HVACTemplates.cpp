@@ -90,6 +90,8 @@
 #include "CoilCoolingWater_Impl.hpp"
 #include "CoilHeatingWater.hpp"
 #include "CoilHeatingWater_Impl.hpp"
+#include "EvaporativeCoolerDirectResearchSpecial.hpp"
+#include "EvaporativeCoolerDirectResearchSpecial_Impl.hpp"
 #include "Splitter.hpp"
 #include "Splitter_Impl.hpp"
 #include "Mixer.hpp"
@@ -982,6 +984,72 @@ Loop addSystemType10(Model & model)
   return airLoopHVAC;
 }
 
+Loop airLoopHVACTHAI(Model & model){
+	Model tempModel;
+	Schedule _alwaysOnSchedule = model.alwaysOnDiscreteSchedule();
+
+	AirLoopHVAC airLoopHVAC = AirLoopHVAC(model);
+	airLoopHVAC.setName("Thai Packaged Air Conditioner");
+	// when an airloophvac is contructed, its constructor automatically creates a sizing:system object
+	// the default sizing:system contstructor makes a system:sizing object appropriate for a multizone VAV system
+	// this systems is a constant volume system with no VAV terminals, and needs different default settings
+
+	// get the sizing:system object associated with the airloophvac
+	SizingSystem sizingSystem = airLoopHVAC.sizingSystem();
+
+	//set the default parameters correctly for a constant volume system with no VAV terminals
+	sizingSystem.setTypeofLoadtoSizeOn("Sensible");
+	sizingSystem.autosizeDesignOutdoorAirFlowRate();
+	sizingSystem.setMinimumSystemAirFlowRatio(1.0);
+	sizingSystem.setPreheatDesignTemperature(7.0);
+	sizingSystem.setPreheatDesignHumidityRatio(0.008);
+	sizingSystem.setPrecoolDesignTemperature(12.8);
+	sizingSystem.setPrecoolDesignHumidityRatio(0.008);
+	sizingSystem.setCentralCoolingDesignSupplyAirTemperature(12.8);
+	sizingSystem.setCentralHeatingDesignSupplyAirTemperature(40.0);
+	sizingSystem.setSizingOption("NonCoincident");
+	sizingSystem.setAllOutdoorAirinCooling("No");
+	sizingSystem.setAllOutdoorAirinHeating("No");
+	sizingSystem.setCentralCoolingDesignSupplyAirHumidityRatio(0.0085);
+	sizingSystem.setCentralHeatingDesignSupplyAirHumidityRatio(0.0080);
+	sizingSystem.setCoolingDesignAirFlowMethod("DesignDay");
+	sizingSystem.setCoolingDesignAirFlowRate(0.0);
+	sizingSystem.setHeatingDesignAirFlowMethod("DesignDay");
+	sizingSystem.setHeatingDesignAirFlowRate(0.0);
+	sizingSystem.setSystemOutdoorAirMethod("ZoneSum");
+
+	FanConstantVolume fan = FanConstantVolume(model);
+	fan.setPressureRise(500);
+
+	CoilHeatingGas coilHeatingGas = CoilHeatingGas(model, _alwaysOnSchedule);
+
+	CoilCoolingDXSingleSpeed coilCooling = CoilCoolingDXSingleSpeed(model);
+
+	SetpointManagerSingleZoneReheat setpointMSZR(model);
+
+	ControllerOutdoorAir controllerOutdoorAir = ControllerOutdoorAir(model);
+
+	AirLoopHVACOutdoorAirSystem outdoorAirSystem = AirLoopHVACOutdoorAirSystem(model, controllerOutdoorAir);
+
+	Node supplyOutletNode = airLoopHVAC.supplyOutletNode();
+	outdoorAirSystem.addToNode(supplyOutletNode);
+	EvaporativeCoolerDirectResearchSpecial evaporativeCoolerDirectResearchSpecial(model, _alwaysOnSchedule);
+	Node oaNode = outdoorAirSystem.outdoorAirModelObject()->cast<Node>();
+	evaporativeCoolerDirectResearchSpecial.addToNode(oaNode);
+
+	coilCooling.addToNode(supplyOutletNode);
+	coilHeatingGas.addToNode(supplyOutletNode);
+	fan.addToNode(supplyOutletNode);
+
+	Node node1 = fan.outletModelObject()->cast<Node>();
+	setpointMSZR.addToNode(node1);
+
+	AirTerminalSingleDuctUncontrolled terminal(model, _alwaysOnSchedule);
+
+	airLoopHVAC.addBranchForHVACComponent(terminal);
+
+	return airLoopHVAC;
+}
 } // model
 
 } // openstudio
