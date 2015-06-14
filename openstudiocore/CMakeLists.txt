@@ -207,6 +207,7 @@ set(project_directories
   model_editor
   openstudio_lib
   openstudio_app
+  reportcompare_app
   pat_app
   sdd
   bec
@@ -770,6 +771,7 @@ endif()
 # end ruby aws-sdk info
 
 foreach(D ${project_directories})
+  MESSAGE( STATUS "ADD SUB DIRECTORY:" ${D} )
   add_subdirectory(src/${D})
 endforeach()
 

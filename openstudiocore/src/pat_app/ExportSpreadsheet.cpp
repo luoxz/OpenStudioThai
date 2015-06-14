@@ -39,6 +39,7 @@ ExportSpreadsheet::~ExportSpreadsheet()
 {
 }
 
+//NOTE:export to .csv
 bool ExportSpreadsheet::exportSpreadsheet(const analysisdriver::SimpleProject& project)
 {
   //Make sure a QApplication exists
