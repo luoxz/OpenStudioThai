@@ -92,6 +92,7 @@ namespace bec {
     // Use OS_ASSERT to catch logic errors in the translator implementation.  Do not use OS_ASSERT on bad input, use LOG( instead.
 
     boost::optional<QDomDocument> translateModel(const openstudio::model::Model& model);
+	boost::optional<QDomElement> translateOpaqueMaterial(const openstudio::model::Material& material, QDomDocument& doc);
     boost::optional<QDomElement> translateMaterial(const openstudio::model::Material& material, QDomDocument& doc);
     boost::optional<QDomElement> translateConstructionBase(const openstudio::model::ConstructionBase& constructionBase, QDomDocument& doc);
     boost::optional<QDomElement> translateDoorConstruction(const openstudio::model::ConstructionBase& constructionBase, QDomDocument& doc);

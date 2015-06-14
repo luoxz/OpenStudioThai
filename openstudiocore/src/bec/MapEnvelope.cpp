@@ -1135,23 +1135,77 @@ namespace bec {
   boost::optional<QDomElement> ForwardTranslator::translateMaterial(const openstudio::model::Material& material, QDomDocument& doc)
   {
 
-    if (!(material.optionalCast<model::StandardOpaqueMaterial>() ||
-          material.optionalCast<model::MasslessOpaqueMaterial>() ||
+	  if (!(material.optionalCast<model::StandardOpaqueMaterial>()||
+		  material.optionalCast<model::MasslessOpaqueMaterial>() ||
           material.optionalCast<model::AirGap>())){
       return boost::none;
     }
 
+
     model::StandardsInformationMaterial info = material.standardsInformation();
 
-    QDomElement result = doc.createElement("Mat");
+    QDomElement result = doc.createElement("Material");
     m_translatedObjects[material.handle()] = result;
 
-    // name
+	// Handle
+    // Name
     std::string name = material.name().get();
     QDomElement nameElement = doc.createElement("Name");
     result.appendChild(nameElement);
     nameElement.appendChild(doc.createTextNode(escapeName(name)));
+	// Roughness
+	// Thickness{ m }
+	std::double_t thinkness = material.thickness();
+	nameElement = doc.createElement("Thinkness");
+	result.appendChild(nameElement);
+	nameElement.appendChild(doc.createTextNode(QString::number(thinkness)));
+	
+	
+	if (material.optionalCast<model::StandardOpaqueMaterial>()){
+		
+		//!- Conductivity{ W / m - K }
+		model::StandardOpaqueMaterial m = material.optionalCast<model::StandardOpaqueMaterial>().get();
+		std::double_t conductivity = m.conductivity();
+		nameElement = doc.createElement("Conductivity");
+		result.appendChild(nameElement);
+		nameElement.appendChild(doc.createTextNode(QString::number(conductivity)));
+		
+		//!- Density{ kg / m3 }
+		std::double_t density = m.density();
+		nameElement = doc.createElement("Density");
+		result.appendChild(nameElement);
+		nameElement.appendChild(doc.createTextNode(QString::number(density)));
 
+		//!- Specific Heat{ J / kg - K }
+		std::double_t specificHeat = m.specificHeat();
+		nameElement = doc.createElement("Specific_Heat");
+		result.appendChild(nameElement);
+		nameElement.appendChild(doc.createTextNode(QString::number(specificHeat)));
+
+		//!- Thermal Absorptance
+		std::double_t thermalAbsorptance = m.thermalAbsorptance();
+		nameElement = doc.createElement("ThermalAbsorptance");
+		result.appendChild(nameElement);
+		nameElement.appendChild(doc.createTextNode(QString::number(thermalAbsorptance)));
+
+		//!- Solar Absorptance
+		std::double_t solarAbsorptance = m.solarAbsorptance();
+		nameElement = doc.createElement("SolarAbsorptance");
+		result.appendChild(nameElement);
+		nameElement.appendChild(doc.createTextNode(QString::number(solarAbsorptance)));
+
+		//!- Visible Absorptance
+		std::double_t visibleAbsorptance = m.visibleAbsorptance();
+		nameElement = doc.createElement("VisibleAbsorptance");
+		result.appendChild(nameElement);
+		nameElement.appendChild(doc.createTextNode(QString::number(visibleAbsorptance)));
+	}
+	
+
+
+	
+	
+	
     // BEC:
     // CodeCat - compulsory, done
     // CodeItem - compulsory, done
@@ -1231,6 +1285,37 @@ namespace bec {
     }
 
     return result;
+  }
+
+  boost::optional<QDomElement> ForwardTranslator::translateOpaqueMaterial(const openstudio::model::Material& material, QDomDocument& doc)
+  {
+
+	  if (!(material.optionalCast<model::StandardOpaqueMaterial>() ||
+		  material.optionalCast<model::MasslessOpaqueMaterial>() ||
+		  material.optionalCast<model::AirGap>())){
+		  return boost::none;
+	  }
+
+	  model::StandardsInformationMaterial info = material.standardsInformation();
+
+	  QDomElement result = doc.createElement("Mat");
+	  m_translatedObjects[material.handle()] = result;
+
+	  // Handle
+	  // Name
+	  std::string name = material.name().get();
+	  QDomElement nameElement = doc.createElement("Name");
+	  result.appendChild(nameElement);
+	  nameElement.appendChild(doc.createTextNode(escapeName(name)));
+	  // Roughness
+	  // Thickness{ m }
+	  std::double_t thinkness = material.thickness();
+	  nameElement = doc.createElement("Thinkness");
+	  result.appendChild(nameElement);
+	  nameElement.appendChild(doc.createTextNode(QString::number(thinkness)));
+
+	 
+	  return result;
   }
 
     

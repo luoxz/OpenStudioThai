@@ -259,7 +259,7 @@ namespace bec {
     // DLM: what name to use here?
     QDomElement projectNameElement = doc.createElement("Name");
     projectElement.appendChild(projectNameElement);
-    projectNameElement.appendChild(doc.createTextNode("unknown"));
+    projectNameElement.appendChild(doc.createTextNode("BEC"));
 
     // site data
     boost::optional<model::ClimateZones> climateZones = model.getOptionalUniqueModelObject<model::ClimateZones>();
