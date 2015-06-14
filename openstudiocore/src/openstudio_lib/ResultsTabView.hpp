@@ -57,7 +57,6 @@ namespace openstudio {
 
     private slots:
       void openResultsViewerClicked();
-      void compareResultsClicked();
       void comboBoxChanged(int index);
 
     private:
@@ -70,7 +69,7 @@ namespace openstudio {
       // utility bill results
       QLabel * m_reportLabel;
       QPushButton * m_openResultsViewerBtn;
-      QPushButton * m_compareBtn;
+      
       openstudio::path m_sqlFilePath;
       openstudio::path m_radianceResultsPath;
 
