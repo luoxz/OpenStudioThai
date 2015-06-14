@@ -85,6 +85,8 @@ class MainWindow : public QMainWindow
 
   void exportSDDClicked();
 
+  void exportBECClicked();
+
   void importClicked();
 
   void importgbXMLClicked();

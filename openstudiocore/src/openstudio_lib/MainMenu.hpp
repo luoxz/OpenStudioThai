@@ -44,6 +44,8 @@ class MainMenu : public QMenuBar
 
   void exportSDDClicked();
 
+  void exportBECClicked();
+
   void importClicked();
 
   void importgbXMLClicked();

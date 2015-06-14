@@ -102,6 +102,10 @@ MainMenu::MainMenu(bool isIP, bool isPlugin, QWidget *parent) :
   exportMenu->addAction(action);
   connect(action, &QAction::triggered, this, &MainMenu::exportSDDClicked);
 
+  action = new QAction(tr("BEC"), this);
+  exportMenu->addAction(action);
+  connect(action, &QAction::triggered, this, &MainMenu::exportBECClicked);
+
   action = new QAction(tr("&Load Library"), this);
   m_fileMenu->addAction(action);
   connect(action, &QAction::triggered, this, &MainMenu::loadLibraryClicked);

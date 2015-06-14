@@ -103,6 +103,7 @@
 #include "../energyplus/ForwardTranslator.hpp"
 #include "../gbxml/ForwardTranslator.hpp"
 #include "../sdd/ForwardTranslator.hpp"
+#include "../bec/ForwardTranslator.hpp"
 
 #include <boost/filesystem/fstream.hpp>
 #include <boost/filesystem.hpp>
@@ -343,6 +344,7 @@ OSDocument::OSDocument( openstudio::model::Model library,
   connect(m_mainWindow, &MainWindow::exportClicked, this, &OSDocument::exportIdf);
   connect(m_mainWindow, &MainWindow::exportgbXMLClicked, this, &OSDocument::exportgbXML);
   connect(m_mainWindow, &MainWindow::exportSDDClicked, this, &OSDocument::exportSDD);
+  connect(m_mainWindow, &MainWindow::exportBECClicked, this, &OSDocument::exportBEC);
   connect(m_mainWindow, &MainWindow::saveAsFileClicked, this, &OSDocument::saveAs);
   connect(m_mainWindow, &MainWindow::saveFileClicked, this, &OSDocument::save);
   // Using old-style connect here to avoid including OpenStudioApp files
@@ -1153,6 +1155,11 @@ void OSDocument::exportSDD()
   exportFile(SDD);
 }
 
+void OSDocument::exportBEC()
+{
+	exportFile(BEC);
+}
+
 void OSDocument::exportFile(fileType type)
 {
 
@@ -1163,6 +1170,9 @@ void OSDocument::exportFile(fileType type)
     text.append("SDD");
   } else if(type == GBXML) {
     text.append("gbXML");
+  }
+  else if (type == BEC) {
+	text.append("BEC");
   } else {
     // should never get here
     OS_ASSERT(false);
@@ -1190,7 +1200,13 @@ void OSDocument::exportFile(fileType type)
       trans.modelToGbXML(m, outDir);
       translatorErrors = trans.errors();
       translatorWarnings = trans.warnings();
-    } 
+	}
+	else if (type == BEC){
+		bec::ForwardTranslator trans;
+		trans.modelToBEC(m, outDir);
+		translatorErrors = trans.errors();
+		translatorWarnings = trans.warnings();
+	}
 
     bool errorsOrWarnings = false;
     QString log;
@@ -1355,6 +1371,7 @@ void OSDocument::addComponentLibrary(const openstudio::model::Model& model){
 
 	m_combinedCompLibrary = model::Model(m_compLibrary.clone());
 	m_combinedCompLibrary.insertObjects(n_model.objects());
+	m_compLibrary = m_combinedCompLibrary;
 	m_combinedCompLibrary.insertObjects(m_hvacCompLibrary.objects());
 
 	onVerticalTabSelected(m_mainTabId);
