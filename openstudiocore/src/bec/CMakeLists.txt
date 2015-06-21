@@ -8,9 +8,7 @@ set(${target_name}_src
   ReverseTranslator.hpp
   ReverseTranslator.cpp
   MapEnvelope.cpp
-  MapGeometry.cpp
   MapSchedules.cpp
-  MapHVAC.cpp
 )
 
 set(${target_name}_test_src
@@ -31,7 +29,6 @@ set(${target_name}_depends
   openstudio_utilities
   openstudio_model
   openstudio_energyplus
-  openstudio_osversion
   zkexpat
 )
 
@@ -40,8 +37,8 @@ target_link_libraries(${target_name} ${${target_name}_depends})
 AddPCH(${target_name})
 
 #if(NOT APPLE)
-install(TARGETS ${target_name} 
-  RUNTIME DESTINATION bin 
+install(TARGETS ${target_name}
+  RUNTIME DESTINATION bin
   LIBRARY DESTINATION lib
 )
 #endif()
@@ -55,4 +52,17 @@ if(BUILD_TESTING)
   add_dependencies(${target_name}_tests openstudio_bec_resources)
 endif()
 
-MAKE_SWIG_TARGET(OpenStudioBEC BEC "${CMAKE_CURRENT_SOURCE_DIR}/BEC.i" "${${target_name}_swig_src}" ${target_name} "OpenStudioEnergyPlus;OpenStudioOSVersion")
+MAKE_SWIG_TARGET(OpenStudioBEC BEC "${CMAKE_CURRENT_SOURCE_DIR}/BEC.i" "${${target_name}_swig_src}" ${target_name} OpenStudioEnergyPlus)
+
+add_executable(BECToIdf BECToIdf.cpp)
+AddPCH(BECToIdf)
+
+target_link_libraries(BECToIdf
+  ${${target_name}_depends}
+  openstudio_bec
+)
+
+install(TARGETS BECToIdf
+  BUNDLE DESTINATION .
+  RUNTIME DESTINATION bin
+)

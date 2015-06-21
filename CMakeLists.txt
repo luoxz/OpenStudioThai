@@ -284,7 +284,7 @@ find_package(Qt5Widgets HINTS ${QT_HINT_DIR}) #Qt5Core, Qt5Gui, Qt5Widgets
 find_package(Qt5Sql HINTS ${QT_HINT_DIR}) #Qt5Core, Qt5Sql
 find_package(Qt5Network HINTS ${QT_HINT_DIR}) #Qt5Core, Qt5Network
 find_package(Qt5Xml HINTS ${QT_HINT_DIR}) #Qt5Core, Qt5Xml
-#find_package(Qt5WinExtras HINTS ${QT_HINT_DIR}) #Qt5Core, Qt5Gui, Qt5WinExtras
+find_package(Qt5WinExtras HINTS ${QT_HINT_DIR}) #Qt5Core, Qt5Gui, Qt5WinExtras
 find_package(Qt5Concurrent HINTS ${QT_HINT_DIR}) #Qt5Core, Qt5Concurrent
 find_package(Qt5PrintSupport HINTS ${QT_HINT_DIR}) #Qt5Core, Qt5Gui, Qt5PrintSupport, Qt5Widgets
 mark_as_advanced(
@@ -304,7 +304,7 @@ mark_as_advanced(
   Qt5Sensors_DIR
   Qt5Sql_DIR
   Qt5Widgets_DIR
-  #Qt5WinExtras_DIR
+  Qt5WinExtras_DIR
   Qt5Xml_DIR
 )
 
@@ -808,7 +808,7 @@ ExternalProject_Add(OSCore
     -DQt5WebKitWidgets_DIR:STRING=${Qt5WebKitWidgets_DIR}
     -DQt5WebEngine_DIR:STRING=${Qt5WebEngine_DIR}
     -DQt5WebEngineWidgets_DIR:STRING=${Qt5WebEngineWidgets_DIR}
-    #-DQt5WinExtras_DIR:STRING=${Qt5WinExtras_DIR}
+    -DQt5WinExtras_DIR:STRING=${Qt5WinExtras_DIR}
     -DQt5Concurrent_DIR:STRING=${Qt5Concurrent_DIR}
     -DQt5PrintSupport_DIR:STRING=${Qt5PrintSupport_DIR}
     -DSWIG_EXECUTABLE:STRING=${SWIG_EXECUTABLE}
@@ -915,7 +915,7 @@ if (BUILD_REGRESSIONS)
       -DQt5WebKitWidgets_DIR:STRING=${Qt5WebKitWidgets_DIR}
       -DQt5WebEngine_DIR:STRING=${Qt5WebEngine_DIR}
       -DQt5WebEngineWidgets_DIR:STRING=${Qt5WebEngineWidgets_DIR}
-      #-DQt5WinExtras_DIR:STRING=${Qt5WinExtras_DIR}
+      -DQt5WinExtras_DIR:STRING=${Qt5WinExtras_DIR}
       -DQt5Concurrent_DIR:STRING=${Qt5Concurrent_DIR}
       -DQt5PrintSupport_DIR:STRING=${Qt5PrintSupport_DIR}
     INSTALL_COMMAND ""

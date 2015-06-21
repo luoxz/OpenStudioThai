@@ -36,15 +36,6 @@
 #include "../../model/Space_Impl.hpp"
 #include "../../model/Surface.hpp"
 #include "../../model/Surface_Impl.hpp"
-#include "../../model/SimulationControl.hpp"
-#include "../../model/SimulationControl_Impl.hpp"
-#include "../../model/RunPeriod.hpp"
-#include "../../model/RunPeriod_Impl.hpp"
-#include "../../model/YearDescription.hpp"
-#include "../../model/YearDescription_Impl.hpp"
-#include "../../model/RunPeriodControlSpecialDays.hpp"
-#include "../../model/RunPeriodControlSpecialDays_Impl.hpp"
-
 
 #include "../../utilities/idf/Workspace.hpp"
 #include "../../utilities/core/Optional.hpp"
@@ -53,7 +44,90 @@
 
 #include <sstream>
 
+using namespace openstudio::energyplus;
 using namespace openstudio::model;
 using namespace openstudio;
 
+TEST_F(BECFixture, ReverseTranslator_ZNETH)
+{
+  //openstudio::Logger::instance().standardOutLogger().enable();
+  //openstudio::Logger::instance().standardOutLogger().setLogLevel(Debug);
 
+  openstudio::path inputPath = resourcesPath() / openstudio::toPath("bec/ZNETH.xml");
+  openstudio::path outputPath = resourcesPath() / openstudio::toPath("bec/ZNETH2.xml");
+
+  openstudio::bec::ReverseTranslator reverseTranslator;
+  boost::optional<openstudio::model::Model> model = reverseTranslator.loadModel(inputPath);
+  ASSERT_TRUE(model);
+
+  model->save(resourcesPath() / openstudio::toPath("bec/ZNETH.osm"), true);
+
+  // add test to see that surfaces that reference two spaces get "surface" boundary condition
+  // e.g. surface named "su-76" should have "Surface" string for OutsideBoundaryCondition
+  OptionalSurface osurf = model->getModelObjectByName<Surface>("su-76");
+  ASSERT_TRUE(osurf);
+  EXPECT_EQ("Surface",osurf->outsideBoundaryCondition());
+
+  openstudio::energyplus::ForwardTranslator energyPlusTranslator;
+  openstudio::Workspace workspace = energyPlusTranslator.translateModel(*model);
+
+  EXPECT_TRUE(workspace.numObjects() > 0);
+
+  workspace.save(resourcesPath() / openstudio::toPath("bec/ZNETH.idf"), true);
+
+  openstudio::bec::ForwardTranslator forwardTranslator;
+  bool test = forwardTranslator.modelTobec(*model, outputPath);
+  EXPECT_TRUE(test);
+}
+
+TEST_F(BECFixture, ReverseTranslator_SimpleBox_Vasari)
+{
+  //openstudio::Logger::instance().standardOutLogger().enable();
+  //openstudio::Logger::instance().standardOutLogger().setLogLevel(Debug);
+
+  openstudio::path inputPath = resourcesPath() / openstudio::toPath("bec/simpleBox_vasari.xml");
+  openstudio::path outputPath = resourcesPath() / openstudio::toPath("bec/simpleBox_vasari2.xml");
+
+  openstudio::bec::ReverseTranslator reverseTranslator;
+  boost::optional<openstudio::model::Model> model = reverseTranslator.loadModel(inputPath);
+  ASSERT_TRUE(model);
+
+  model->save(resourcesPath() / openstudio::toPath("bec/simpleBox_vasari.osm"), true);
+
+  openstudio::energyplus::ForwardTranslator energyPlusTranslator;
+  openstudio::Workspace workspace = energyPlusTranslator.translateModel(*model);
+
+  EXPECT_TRUE(workspace.numObjects() > 0);
+
+  workspace.save(resourcesPath() / openstudio::toPath("bec/simpleBox_vasari.idf"), true);
+
+  openstudio::bec::ForwardTranslator forwardTranslator;
+  bool test = forwardTranslator.modelTobec(*model, outputPath);
+  EXPECT_TRUE(test);
+}
+
+TEST_F(BECFixture, ReverseTranslator_TwoStoryOffice_Trane)
+{
+  //openstudio::Logger::instance().standardOutLogger().enable();
+  //openstudio::Logger::instance().standardOutLogger().setLogLevel(Debug);
+
+  openstudio::path inputPath = resourcesPath() / openstudio::toPath("bec/TwoStoryOffice_Trane.xml");
+  openstudio::path outputPath = resourcesPath() / openstudio::toPath("bec/TwoStoryOffice_Trane2.xml");
+
+  openstudio::bec::ReverseTranslator reverseTranslator;
+  boost::optional<openstudio::model::Model> model = reverseTranslator.loadModel(inputPath);
+  ASSERT_TRUE(model);
+
+  model->save(resourcesPath() / openstudio::toPath("bec/TwoStoryOffice_Trane.osm"), true);
+
+  openstudio::energyplus::ForwardTranslator energyPlusTranslator;
+  openstudio::Workspace workspace = energyPlusTranslator.translateModel(*model);
+
+  EXPECT_TRUE(workspace.numObjects() > 0);
+
+  workspace.save(resourcesPath() / openstudio::toPath("bec/TwoStoryOffice_Trane.idf"), true);
+
+  openstudio::bec::ForwardTranslator forwardTranslator;
+  bool test = forwardTranslator.modelTobec(*model, outputPath);
+  EXPECT_TRUE(test);
+}

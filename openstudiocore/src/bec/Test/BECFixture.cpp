@@ -29,7 +29,6 @@ void BECFixture::SetUpTestCase() {
   // set up logging
   openstudio::Logger::instance().standardOutLogger().disable();
   logFile = std::shared_ptr<openstudio::FileLogSink>(new openstudio::FileLogSink(openstudio::toPath("./BECFixture.log")));
-  logFile->setLogLevel(Info);
 }
 
 void BECFixture::TearDownTestCase() {

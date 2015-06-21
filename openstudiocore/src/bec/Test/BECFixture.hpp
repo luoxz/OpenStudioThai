@@ -45,7 +45,7 @@ class BECFixture : public ::testing::Test {
 
   static std::shared_ptr<openstudio::FileLogSink> logFile;
 
-  REGISTER_LOGGER("bec");
+  REGISTER_LOGGER("BEC");
 };
 
 #endif // BEC_TEST_BECFIXTURE_HPP

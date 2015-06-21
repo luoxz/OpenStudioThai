@@ -28,8 +28,8 @@
 %}
 
 // #ifdef SWIGCSHARP
-%rename(SddReverseTranslator) openstudio::bec::ReverseTranslator;
-%rename(SddForwardTranslator) openstudio::bec::ForwardTranslator;
+%rename(becReverseTranslator) openstudio::bec::ReverseTranslator;
+%rename(becForwardTranslator) openstudio::bec::ForwardTranslator;
 // #endif
 
 %include <bec/ReverseTranslator.hpp>

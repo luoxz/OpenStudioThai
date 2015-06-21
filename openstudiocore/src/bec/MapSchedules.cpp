@@ -20,6 +20,8 @@
 #include "ReverseTranslator.hpp"
 
 #include "../model/Model.hpp"
+#include "../model/ModelObject.hpp"
+#include "../model/ModelObject_Impl.hpp"
 #include "../model/ScheduleDay.hpp"
 #include "../model/ScheduleDay_Impl.hpp"
 #include "../model/ScheduleWeek.hpp"
@@ -28,305 +30,196 @@
 #include "../model/ScheduleYear_Impl.hpp"
 #include "../model/ScheduleTypeLimits.hpp"
 #include "../model/ScheduleTypeLimits_Impl.hpp"
-#include "../model/RunPeriodControlSpecialDays.hpp"
-#include "../model/RunPeriodControlSpecialDays_Impl.hpp"
 #include "../model/YearDescription.hpp"
 #include "../model/YearDescription_Impl.hpp"
 
 #include "../utilities/time/Time.hpp"
 #include "../utilities/time/Date.hpp"
+
 #include "../utilities/core/Assert.hpp"
 
+#include <utilities/idd/OS_ScheduleTypeLimits_FieldEnums.hxx>
+
+#include <QFile>
+#include <QDomDocument>
 #include <QDomElement>
+#include <QStringList>
 
 namespace openstudio {
 namespace bec {
 
+  openstudio::model::ScheduleTypeLimits getScheduleTypeLimits(const std::string& type, openstudio::model::Model& model)
+  {
+    boost::optional<openstudio::model::ScheduleTypeLimits> result = model.getModelObjectByName<openstudio::model::ScheduleTypeLimits>(type);
+    
+    if (result){
+      return *result;
+    }
+
+    result = openstudio::model::ScheduleTypeLimits(model);
+    result->setName(type);
+
+    if (type == "Temp"){
+      result->setString(OS_ScheduleTypeLimitsFields::UnitType, "Temperature");
+    }else if(type == "Fraction"){
+      result->setString(OS_ScheduleTypeLimitsFields::UnitType, "Dimensionless");
+    }else if(type == "OnOff"){
+      result->setString(OS_ScheduleTypeLimitsFields::UnitType, "Control");
+    }
+
+    return *result;
+  }
+
   boost::optional<openstudio::model::ModelObject> ReverseTranslator::translateScheduleDay(const QDomElement& element, const QDomDocument& doc, openstudio::model::Model& model)
   {
-    QDomElement nameElement = element.firstChildElement("Name");
-    QDomElement typeElement = element.firstChildElement("Type");
+    QString id = element.attribute("id");
+    QString type = element.attribute("type");
 
-    OS_ASSERT(!nameElement.isNull());
-    std::string name = escapeName(nameElement.text());
+    openstudio::model::ScheduleDay result(model);
+    result.setName(escapeName(id));
 
-    model::ScheduleDay scheduleDay(model);
-    scheduleDay.setName(name);
+    openstudio::model::ScheduleTypeLimits scheduleTypeLimits = getScheduleTypeLimits(type.toStdString(), model);
+    result.setScheduleTypeLimits(scheduleTypeLimits);
 
-    OS_ASSERT(!typeElement.isNull());
-    std::string type = escapeName(typeElement.text());
-    boost::optional<model::ScheduleTypeLimits> scheduleTypeLimits = model.getModelObjectByName<model::ScheduleTypeLimits>(type);
-    bool isTemperature = false;
-    if (type == "Temperature"){
-      isTemperature = true;
+    QDomNodeList valueElements = element.elementsByTagName("ScheduleValue");
+    openstudio::Time dt(1.0/((double) valueElements.size()));
+
+    for (int i = 0; i < valueElements.count(); i++){
+      double value = valueElements.at(i).toElement().text().toDouble();
+      result.addValue( dt*(i+1) , value);
     }
 
-    if (!scheduleTypeLimits){
-      if (type == "Fraction"){
-        scheduleTypeLimits = model::ScheduleTypeLimits(model);
-        scheduleTypeLimits->setName("Fraction");
-        scheduleTypeLimits->setLowerLimitValue(0);
-        scheduleTypeLimits->setUpperLimitValue(1);
-        scheduleTypeLimits->setNumericType("Continuous");
-        scheduleTypeLimits->setUnitType("Dimensionless");
-      }else if (type == "Temperature"){
-        scheduleTypeLimits = model::ScheduleTypeLimits(model);
-        scheduleTypeLimits->setName("Temperature");
-        scheduleTypeLimits->setUnitType("Temperature");
-      }else if (type == "OnOff"){
-        scheduleTypeLimits = model::ScheduleTypeLimits(model);
-        scheduleTypeLimits->setName("OnOff");
-        scheduleTypeLimits->setLowerLimitValue(0);
-        scheduleTypeLimits->setUpperLimitValue(1);
-        scheduleTypeLimits->setNumericType("Discrete");
-        scheduleTypeLimits->setUnitType("Availability");
-      }else{
-        LOG(Error, "Unknown schedule type '" << type << "'");
-      }
-    }
-    if (scheduleTypeLimits){
-      scheduleDay.setScheduleTypeLimits(*scheduleTypeLimits);
-    }
-
-    QDomNodeList hrElements = element.elementsByTagName("Hr");
-    OS_ASSERT(hrElements.count() == 24);
-    for (int i = 0; i < hrElements.count(); i++){
-      QDomElement hrElement = hrElements.at(i).toElement();
-      double value = hrElement.text().toDouble();
-
-      if (isTemperature){
-        value = (value-32.0)/1.8; // deg F to deg C
-      }
-
-      scheduleDay.addValue(openstudio::Time(0, i+1, 0, 0), value);
-    }
-
-    return scheduleDay;
+    return result;
   }
 
   boost::optional<openstudio::model::ModelObject> ReverseTranslator::translateScheduleWeek(const QDomElement& element, const QDomDocument& doc, openstudio::model::Model& model)
   {
-    QDomElement nameElement = element.firstChildElement("Name");
-    QDomElement typeElement = element.firstChildElement("Type");
-    QDomElement schDaySunRefElement = element.firstChildElement("SchDaySunRef");
-    QDomElement schDayMonRefElement = element.firstChildElement("SchDayMonRef");
-    QDomElement schDayTueRefElement = element.firstChildElement("SchDayTueRef");
-    QDomElement schDayWedRefElement = element.firstChildElement("SchDayWedRef");
-    QDomElement schDayThuRefElement = element.firstChildElement("SchDayThuRef");
-    QDomElement schDayFriRefElement = element.firstChildElement("SchDayFriRef");
-    QDomElement schDaySatRefElement = element.firstChildElement("SchDaySatRef");
-    QDomElement schDayHolRefElement = element.firstChildElement("SchDayHolRef");
-    QDomElement schDayClgDDRefElement = element.firstChildElement("SchDayClgDDRef");
-    QDomElement schDayHtgDDRefElement = element.firstChildElement("SchDayHtgDDRef");
+    QString id = element.attribute("id");
+    QString type = element.attribute("type");
 
-    OS_ASSERT(!nameElement.isNull());
-    std::string name = escapeName(nameElement.text());
+    openstudio::model::ScheduleWeek result(model);
+    result.setName(escapeName(id));
 
-    model::ScheduleWeek scheduleWeek(model);
-    scheduleWeek.setName(name);
-
-    OS_ASSERT(!typeElement.isNull());
-    std::string type = escapeName(typeElement.text());
-    boost::optional<model::ScheduleTypeLimits> scheduleTypeLimits = model.getModelObjectByName<model::ScheduleTypeLimits>(type);
-    if (scheduleTypeLimits){
-      //scheduleWeek.setScheduleTypeLimits(*scheduleTypeLimits);
-    }
-
-    if (!schDaySunRefElement.isNull()){
-      boost::optional<model::ScheduleDay> scheduleDay = model.getModelObjectByName<model::ScheduleDay>(escapeName(schDaySunRefElement.text()));
-      if (scheduleDay){
-        scheduleWeek.setSundaySchedule(*scheduleDay);
-      }else{
-        LOG(Error, "No Sunday schedule found for week schedule '" << name << "'");
-      }
-    }
-
-    if (!schDayMonRefElement.isNull()){
-      boost::optional<model::ScheduleDay> scheduleDay = model.getModelObjectByName<model::ScheduleDay>(escapeName(schDayMonRefElement.text()));
-      if (scheduleDay){
-        scheduleWeek.setMondaySchedule(*scheduleDay);
-      }else{
-        LOG(Error, "No Monday schedule found for week schedule '" << name << "'");
-      }
-    }
-
-    if (!schDayTueRefElement.isNull()){
-      boost::optional<model::ScheduleDay> scheduleDay = model.getModelObjectByName<model::ScheduleDay>(escapeName(schDayTueRefElement.text()));
-      if (scheduleDay){
-        scheduleWeek.setTuesdaySchedule(*scheduleDay);
-      }else{
-        LOG(Error, "No Tuesday schedule found for week schedule '" << name << "'");
-      }
-    }
-
-    if (!schDayWedRefElement.isNull()){
-      boost::optional<model::ScheduleDay> scheduleDay = model.getModelObjectByName<model::ScheduleDay>(escapeName(schDayWedRefElement.text()));
-      if (scheduleDay){
-        scheduleWeek.setWednesdaySchedule(*scheduleDay);
-      }else{
-        LOG(Error, "No Wednesday schedule found for week schedule '" << name << "'");
-      }
-    }
-
-    if (!schDayThuRefElement.isNull()){
-      boost::optional<model::ScheduleDay> scheduleDay = model.getModelObjectByName<model::ScheduleDay>(escapeName(schDayThuRefElement.text()));
-      if (scheduleDay){
-        scheduleWeek.setThursdaySchedule(*scheduleDay);
-      }else{
-        LOG(Error, "No Thursday schedule found for week schedule '" << name << "'");
-      }
-    }
-
-    if (!schDayFriRefElement.isNull()){
-      boost::optional<model::ScheduleDay> scheduleDay = model.getModelObjectByName<model::ScheduleDay>(escapeName(schDayFriRefElement.text()));
-      if (scheduleDay){
-        scheduleWeek.setFridaySchedule(*scheduleDay);
-      }else{
-        LOG(Error, "No Friday schedule found for week schedule '" << name << "'");
-      }
-    }
-
-    if (!schDaySatRefElement.isNull()){
-      boost::optional<model::ScheduleDay> scheduleDay = model.getModelObjectByName<model::ScheduleDay>(escapeName(schDaySatRefElement.text()));
-      if (scheduleDay){
-        scheduleWeek.setSaturdaySchedule(*scheduleDay);
-      }else{
-        LOG(Error, "No Saturday schedule found for week schedule '" << name << "'");
-      }
-    }
-   
-    if (!schDayHolRefElement.isNull()){
-      boost::optional<model::ScheduleDay> scheduleDay = model.getModelObjectByName<model::ScheduleDay>(escapeName(schDayHolRefElement.text()));
-      if (scheduleDay){
-        scheduleWeek.setHolidaySchedule(*scheduleDay);
-        scheduleWeek.setCustomDay1Schedule(*scheduleDay);
-        scheduleWeek.setCustomDay2Schedule(*scheduleDay);
-      }else{
-        LOG(Error, "No Holiday schedule found for week schedule '" << name << "'");
-      }
-    }
-
-    if (!schDayClgDDRefElement.isNull()){
-      boost::optional<model::ScheduleDay> scheduleDay = model.getModelObjectByName<model::ScheduleDay>(escapeName(schDayClgDDRefElement.text()));
-      if (scheduleDay){
-        scheduleWeek.setSummerDesignDaySchedule(*scheduleDay);
-      }else{
-        LOG(Error, "No Summer Design Day schedule found for week schedule '" << name << "'");
-      }
-    }
-
-    if (!schDayHtgDDRefElement.isNull()){
-      boost::optional<model::ScheduleDay> scheduleDay = model.getModelObjectByName<model::ScheduleDay>(escapeName(schDayHtgDDRefElement.text()));
-      if (scheduleDay){
-        scheduleWeek.setWinterDesignDaySchedule(*scheduleDay);
-      }else{
-        LOG(Error, "No Winter Design Day schedule found for week schedule '" << name << "'");
-      }
-    }
-
-    return scheduleWeek;
-  }
-
-  boost::optional<openstudio::model::ModelObject> ReverseTranslator::translateSchedule(const QDomElement& element, const QDomDocument& doc, openstudio::model::Model& model)
-  {
-    QDomElement nameElement = element.firstChildElement("Name");
-    QDomElement typeElement = element.firstChildElement("Type");
-
-    OS_ASSERT(!nameElement.isNull());
-    std::string name = escapeName(nameElement.text());
-
-    model::ScheduleYear scheduleYear(model);
-    scheduleYear.setName(name);
-
-    OS_ASSERT(!typeElement.isNull());
-    std::string type = escapeName(typeElement.text());
-    boost::optional<model::ScheduleTypeLimits> scheduleTypeLimits = model.getModelObjectByName<model::ScheduleTypeLimits>(type);
-    if (scheduleTypeLimits){
-      scheduleYear.setScheduleTypeLimits(*scheduleTypeLimits);
-    }
-
-    QDomNodeList endMonthElements = element.elementsByTagName("EndMonth");
-    QDomNodeList endDayElements = element.elementsByTagName("EndDay");
-    QDomNodeList schWeekRefElements = element.elementsByTagName("SchWeekRef");
-
-    OS_ASSERT(endMonthElements.count() == endDayElements.count());
-    OS_ASSERT(endMonthElements.count() == schWeekRefElements.count());
+    // don't need to translate type
     
-    for (int i = 0; i < endMonthElements.count(); i++){
-      QDomElement endMonthElement = endMonthElements.at(i).toElement();
-      QDomElement endDayElement = endDayElements.at(i).toElement();
-      QDomElement schWeekRefElement = schWeekRefElements.at(i).toElement();
+    QDomNodeList dayElements = element.elementsByTagName("Day");
+    for (int i = 0; i < dayElements.count(); i++){
 
-      boost::optional<model::ScheduleWeek> scheduleWeek = model.getModelObjectByName<model::ScheduleWeek>(escapeName(schWeekRefElement.text()));
-      if (scheduleWeek){
+      QString dayType = dayElements.at(i).toElement().attribute("dayType");
+      QString dayScheduleIdRef = dayElements.at(i).toElement().attribute("dayScheduleIdRef");
 
-        boost::optional<model::YearDescription> yearDescription = model.getOptionalUniqueModelObject<model::YearDescription>();
-        if (yearDescription){
-          MonthOfYear monthOfYear(endMonthElement.text().toUInt());
-          unsigned dayOfMonth = endDayElement.text().toUInt();
-          Date untilDate(monthOfYear, dayOfMonth, yearDescription->assumedYear());
-          scheduleYear.addScheduleWeek(untilDate, *scheduleWeek);
-        }else{
-          MonthOfYear monthOfYear(endMonthElement.text().toUInt());
-          unsigned dayOfMonth = endDayElement.text().toUInt();
-          Date untilDate(monthOfYear, dayOfMonth);
-          scheduleYear.addScheduleWeek(untilDate, *scheduleWeek);
+      // this can be made more efficient using QXPath in QXmlPatterns later
+      QDomNodeList dayScheduleElements = doc.documentElement().elementsByTagName("DaySchedule");
+      for (int i = 0; i < dayScheduleElements.count(); i++){
+        QDomElement dayScheduleElement = dayScheduleElements.at(i).toElement();
+        QString thisId = dayScheduleElement.attribute("id");
+        if (thisId == dayScheduleIdRef){
+
+          boost::optional<openstudio::model::ModelObject> modelObject = translateScheduleDay(dayScheduleElement, doc, model);          
+          if (modelObject){
+            
+            boost::optional<openstudio::model::ScheduleDay> scheduleDay = modelObject->cast<openstudio::model::ScheduleDay>();
+            if (scheduleDay){
+              
+              if (dayType == "Weekday"){
+                result.setWeekdaySchedule(*scheduleDay);
+              }else if (dayType == "Weekend"){
+                result.setWeekendSchedule(*scheduleDay);
+              }else if (dayType == "Holiday"){
+                result.setHolidaySchedule(*scheduleDay);
+              }else if (dayType == "WeekendOrHoliday"){
+                result.setWeekendSchedule(*scheduleDay);
+                result.setHolidaySchedule(*scheduleDay);
+              }else if (dayType == "HeatingDesignDay"){
+                result.setWinterDesignDaySchedule(*scheduleDay);
+              }else if (dayType == "CoolingDesignDay"){
+                result.setSummerDesignDaySchedule(*scheduleDay);
+              }else if (dayType == "Sun"){
+                result.setSundaySchedule(*scheduleDay);
+              }else if (dayType == "Mon"){
+                result.setMondaySchedule(*scheduleDay);
+              }else if (dayType == "Tue"){
+                result.setTuesdaySchedule(*scheduleDay);
+              }else if (dayType == "Wed"){
+                result.setWednesdaySchedule(*scheduleDay);
+              }else if (dayType == "Thu"){
+                result.setThursdaySchedule(*scheduleDay);
+              }else if (dayType == "Fri"){
+                result.setFridaySchedule(*scheduleDay);
+              }else if (dayType == "Sat"){
+                result.setSaturdaySchedule(*scheduleDay);
+              }else{
+                // dayType can be "All"
+                result.setAllSchedules(*scheduleDay);
+              }
+            }
+          }
+
+          break;
         }
       }
     }
 
-    return scheduleYear;
+    return result;
   }
 
-  boost::optional<openstudio::model::ModelObject> ReverseTranslator::translateHoliday(const QDomElement& element, const QDomDocument& doc, openstudio::model::Model& model)
+  boost::optional<openstudio::model::ModelObject> ReverseTranslator::translateSchedule(const QDomElement& element, const QDomDocument& doc, openstudio::model::Model& model)
   {
-    //<Name>Thanksgiving Day</Name>
-    //<SpecMthd>Fourth</SpecMthd>
-    //<DayOfWeek>Thursday</DayOfWeek>
-    //<Month>November</Month>
+    QString id = element.attribute("id");
+    QString type = element.attribute("type");
+    QString name = element.elementsByTagName("Name").at(0).toElement().text();
 
-    //<Name>Christmas Day</Name>
-    //<SpecMthd>Date</SpecMthd>
-    //<Month>December</Month>
-    //<Day>25</Day>
+    openstudio::model::ScheduleYear result(model);
+    result.setName(escapeName(id));
 
-    boost::optional<openstudio::model::ModelObject> result;
+    openstudio::model::ScheduleTypeLimits scheduleTypeLimits = getScheduleTypeLimits(type.toStdString(), model);
+    result.setScheduleTypeLimits(scheduleTypeLimits);
 
-    QDomElement nameElement = element.firstChildElement("Name");
-    QDomElement specificationMethodElement = element.firstChildElement("SpecMthd");
-    OS_ASSERT(!nameElement.isNull());
-    OS_ASSERT(!specificationMethodElement.isNull());
+    openstudio::model::YearDescription yd = model.getUniqueModelObject<openstudio::model::YearDescription>();
 
-    if (specificationMethodElement.text() == "Date"){
-      QDomElement monthElement = element.firstChildElement("Month");
-      QDomElement dayElement = element.firstChildElement("Day");
-      OS_ASSERT(!monthElement.isNull());
-      OS_ASSERT(!dayElement.isNull());
+    QDomNodeList scheduleYearElements = element.elementsByTagName("YearSchedule");
+    for (int i = 0; i < scheduleYearElements.count(); i++){
+      QDomElement scheduleYearElement = scheduleYearElements.at(i).toElement();
 
-      MonthOfYear monthOfYear(toString(monthElement.text()));
-      unsigned day = dayElement.text().toUInt();
+      QString beginDateString = scheduleYearElement.elementsByTagName("BeginDate").at(0).toElement().text();
+      QStringList beginDateParts = beginDateString.split('-'); // 2011-01-01
+      OS_ASSERT(beginDateParts.size() == 3);
+      yd.setCalendarYear(beginDateParts.at(0).toInt());
+      openstudio::Date beginDate = yd.makeDate(beginDateParts.at(1).toInt(), beginDateParts.at(2).toInt());
 
-      result = model::RunPeriodControlSpecialDays(monthOfYear, day, model);
-      result->setName(escapeName(nameElement.text()));
-
-    }else{
-      QDomElement dayOfWeekElement = element.firstChildElement("DayOfWeek");
-      QDomElement monthElement = element.firstChildElement("Month");
-      OS_ASSERT(!dayOfWeekElement.isNull());
-      OS_ASSERT(!monthElement.isNull());
-
-      // fifth is treated equivalently to last
-      std::string specificationMethod = toString(specificationMethodElement.text());
-      if (specificationMethod == "Last"){
-        specificationMethod = "Fifth";
+      // handle case if schedule does not start on 1/1
+      if ((i == 0) && (beginDate != yd.makeDate(1,1))){
+        OS_ASSERT(false);
       }
 
-      NthDayOfWeekInMonth nth(specificationMethod);
-      DayOfWeek dayOfWeek(toString(dayOfWeekElement.text()));
-      MonthOfYear monthOfYear(toString(monthElement.text()));
+      QString endDateString = scheduleYearElement.elementsByTagName("EndDate").at(0).toElement().text();
+      QStringList endDateParts = endDateString.split('-'); // 2011-12-31
+      OS_ASSERT(endDateParts.size() == 3);
+      OS_ASSERT(yd.calendarYear());
+      OS_ASSERT(yd.calendarYear().get() == endDateParts.at(0).toInt());
+      openstudio::Date endDate = yd.makeDate(endDateParts.at(1).toInt(), endDateParts.at(2).toInt());
+      
+      QString weekScheduleId = element.elementsByTagName("WeekScheduleId").at(0).toElement().attribute("weekScheduleIdRef");
 
-      result = model::RunPeriodControlSpecialDays(nth, dayOfWeek, monthOfYear, model);
-      result->setName(escapeName(nameElement.text()));
+      // this can be made more efficient using QXPath in QXmlPatterns later
+      QDomNodeList scheduleWeekElements = doc.documentElement().elementsByTagName("WeekSchedule");
+      for (int i = 0; i < scheduleWeekElements.count(); i++){
+        QDomElement scheduleWeekElement = scheduleWeekElements.at(i).toElement();
+        QString thisId = scheduleWeekElement.attribute("id");
+        if (thisId == weekScheduleId){
+
+          boost::optional<openstudio::model::ModelObject> modelObject = translateScheduleWeek(scheduleWeekElement, doc, model);          
+          if (modelObject){
+            
+            boost::optional<openstudio::model::ScheduleWeek> scheduleWeek = modelObject->cast<openstudio::model::ScheduleWeek>();
+            if (scheduleWeek){
+              result.addScheduleWeek(endDate, *scheduleWeek);
+            }
+          }
+
+          break;
+        }
+      }
     }
 
     return result;

@@ -144,12 +144,12 @@ namespace bec {
 
     // http://code.google.com/p/cbecc/issues/detail?id=378
     // The angle between the model Y-Axis and True North, measured clockwise from the model Y-Axis in Degrees. 
-    QDomElement northAngleElement = element.firstChildElement("NAng");
+    QDomElement northAngleElement = element.firstChildElement("NorthAngle");
     // The angle between True North and the the model Y-Axis, measured clockwise from True North in Degrees.  
-    QDomElement buildingAzimuthElement = element.firstChildElement("BldgAz"); // this corresponds to Building::North Axis
+    QDomElement buildingAzimuthElement = element.firstChildElement("BuildingNorthAxis"); // this corresponds to Building::North Axis
 
-    QDomNodeList spaceElements = element.elementsByTagName("Spc");
-    QDomNodeList thermalZoneElements = element.elementsByTagName("ThrmlZn");
+    QDomNodeList spaceElements = element.elementsByTagName("Space");
+    QDomNodeList thermalZoneElements = element.elementsByTagName("ThrermalZone");
     QDomNodeList buildingStoryElements = element.elementsByTagName("Story");
 
     OS_ASSERT(!nameElement.isNull());
@@ -1540,7 +1540,7 @@ namespace bec {
 
   boost::optional<QDomElement> ForwardTranslator::translateBuilding(const openstudio::model::Building& building, QDomDocument& doc)
   {
-    QDomElement result = doc.createElement("Bldg");
+    QDomElement result = doc.createElement("Building");
     m_translatedObjects[building.handle()] = result;
 
     // name
@@ -1577,7 +1577,7 @@ namespace bec {
 
     // building azimuth
     double buildingAzimuth = fixAngle(building.northAxis());
-    QDomElement buildingAzimuthElement = doc.createElement("BldgAz");
+    QDomElement buildingAzimuthElement = doc.createElement("buildingAzimuth");
     result.appendChild(buildingAzimuthElement);
     buildingAzimuthElement.appendChild(doc.createTextNode(QString::number(buildingAzimuth)));
 
@@ -1611,6 +1611,20 @@ namespace bec {
     result.appendChild(aboveGradeStoryCountElement);
     aboveGradeStoryCountElement.appendChild(doc.createTextNode(QString::number(numAboveGroundStories)));
     */
+
+	std::vector<model::Space> m_spaces = building.model().getConcreteModelObjects<model::Space>();
+	std::sort(m_spaces.begin(), m_spaces.end(), WorkspaceObjectNameLess());
+	if (m_progressBar){
+		m_progressBar->setWindowTitle(toString("Translating Building Shading"));
+		m_progressBar->setMinimum(0);
+		m_progressBar->setMaximum((int)m_spaces.size());
+		m_progressBar->setValue(0);
+	};
+
+	for (const model::Space& my_space : m_spaces){
+		boost::optional<QDomElement> spaceElement = translateSpace(my_space,doc);
+		result.appendChild(*spaceElement);
+	}
 
     // translate building shading
     std::vector<model::ShadingSurfaceGroup> shadingSurfaceGroups = building.model().getConcreteModelObjects<model::ShadingSurfaceGroup>();
@@ -1792,165 +1806,190 @@ namespace bec {
 
   boost::optional<QDomElement> ForwardTranslator::translateSpace(const openstudio::model::Space& space, QDomDocument& doc)
   {
-    UnitSystem ipSys(UnitSystem::IP);
-    UnitSystem btuSys(UnitSystem::BTU);
+	  UnitSystem ipSys(UnitSystem::IP);
+	  UnitSystem btuSys(UnitSystem::BTU);
 
-    QDomElement result = doc.createElement("Spc");
-    m_translatedObjects[space.handle()] = result;
+	  QDomElement result = doc.createElement("Space");
+	  m_translatedObjects[space.handle()] = result;
 
-    // name
-    std::string name = space.name().get();
-    QDomElement nameElement = doc.createElement("Name");
-    result.appendChild(nameElement);
-    nameElement.appendChild(doc.createTextNode(escapeName(name)));
+	  // name
+	  std::string name = space.name().get();
+	  QDomElement nameElement = doc.createElement("Name");
+	  result.appendChild(nameElement);
+	  nameElement.appendChild(doc.createTextNode(escapeName(name)));
 
-    // BEC:
-    // Status - required, need to add
-    // CondgType - required, in progress
-    // SupPlenumSpcRef - optional, in progress
-    // RetPlenumSpcRef - optional, in progress
-    // ThrmlZnRef - required, done
-    // Area - only for simple geometry, done, can we remove?
-    // FlrArea - optional, do we need this?
-    // FlrZ - optional, do we need this?
-    // FlrToCeilingHgt - optional, do we need this?
-    // Vol - required, done, can we remove?
-    // SpcFuncDefaultsRef - optional, do with space types
-    // SpcFunc - compulsory, do with space types
-    // FuncSchGrp - optional, do with space types
-    // OccDens - optional, do with space types
-    // OccSensHtRt - optional, do with space types
-    // OccLatHtRt - optional, do with space types
-    // OccSchRef - optional, do with space types
-    // InfMthd - defaulted, do with space types
-    // DsgnInfRt - defaulted, do with space types
-    // InfSchRef - defaulted, do with space types
-    // InfModelCoefA - required, do with space types
-    // InfModelCoefB - required, do with space types
-    // InfModelCoefC - required, do with space types
-    // InfModelCoefD - required, do with space types
-    // EnvStatus - optional, do with space types
-    // LtgStatus - optional, do with space types
-    // IntLtgSpecMthd - required, do with space types
-    // IntLPDReg - optional, do with space types
-    // IntLtgRegSchRef - optional, do with space types
-    // IntLtgRegHtGnSpcFrac - optional, do with space types
-    // IntLtgRegHtGnRadFrac - optional, do with space types
-    // IntLPDNonReg - optional, do with space types
-    // IntLtgNonRegSchRef - optional, do with space types
-    // IntLtgNonRegHtGnSpcFrac - optional, do with space types
-    // IntLtgNonRegHtGnRadFrac - optional, do with space types
-    // SkylitDayltgInstalledLtgPwr - optional, do we need this?
-    // PriSideDayltgInstalledLtgPwr - optional, do we need this?
-    // SecSideDayltgInstalledLtgPwr - optional, do we need this?
-    // Skylit100PctControlled - optional, do we need this?
-    // PriSide100PctControlled - optional, do we need this?
-    // SecSide100PctControlled - optional, do we need this?
-    // SkylitDayltgRefPtCoord - optional, do we need this?
-    // SkylitDayltgCtrlLtgPwr - optional, do we need this?
-    // SkylitDayltgCtrlLtgFrac - optional, do we need this?
-    // SkylitDayltgIllumSetpt - optional, do we need this?
-    // PriSideDayltgRefPtCoord - optional, do we need this?
-    // PriSideDayltgCtrlLtgPwr - optional, do we need this?
-    // PriSideDayltgCtrlLtgFrac - optional, do we need this?
-    // PriSideDayltgIllumSetpt - optional, do we need this?
-    // SecSideDayltgRefPtCoord - optional, do we need this?
-    // SecSideDayltgCtrlLtgPwr - optional, do we need this?
-    // SecSideDayltgCtrlLtgFrac - optional, do we need this?
-    // SecSideDayltgIllumSetpt - optional, do we need this?
-    // DayltgCtrlType - optional, do we need this?
-    // MinDimLtgFrac - optional, do we need this?
-    // MinDimPwrFrac - optional, do we need this?
-    // NumOfCtrlSteps - optional, do we need this?
-    // GlrAz - optional, do we need this?
-    // MaxGlrIdx - optional, do we need this?
-    // SkyltReqExcpt - optional, do we need this?
-    // SkyltReqExcptArea - optional, do we need this?
-    // SkyltReqExcptFrac - optional, do we need this?
-    // RecptPwrDens - defaulted, do with space types
-    // RecptSchRef - defaulted, do with space types
-    // RecptRadFrac - defaulted, do with space types
-    // RecptLatFrac - defaulted, do with space types
-    // RecptLostFrac - defaulted, do with space types
-    // GasEqpPwrDens - defaulted, do with space types
-    // GasEqpSchRef - defaulted, do with space types
-    // GasEqpRadFrac - defaulted, do with space types
-    // GasEqpLatFrac - defaulted, do with space types
-    // GasEqpLostFrac - defaulted, do with space types
-    // ProcElecPwrDens - optional, do with space types
-    // ProcElecSchRef - optional, do with space types
-    // ProcElecRadFrac - optional, do with space types
-    // ProcElecLatFrac - optional, do with space types
-    // ProcElecLostFrac - optional, do with space types
-    // ProcGasPwrDens - optional, do with space types
-    // ProcGasSchRef - optional, do with space types
-    // ProcGasRadFrac - optional, do with space types
-    // ProcGasLatFrac - optional, do with space types
-    // ProcGasLostFrac - optional, do with space types
-    // CommRfrgEPD - defaulted, do with space types
-    // CommRfrgEqpSchRef - defaulted, do with space types
-    // CommRfrgRadFrac - defaulted, do with space types
-    // CommRfrgLatFrac - defaulted, do with space types
-    // CommRfrgLostFrac - defaulted, do with space types
-    // ElevCnt - optional, do with space types
-    // ElevPwr - optional, do with space types
-    // ElevSchRef - defaulted, do with space types
-    // ElevRadFrac - optional, do with space types
-    // ElevLatFrac - optional, do with space types
-    // ElevLostFrac - optional, do with space types
-    // EscalCnt - optional, do with space types
-    // EscalPwr - optional, do with space types
-    // EscalSchRef - defaulted, do with space types
-    // EscalRadFrac - optional, do with space types
-    // EscalLatFrac - optional, do with space types
-    // EscalLostFrac - optional, do with space types
-    // SHWFluidSegRef - optional, do with space types
-    // RecircDHWSysRef - optional, do with space types
-    // HotWtrHtgRt - defaulted, do with space types
-    // RecircHotWtrHtgRt - optional, do with space types
-    // HotWtrHtgSchRef - optional, do with space types
-    // VentPerPerson - defaulted, do with space types
-    // VentPerArea - defaulted, do with space types
-    // VentACH - optional, do with space types
-    // VentPerSpc - optional, do with space types
-    // ExhPerArea - optional, do we need this?
-    // ExhACH - optional, do we need this?
-    // ExhPerSpc - optional, do we need this?
-    // KitExhHoodLen - optional, do we need this?
-    // KitExhHoodStyle - optional, do we need this?
-    // KitExhHoodDuty - optional, do we need this?
-    // KitExhHoodFlow - optional, do we need this?
-    // LabExhRtType - optional, do we need this?
-    // IntLPDPrescrip - optional, do we need this?
-    // IsPlenumRet - optional, do we need this?
-    // HighRiseResInt - optional, do we need this?
-    // HighRiseResCondFlrArea - optional, do we need this?
+	  // BEC:
+	  // Status - required, need to add
+	  // CondgType - required, in progress
+	  // SupPlenumSpcRef - optional, in progress
+	  // RetPlenumSpcRef - optional, in progress
+	  // ThrmlZnRef - required, done
+	  // Area - only for simple geometry, done, can we remove?
+	  // FlrArea - optional, do we need this?
+	  // FlrZ - optional, do we need this?
+	  // FlrToCeilingHgt - optional, do we need this?
+	  // Vol - required, done, can we remove?
+	  // SpcFuncDefaultsRef - optional, do with space types
+	  // SpcFunc - compulsory, do with space types
+	  // FuncSchGrp - optional, do with space types
+	  // OccDens - optional, do with space types
+	  // OccSensHtRt - optional, do with space types
+	  // OccLatHtRt - optional, do with space types
+	  // OccSchRef - optional, do with space types
+	  // InfMthd - defaulted, do with space types
+	  // DsgnInfRt - defaulted, do with space types
+	  // InfSchRef - defaulted, do with space types
+	  // InfModelCoefA - required, do with space types
+	  // InfModelCoefB - required, do with space types
+	  // InfModelCoefC - required, do with space types
+	  // InfModelCoefD - required, do with space types
+	  // EnvStatus - optional, do with space types
+	  // LtgStatus - optional, do with space types
+	  // IntLtgSpecMthd - required, do with space types
+	  // IntLPDReg - optional, do with space types
+	  // IntLtgRegSchRef - optional, do with space types
+	  // IntLtgRegHtGnSpcFrac - optional, do with space types
+	  // IntLtgRegHtGnRadFrac - optional, do with space types
+	  // IntLPDNonReg - optional, do with space types
+	  // IntLtgNonRegSchRef - optional, do with space types
+	  // IntLtgNonRegHtGnSpcFrac - optional, do with space types
+	  // IntLtgNonRegHtGnRadFrac - optional, do with space types
+	  // SkylitDayltgInstalledLtgPwr - optional, do we need this?
+	  // PriSideDayltgInstalledLtgPwr - optional, do we need this?
+	  // SecSideDayltgInstalledLtgPwr - optional, do we need this?
+	  // Skylit100PctControlled - optional, do we need this?
+	  // PriSide100PctControlled - optional, do we need this?
+	  // SecSide100PctControlled - optional, do we need this?
+	  // SkylitDayltgRefPtCoord - optional, do we need this?
+	  // SkylitDayltgCtrlLtgPwr - optional, do we need this?
+	  // SkylitDayltgCtrlLtgFrac - optional, do we need this?
+	  // SkylitDayltgIllumSetpt - optional, do we need this?
+	  // PriSideDayltgRefPtCoord - optional, do we need this?
+	  // PriSideDayltgCtrlLtgPwr - optional, do we need this?
+	  // PriSideDayltgCtrlLtgFrac - optional, do we need this?
+	  // PriSideDayltgIllumSetpt - optional, do we need this?
+	  // SecSideDayltgRefPtCoord - optional, do we need this?
+	  // SecSideDayltgCtrlLtgPwr - optional, do we need this?
+	  // SecSideDayltgCtrlLtgFrac - optional, do we need this?
+	  // SecSideDayltgIllumSetpt - optional, do we need this?
+	  // DayltgCtrlType - optional, do we need this?
+	  // MinDimLtgFrac - optional, do we need this?
+	  // MinDimPwrFrac - optional, do we need this?
+	  // NumOfCtrlSteps - optional, do we need this?
+	  // GlrAz - optional, do we need this?
+	  // MaxGlrIdx - optional, do we need this?
+	  // SkyltReqExcpt - optional, do we need this?
+	  // SkyltReqExcptArea - optional, do we need this?
+	  // SkyltReqExcptFrac - optional, do we need this?
+	  // RecptPwrDens - defaulted, do with space types
+	  // RecptSchRef - defaulted, do with space types
+	  // RecptRadFrac - defaulted, do with space types
+	  // RecptLatFrac - defaulted, do with space types
+	  // RecptLostFrac - defaulted, do with space types
+	  // GasEqpPwrDens - defaulted, do with space types
+	  // GasEqpSchRef - defaulted, do with space types
+	  // GasEqpRadFrac - defaulted, do with space types
+	  // GasEqpLatFrac - defaulted, do with space types
+	  // GasEqpLostFrac - defaulted, do with space types
+	  // ProcElecPwrDens - optional, do with space types
+	  // ProcElecSchRef - optional, do with space types
+	  // ProcElecRadFrac - optional, do with space types
+	  // ProcElecLatFrac - optional, do with space types
+	  // ProcElecLostFrac - optional, do with space types
+	  // ProcGasPwrDens - optional, do with space types
+	  // ProcGasSchRef - optional, do with space types
+	  // ProcGasRadFrac - optional, do with space types
+	  // ProcGasLatFrac - optional, do with space types
+	  // ProcGasLostFrac - optional, do with space types
+	  // CommRfrgEPD - defaulted, do with space types
+	  // CommRfrgEqpSchRef - defaulted, do with space types
+	  // CommRfrgRadFrac - defaulted, do with space types
+	  // CommRfrgLatFrac - defaulted, do with space types
+	  // CommRfrgLostFrac - defaulted, do with space types
+	  // ElevCnt - optional, do with space types
+	  // ElevPwr - optional, do with space types
+	  // ElevSchRef - defaulted, do with space types
+	  // ElevRadFrac - optional, do with space types
+	  // ElevLatFrac - optional, do with space types
+	  // ElevLostFrac - optional, do with space types
+	  // EscalCnt - optional, do with space types
+	  // EscalPwr - optional, do with space types
+	  // EscalSchRef - defaulted, do with space types
+	  // EscalRadFrac - optional, do with space types
+	  // EscalLatFrac - optional, do with space types
+	  // EscalLostFrac - optional, do with space types
+	  // SHWFluidSegRef - optional, do with space types
+	  // RecircDHWSysRef - optional, do with space types
+	  // HotWtrHtgRt - defaulted, do with space types
+	  // RecircHotWtrHtgRt - optional, do with space types
+	  // HotWtrHtgSchRef - optional, do with space types
+	  // VentPerPerson - defaulted, do with space types
+	  // VentPerArea - defaulted, do with space types
+	  // VentACH - optional, do with space types
+	  // VentPerSpc - optional, do with space types
+	  // ExhPerArea - optional, do we need this?
+	  // ExhACH - optional, do we need this?
+	  // ExhPerSpc - optional, do we need this?
+	  // KitExhHoodLen - optional, do we need this?
+	  // KitExhHoodStyle - optional, do we need this?
+	  // KitExhHoodDuty - optional, do we need this?
+	  // KitExhHoodFlow - optional, do we need this?
+	  // LabExhRtType - optional, do we need this?
+	  // IntLPDPrescrip - optional, do we need this?
+	  // IsPlenumRet - optional, do we need this?
+	  // HighRiseResInt - optional, do we need this?
+	  // HighRiseResCondFlrArea - optional, do we need this?
 
 
-    // volume
-    double volume = space.volume();
-    Quantity volumeSI(volume, SIUnit(SIExpnt(0,3,0)));
-    OptionalQuantity volumeIP = QuantityConverter::instance().convert(volumeSI, ipSys);
-    OS_ASSERT(volumeIP);
-    OS_ASSERT(volumeIP->units() == IPUnit(IPExpnt(0,3,0)));
-    QDomElement volumeElement = doc.createElement("Vol");
-    result.appendChild(volumeElement);
-    volumeElement.appendChild(doc.createTextNode(QString::number(volumeIP->value())));
+	  // volume
+	  double volume = space.volume();
+	  Quantity volumeSI(volume, SIUnit(SIExpnt(0, 3, 0)));
+	  OptionalQuantity volumeIP = QuantityConverter::instance().convert(volumeSI, ipSys);
+	  OS_ASSERT(volumeIP);
+	  OS_ASSERT(volumeIP->units() == IPUnit(IPExpnt(0, 3, 0)));
+	  QDomElement volumeElement = doc.createElement("Volume");
+	  result.appendChild(volumeElement);
+	  volumeElement.appendChild(doc.createTextNode(QString::number(volumeIP->value())));
 
-    // log warning if volume is 0
-    if (volumeIP->value() < std::numeric_limits<double>::epsilon()){
-      LOG(Warn, "Space '" << name << "' has zero volume.");
-    }
+	  // log warning if volume is 0
+	  if (volumeIP->value() < std::numeric_limits<double>::epsilon()){
+		  LOG(Warn, "Space '" << name << "' has zero volume.");
+	  }
 
-    // area
-    double floorArea = space.floorArea();
-    Quantity floorAreaSI(floorArea, SIUnit(SIExpnt(0,2,0)));
-    OptionalQuantity floorAreaIP = QuantityConverter::instance().convert(floorAreaSI, ipSys);
-    OS_ASSERT(floorAreaIP);
-    OS_ASSERT(floorAreaIP->units() == IPUnit(IPExpnt(0,2,0)));
-    QDomElement floorAreaElement = doc.createElement("Area");  // SAC 3/14/14
-    result.appendChild(floorAreaElement);
-    floorAreaElement.appendChild(doc.createTextNode(QString::number(floorAreaIP->value())));
+	  // area
+	  double floorArea = space.floorArea();
+	  Quantity floorAreaSI(floorArea, SIUnit(SIExpnt(0, 2, 0)));
+	  OptionalQuantity floorAreaIP = QuantityConverter::instance().convert(floorAreaSI, ipSys);
+	  OS_ASSERT(floorAreaIP);
+	  OS_ASSERT(floorAreaIP->units() == IPUnit(IPExpnt(0, 2, 0)));
+	  QDomElement floorAreaElement = doc.createElement("Area");  // SAC 3/14/14
+	  result.appendChild(floorAreaElement);
+	  floorAreaElement.appendChild(doc.createTextNode(QString::number(floorAreaIP->value())));
+
+	  // load
+	  QDomElement lightElement = doc.createElement("Load");
+	   
+	  std::vector<model::Lights> lights = space.lights();
+	  for (const model::Lights& m_light : lights){
+		  QDomElement l = doc.createElement("Name");
+		  l.appendChild(doc.createTextNode(escapeName(m_light.name().get())));
+		  lightElement.appendChild(l);
+	  }
+	  result.appendChild(lightElement);
+
+
+
+	  // People
+	  QDomElement peopleElement = doc.createElement("People");
+
+	  std::vector<model::People> Peoples = space.people();
+	  for (const model::People& m_people : Peoples){
+		  QDomElement l = doc.createElement("Name");
+		  l.appendChild(doc.createTextNode(escapeName(m_people.name().get())));
+		  peopleElement.appendChild(l);
+	  }
+	  result.appendChild(peopleElement);
+
 
     // log warning if area is 0
     if (floorAreaIP->value() < std::numeric_limits<double>::epsilon()){

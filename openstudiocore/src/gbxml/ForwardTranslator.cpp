@@ -345,6 +345,10 @@ namespace gbxml {
     volumeElement.appendChild(doc.createTextNode(QString::number(volume)));
     result.appendChild(volumeElement);
 
+	// lighting 
+	double volt = space.lightingPower();
+	QDomElement loadElement = doc.createElement("Lighting");
+	loadElement.appendChild(doc.createTextNode(QString::number(volt)));
     return result;
   }
 
