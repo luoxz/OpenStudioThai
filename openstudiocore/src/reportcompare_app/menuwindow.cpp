@@ -50,15 +50,15 @@ void MenuWindow::on_btTest_clicked()
 
 void MenuWindow::on_btCPBEC_clicked()
 {
-    ShowCompare("C:/cmpres/demo", "C:/Users/Gorn/Desktop/DEMO-OS/demo/run", "b");
+    ShowCompare("C:/cmpres/demo", "C:/Users/Gorn/Desktop/DEMO-OS/demox/run", "b");
 }
 
 void MenuWindow::on_btCPEnergyPlus_clicked()
 {
-    ShowCompare("C:/cmpres/demo", "C:/Users/Gorn/Desktop/DEMO-OS/demo/run", "e");
+    ShowCompare("C:/cmpres/demo", "C:/Users/Gorn/Desktop/DEMO-OS/demox/run", "e");
 }
 
 void MenuWindow::on_btCPOPenStudio_clicked()
 {
-    ShowCompare("C:/cmpres/demo", "C:/Users/Gorn/Desktop/DEMO-OS/demo/run", "o");
+    ShowCompare("C:/cmpres/demo", "C:/Users/Gorn/Desktop/DEMO-OS/demox/run", "o");
 }

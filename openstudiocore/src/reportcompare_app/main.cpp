@@ -3,7 +3,7 @@
 #include <QApplication>
 #include <QDebug>
 
-#define ONLY_COMPARE_DIALOG_START
+//#define ONLY_COMPARE_DIALOG_START
 
 int main(int argc, char *argv[])
 {

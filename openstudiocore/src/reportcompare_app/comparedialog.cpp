@@ -7,11 +7,12 @@
 #include <QFileDialog>
 #include <QProgressDialog>
 #include "genbecreport.h"
+#include "idoc.h"
+#include "enegyplusdoc.h"
 
 CompareDialog::CompareDialog(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::CompareDialog)
-    , enegyPlusDoc(NULL)
 {
     ui->setupUi(this);
     QString err;
@@ -46,8 +47,6 @@ bool CompareDialog::SetParam(int argc, char *argv[])
 
 CompareDialog::~CompareDialog()
 {
-    if(enegyPlusDoc!=NULL)
-        delete enegyPlusDoc;
     delete ui;
     qDebug() << "CompareDialog::~CompareDialog()";
 }
@@ -114,213 +113,6 @@ bool CompareDialog::SetParam(const QString& file1, const QString &file2, const Q
     ui->chkShowTree->setChecked(false);
     on_chkShowTree_clicked(false);
     return true;
-}
-
-QString CompareDialog::loadHtml(const QString &path)
-{
-    QFile file(path);
-    if (!file.open(QFile::ReadOnly | QFile::Text)) {
-        qDebug() << "Error: Cannot read file " << qPrintable(path)
-                  << ": " << qPrintable(file.errorString());
-
-        return "";
-    }
-    return file.readAll();
-}
-
-QWebElement CompareDialog::getBody(QWebView* webView)
-{
-    QWebFrame *frame = webView->page()->mainFrame();
-    QWebElement doc = frame->documentElement();
-    QWebElement body = doc.findFirst("body");
-    return body;
-}
-
-bool CompareDialog::mergingTable(QWebElement &table, const QWebElement &table2, const QString& title)
-{
-    QWebElementCollection tr1 = table.findAll("TR");
-    QWebElementCollection tr2 = table2.findAll("TR");
-
-    QWebElement r1it = tr1.first();
-    QWebElement r2it = tr2.first();
-    while (!r1it.isNull()) {
-        //qDebug() << "||| " << xit.toOuterXml();
-        QWebElement td1it = r1it.firstChild();
-        QWebElement td2it = r2it.firstChild();
-        qDebug() << "############################";
-        QString tdResult;
-        bool isFirstCol = true;
-        while (!td1it.isNull()) {
-            //qDebug() << "...." << td1it.toOuterXml();
-            tdResult += td1it.toOuterXml();
-            if(!isFirstCol){
-                for(int c=0;c<fileCmps.size();c++)
-                    td1it = td1it.nextSibling();
-                tdResult += td2it.toOuterXml();
-                qDebug() << "XXX:" <<td2it.toOuterXml();
-            }
-            else{
-                td1it = td1it.nextSibling();
-            }
-            td2it = td2it.nextSibling();
-            isFirstCol = false;
-        }
-        qDebug() << "<<<< " << "<tr>"+tdResult+"</tr>";
-        QWebElement r1tmp = r1it;
-        r1it = r1it.nextSibling();
-        r2it = r2it.nextSibling();
-        r1tmp.setOuterXml(tdResult);
-        qDebug() << "!!!!!!!!!!" << r1it.toOuterXml();
-    }
-    return true;
-}
-
-bool CompareDialog::nextTable(QString &title, QWebElement &elm)
-{
-    QString lastTitle;
-    bool isnext=false;
-    while (!elm.isNull()) {
-        if(elm.tagName() == "B"||
-                elm.tagName() == "H1"||
-                elm.tagName() == "H2"||
-                elm.tagName() == "H3"||
-                elm.tagName() == "H4"||
-                elm.tagName() == "H5"||
-                elm.tagName() == "H6")
-        {
-            lastTitle = elm.toInnerXml();
-        }
-        else if(elm.tagName() == "TABLE"){
-            isnext = true;
-            break;
-        }
-        elm = elm.nextSibling();
-    }
-    title = lastTitle;
-    return isnext;
-}
-
-void CompareDialog::doRowDic(const QWebElementCollection *tr, QHash<QString, QWebElement>& dic)
-{
-    QWebElementCollection::const_iterator it = tr->begin();
-    while (it != tr->end()) {
-        QWebElement td = (*it).findFirst("TD");
-        dic[td.toInnerXml()] = *it;
-        it++;
-    }
-}
-
-void CompareDialog::makeEnegyPlusCmp()
-{
-    QWebElement body = getBody(ui->webView2);
-    QWebElement elmit = body.firstChild();
-    enegyPlusDoc->resetTables();
-
-    QProgressDialog progress("Doing compare Enegy plus.", "Abort", 0, enegyPlusDoc->tables.count(), this);
-    progress.setWindowModality(Qt::WindowModal);
-    progress.show();
-    QCoreApplication::processEvents();
-
-    QString title;
-    bool isnext = nextTable(title, elmit);
-    int i=0;
-    while(isnext){
-        qDebug()  << "Create At title : " << title;
-        QSharedPointer<TableElement> tbelm = enegyPlusDoc->find(title);
-        if(!tbelm.isNull()){
-            tbelm->AddTable(elmit, reportName2);
-            tbelm->updateTableElement();
-            tbelm->setUse(true);
-        }
-        elmit = elmit.nextSibling();
-        isnext = nextTable(title, elmit);
-        progress.setValue(i++);
-        QCoreApplication::processEvents();
-    }
-    progress.setValue(enegyPlusDoc->tables.count());
-    QCoreApplication::processEvents();
-}
-
-void CompareDialog::makeOpenStudioPlusCmp()
-{
-    QWebElement body = getBody(ui->webView2);
-    QWebElement elmit = body.firstChild();
-    enegyPlusDoc->resetTables();
-
-    QProgressDialog progress("Doing compare BEC plus.", "Abort", 0, enegyPlusDoc->tables.count(), this);
-    progress.setWindowModality(Qt::WindowModal);
-    progress.show();
-    QCoreApplication::processEvents();
-
-    QString title;
-    bool isnext = nextTable(title, elmit);
-    int i=0;
-    while(isnext){
-        qDebug()  << "Create At title : " << title;
-        QSharedPointer<TableElement> tbelm = enegyPlusDoc->find(title);
-        if(!tbelm.isNull()){
-            tbelm->AddTable(elmit, reportName2);
-            tbelm->updateTableElement();
-            tbelm->setUse(true);
-        }
-        elmit = elmit.nextSibling();
-        isnext = nextTable(title, elmit);
-        progress.setValue(i++);
-        QCoreApplication::processEvents();
-    }
-    progress.setValue(enegyPlusDoc->tables.count());
-    QCoreApplication::processEvents();
-}
-
-void CompareDialog::makeBecPlusCmp()
-{
-    QWebElement body = getBody(ui->webView2);
-    QWebElement elmit = body.firstChild();
-    enegyPlusDoc->resetTables();
-
-    QProgressDialog progress("Doing compare BEC plus.", "Abort", 0, enegyPlusDoc->tables.count(), this);
-    progress.setWindowModality(Qt::WindowModal);
-    progress.show();
-    QCoreApplication::processEvents();
-
-    QString title;
-    bool isnext = nextTable(title, elmit);
-    int i=0;
-    while(isnext){
-        qDebug()  << "Create At title : " << title;
-        QSharedPointer<TableElement> tbelm = enegyPlusDoc->find(title);
-        if(!tbelm.isNull()){
-            tbelm->AddTable(elmit, reportName2);
-            tbelm->updateTableElement();
-            tbelm->setUse(true);
-        }
-        elmit = elmit.nextSibling();
-        isnext = nextTable(title, elmit);
-        progress.setValue(i++);
-        QCoreApplication::processEvents();
-    }
-    progress.setValue(enegyPlusDoc->tables.count());
-    QCoreApplication::processEvents();
-}
-
-EnegyPlusDoc *CompareDialog::createEnegyPlusDoc()
-{
-    if(enegyPlusDoc!=NULL)
-        delete enegyPlusDoc;
-
-    enegyPlusDoc = new EnegyPlusDoc();
-    QWebElement body = getBody(ui->webView);
-    QWebElement elmit = body.firstChild();
-    QString title;
-    bool isnext1 = nextTable(title, elmit);
-    while(isnext1){
-        qDebug()  << "Create At title : " << title;
-        QSharedPointer<TableElement> telm = QSharedPointer<TableElement>(new TableElement(title, elmit));
-        enegyPlusDoc->tables.append(telm);
-        elmit = elmit.nextSibling();
-        isnext1 = nextTable(title, elmit);
-    }
-    return enegyPlusDoc;
 }
 
 QString CompareDialog::getReportName(const QString &filePath)
@@ -498,6 +290,7 @@ CompareDialog::CMPTYPE CompareDialog::getDocTypeFromTitle(const QString &title){
 
 void CompareDialog::on_webView_loadFinished(bool arg1)
 {
+    (void)arg1;
     CMPTYPE type = getDocTypeFromTitle(ui->webView->title());
     if(type != cmpType){
         QString str = QString("File '%1' is unexpected type %2:%3..%4.").arg("")
@@ -508,23 +301,25 @@ void CompareDialog::on_webView_loadFinished(bool arg1)
     }
 
     if(cmpType == CMPTYPE_ENYGYPLUS){
-        enegyPlusDoc = createEnegyPlusDoc();
-        LoadCompareFile(this->file2);
+        QString projectName1 = getReportName(file1);
+        doc = QSharedPointer<IDoc>(new EnegyPlusDoc(projectName1, ui->webView));
     }
-    else if(cmpType == CMPTYPE_BEC){
-        enegyPlusDoc = createEnegyPlusDoc();
-        LoadCompareFile(this->file2);
-    }
-    else if(cmpType == CMPTYPE_OPENSTUDIO){
+//    else if(cmpType == CMPTYPE_BEC){
+//        enegyPlusDoc = createEnegyPlusDoc();
+//        LoadCompareFile(this->file2);
+//    }
+//    else if(cmpType == CMPTYPE_OPENSTUDIO){
 
-    }
-    else{//CMPTYPE_UNKNOW
+//    }
+//    else{//CMPTYPE_UNKNOW
 
-    }
+//    }
+    LoadCompareFile(this->file2);
 }
 
 void CompareDialog::on_webView2_loadFinished(bool arg1)
 {
+    (void)arg1;
     CMPTYPE type = getDocTypeFromTitle(ui->webView2->title());
     if(type != cmpType){
         QString str = QString("File '%1' is unexpected type.").arg(this->file2);
@@ -535,196 +330,19 @@ void CompareDialog::on_webView2_loadFinished(bool arg1)
 
     fileCmps.append(this->file2);
     if(cmpType == CMPTYPE_ENYGYPLUS){
-        makeEnegyPlusCmp();
+        QString projectName2 = getReportName(file2);
+        doc->doCmp(projectName2, ui->webView2);
     }
-    else if(cmpType == CMPTYPE_BEC){
-        makeBecPlusCmp();
-    }
-    else if(cmpType == CMPTYPE_OPENSTUDIO){
-        makeOpenStudioPlusCmp();
-    }
-    else{//CMPTYPE_UNKNOW
-        //makeEnegyPlusCmp(targetPath);
-    }
-}
+    //TODO:RECODE PLEASE.
+//    else if(cmpType == CMPTYPE_BEC){
+//        makeBecPlusCmp();
+//    }
+//    else if(cmpType == CMPTYPE_OPENSTUDIO){
+//        makeOpenStudioPlusCmp();
+//    }
+//    else{//CMPTYPE_UNKNOW
+//        //makeEnegyPlusCmp(targetPath);
+//    }
 
-TableElement::TableElement(QString &header, QWebElement elm){
-    this->header = header;
-    _isUse = false;
-    rowCount = -1;
-    columnCount = -1;
-    this->elm = elm;
-    doTable(this->elm, QString());
-}
-
-void TableElement::AddTable(QWebElement elm, const QString &header){
-    qDebug() << "AddTable : " << header;
-    doTable(elm, header);
-}
-
-bool peakFloat(const QString& str, float& val){
-    bool isFloat;
-    val = str.toFloat(&isFloat);
-    return isFloat;
-}
-
-QString doHtmlTextColor(const QString& str, const QColor& color){
-    return QString("<font color=\"%1\">%2</font>")
-            .arg(color.name()).arg(str);
-}
-
-QString TableElement::toInsideTBODY(){
-    QString tbody;
-    for(size_t r=0;r<table.rowCount();r++){
-        tbody += "<tr>\n";
-
-        bool isFirstFloat = false;
-        float firstVal;
-
-        for(size_t c=0;c<table.colCount();c++){
-
-            QString td = "<td align=\"center\">";
-            if ( c % 2== 0)
-                td = "<td  align=\"center\" bgcolor=\"#F7F7F7\">";
-
-            QStringList& sls = table.at(r,c);
-            QStringList::iterator slsit = sls.begin();
-            isFirstFloat = peakFloat((*slsit), firstVal);
-            while (slsit!=sls.end()) {
-                if(c==0){
-                    tbody += (td +(*slsit)+ "</td>\n");
-                    break;
-                }else{
-                    float secondVal;
-                    QString sstr = (*slsit);
-                    if(peakFloat((*slsit), secondVal) && isFirstFloat){
-                        if(firstVal>secondVal){
-                            tbody += (td +doHtmlTextColor(sstr, "#008A2E")+ "</td>\n");
-                        }
-                        else if(firstVal<secondVal){
-                            tbody += (td +doHtmlTextColor(sstr, Qt::red)+ "</td>\n");
-                        }
-                        else{
-                            tbody += (td +sstr+ "</td>\n");
-                        }
-                    }
-                    else{
-                        tbody += (td +sstr+ "</td>\n");
-                    }
-                }
-                slsit++;
-            }
-        }
-        tbody += "</tr>\n";
-    }
-    return tbody;
-}
-
-void TableElement::updateTableElement()
-{
-    //qDebug() << "#################\n" << toInsideTBODY();
-    elm.setInnerXml(toInsideTBODY());
-}
-
-void TableElement::doTable(QWebElement elm, const QString &projectName){
-    bool isFirst = true;
-    QWebElementCollection trs = elm.findAll("TR");
-    QString tagRow = "TD";
-    for(int r=0;r<trs.count();r++){
-        qDebug() << "TagRow=" << tagRow;
-        QWebElementCollection tds = trs[r].findAll(tagRow);
-        qDebug() << "xx tds.count = " << tds.count();
-        if(tds.count()==0){
-            tagRow = "TH";
-            tds = trs[r].findAll(tagRow);
-            QWebElement elm = trs[r].firstChild();
-            qDebug() << "tds.count = " << tds.count() << ", tr.count=" << trs.count() << ", elmname:" << elm.tagName();
-        }
-        if(isFirst){
-            if(rowCount < 0 || columnCount < 0){
-                rowCount = trs.count();
-                columnCount = tds.count();
-                table.resize(trs.count(), tds.count());
-            }
-
-            qDebug() << "!!!# " << projectName << rowCount << ":" << trs.count();
-            qDebug() << "!!!# " << projectName << columnCount << ":" << tds.count();
-
-            if(rowCount != trs.count()||columnCount != tds.count()){
-                QMessageBox msgBox;
-                QString msg = QString("The table label %1 is mismatch.\n\
-                                      Source row is %2 and compare row is %3.\n\
-                                      Source column is %4 and compare column is %5."
-                                      ).arg(projectName)
-                                       .arg(rowCount).arg(trs.count())
-                                       .arg(columnCount).arg(tds.count());
-                msgBox.setText(msg);
-                msgBox.exec();
-            }
-            //Q_ASSERT(rowCount == trs.count());
-            //Q_ASSERT(columnCount == tds.count());
-            isFirst = false;
-        }
-
-        for(int c=0;c<tds.count();c++){
-            if(r==0&&c!=0&&(!projectName.isEmpty())){
-                table.pushValue(r,c, tds[c].toPlainText()+QString("<br>(%1)").arg(projectName));
-            }
-            else{
-                table.pushValue(r,c, tds[c].toPlainText());
-            }
-        }
-    }
-}
-
-TableCompare::TableCompare() {
-}
-
-void TableCompare::resize(size_t row, size_t col) {
-    _row = row;
-    _col = col;
-    qDebug() << "001 data.size = " << datas.size() << ", row*col=" << row*col;
-    datas.resize(row*col);
-    qDebug() << "002 data.size = " << datas.size();
-}
-
-void TableCompare::pushValue(size_t row, size_t col, QString value){
-    int index = _col*row+col;
-    //qDebug() << "IDX:" << idx << ", value:" << value << ", data.size = " << datas.count();
-    if(index>=datas.length())
-        return;
-    else
-        datas[index].append(value);
-}
-
-QStringList &TableCompare::at(size_t row, size_t col){
-    int index = _col*row+col;
-    if(index >= datas.length()){
-        return datas[0];
-    }
-    else
-        return datas[_col*row+col];
-}
-
-QSharedPointer<TableElement> EnegyPlusDoc::find(const QString &key)
-{
-    QList<QSharedPointer<TableElement > >::iterator it = tables.begin();
-    while (it!=tables.end()) {
-        if(!(*it)->isUse() && (*it)->getHeader()==key){
-            return (*it);
-        }
-        it++;
-    }
-    QSharedPointer<TableElement > spNULL;;
-    return spNULL;
-}
-
-void EnegyPlusDoc::resetTables()
-{
-    QList<QSharedPointer<TableElement > >::iterator it = tables.begin();
-    while (it!=tables.end()) {
-        (*it)->reset();
-        it++;
-    }
 }
 

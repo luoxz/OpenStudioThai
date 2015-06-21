@@ -11,52 +11,7 @@ class CompareDialog;
 
 class QWebElementCollection;
 class QWebView;
-
-class TableCompare
-{
-    QVector <QStringList> datas;
-    int _row, _col;
-public:
-    TableCompare();
-
-    size_t rowCount(){return _row;}
-    size_t colCount(){return _col;}
-    void resize(size_t row, size_t col);
-    void pushValue(size_t row, size_t col, QString value);
-    QStringList& at(size_t row, size_t col);
-};
-
-class TableElement
-{
-public:
-    TableElement(QString& header, QWebElement elm);
-    void AddTable(QWebElement elm, const QString& header);
-    QString toInsideTBODY();
-    void updateTableElement();
-    QString getHeader(){return header;}
-    bool isUse(){ return _isUse; }
-    void setUse(bool used){ _isUse = used;}
-    void reset(){_isUse = false;}
-private:
-    QString header;
-    bool _isUse;
-    QWebElement elm;
-    TableCompare table;
-    int rowCount, columnCount;
-    void doTable(QWebElement elm, const QString& projectName);
-};
-
-
-//TODO:MAKE ENEGY PLUS DOC TO INTERFACE DOC
-// ::nextTable || nextMergElement
-// ::find return QSharedPointer<IMergElement>
-class EnegyPlusDoc
-{
-public:
-    QList<QSharedPointer<TableElement > > tables;
-    QSharedPointer<TableElement > find(const QString& key);
-    void resetTables();
-};
+class IDoc;
 
 class CompareDialog : public QDialog
 {
@@ -69,8 +24,6 @@ public:
     bool SetParam(int argc, char *argv[]);
     bool SetParam(const QString &file1, const QString &file2, const QString &type);
     ~CompareDialog();
-    QString loadHtml(const QString &path);
-    QWebElement getBody(QWebView *webView);
     QString scanFolderPathWithRegex(const QString& path, const QRegExp& reg, int recursive);
     void SetCmpType(CompareDialog::CMPTYPE type);
     bool isDuplicatePath(QString filePath);
@@ -95,14 +48,7 @@ private:
     QString file1, file2, reportName2, type;
     QStringList fileCmps;
     CMPTYPE cmpType;
-    bool mergingTable(QWebElement& table, const QWebElement& table2, const QString &title);
-    bool nextTable(QString &title, QWebElement &elm);
-    void doRowDic(const QWebElementCollection *tr, QHash<QString, QWebElement> &dic);
-    void makeEnegyPlusCmp();
-    void makeOpenStudioPlusCmp();
-    void makeBecPlusCmp();
-    EnegyPlusDoc *createEnegyPlusDoc();
-    EnegyPlusDoc* enegyPlusDoc;
+    QSharedPointer<IDoc> doc;
     QString getReportName(const QString& filePath);
 
 };
