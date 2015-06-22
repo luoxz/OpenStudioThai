@@ -9,6 +9,7 @@
 #include "genbecreport.h"
 #include "idoc.h"
 #include "enegyplusdoc.h"
+#include "becdoc.h"
 
 CompareDialog::CompareDialog(QWidget *parent)
     : QDialog(parent)
@@ -304,10 +305,10 @@ void CompareDialog::on_webView_loadFinished(bool arg1)
         QString projectName1 = getReportName(file1);
         doc = QSharedPointer<IDoc>(new EnegyPlusDoc(projectName1, ui->webView));
     }
-//    else if(cmpType == CMPTYPE_BEC){
-//        enegyPlusDoc = createEnegyPlusDoc();
-//        LoadCompareFile(this->file2);
-//    }
+    else if(cmpType == CMPTYPE_BEC){
+        QString projectName1 = getReportName(file1);
+        doc = QSharedPointer<IDoc>(new BECDoc(projectName1, ui->webView));
+    }
 //    else if(cmpType == CMPTYPE_OPENSTUDIO){
 
 //    }
@@ -334,9 +335,10 @@ void CompareDialog::on_webView2_loadFinished(bool arg1)
         doc->doCmp(projectName2, ui->webView2);
     }
     //TODO:RECODE PLEASE.
-//    else if(cmpType == CMPTYPE_BEC){
-//        makeBecPlusCmp();
-//    }
+    else if(cmpType == CMPTYPE_BEC){
+        QString projectName2 = getReportName(file2);
+        doc->doCmp(projectName2, ui->webView2);
+    }
 //    else if(cmpType == CMPTYPE_OPENSTUDIO){
 //        makeOpenStudioPlusCmp();
 //    }
