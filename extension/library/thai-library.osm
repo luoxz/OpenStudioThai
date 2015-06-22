@@ -4,11 +4,12 @@
 !- Supported By	: To-Be-One Technology Co, Ltd.
 !- Craated Date : 22/05/2015
 !- Modified By  : Narongsak Mala (narongsak.mala@gmail.com)
-!- Modified Date : 6/06/2015
+!- Modified Date : 22/06/2015
 !-----------------------------------------------------------------
 
 
 !- Revision			Details
+!- 0.0.5-000		Added schedule set.
 !- 0.0.4-000		Updated Lighting System, Split Type Air load define.
 !- 0.0.3-000		Updated material. (Convert Transparent to simple glazing system window materials)
 !- 0.0.2-000		Updated material.
@@ -42,6 +43,537 @@ OS:StandardsInformation:Construction,
 
 
  !----------------------- Custom By Pepsi ----------------
+ !----------------------- Schedule -----------------------
+ OS:ScheduleTypeLimits,
+  {0936680e-bc63-4e8b-ab0a-0816571ec263}, !- Handle
+  Fractional,                             !- Name
+  0,                                      !- Lower Limit Value {BasedOnField A4}
+  1,                                      !- Upper Limit Value {BasedOnField A4}
+  Continuous;                             !- Numeric Type
+
+OS:ScheduleTypeLimits,
+  {1b2f0031-c498-4e99-a139-09dfc311ecef}, !- Handle
+  ActivityLevel,                          !- Name
+  0,                                      !- Lower Limit Value {BasedOnField A4}
+  ,                                       !- Upper Limit Value {BasedOnField A4}
+  Continuous,                             !- Numeric Type
+  ActivityLevel;                          !- Unit Type
+
+OS:ScheduleTypeLimits,
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Handle
+  OnOff,                                  !- Name
+  0,                                      !- Lower Limit Value {BasedOnField A4}
+  1,                                      !- Upper Limit Value {BasedOnField A4}
+  Discrete,                               !- Numeric Type
+  Availability;                           !- Unit Type
+
+OS:ScheduleTypeLimits,
+  {8f8768f3-f02b-4957-b52d-534c001c7d25}, !- Handle
+  Capacity,                               !- Name
+  0,                                      !- Lower Limit Value {BasedOnField A4}
+  ,                                       !- Upper Limit Value {BasedOnField A4}
+  Continuous,                             !- Numeric Type
+  Capacity;                               !- Unit Type
+
+OS:ScheduleTypeLimits,
+  {ec617a39-3225-48dd-a43b-b749a5ead911}, !- Handle
+  ClothingInsulation,                     !- Name
+  0,                                      !- Lower Limit Value {BasedOnField A4}
+  ,                                       !- Upper Limit Value {BasedOnField A4}
+  Continuous,                             !- Numeric Type
+  ClothingInsulation;                     !- Unit Type
+
+OS:ScheduleTypeLimits,
+  {587c68fa-6692-4528-abca-48ddc79adda7}, !- Handle
+  ControlMode,                            !- Name
+  0,                                      !- Lower Limit Value {BasedOnField A4}
+  1,                                      !- Upper Limit Value {BasedOnField A4}
+  Discrete,                               !- Numeric Type
+  ControlMode;                            !- Unit Type
+
+OS:ScheduleTypeLimits,
+  {7736ee0a-ca78-4a70-adb6-aabe018c69a8}, !- Handle
+  Dimensionless,                          !- Name
+  0,                                      !- Lower Limit Value {BasedOnField A4}
+  1,                                      !- Upper Limit Value {BasedOnField A4}
+  Continuous,                             !- Numeric Type
+  Dimensionless;                          !- Unit Type
+
+OS:ScheduleTypeLimits,
+  {99e13a0f-ded5-47d1-9047-0739ece9d115}, !- Handle
+  LinearPowerDensity,                     !- Name
+  0,                                      !- Lower Limit Value {BasedOnField A4}
+  ,                                       !- Upper Limit Value {BasedOnField A4}
+  Continuous,                             !- Numeric Type
+  LinearPowerDensity;                     !- Unit Type
+
+OS:ScheduleTypeLimits,
+  {4026ea70-8a44-476d-9b10-c28d17830a66}, !- Handle
+  MassFlowRate,                           !- Name
+  ,                                       !- Lower Limit Value {BasedOnField A4}
+  ,                                       !- Upper Limit Value {BasedOnField A4}
+  Continuous,                             !- Numeric Type
+  MassFlowRate;                           !- Unit Type
+
+OS:ScheduleTypeLimits,
+  {bd794df8-77f9-4162-98ab-e7fb0c45ef97}, !- Handle
+  Percent,                                !- Name
+  0,                                      !- Lower Limit Value {BasedOnField A4}
+  100,                                    !- Upper Limit Value {BasedOnField A4}
+  Continuous,                             !- Numeric Type
+  Percent;                                !- Unit Type
+
+OS:ScheduleTypeLimits,
+  {e9f4e5c5-efea-463b-8011-dce5a5ab3ba8}, !- Handle
+  Pressure,                               !- Name
+  ,                                       !- Lower Limit Value {BasedOnField A4}
+  ,                                       !- Upper Limit Value {BasedOnField A4}
+  Continuous,                             !- Numeric Type
+  Pressure;                               !- Unit Type
+
+OS:ScheduleTypeLimits,
+  {ebd0248f-1a85-40db-a1f5-c32a8fa0b73d}, !- Handle
+  RotationsPerMinute,                     !- Name
+  ,                                       !- Lower Limit Value {BasedOnField A4}
+  ,                                       !- Upper Limit Value {BasedOnField A4}
+  Continuous,                             !- Numeric Type
+  RotationsPerMinute;                     !- Unit Type
+
+OS:ScheduleTypeLimits,
+  {b7ccb015-fcdb-4696-8041-36639476fd4b}, !- Handle
+  Temperature,                            !- Name
+  ,                                       !- Lower Limit Value {BasedOnField A4}
+  ,                                       !- Upper Limit Value {BasedOnField A4}
+  Continuous,                             !- Numeric Type
+  Temperature;                            !- Unit Type
+
+OS:ScheduleTypeLimits,
+  {6473a583-c7f3-4a24-b034-2f07c487b65c}, !- Handle
+  Velocity,                               !- Name
+  0,                                      !- Lower Limit Value {BasedOnField A4}
+  ,                                       !- Upper Limit Value {BasedOnField A4}
+  Continuous,                             !- Numeric Type
+  Velocity;                               !- Unit Type
+
+OS:ScheduleTypeLimits,
+  {2764c837-8e5a-44ab-8017-05dd51e6e92f}, !- Handle
+  VolumetricFlowRate,                     !- Name
+  0,                                      !- Lower Limit Value {BasedOnField A4}
+  ,                                       !- Upper Limit Value {BasedOnField A4}
+  Continuous,                             !- Numeric Type
+  VolumetricFlowRate;                     !- Unit Type
+
+OS:Schedule:Ruleset,
+  {c4405f54-d191-41db-81b8-d537199cc2e9}, !- Handle
+  Educational Instituion Schedule Ruleset, !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  {a92853d3-17b8-4801-9542-b6de63d7bc6e}; !- Default Day Schedule Name
+
+OS:Schedule:Day,
+  {a92853d3-17b8-4801-9542-b6de63d7bc6e}, !- Handle
+  Schedule Day 1,                         !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  24,                                     !- Hour 1
+  0,                                      !- Minute 1
+  0;                                      !- Value Until Time 1
+
+OS:Schedule:Day,
+  {5666600b-a700-43f5-a7c9-0ff53fb8a641}, !- Handle
+  Schedule Day 2,                         !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  24,                                     !- Hour 1
+  0,                                      !- Minute 1
+  1;                                      !- Value Until Time 1
+
+OS:Schedule:Rule,
+  {2885ec08-5134-48b1-925e-8eb466e8b17a}, !- Handle
+  Educational Instituion Schedule Rule,   !- Name
+  {c4405f54-d191-41db-81b8-d537199cc2e9}, !- Schedule Ruleset Name
+  0,                                      !- Rule Order
+  {6b6fb74d-d23e-42a3-9a0a-6ab60a681799}, !- Day Schedule Name
+  ,                                       !- Apply Sunday
+  Yes,                                    !- Apply Monday
+  Yes,                                    !- Apply Tuesday
+  Yes,                                    !- Apply Wednesday
+  Yes,                                    !- Apply Thursday
+  Yes;                                    !- Apply Friday
+
+OS:Schedule:Day,
+  {6b6fb74d-d23e-42a3-9a0a-6ab60a681799}, !- Handle
+  Schedule Day 3,                         !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  8,                                      !- Hour 1
+  0,                                      !- Minute 1
+  0,                                      !- Value Until Time 1
+  17,                                     !- Hour 2
+  0,                                      !- Minute 2
+  1,                                      !- Value Until Time 2
+  24,                                     !- Hour 3
+  0,                                      !- Minute 3
+  0;                                      !- Value Until Time 3
+
+OS:Schedule:Ruleset,
+  {a44754a8-0c48-404e-813e-1dca7e5bf06e}, !- Handle
+  Office building Schedule Ruleset,       !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  {0a7c3a37-2e8b-4ded-8aae-643d04e57909}; !- Default Day Schedule Name
+
+OS:Schedule:Day,
+  {0a7c3a37-2e8b-4ded-8aae-643d04e57909}, !- Handle
+  Schedule Day 4,                         !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  24,                                     !- Hour 1
+  0,                                      !- Minute 1
+  0;                                      !- Value Until Time 1
+
+OS:Schedule:Rule,
+  {1efb73d6-3481-477a-8c05-544fd45e819f}, !- Handle
+  Office building Schedule Rule,          !- Name
+  {a44754a8-0c48-404e-813e-1dca7e5bf06e}, !- Schedule Ruleset Name
+  0,                                      !- Rule Order
+  {80f6c18c-9260-4a73-9ab5-77835813a8e4}, !- Day Schedule Name
+  ,                                       !- Apply Sunday
+  Yes,                                    !- Apply Monday
+  Yes,                                    !- Apply Tuesday
+  Yes,                                    !- Apply Wednesday
+  Yes,                                    !- Apply Thursday
+  Yes;                                    !- Apply Friday
+
+OS:Schedule:Day,
+  {80f6c18c-9260-4a73-9ab5-77835813a8e4}, !- Handle
+  Schedule Day 5,                         !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  8,                                      !- Hour 1
+  0,                                      !- Minute 1
+  0,                                      !- Value Until Time 1
+  17,                                     !- Hour 2
+  0,                                      !- Minute 2
+  1,                                      !- Value Until Time 2
+  24,                                     !- Hour 3
+  0,                                      !- Minute 3
+  0;                                      !- Value Until Time 3
+
+OS:Schedule:Ruleset,
+  {ca744064-3b49-4b51-b76e-3a1b521a4b95}, !- Handle
+  Theater Schedule Ruleset,               !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  {014cf2c5-bb40-4336-989f-43f039f6d812}; !- Default Day Schedule Name
+
+OS:Schedule:Day,
+  {014cf2c5-bb40-4336-989f-43f039f6d812}, !- Handle
+  Schedule Day 6,                         !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  24,                                     !- Hour 1
+  0,                                      !- Minute 1
+  0;                                      !- Value Until Time 1
+
+OS:Schedule:Day,
+  {533914d4-d5ba-4fd6-a81e-84c1eafb641a}, !- Handle
+  Schedule Day 7,                         !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  24,                                     !- Hour 1
+  0,                                      !- Minute 1
+  0;                                      !- Value Until Time 1
+
+OS:Schedule:Rule,
+  {2d4754fc-094d-4ca8-9692-892f5d1e5b79}, !- Handle
+  Theater Schedule Rule,                  !- Name
+  {ca744064-3b49-4b51-b76e-3a1b521a4b95}, !- Schedule Ruleset Name
+  0,                                      !- Rule Order
+  {25a426ff-c389-4fc1-89ba-234d95c291b2}, !- Day Schedule Name
+  Yes,                                    !- Apply Sunday
+  Yes,                                    !- Apply Monday
+  Yes,                                    !- Apply Tuesday
+  Yes,                                    !- Apply Wednesday
+  Yes,                                    !- Apply Thursday
+  Yes,                                    !- Apply Friday
+  Yes;                                    !- Apply Saturday
+
+OS:Schedule:Day,
+  {25a426ff-c389-4fc1-89ba-234d95c291b2}, !- Handle
+  Schedule Day 8,                         !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  9,                                      !- Hour 1
+  0,                                      !- Minute 1
+  0,                                      !- Value Until Time 1
+  21,                                     !- Hour 2
+  0,                                      !- Minute 2
+  1,                                      !- Value Until Time 2
+  24,                                     !- Hour 3
+  0,                                      !- Minute 3
+  0;                                      !- Value Until Time 3
+
+OS:Schedule:Ruleset,
+  {14b09564-6b61-4f4f-94c4-93ace81a562c}, !- Handle
+  Service Facility Schedule Ruleset,      !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  {e7f755ae-c97f-47ac-8725-b124eccd692c}; !- Default Day Schedule Name
+
+OS:Schedule:Day,
+  {e7f755ae-c97f-47ac-8725-b124eccd692c}, !- Handle
+  Schedule Day 9,                         !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  24,                                     !- Hour 1
+  0,                                      !- Minute 1
+  0;                                      !- Value Until Time 1
+
+OS:Schedule:Rule,
+  {8ac1aae4-2c2e-4782-8fbc-538eb7c45c06}, !- Handle
+  Service Facility Schedule Rule,         !- Name
+  {14b09564-6b61-4f4f-94c4-93ace81a562c}, !- Schedule Ruleset Name
+  0,                                      !- Rule Order
+  {8b8102a6-c78a-4b7d-aef7-5fcdf073081c}, !- Day Schedule Name
+  Yes,                                    !- Apply Sunday
+  Yes,                                    !- Apply Monday
+  Yes,                                    !- Apply Tuesday
+  Yes,                                    !- Apply Wednesday
+  Yes,                                    !- Apply Thursday
+  Yes,                                    !- Apply Friday
+  Yes;                                    !- Apply Saturday
+
+OS:Schedule:Day,
+  {8b8102a6-c78a-4b7d-aef7-5fcdf073081c}, !- Handle
+  Schedule Day 10,                        !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  9,                                      !- Hour 1
+  0,                                      !- Minute 1
+  0,                                      !- Value Until Time 1
+  21,                                     !- Hour 2
+  0,                                      !- Minute 2
+  1,                                      !- Value Until Time 2
+  24,                                     !- Hour 3
+  0,                                      !- Minute 3
+  0;                                      !- Value Until Time 3
+
+OS:Schedule:Ruleset,
+  {fc0ee81a-da91-44e9-acab-8f5bc428b670}, !- Handle
+  Community building Schedule Ruleset,    !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  {2939623c-eb3b-4411-8bec-3d1f3d2d7cc5}; !- Default Day Schedule Name
+
+OS:Schedule:Day,
+  {2939623c-eb3b-4411-8bec-3d1f3d2d7cc5}, !- Handle
+  Schedule Day 11,                        !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  24,                                     !- Hour 1
+  0,                                      !- Minute 1
+  0;                                      !- Value Until Time 1
+
+OS:Schedule:Rule,
+  {9d43aaa9-62d7-4b93-b02b-2265790ce38c}, !- Handle
+  Community building Schedule Rule,       !- Name
+  {fc0ee81a-da91-44e9-acab-8f5bc428b670}, !- Schedule Ruleset Name
+  0,                                      !- Rule Order
+  {ad2beff6-af78-4a50-8744-1d9bd5275071}, !- Day Schedule Name
+  Yes,                                    !- Apply Sunday
+  Yes,                                    !- Apply Monday
+  Yes,                                    !- Apply Tuesday
+  Yes,                                    !- Apply Wednesday
+  Yes,                                    !- Apply Thursday
+  Yes,                                    !- Apply Friday
+  Yes;                                    !- Apply Saturday
+
+OS:Schedule:Day,
+  {ad2beff6-af78-4a50-8744-1d9bd5275071}, !- Handle
+  Schedule Day 12,                        !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  9,                                      !- Hour 1
+  0,                                      !- Minute 1
+  0,                                      !- Value Until Time 1
+  21,                                     !- Hour 2
+  0,                                      !- Minute 2
+  1,                                      !- Value Until Time 2
+  24,                                     !- Hour 3
+  0,                                      !- Minute 3
+  0;                                      !- Value Until Time 3
+
+OS:Schedule:Ruleset,
+  {5703344f-f494-4fec-a309-5465c00d798f}, !- Handle
+  Department Store Schedule Ruleset,      !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  {b88e933e-16ce-4f85-a661-3ae766923509}; !- Default Day Schedule Name
+
+OS:Schedule:Day,
+  {b88e933e-16ce-4f85-a661-3ae766923509}, !- Handle
+  Schedule Day 13,                        !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  24,                                     !- Hour 1
+  0,                                      !- Minute 1
+  0;                                      !- Value Until Time 1
+
+OS:Schedule:Rule,
+  {7ef2ddf4-008b-43cc-a829-700cd9757e63}, !- Handle
+  Department Store Schedule Rule,         !- Name
+  {5703344f-f494-4fec-a309-5465c00d798f}, !- Schedule Ruleset Name
+  0,                                      !- Rule Order
+  {0d65140e-6721-4461-a901-ca1c6dec24ba}, !- Day Schedule Name
+  Yes,                                    !- Apply Sunday
+  Yes,                                    !- Apply Monday
+  Yes,                                    !- Apply Tuesday
+  Yes,                                    !- Apply Wednesday
+  Yes,                                    !- Apply Thursday
+  Yes,                                    !- Apply Friday
+  Yes;                                    !- Apply Saturday
+
+OS:Schedule:Day,
+  {0d65140e-6721-4461-a901-ca1c6dec24ba}, !- Handle
+  Schedule Day 14,                        !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  9,                                      !- Hour 1
+  0,                                      !- Minute 1
+  0,                                      !- Value Until Time 1
+  21,                                     !- Hour 2
+  0,                                      !- Minute 2
+  1,                                      !- Value Until Time 2
+  24,                                     !- Hour 3
+  0,                                      !- Minute 3
+  0;                                      !- Value Until Time 3
+
+OS:Schedule:Ruleset,
+  {7abc3865-0a74-40f1-9c28-5440e79df9da}, !- Handle
+  Medical Center Schedule Ruleset,        !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  {22376a8d-e7ed-4fee-ac8a-911fe132255b}; !- Default Day Schedule Name
+
+OS:Schedule:Day,
+  {22376a8d-e7ed-4fee-ac8a-911fe132255b}, !- Handle
+  Schedule Day 15,                        !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  24,                                     !- Hour 1
+  0,                                      !- Minute 1
+  0;                                      !- Value Until Time 1
+
+OS:Schedule:Day,
+  {6d0882b0-c74d-460f-89c3-dd17b405341a}, !- Handle
+  Schedule Day 16,                        !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  24,                                     !- Hour 1
+  0,                                      !- Minute 1
+  0;                                      !- Value Until Time 1
+
+OS:Schedule:Rule,
+  {8b281749-8e2d-4ea9-b008-1721ed14f56f}, !- Handle
+  Medical Center Schedule Rule,           !- Name
+  {7abc3865-0a74-40f1-9c28-5440e79df9da}, !- Schedule Ruleset Name
+  0,                                      !- Rule Order
+  {d4b87cb1-1234-408a-bd00-8432ab8d3299}, !- Day Schedule Name
+  Yes,                                    !- Apply Sunday
+  Yes,                                    !- Apply Monday
+  Yes,                                    !- Apply Tuesday
+  Yes,                                    !- Apply Wednesday
+  Yes,                                    !- Apply Thursday
+  Yes,                                    !- Apply Friday
+  Yes;                                    !- Apply Saturday
+
+OS:Schedule:Day,
+  {d4b87cb1-1234-408a-bd00-8432ab8d3299}, !- Handle
+  Schedule Day 17,                        !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  24,                                     !- Hour 1
+  0,                                      !- Minute 1
+  1;                                      !- Value Until Time 1
+
+OS:Schedule:Ruleset,
+  {0cf2b61e-442e-42aa-92b4-a1f4f6d97aca}, !- Handle
+  Hotel Schedule Ruleset,                 !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  {d11edbd8-5f03-4cf4-afb2-f710f306fcb4}; !- Default Day Schedule Name
+
+OS:Schedule:Day,
+  {d11edbd8-5f03-4cf4-afb2-f710f306fcb4}, !- Handle
+  Schedule Day 18,                        !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  24,                                     !- Hour 1
+  0,                                      !- Minute 1
+  0;                                      !- Value Until Time 1
+
+OS:Schedule:Rule,
+  {fd5f9d57-9384-4e41-ab05-650e0bf299af}, !- Handle
+  Hotel Center Schedule Rule,             !- Name
+  {0cf2b61e-442e-42aa-92b4-a1f4f6d97aca}, !- Schedule Ruleset Name
+  0,                                      !- Rule Order
+  {badb13bd-5187-4a4e-9119-cb6ac092bcf0}, !- Day Schedule Name
+  Yes,                                    !- Apply Sunday
+  Yes,                                    !- Apply Monday
+  Yes,                                    !- Apply Tuesday
+  Yes,                                    !- Apply Wednesday
+  Yes,                                    !- Apply Thursday
+  Yes,                                    !- Apply Friday
+  Yes;                                    !- Apply Saturday
+
+OS:Schedule:Day,
+  {badb13bd-5187-4a4e-9119-cb6ac092bcf0}, !- Handle
+  Schedule Day 19,                        !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  24,                                     !- Hour 1
+  0,                                      !- Minute 1
+  1;                                      !- Value Until Time 1
+
+OS:Schedule:Ruleset,
+  {3169bd29-9ccd-424c-ae87-951a83caaca4}, !- Handle
+  Condominium Schedule Ruleset,           !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  {d6d6355c-5d3c-4c83-8e5a-b99a46e84aef}; !- Default Day Schedule Name
+
+OS:Schedule:Day,
+  {d6d6355c-5d3c-4c83-8e5a-b99a46e84aef}, !- Handle
+  Schedule Day 20,                        !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  24,                                     !- Hour 1
+  0,                                      !- Minute 1
+  0;                                      !- Value Until Time 1
+
+OS:Schedule:Rule,
+  {21e1ca4b-5fde-4077-a6e1-7c213fc2e9da}, !- Handle
+  Condominium Center Schedule Rule,       !- Name
+  {3169bd29-9ccd-424c-ae87-951a83caaca4}, !- Schedule Ruleset Name
+  0,                                      !- Rule Order
+  {ca975e9d-00c4-4241-b68e-1a8391b83b2d}, !- Day Schedule Name
+  Yes,                                    !- Apply Sunday
+  Yes,                                    !- Apply Monday
+  Yes,                                    !- Apply Tuesday
+  Yes,                                    !- Apply Wednesday
+  Yes,                                    !- Apply Thursday
+  Yes,                                    !- Apply Friday
+  Yes;                                    !- Apply Saturday
+
+OS:Schedule:Day,
+  {ca975e9d-00c4-4241-b68e-1a8391b83b2d}, !- Handle
+  Schedule Day 21,                        !- Name
+  {94621957-e911-4de1-a9ff-84493bba358d}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  24,                                     !- Hour 1
+  0,                                      !- Minute 1
+  1;                                      !- Value Until Time 1
+
+OS:ScheduleTypeLimits,
+  {97130896-d63e-44e7-b5cd-329e89a69503}, ! Handle
+  Fraction,                               ! Name
+  0,                                      ! Lower Limit Value
+  1,                                      ! Upper Limit Value
+  CONTINUOUS;                             ! Numeric Type
+
+
  !----------------------- Lighting -----------------------
 OS:Lights:Definition,
  {5e984427-d844-45aa-a52a-149cc6e895ae},  !- Handle
