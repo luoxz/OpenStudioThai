@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <memory>
 #include <QtWebKit/QWebElement>
+#include <QMessageBox>
 
 namespace Ui {
 class CompareDialog;
@@ -42,6 +43,11 @@ private slots:
     void on_webView_loadFinished(bool arg1);
     void on_webView2_loadFinished(bool arg1);
 
+    void on_webView_loadProgress(int progress);
+
+
+    void on_webView2_loadProgress(int progress);
+
 private:
     Ui::CompareDialog *ui;
     QString seplustbl0, seplustbl1, sost0, sost1;
@@ -50,6 +56,7 @@ private:
     CMPTYPE cmpType;
     QSharedPointer<IDoc> doc;
     QString getReportName(const QString& filePath);
+    QMessageBox msgBox;
 
 };
 

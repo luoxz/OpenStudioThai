@@ -10,6 +10,7 @@
 #include "idoc.h"
 #include "enegyplusdoc.h"
 #include "becdoc.h"
+#include "openstudiodoc.h"
 
 CompareDialog::CompareDialog(QWidget *parent)
     : QDialog(parent)
@@ -113,6 +114,7 @@ bool CompareDialog::SetParam(const QString& file1, const QString &file2, const Q
     ui->chkShowTree->setVisible(false);
     ui->chkShowTree->setChecked(false);
     on_chkShowTree_clicked(false);
+    msgBox.exec();
     return true;
 }
 
@@ -291,6 +293,7 @@ CompareDialog::CMPTYPE CompareDialog::getDocTypeFromTitle(const QString &title){
 
 void CompareDialog::on_webView_loadFinished(bool arg1)
 {
+    qDebug() << __FUNCTION__ ;
     (void)arg1;
     CMPTYPE type = getDocTypeFromTitle(ui->webView->title());
     if(type != cmpType){
@@ -309,17 +312,17 @@ void CompareDialog::on_webView_loadFinished(bool arg1)
         QString projectName1 = getReportName(file1);
         doc = QSharedPointer<IDoc>(new BECDoc(projectName1, ui->webView));
     }
-//    else if(cmpType == CMPTYPE_OPENSTUDIO){
-
-//    }
-//    else{//CMPTYPE_UNKNOW
-
-//    }
+    else if(cmpType == CMPTYPE_OPENSTUDIO){
+        QString projectName1 = getReportName(file1);
+        doc = QSharedPointer<IDoc>(new OpenStudioDoc(projectName1, ui->webView));
+    }
     LoadCompareFile(this->file2);
 }
 
 void CompareDialog::on_webView2_loadFinished(bool arg1)
 {
+    qDebug() << __FUNCTION__ ;
+    msgBox.close();
     (void)arg1;
     CMPTYPE type = getDocTypeFromTitle(ui->webView2->title());
     if(type != cmpType){
@@ -334,17 +337,24 @@ void CompareDialog::on_webView2_loadFinished(bool arg1)
         QString projectName2 = getReportName(file2);
         doc->doCmp(projectName2, ui->webView2);
     }
-    //TODO:RECODE PLEASE.
     else if(cmpType == CMPTYPE_BEC){
         QString projectName2 = getReportName(file2);
         doc->doCmp(projectName2, ui->webView2);
     }
-//    else if(cmpType == CMPTYPE_OPENSTUDIO){
-//        makeOpenStudioPlusCmp();
-//    }
-//    else{//CMPTYPE_UNKNOW
-//        //makeEnegyPlusCmp(targetPath);
-//    }
-
+    else if(cmpType == CMPTYPE_OPENSTUDIO){
+        QString projectName2 = getReportName(file2);
+        doc->doCmp(projectName2, ui->webView2);
+    }
 }
 
+
+void CompareDialog::on_webView_loadProgress(int progress)
+{
+    msgBox.setText(QString("Loading report 1 progress(%1\%).").arg(progress));
+}
+
+
+void CompareDialog::on_webView2_loadProgress(int progress)
+{
+    msgBox.setText(QString("Loading report 2 progress(%1\%).").arg(progress));
+}

@@ -26,7 +26,8 @@ SOURCES += main.cpp\
     enegyplusdoc.cpp \
     icompareelement.cpp \
     htmltutil.cpp \
-    becdoc.cpp
+    becdoc.cpp \
+    openstudiodoc.cpp
 
 HEADERS  += \
     dropfilebutton.h \
@@ -39,7 +40,8 @@ HEADERS  += \
     enegyplusdoc.h \
     icompareelement.h \
     htmltutil.h \
-    becdoc.h
+    becdoc.h \
+    openstudiodoc.h
 
 FORMS    += \
     comparedialog.ui \
