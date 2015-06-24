@@ -12,6 +12,9 @@ public:
     // IDoc interface
 public:
     void doCmp(const QString &projectName, QWebView *webView2);
+    void drawCmpGraph();
+    QString getMonthsVariable();
+    QString genDataGraph();
 };
 
 #endif // OPENSTUDIODOC_H

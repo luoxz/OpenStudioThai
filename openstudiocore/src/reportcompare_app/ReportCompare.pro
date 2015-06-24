@@ -27,7 +27,8 @@ SOURCES += main.cpp\
     icompareelement.cpp \
     htmltutil.cpp \
     becdoc.cpp \
-    openstudiodoc.cpp
+    openstudiodoc.cpp \
+    opsgraphelement.cpp
 
 HEADERS  += \
     dropfilebutton.h \
@@ -41,7 +42,8 @@ HEADERS  += \
     icompareelement.h \
     htmltutil.h \
     becdoc.h \
-    openstudiodoc.h
+    openstudiodoc.h \
+    opsgraphelement.h
 
 FORMS    += \
     comparedialog.ui \

@@ -24,6 +24,8 @@ protected:
     IDoc* doc;
     bool _isUse;
     QString errMsg;
+    void errorMsg(const QString& error);
+    void errorMsgLn(const QString& error);
 };
 
 #endif // ICOMPAREELEMENT_H

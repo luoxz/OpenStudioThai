@@ -26,3 +26,13 @@ const QString &ICompareElement::projectName()
 {
     return doc->projectName();
 }
+
+void ICompareElement::errorMsg(const QString &error)
+{
+    errMsg+=error;
+}
+
+void ICompareElement::errorMsgLn(const QString &error)
+{
+    errMsg+=(error+"\n");
+}
