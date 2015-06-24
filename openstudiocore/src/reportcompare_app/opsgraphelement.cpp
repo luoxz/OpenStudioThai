@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QWebView>
 #include <QWebFrame>
+#include <QElapsedTimer>
 
 const char * const months[]
 = {
@@ -37,6 +38,8 @@ OpsGraphElement::OpsGraphElement(IDoc *doc, const QString &title, QWebElement ro
        errorMsgLn("Can't find svg element.");
        return;
     }
+
+    qDebug() << "###############" << svg.toPlainText();
 
     float w = svg.attribute("width", "560").toFloat();
     float h = svg.attribute("height", "300").toFloat();
@@ -83,8 +86,23 @@ void OpsGraphElement::setRect(const QSize& s)
     baseW = s;
 }
 
+const QString mwp =
+"this.textContent='';\
+var elm = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');\
+elm.setAttribute('x', '0'); \
+elm.setAttribute('dy', '1.2em'); \
+elm.textContent='%1';\
+this.appendChild(elm);\
+var elm2 = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');\
+elm2.setAttribute('x', '0'); \
+elm2.setAttribute('dy', '1.2em'); \
+elm2.textContent='(%2)';\
+this.appendChild(elm2);null;";
+
 bool OpsGraphElement::Compare(ICompareElement *other)
 {
+    //const QString format = "this.textContent='<tspan x=\"0\" dy=\"1.2em\">%1</tspan><tspan x=\"0\" dy=\"1.2em\">%2</tspan>'";
+    //QString format = "this.textContent='%1(%2)'";
     QList<QWebElement> gsls;
     gother = static_cast<OpsGraphElement*>(other);
     if(!gother){
@@ -97,10 +115,15 @@ bool OpsGraphElement::Compare(ICompareElement *other)
     otherGS.append(gsls);
 
     QList<QWebElement> tls;
+    QElapsedTimer timer;
+    timer.start();
     foreach (QWebElement elm, gother->ticks) {
-        tls.append(elm.clone());
-        //qDebug() << elm.findFirst("text").toPlainText();
-        qDebug() << elm.toPlainText();
+        QWebElement cnelm = elm.clone();
+        QWebElement txt = cnelm.findFirst("text");
+        QString month = txt.evaluateJavaScript("this.textContent").toString();
+        QString sct = QString(mwp).arg(month).arg(other->projectName());
+        txt.evaluateJavaScript(sct).toString();
+        tls.append(cnelm);
     }
     otherTick.append(tls);
     return true;
