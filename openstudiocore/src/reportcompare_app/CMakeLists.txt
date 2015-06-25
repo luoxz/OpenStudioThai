@@ -15,20 +15,39 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 # source files
 set(${target_name}_SRC
-	main.cpp
-	menuwindow.cpp
-	dropfilebutton.cpp
-	dropfilebutton.h
-	genbecreport.cpp
-	comparedialog.cpp
+becdoc.cpp
+comparedialog.cpp
+dropfilebutton.cpp
+enegyplusdoc.cpp
+genbecreport.cpp
+htmltutil.cpp
+icompareelement.cpp
+idoc.cpp
+main.cpp
+menuwindow.cpp
+openstudiodoc.cpp
+opetableelement.cpp
+opsgraphelement.cpp
+tableelement.cpp
 )
 
 # moc files
 set(${target_name}_moc
-	menuwindow.h
-	dropfilebutton.h
-	genbecreport.h
-	comparedialog.h
+becdoc.h
+comparedialog.h
+dropfilebutton.h
+enegyplusdoc.h
+genbecreport.h
+htmltutil.h
+icompareelement.h
+idoc.h
+menuwindow.h
+openstudiodoc.h
+opetableelement.h
+opsgraphelement.h
+tableelement.h
+ui_comparedialog.h
+ui_menuwindow.h
 )
 
 ## Qt UI generation

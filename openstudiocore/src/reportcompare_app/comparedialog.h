@@ -33,7 +33,6 @@ public:
     void msgRes(FINDTARGETRES res, QString filePath);
     QString loadFileToWebView(const QString& fn, QWebView *webView);
     void LoadCompareFile(const QString &filePath);
-
     CMPTYPE getDocTypeFromTitle(const QString& title);
 
 private slots:
@@ -42,10 +41,7 @@ private slots:
     void eventDropFilePath(const QString& filePath);
     void on_webView_loadFinished(bool arg1);
     void on_webView2_loadFinished(bool arg1);
-
     void on_webView_loadProgress(int progress);
-
-
     void on_webView2_loadProgress(int progress);
 
 private:
