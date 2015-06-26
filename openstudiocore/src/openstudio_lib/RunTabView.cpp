@@ -224,7 +224,7 @@ void doTable(const QString &title, QDomNode& root, QFile& file, int level){
 
 const QString bec_xml
 =
-"<?xml version=\"1.0\" encoding=\"tis-620\"?>\
+"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\
 <BuildingReport>\
   <BuildingInfo>\
     <BuildingName>BEC_Store</BuildingName>\
@@ -1528,6 +1528,7 @@ void RunView::requestStartRunManager()
                 m_outputWindow->appendPlainText("Generate bec complete.");
                 m_playButton->setChecked(false);
                 osdocument->runComplete();
+                osdocument->enableTabsAfterRun();
             }
         }
     }
