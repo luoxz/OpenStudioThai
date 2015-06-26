@@ -190,6 +190,9 @@ void ResultsView::compareResultsClicked()
     {
         args.push_back(fn2);
     }
+    else{
+        return;
+    }
 
     if(m_comboBox->currentText() == "EnergyPlus Results"){
         args.push_back("e");
@@ -397,7 +400,7 @@ void ResultsView::populateComboBox(std::vector<openstudio::path> reports)
 void ResultsView::comboBoxChanged(int index)
 {
     if(m_comboBox->currentText() == "EnergyPlus Results"
-            || m_comboBox->currentText() == "Results | OpenStud" //Results | OpenStudio
+            || m_comboBox->currentText() == "Results | OpenStudio" //Results | OpenStudio
             || m_comboBox->currentText() == "BEC Report")
     {
         qDebug() << "\""<< m_comboBox->currentText() << "\"";

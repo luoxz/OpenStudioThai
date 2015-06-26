@@ -1,7 +1,7 @@
 #include <QStringList>
 #include <QDebug>
-#include <QWebView>
-#include <QWebFrame>
+#include <QtWebKitWidgets/QWebView>
+#include <QtWebKitWidgets/QWebFrame>
 
 #include "opetableelement.h"
 #include "htmltutil.h"
@@ -108,6 +108,7 @@ bool OPETableElement::Compare(ICompareElement *comparer)
             pushValue(irow,icol, cp);
         }
     }
+    return true;
 }
 
 void OPETableElement::Update()

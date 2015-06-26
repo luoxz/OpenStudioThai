@@ -102,8 +102,13 @@ namespace openstudio {
   OPENSTUDIO_API void pauseRunManager(openstudio::runmanager::RunManager& rm);
 
   // Start the run manager
-  OPENSTUDIO_API void startRunManager(openstudio::runmanager::RunManager& rm, const openstudio::path& osmPath, const openstudio::path& modelTempDir,
-      bool useRadianceForDaylightingCalculations, bool requireCalibrationReports, QWidget* parent = NULL);
+  OPENSTUDIO_API void startRunManager(openstudio::runmanager::RunManager& rm
+                                      , const openstudio::path& osmPath
+                                      , const openstudio::path& modelTempDir
+                                      , bool useRadiance
+                                      , bool useBEC
+                                      , bool requireCalibrationReports
+                                      , QWidget* parent = NULL);
 
   OPENSTUDIO_API bool findBCLMeasureWorkItem(const std::vector<runmanager::WorkItem>& workItems, const openstudio::UUID& uuid);
   

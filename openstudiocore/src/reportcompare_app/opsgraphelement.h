@@ -2,7 +2,7 @@
 #define ELECTRICITYCONSUMPTIONGRAPHELEMENT_H
 
 #include <QString>
-#include <QWebElement>
+#include <QtWebKit/QWebElement>
 #include "icompareelement.h"
 
 class OpsGraphElement : public ICompareElement

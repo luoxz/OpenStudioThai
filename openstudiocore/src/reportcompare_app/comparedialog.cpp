@@ -350,11 +350,11 @@ void CompareDialog::on_webView2_loadFinished(bool arg1)
 
 void CompareDialog::on_webView_loadProgress(int progress)
 {
-    msgBox.setText(QString("Loading report 1 progress(%1\%).").arg(progress));
+    msgBox.setText(QString("Loading report 1 progress(%1 percent).").arg(progress));
 }
 
 
 void CompareDialog::on_webView2_loadProgress(int progress)
 {
-    msgBox.setText(QString("Loading report 2 progress(%1\%).").arg(progress));
+    msgBox.setText(QString("Loading report 2 progress(%1 percent).").arg(progress));
 }

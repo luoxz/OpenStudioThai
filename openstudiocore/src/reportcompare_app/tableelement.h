@@ -4,7 +4,7 @@
 #include "icompareelement.h"
 #include <QList>
 #include <QVector>
-#include <QWebElement>
+#include <QtWebKit/QWebElement>
 #include <QStringList>
 
 class QWebElement;

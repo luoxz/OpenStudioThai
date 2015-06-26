@@ -2,8 +2,8 @@
 #include "idoc.h"
 
 #include <QDebug>
-#include <QWebView>
-#include <QWebFrame>
+#include <QtWebKitWidgets/QWebView>
+#include <QtWebKitWidgets/QWebFrame>
 #include <QElapsedTimer>
 
 const char * const months[]

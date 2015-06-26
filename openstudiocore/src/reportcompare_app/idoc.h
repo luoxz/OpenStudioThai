@@ -3,7 +3,7 @@
 
 #include <QSharedPointer>
 #include <QList>
-#include <QWebElement>
+#include <QtWebKit/QWebElement>
 #include "icompareelement.h"
 
 class QWebView;

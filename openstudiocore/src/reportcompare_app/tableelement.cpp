@@ -2,7 +2,7 @@
 
 #include <QVector>
 #include <QStringList>
-#include <QWebElement>
+#include <QtWebKit/QWebElement>
 #include <QString>
 #include <QMessageBox>
 #include <QDebug>
@@ -168,8 +168,8 @@ bool TableElement::Compare(ICompareElement* comparer)
         return false;
     }
 
-    for(int r=0;r<other->rowCount();r++){
-        for(int c=0;c<other->colCount();c++){
+    for(size_t r=0;r<other->rowCount();r++){
+        for(size_t c=0;c<other->colCount();c++){
             pushValue(r,c, other->at(r,c).at(0));
         }
     }

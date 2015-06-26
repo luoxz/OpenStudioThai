@@ -7,8 +7,8 @@
 #include "opetableelement.h"
 #include "opsgraphelement.h"
 #include "htmltutil.h"
-#include <QWebView>
-#include <QWebFrame>
+#include <QtWebKitWidgets/QWebView>
+#include <QtWebKitWidgets/QWebFrame>
 
 OpenStudioDoc::OpenStudioDoc(const QString &projectName, QWebView *webView)
     :IDoc(projectName, webView)
@@ -46,7 +46,7 @@ OpenStudioDoc::OpenStudioDoc(const QString &projectName, QWebView *webView)
                 (new OpsGraphElement(this, "Natural Gas Consumption Graph"
                                      , graphs[1]));
 
-        gelm->setPosXY(40.5-39.776, 20.5);
+        gelm->setPosXY(40.5f-39.776f, 20.5f);
 
         elements.append(gelm);
     }
@@ -419,6 +419,6 @@ QString OpenStudioDoc::genDataGraph()
 //		}
 //	}
 //};
-
+    return QString();
 }
 

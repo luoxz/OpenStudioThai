@@ -316,7 +316,7 @@ void doTable(const QString &title, QDomNode& root, QFile& file, int level){
         file.write(out.toStdString().c_str());
     }
 
-    qDebug() << "------------------\n" << title << ":" << root.toElement().tagName() << ", " << level;
+    //qDebug() << "------------------\n" << title << ":" << root.toElement().tagName() << ", " << level;
 
     while(!node.isNull()) {
         elm = node.toElement();
@@ -324,7 +324,7 @@ void doTable(const QString &title, QDomNode& root, QFile& file, int level){
         if(fe.isNull()){
             int mylevel=0;
             QString table = doHorizontalTable(root, node, mylevel);
-            qDebug() << "mylevel:" << mylevel;
+            //qDebug() << "mylevel:" << mylevel;
             file.write(table.toStdString().c_str());
             escapeTitle = title;
             return;

@@ -1,7 +1,7 @@
 #ifndef OPETABLEELEMENT_H
 #define OPETABLEELEMENT_H
 
-#include <QWebElement>
+#include <QtWebKit/QWebElement>
 #include <QVector>
 #include "icompareelement.h"
 #include "idoc.h"

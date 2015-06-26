@@ -3,7 +3,7 @@
 
 #include <QString>
 #include <QColor>
-#include <QWebElement>
+#include <QtWebKit/QWebElement>
 
 bool peakFloat(const QString& str, float& val);
 QString doHtmlTextColor(const QString& str, const QColor& color);

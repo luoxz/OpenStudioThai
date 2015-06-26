@@ -1,7 +1,7 @@
 #include "idoc.h"
-#include <QWebFrame>
-#include <QWebElement>
-#include <QWebView>
+#include <QtWebKitWidgets/QWebFrame>
+#include <QtWebKit/QWebElement>
+#include <QtWebKitWidgets/QWebView>
 
 IDoc::IDoc(const QString &projectName, QWebView *webView)
 {
