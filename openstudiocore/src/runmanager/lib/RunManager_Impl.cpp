@@ -2567,6 +2567,7 @@ namespace detail {
             ++failedjobs;
           }
 
+          //TODO:Get this errors and display in log.
           totalerrors += errors.errors().size();
           totalwarnings += errors.warnings().size();
 
