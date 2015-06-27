@@ -67,6 +67,8 @@
 #include "../model/WaterUseEquipment_Impl.hpp"
 #include "../model/WaterUseEquipmentDefinition.hpp"
 #include "../model/WaterUseEquipmentDefinition_Impl.hpp"
+#include "../model/Surface.hpp"
+#include "../model/Surface_Impl.hpp"
 
 #include "../model/ThermalZone.hpp"
 #include "../model/ThermalZone_Impl.hpp"
@@ -513,13 +515,15 @@ namespace bec {
 	  for (const model::Space& space : spaces){
 	  
 		  QDomElement m_spaceElement = doc.createElement("Space");
-		  std::string name = *space.name();
-		  m_spaceElement.setAttribute("id", escapeName(name));
 
 		  // Space Type name
 		  std::string space_name = *space.spaceType().get().name();
-		  m_spaceElement.setAttribute("name", escapeName(space_name));
+		  m_spaceElement.setAttribute("SpaceType", toQString(space_name));
 		  spaceElement.appendChild(m_spaceElement);
+
+		  // Space name
+		  std::string name = *space.name();
+		  m_spaceElement.setAttribute("name", toQString(name));
 
 		  QDomElement m_area = doc.createElement("Area");
 		  double area = space.floorArea();
@@ -544,6 +548,13 @@ namespace bec {
 		  loadElement.appendChild(*ElectronicEquipmentElement);
 
 		  m_spaceElement.appendChild(loadElement);
+
+		  // Translate Construction
+		  QDomElement defaultConstruction = doc.createElement("Constructions");
+		  boost::optional<QDomElement> constructionElement = translateMyConstruction(space, doc);
+		  defaultConstruction.appendChild(*constructionElement);
+
+		  m_spaceElement.appendChild(defaultConstruction);
 	  }
 
 	return spaceElement;
@@ -807,6 +818,31 @@ namespace bec {
 	  }
 
 	  return luminaireElement;
+  }
+
+  boost::optional<QDomElement> ForwardTranslator::translateMyConstruction(const openstudio::model::Space& space, QDomDocument& doc){
+	 
+	  QDomElement surfacesElement = doc.createElement("Surfaces");
+	  std::vector<model::Surface> v_serface = space.surfaces();
+	  
+	  for (const model::Surface& i_surface : v_serface){
+		  //TODO: translate construction
+		  QDomElement surfaceElement = doc.createElement("Surface");
+
+		  QDomElement nameElement = doc.createElement("Name");
+		  nameElement.appendChild(doc.createTextNode(toQString(i_surface.name().get())));
+		  surfaceElement.appendChild(nameElement);
+
+
+		  QDomElement constructElement = doc.createElement("Construction");
+		  std::string mat = i_surface.construction().get().name().get();
+		  constructElement.appendChild(doc.createTextNode(toQString(mat)));
+		  surfaceElement.appendChild(constructElement);
+
+		  surfacesElement.appendChild(surfaceElement);
+	  }
+
+	  return surfacesElement;
   }
 
   boost::optional<QDomElement> ForwardTranslator::translateBuilding(const openstudio::model::Building& building, QDomDocument& doc)

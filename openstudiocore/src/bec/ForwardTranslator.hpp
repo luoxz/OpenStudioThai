@@ -96,6 +96,7 @@ namespace bec {
 	boost::optional<QDomElement> translateMyGasEquipment(const openstudio::model::Space& space, QDomDocument& doc);
 	boost::optional<QDomElement> translateMyWaterUse(const openstudio::model::Space space, QDomDocument& doc);
 	boost::optional<QDomElement> translateMyLuminaire(const openstudio::model::Space& space, QDomDocument& doc);
+	boost::optional<QDomElement> translateMyConstruction(const openstudio::model::Space& space, QDomDocument& doc);
 
 
     std::map<openstudio::Handle, QDomElement> m_translatedObjects;
