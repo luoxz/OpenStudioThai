@@ -530,13 +530,8 @@ namespace openstudio {
     }
   }
 
-  void startRunManager(openstudio::runmanager::RunManager& rm
-                       , const openstudio::path& osmPath
-                       , const openstudio::path& modelTempDir
-                       , bool useRadiance
-                       , bool useBEC
-                       , bool requireCalibrationReports
-                       , QWidget* parent)
+  void startRunManager(openstudio::runmanager::RunManager& rm, const openstudio::path& osmPath, const openstudio::path& modelTempDir,
+      bool useRadianceForDaylightingCalculations, bool requireCalibrationReports, QWidget* parent)
   {
 //    openstudio::path rmdbPath = modelTempDir / toPath("resources/run.db");
     openstudio::path simulationDir = toPath("run");
@@ -561,7 +556,7 @@ namespace openstudio {
       if (boost::filesystem::exists(modelTempDir / toPath("resources") / simulationDir)) {
         boost::filesystem::remove_all(modelTempDir / toPath("resources") / simulationDir);
       }
-
+      
       boost::optional<analysisdriver::SimpleProject> p = OSAppBase::instance()->project();
       if (p)
       {
@@ -591,7 +586,7 @@ namespace openstudio {
         }
 
         // check if we need to use radiance
-        if (useRadiance)
+        if (useRadianceForDaylightingCalculations)
         {
           std::vector<openstudio::runmanager::ToolInfo> rad = co.getTools().getAllByName("rad").tools();
 
@@ -620,38 +615,6 @@ namespace openstudio {
                 QMessageBox::Ok);
           }
         }
-
-        //TODO:FIX useBEC Mode.
-//        if(useBEC){
-//            //TODO:COPY ABOVE FROM if(useRadiance)... AND IMPLEMENT HERE
-//            //NOTE:This version is freak.
-
-//            //const QString file = "C:/Users/Gorn/Desktop/BEC XML Sample Output/bec.xml";
-//            //QString outpath, err;
-//            //if(!doBecReport("C:/Users/Gorn/Desktop/BEC XML Sample Output/bec.xml", outpath, err))
-//            //    qDebug() << err;
-//            //else{
-//            //    QString foutpath = QString("file:///") + outpath;
-//            //    QUrl url(foutpath);
-//            //    qDebug() << foutpath;
-//            //    QDesktopServices::openUrl(url);
-//            //}
-
-//            //boost::filesystem::exists(modelTempDir / toPath("resources") / simulationDir)
-
-//            QString text;
-//            text += (modelTempDir.string() + "\n").c_str();
-//            text += (toPath("resources").string()+"\n").c_str();
-//            text += (simulationDir.string()+"\n").c_str();
-//            text += (osmPath.string()+"\n").c_str();
-//            QMessageBox *mb = new QMessageBox(parent);
-//            mb->setAttribute(Qt::WA_DeleteOnClose, true);
-//            mb->setWindowTitle("DEBUG:BEC");
-//            mb->setText(text);
-//            mb->setModal(false);
-//            mb->show();
-//            return;
-//        }
 
         // add the report request measure before energyplus but after any other energyplus measures
         test = addReportRequestMeasureWorkItem(workitems, reportRequestMeasure);

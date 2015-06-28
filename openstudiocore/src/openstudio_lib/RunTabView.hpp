@@ -152,8 +152,6 @@ namespace openstudio {
       QRadioButton * m_energyPlusButton;
       std::vector<std::string> m_radianceWarnings;
       std::vector<std::string> m_radianceErrors;
-      std::vector<std::string> m_becWarnings;
-      std::vector<std::string> m_becErrors;
       std::shared_ptr<RunListModel> m_runListModel;
       openstudio::path m_modelPath;
       openstudio::path m_tempFolder;

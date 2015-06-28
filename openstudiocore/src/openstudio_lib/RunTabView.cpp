@@ -1229,8 +1229,7 @@ void RunView::updateToolsWarnings()
   QString checkBoxText;
   QString buttonText;
 
-  if(m_radianceErrors.size()>0 && m_becWarnings.size()>0){
-      QMessageBox::information(0, "AAAAAAAAAAAAAA", "AAAAAAAAAAAA" );
+  if(m_radianceErrors.size() > 0){
     m_energyPlusButton->setChecked(true);
   }
 
@@ -1375,10 +1374,6 @@ openstudio::runmanager::ToolVersion RunView::getRequiredEnergyPlusVersion()
 
 void RunView::playButtonClicked(bool t_checked)
 {
-    if(m_becButton->isChecked()){
-
-    }
-
   LOG(Debug, "playButtonClicked " << t_checked);
 
   std::shared_ptr<OSDocument> osdocument = OSAppBase::instance()->currentDocument();
@@ -1392,24 +1387,66 @@ void RunView::playButtonClicked(bool t_checked)
     }
   }
 
+  if(m_becButton->isChecked()){
+
+      QString outpath = (m_tempFolder/"resources").string().c_str();
+      if(!outpath.isEmpty()){
+
+          //GEN INPUT
+          QString filePath;
+          QString err;
+          outpath += "/run/9-BEC-0/";
+          m_outputWindow->appendPlainText(QString("Temp output : '%1'").arg(outpath));
+
+          QDir dir(outpath);
+          if (!dir.exists()) {
+              dir.mkpath(".");
+          }
+
+          QString becoutputPath = outpath+"bec.xml";
+
+          doBecInput(outpath+"input.xml", filePath, err);
+
+          if(!err.isEmpty())
+              m_outputWindow->appendPlainText(err);
+
+          callBEC(becoutputPath, m_outputWindow);
+
+          if(!doBecReport(becoutputPath, outpath, err)){
+              m_outputWindow->appendPlainText("Error BEC Report.");
+              m_outputWindow->appendPlainText(err);
+          }
+          else{
+              //QString foutpath = QString("file:///") + outpath + "report.html";
+              //QUrl url(foutpath);
+              //QDesktopServices::openUrl(url);
+              std::shared_ptr<OSDocument> osdocument = OSAppBase::instance()->currentDocument();
+              m_outputWindow->appendPlainText("Generate bec complete.");
+              m_playButton->setChecked(false);
+              osdocument->runComplete();
+              osdocument->enableTabsAfterRun();
+          }
+      }
+      return;
+  }
+
   updateToolsWarnings();
 
   if (!t_checked)
   {
-      m_playButton->setChecked(true);
-      if (!m_canceling)
-      {
-          // we are pausing the simulations
-          m_statusLabel->setText("Canceling");
-          m_canceling = true;
-          openstudio::Application::instance().processEvents();
-          runmanager::RunManager rm = runManager();
-          pauseRunManager(rm);
-          m_playButton->setChecked(false);
-      } else {
-          m_playButton->setChecked(false);
-          LOG(Debug, "Already canceling, not doing it again");
-      }
+    m_playButton->setChecked(true);
+
+    if (!m_canceling)
+    {
+      // we are pausing the simulations
+      m_statusLabel->setText("Canceling");
+      m_canceling = true;
+      openstudio::Application::instance().processEvents();
+      runmanager::RunManager rm = runManager();
+      pauseRunManager(rm);
+    } else {
+      LOG(Debug, "Already canceling, not doing it again");
+    }
   } else {
     runmanager::ConfigOptions co(true);
     co.findTools(true, true, false, true);
@@ -1466,24 +1503,15 @@ void RunView::playButtonClicked(bool t_checked)
       }
     }
 
-    //TODO IMPLEMENT BEC.
-    //if(m_becButton->isChecked() && (!m_becWarnings.empty() || !m_becErrors.empty())) {
-    //    showBECWarningsAndErrors(m_becWarnings, m_becErrors);
-    //    if(m_becErrors.size()){
-    //        return;
-    //    }
-    //    else{
-    //        // check messageBox return value to run with warnings
-    //    }
-    //}
-
     m_canceling = false;
     m_outputWindow->clear();
+
     // reset the model's sqlFile
     osdocument->model().resetSqlFile();
 
     // Tell OSDoc that great things are happening
     osdocument->disableTabsDuringRun();
+
     // we are starting the simulations
     QTimer::singleShot(0, this, SLOT(requestStartRunManager()));
   }
@@ -1491,54 +1519,11 @@ void RunView::playButtonClicked(bool t_checked)
 
 void RunView::requestStartRunManager()
 {
-    if(m_becButton->isChecked()){
-
-        QString outpath = (m_tempFolder/"resources").string().c_str();
-        if(!outpath.isEmpty()){
-
-            //GEN INPUT
-            QString filePath;
-            QString err;
-            outpath += "/run/9-BEC-0/";
-            m_outputWindow->appendPlainText(QString("Temp output : '%1'").arg(outpath));
-
-            QDir dir(outpath);
-            if (!dir.exists()) {
-                dir.mkpath(".");
-            }
-
-            QString becoutputPath = outpath+"bec.xml";
-
-            doBecInput(outpath+"input.xml", filePath, err);
-
-            if(!err.isEmpty())
-                m_outputWindow->appendPlainText(err);
-
-            callBEC(becoutputPath, m_outputWindow);
-
-            if(!doBecReport(becoutputPath, outpath, err)){
-                m_outputWindow->appendPlainText("Error BEC Report.");
-                m_outputWindow->appendPlainText(err);
-            }
-            else{
-                //QString foutpath = QString("file:///") + outpath + "report.html";
-                //QUrl url(foutpath);
-                //QDesktopServices::openUrl(url);
-                std::shared_ptr<OSDocument> osdocument = OSAppBase::instance()->currentDocument();
-                m_outputWindow->appendPlainText("Generate bec complete.");
-                m_playButton->setChecked(false);
-                osdocument->runComplete();
-                osdocument->enableTabsAfterRun();
-            }
-        }
-    }
-    else{
-        // we are starting the simulations
-        std::shared_ptr<OSDocument> osdocument = OSAppBase::instance()->currentDocument();
-        bool requireCalibrationReports = (osdocument->model().getConcreteModelObjects<model::UtilityBill>().size() > 0);
-        openstudio::runmanager::RunManager rm = runManager();
-        startRunManager(rm, m_modelPath, m_tempFolder, m_radianceButton->isChecked(), requireCalibrationReports, this);
-    }
+  // we are starting the simulations
+  std::shared_ptr<OSDocument> osdocument = OSAppBase::instance()->currentDocument();
+  bool requireCalibrationReports = (osdocument->model().getConcreteModelObjects<model::UtilityBill>().size() > 0);
+  openstudio::runmanager::RunManager rm = runManager();
+  startRunManager(rm, m_modelPath, m_tempFolder, m_radianceButton->isChecked(), requireCalibrationReports, this);
 }
 
 openstudio::runmanager::RunManager RunView::runManager()
@@ -1591,12 +1576,7 @@ void RunView::on_radianceGroupClicked(int idx)
     }
   }
   else if(button == m_becButton){
-      emit useRadianceStateChanged(true);
-      //TODO:IMPLEMENT Below.
-      //updateToolsWarnings();
-      //if(m_radianceErrors.size()){
-      // showRadianceWarningsAndErrors(m_radianceWarnings,m_radianceErrors);
-      //}
+     //TODO:IMPLEMENT.
   }
   else{
     emit useRadianceStateChanged(false);
