@@ -350,6 +350,7 @@ if (_className::iddObjectType() == typeToCreate) { \
     REGISTER_CONSTRUCTOR(ProgramControl);
     REGISTER_CONSTRUCTOR(PumpConstantSpeed);
     REGISTER_CONSTRUCTOR(PumpVariableSpeed);
+	REGISTER_CONSTRUCTOR(Photovoltaic);
     REGISTER_CONSTRUCTOR(RadianceParameters);
     REGISTER_CONSTRUCTOR(RefractionExtinctionGlazing);
     REGISTER_CONSTRUCTOR(RefrigerationAirChiller);
@@ -664,6 +665,7 @@ if (_className::iddObjectType() == typeToCreate) { \
     REGISTER_COPYCONSTRUCTORS(ProgramControl);
     REGISTER_COPYCONSTRUCTORS(PumpConstantSpeed);
     REGISTER_COPYCONSTRUCTORS(PumpVariableSpeed);
+	REGISTER_COPYCONSTRUCTORS(Photovoltaic);
     REGISTER_COPYCONSTRUCTORS(RadianceParameters);
     REGISTER_COPYCONSTRUCTORS(RefractionExtinctionGlazing);
     REGISTER_COPYCONSTRUCTORS(RefrigerationAirChiller);
