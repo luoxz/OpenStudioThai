@@ -76,34 +76,38 @@ namespace bec {
     QString escapeName(const std::string& name);
 
     //Util function.
-    QDomElement createTagWithText(QDomDocument &doc
-                                  , QDomElement& parent
+    QDomElement createTagWithText(QDomElement& parent
                                   , const QString &tag
                                   , const QString &text=QString());
 
     //Create BEC XML
-    void doEnvelope(const openstudio::model::Model& model, QDomDocument &doc, QDomElement& root);
-        void doOpaqueMaterial(const openstudio::model::Model& model, QDomDocument &doc, QDomElement& parent);
-        void doTransparentMaterial(const openstudio::model::Model& model, QDomDocument &doc, QDomElement& parent);
-        void doAirGapMaterial(const openstudio::model::Model& model, QDomDocument &doc, QDomElement& parent);
+    void doEnvelope(const openstudio::model::Model& model, QDomElement& parent);
+        void doOpaqueMaterial(const openstudio::model::Model& model, QDomElement& parent);
+        void doTransparentMaterial(const openstudio::model::Model& model, QDomElement& parent);
+        void doAirGapMaterial(const openstudio::model::Model& model, QDomElement& parent);
 
-        void doComponentOfSection(const openstudio::model::Model& model, QDomDocument &doc, QDomElement& parent);
-            void doOpaqueComponentList(const model::Model &model, QDomDocument &doc, QDomElement &parent);
-                void doOpaqueList(const model::Space &model, QDomDocument &doc, QDomElement &parent);
-            void doOpaqueComponentDetail(const model::Model &model, QDomDocument &doc, QDomElement &parent);
-            void doTransparentComponentList(const model::Model &model, QDomDocument &doc, QDomElement &parent);
+        void loopingModel(const openstudio::model::Model& model, QDomElement& parent);
 
-        void doSectionOfWall(const openstudio::model::Model& model, QDomDocument &doc, QDomElement& parent);
-        void doWall(const openstudio::model::Model& model, QDomDocument &doc, QDomElement& parent);
+        void doComponentOfSection(model::Surface &surface
+                                  , QDomElement &OpaqueComponentList
+                                  , QDomElement &OpaqueComponentDetail
+                                  , QDomElement &transparentComponentList
+                                  , const QHash<QString, int> &componentCheck);
 
-    void doLightingSystem(const openstudio::model::Model& model, QDomDocument &doc, QDomElement& root);
-    void doACSystem(const openstudio::model::Model& model, QDomDocument &doc, QDomElement& root);
-    void doPVSystem(const openstudio::model::Model& model, QDomDocument &doc, QDomElement& root);
-    void doHotWaterSystem(const openstudio::model::Model& model, QDomDocument &doc, QDomElement& root);
-    void doOtherEquipment(const openstudio::model::Model& model, QDomDocument &doc, QDomElement& root);
-    void doBuildingEnvelope(const openstudio::model::Model& model, QDomDocument &doc, QDomElement& root);
-        void BuildingZoneList(const openstudio::model::Model& model, QDomDocument &doc, QDomElement& root);
-        void BuildingZoneDetail(const openstudio::model::Model& model, QDomDocument &doc, QDomElement& root);
+            void doOpaqueComponentList(const model::Model &model, QDomElement &parent);
+                void doOpaqueList(const model::Space &model, QDomElement &parent);
+            void doOpaqueComponentDetail(const model::Model &model, QDomElement &parent);
+            void doTransparentComponentList(const model::Model &model, QDomElement &parent);
+
+        void doSectionOfWall(const openstudio::model::Model& model, QDomElement& parent);
+        void doWall(const openstudio::model::Model& model, QDomElement& parent);
+
+    void doLightingSystem(const openstudio::model::Model& model, QDomElement& root);
+    void doACSystem(const openstudio::model::Model& model, QDomElement& root);
+    void doPVSystem(const openstudio::model::Model& model, QDomElement& root);
+    void doHotWaterSystem(const openstudio::model::Model& model, QDomElement& root);
+    void doOtherEquipment(const openstudio::model::Model& model, QDomElement& root);
+    void doBuildingEnvelope(const openstudio::model::Model& model, QDomElement& root);
 
     // listed in translation order
     boost::optional<QDomDocument> translateModel(const openstudio::model::Model& model);
@@ -132,8 +136,8 @@ namespace bec {
     std::map<openstudio::Handle, QDomElement> m_translatedObjects;
 
     StringStreamLogSink m_logSink;
-
     ProgressBar* m_progressBar;
+    QDomDocument* _doc;
 
     REGISTER_LOGGER("openstudio.bec.ForwardTranslator");
   };

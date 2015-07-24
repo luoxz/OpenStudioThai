@@ -26,6 +26,8 @@
 #include "../model/Material_Impl.hpp"
 #include "../model/ConstructionBase.hpp"
 #include "../model/ConstructionBase_Impl.hpp"
+#include "../model/Construction.hpp"
+#include "../model/Construction_Impl.hpp"
 #include "../model/Facility.hpp"
 #include "../model/Facility_Impl.hpp"
 #include "../model/Building.hpp"
@@ -71,6 +73,8 @@
 #include "../model/WaterUseEquipmentDefinition_Impl.hpp"
 #include "../model/Surface.hpp"
 #include "../model/Surface_Impl.hpp"
+#include "../model/RenderingColor.hpp"
+#include "../model/RenderingColor_Impl.hpp"
 
 #include "../model/SimpleGlazing.hpp"
 #include "../model/SimpleGlazing_Impl.hpp"
@@ -169,153 +173,237 @@ namespace bec {
     return result;
   }
 
-  QDomElement ForwardTranslator::createTagWithText(QDomDocument &doc, QDomElement &parent, const QString &tag, const QString &text)
+  QDomElement ForwardTranslator::createTagWithText(QDomElement &parent, const QString &tag, const QString &text)
   {
-      QDomElement elm = doc.createElement(tag);
+      QDomElement elm = _doc->createElement(tag);
       if(!text.isEmpty())
-            elm.appendChild(doc.createTextNode(escapeName(text.toStdString())));
+            elm.appendChild(_doc->createTextNode(escapeName(text.toStdString())));
 
       parent.appendChild(elm);
       return elm;
   }
 
-  void ForwardTranslator::doEnvelope(const model::Model &model, QDomDocument& doc, QDomElement &root)
+  void ForwardTranslator::doEnvelope(const model::Model &model, QDomElement &parent)
   {
-        QDomElement material = doc.createElement("Material");
-        root.appendChild(material);
+        QDomElement material = _doc->createElement("Material");
+        parent.appendChild(material);
 
-        QDomElement OpaqueMaterial = doc.createElement("OpaqueMaterial");
+        QDomElement OpaqueMaterial = _doc->createElement("OpaqueMaterial");
         material.appendChild(OpaqueMaterial);
-        doOpaqueMaterial(model, doc, OpaqueMaterial);
+        doOpaqueMaterial(model, OpaqueMaterial);
 
-        QDomElement TransparentMaterial = doc.createElement("TransparentMaterial");
+        QDomElement TransparentMaterial = _doc->createElement("TransparentMaterial");
         material.appendChild(TransparentMaterial);
-        doTransparentMaterial(model, doc, TransparentMaterial);
+        doTransparentMaterial(model, TransparentMaterial);
 
-        QDomElement AirGapMaterial = doc.createElement("AirGapMaterial");
+        QDomElement AirGapMaterial = _doc->createElement("AirGapMaterial");
         material.appendChild(AirGapMaterial);
-        doAirGapMaterial(model, doc, AirGapMaterial);
+        doAirGapMaterial(model, AirGapMaterial);
 
         //TODO:IMPLEMENT ComponentOfSection
-        doComponentOfSection(model, doc, root);
+        loopingModel(model, parent);
 
         //TODO:IMPLEMENT SectionOfWall
-        doSectionOfWall(model, doc, root);
+        doSectionOfWall(model, parent);
 
         //TODO:IMPLEMENT Wall
-        doWall(model, doc, root);
+        doWall(model, parent);
   }
 
-  void ForwardTranslator::doOpaqueMaterial(const model::Model &model, QDomDocument &doc, QDomElement &parent)
+  void ForwardTranslator::doOpaqueMaterial(const model::Model &model, QDomElement &parent)
   {
-      //QDomElement root = doc.createElement("OpaqueMat");
+      //QDomElement root = _doc->createElement("OpaqueMat");
       std::vector<model::Material> materials = model.getModelObjects<model::Material>();
       std::sort(materials.begin(), materials.end(), WorkspaceObjectNameLess());
       for (const model::Material& material : materials){
 
-          QDomElement OpaqueMat = doc.createElement("OpaqueMat");
+          QDomElement OpaqueMat = _doc->createElement("OpaqueMat");
           parent.appendChild(OpaqueMat);
 
           //!- Name
-          createTagWithText(doc, OpaqueMat, "OpaqueMaterialName", material.name().get().c_str());
+          createTagWithText(OpaqueMat, "OpaqueMaterialName", material.name().get().c_str());
           //WARNING: <OpaqueMaterialType>Wall</OpaqueMaterialType> Not in Openstudio.
-          createTagWithText(doc, OpaqueMat, "OpaqueMaterialType", "Wall");
+          createTagWithText(OpaqueMat, "OpaqueMaterialType", "Wall");
 
           if (material.optionalCast<model::StandardOpaqueMaterial>()){
 
               //!- Conductivity{ W / m - K }
               model::StandardOpaqueMaterial m = material.optionalCast<model::StandardOpaqueMaterial>().get();
 
-              createTagWithText(doc, OpaqueMat, "OpaqueMaterialThermalConductivity", QString::number(m.conductivity()));
-              createTagWithText(doc, OpaqueMat, "OpaqueMaterialThermalConductivityUnit", "W/mK");
+              createTagWithText(OpaqueMat, "OpaqueMaterialThermalConductivity", QString::number(m.conductivity()));
+              createTagWithText(OpaqueMat, "OpaqueMaterialThermalConductivityUnit", "W/mK");
 
               //!- Density{ kg / m3 }
-              createTagWithText(doc, OpaqueMat, "OpaqueMaterialDensity", QString::number(m.density()));
-              createTagWithText(doc, OpaqueMat, "OpaqueMaterialDensityUnit", "kg/m^3");
+              createTagWithText(OpaqueMat, "OpaqueMaterialDensity", QString::number(m.density()));
+              createTagWithText(OpaqueMat, "OpaqueMaterialDensityUnit", "kg/m^3");
 
               //!- Specific Heat{ J / kg - K }
-              createTagWithText(doc, OpaqueMat, "OpaqueMaterialSpecificHeat", QString::number(m.specificHeat()));
-              createTagWithText(doc, OpaqueMat, "OpaqueMaterialSpecificHeatUnit", "kJ/kgK");
+              createTagWithText(OpaqueMat, "OpaqueMaterialSpecificHeat", QString::number(m.specificHeat()));
+              createTagWithText(OpaqueMat, "OpaqueMaterialSpecificHeatUnit", "kJ/kgK");
 
 //              //!- Thermal Absorptance
 //              std::double_t thermalAbsorptance = m.thermalAbsorptance();
-//              OpaqueMaterialName = doc.createElement("ThermalAbsorptance");
-//              OpaqueMaterialName.appendChild(doc.createTextNode(QString::number(thermalAbsorptance)));
+//              OpaqueMaterialName = _doc->createElement("ThermalAbsorptance");
+//              OpaqueMaterialName.appendChild(_doc->createTextNode(QString::number(thermalAbsorptance)));
 //              OpaqueMat.appendChild(OpaqueMaterialName);
 
 //              //!- Solar Absorptance
 //              std::double_t solarAbsorptance = m.solarAbsorptance();
-//              OpaqueMaterialName = doc.createElement("SolarAbsorptance");
-//              OpaqueMaterialName.appendChild(doc.createTextNode(QString::number(solarAbsorptance)));
+//              OpaqueMaterialName = _doc->createElement("SolarAbsorptance");
+//              OpaqueMaterialName.appendChild(_doc->createTextNode(QString::number(solarAbsorptance)));
 //              OpaqueMat.appendChild(OpaqueMaterialName);
 
 //              //!- Visible Absorptance
 //              std::double_t visibleAbsorptance = m.visibleAbsorptance();
-//              OpaqueMaterialName = doc.createElement("VisibleAbsorptance");
-//              OpaqueMaterialName.appendChild(doc.createTextNode(QString::number(visibleAbsorptance)));
+//              OpaqueMaterialName = _doc->createElement("VisibleAbsorptance");
+//              OpaqueMaterialName.appendChild(_doc->createTextNode(QString::number(visibleAbsorptance)));
 //              OpaqueMat.appendChild(OpaqueMaterialName);
           }
       }
   }
 
-  void ForwardTranslator::doTransparentMaterial(const model::Model &model, QDomDocument &doc, QDomElement &parent)
+  void ForwardTranslator::doTransparentMaterial(const model::Model &model, QDomElement &parent)
   {
         model::SimpleGlazingVector glazings = model.getModelObjects<model::SimpleGlazing>();
         model::SimpleGlazingVector::iterator it = glazings.begin();
 
-        createTagWithText(doc, parent, "TransparentSize", QString::number(glazings.size()));
+        createTagWithText(parent, "TransparentSize", QString::number(glazings.size()));
 
         while (it!=glazings.end()) {
             model::SimpleGlazing& glass = (*it);
-            QDomElement TranMat = doc.createElement("TranMat");
-            createTagWithText(doc, TranMat, "TransparentMaterialName", glass.name().get().c_str());
-            createTagWithText(doc, TranMat, "TransparentMaterialThickness", QString::number(glass.thickness()));
-            createTagWithText(doc, TranMat, "TransparentMaterialThicknessUnit", "m");
-            createTagWithText(doc, TranMat, "TransparentMaterialVisibleRayReflectance", "1");//WARNING: NOTING
-            createTagWithText(doc, TranMat, "TransparentMaterialVisibleRayTransmittance", QString::number(glass.visibleTransmittance().get()));
-            createTagWithText(doc, TranMat, "TransparentMaterialSolarEnergyReflectance", "1");//WARNING: NOTING
-            createTagWithText(doc, TranMat, "TransparentMaterialSolarEnergyTransmittance", "1");//WARNING: NOTING
-            createTagWithText(doc, TranMat, "TransparentMaterialSolarEnergyAbsorption", "1");//WARNING: NOTING
-            createTagWithText(doc, TranMat, "TransparentMaterialUvalue", QString::number(glass.uFactor()));
-            createTagWithText(doc, TranMat, "TransparentMaterialUvalueUnit", "w/M^2k");
-            createTagWithText(doc, TranMat, "TransparentMaterialSHGC", QString::number(glass.solarHeatGainCoefficient()));//WARNING: NOTING
+            QDomElement TranMat = _doc->createElement("TranMat");
+            createTagWithText(TranMat, "TransparentMaterialName", glass.name().get().c_str());
+            createTagWithText(TranMat, "TransparentMaterialThickness", QString::number(glass.thickness()));
+            createTagWithText(TranMat, "TransparentMaterialThicknessUnit", "m");
+            createTagWithText(TranMat, "TransparentMaterialVisibleRayReflectance", "1");//WARNING: NOTING
+            createTagWithText(TranMat, "TransparentMaterialVisibleRayTransmittance", QString::number(glass.visibleTransmittance().get()));
+            createTagWithText(TranMat, "TransparentMaterialSolarEnergyReflectance", "1");//WARNING: NOTING
+            createTagWithText(TranMat, "TransparentMaterialSolarEnergyTransmittance", "1");//WARNING: NOTING
+            createTagWithText(TranMat, "TransparentMaterialSolarEnergyAbsorption", "1");//WARNING: NOTING
+            createTagWithText(TranMat, "TransparentMaterialUvalue", QString::number(glass.uFactor()));
+            createTagWithText(TranMat, "TransparentMaterialUvalueUnit", "w/M^2k");
+            createTagWithText(TranMat, "TransparentMaterialSHGC", QString::number(glass.solarHeatGainCoefficient()));//WARNING: NOTING
             parent.appendChild(TranMat);
             it++;
         }
   }
 
-  void ForwardTranslator::doAirGapMaterial(const model::Model &model, QDomDocument &doc, QDomElement &parent)
+  void ForwardTranslator::doAirGapMaterial(const model::Model &model, QDomElement &parent)
   {
       model::AirGapVector airGaps = model.getModelObjects<model::AirGap>();
       model::AirGapVector::iterator it = airGaps.begin();
 
-      createTagWithText(doc, parent, "AirGapMaterialSize", QString::number(airGaps.size()));
+      createTagWithText(parent, "AirGapMaterialSize", QString::number(airGaps.size()));
 
       while (it!=airGaps.end()) {
           model::AirGap& airgap = (*it);
-          QDomElement TranMat = doc.createElement("AirGapMat");
-          createTagWithText(doc, TranMat, "AirGapMaterialName", airgap.name().get().c_str());
-          createTagWithText(doc, TranMat, "AirGapMaterialType", "Roof"); //WARNING: NOTING
-          createTagWithText(doc, TranMat, "AirGapMaterialSurfaceType", "????"); //WARNING: NOTING
-          createTagWithText(doc, TranMat, "AirGapMaterialThickness", QString::number(airgap.thickness()));//WARNING: NOTING
-          createTagWithText(doc, TranMat, "AirGapMaterialThicknessUnit", "m");
-          createTagWithText(doc, TranMat, "AirGapMaterialAirGapResistance", QString::number(airgap.thermalResistance()));//WARNING: NOTING
+          QDomElement TranMat = _doc->createElement("AirGapMat");
+          createTagWithText(TranMat, "AirGapMaterialName", airgap.name().get().c_str());
+          createTagWithText(TranMat, "AirGapMaterialType", "Roof"); //WARNING: NOTING
+          createTagWithText(TranMat, "AirGapMaterialSurfaceType", "????"); //WARNING: NOTING
+          createTagWithText(TranMat, "AirGapMaterialThickness", QString::number(airgap.thickness()));//WARNING: NOTING
+          createTagWithText(TranMat, "AirGapMaterialThicknessUnit", "m");
+          createTagWithText(TranMat, "AirGapMaterialAirGapResistance", QString::number(airgap.thermalResistance()));//WARNING: NOTING
           parent.appendChild(TranMat);
           it++;
       }
   }
 
-  void ForwardTranslator::doComponentOfSection(const model::Model &model, QDomDocument &doc, QDomElement &parent)
+  void ForwardTranslator::loopingModel(const model::Model &model, QDomElement &parent)
   {
-        QDomElement componentOfSection = doc.createElement("ComponentOfSection");
-        doOpaqueComponentList(model, doc, componentOfSection);
-        doOpaqueComponentDetail(model, doc, componentOfSection);
-        doTransparentComponentList(model, doc, componentOfSection);
+        //Start doComponentOfSection
+        QDomElement componentOfSection = createTagWithText(parent, "ComponentOfSection");
+        QDomElement OpaqueComponentList = createTagWithText(componentOfSection, "OpaqueComponentList");
+        QDomElement OpaqueComponentDetail = createTagWithText(componentOfSection, "OpaqueComponentDetail");
+        QDomElement transparentComponentList = createTagWithText(componentOfSection, "TransparentComponentList");
+        QHash<QString, int> componentCheck;
+        //END doComponentOfSection
+
+        std::vector<openstudio::model::BuildingStory> stories = model.getConcreteModelObjects<openstudio::model::BuildingStory>();
+
+        for (const openstudio::model::BuildingStory& buildingStory : stories) {
+
+            std::vector<openstudio::model::Space> spaces = buildingStory.spaces();
+            for (openstudio::model::Space& space : spaces){
+
+                openstudio::model::SurfaceVector surfaces = space.surfaces();
+                for (openstudio::model::Surface& surface : surfaces){
+
+                    doComponentOfSection(surface
+                                         , OpaqueComponentList
+                                         , OpaqueComponentDetail
+                                         , transparentComponentList
+                                         , componentCheck);
+                }
+            }
+        }
   }
 
-  void ForwardTranslator::doOpaqueComponentList(const model::Model &model, QDomDocument &doc, QDomElement &parent)
+  void ForwardTranslator::doComponentOfSection(openstudio::model::Surface& surface
+                                               , QDomElement &OpaqueComponentList
+                                               , QDomElement &OpaqueComponentDetail
+                                               , QDomElement &transparentComponentList
+                                               , const QHash<QString, int>& componentCheck)
   {
-      QDomElement opaqueComponentList = doc.createElement("OpaqueComponentList");
+      std::string name = surface.construction().get().name().get();
+      std::string stype = surface.surfaceType();
+      if(!((name.empty())|| componentCheck.contains(name.c_str()))){
+          boost::optional<model::ConstructionBase> scon = surface.construction();
+          if (scon){
+              boost::optional<model::Construction> construction = scon->optionalCast<model::Construction>();
+              if (construction){
+                  std::vector<model::Material> layers = construction->layers();
+                  if (!layers.empty()){
+                      if (layers[0].optionalCast<model::StandardOpaqueMaterial>()){
+                          model::StandardOpaqueMaterial outerMaterial = layers[0].cast<model::StandardOpaqueMaterial>();
+
+                          QDomElement OpaqueDetail = createTagWithText(OpaqueComponentDetail, "OpaqueDetail");
+                          createTagWithText(OpaqueDetail, "OpaqueComponentDetailListName", name.c_str());
+                          createTagWithText(OpaqueDetail, "OpaqueComponentDetailMaterialName", outerMaterial.name().get().c_str());
+                          createTagWithText(OpaqueDetail, "OpaqueComponentDetailThickness", QString::number(outerMaterial.thickness()));
+                          //createTagWithText(OpaqueDetail, "IsOpaque", QString(layers[0]->isOpaque()));
+                          createTagWithText(OpaqueDetail, "OpaqueComponentDetailThicknessUnit", "m");
+
+                          QDomElement OpaqueList = createTagWithText(OpaqueComponentList, "OpaqueList");
+                          createTagWithText(OpaqueList, "OpaqueComponentListName", name.c_str());
+                          createTagWithText(OpaqueList, "OpaqueComponentListType", stype.c_str());
+
+                          QString colorName = "White";
+                          if(construction->renderingColor()){
+                              QColor color;
+                              color.setRed(construction->renderingColor()->renderingRedValue());
+                              color.setGreen(construction->renderingColor()->renderingGreenValue());
+                              color.setBlue(construction->renderingColor()->renderingBlueValue());
+                              color.setAlpha(construction->renderingColor()->renderingAlphaValue());
+                              colorName = color.name();
+                          }
+                          createTagWithText(OpaqueList, "OpaqueComponentListOuterSurfaceColor", colorName);
+                          createTagWithText(OpaqueList, "OpaqueComponentListInnerSurfaceType", "UNKNOW");
+                          createTagWithText(OpaqueList, "OpaqueComponentListDescription", "???");
+                      }
+                      else if (layers[0].optionalCast<model::SimpleGlazing>()){
+                          model::SimpleGlazing glass = layers[0].cast<model::SimpleGlazing>();
+
+                          QDomElement TransparentList = createTagWithText(transparentComponentList, "TransparentList");
+                          createTagWithText(TransparentList, "TransparentComponentListName", name.c_str());
+                          createTagWithText(TransparentList, "TransparentComponentListType", stype.c_str());
+                          createTagWithText(TransparentList, "TransparentComponentListSHGC", QString::number(glass.solarHeatGainCoefficient()));
+                          createTagWithText(TransparentList, "TransparentComponentListTransmittance", QString::number(glass.visibleTransmittance().get()));
+                          //createTagWithText(TransparentList, "IsOpaque", QString(layers[0]->isOpaque()));
+                          createTagWithText(TransparentList, "TransparentComponentListDescription", "???");
+                      }
+                      else{
+                          createTagWithText(OpaqueComponentList, "ERROR", name.c_str());
+                      }
+                  }
+              }
+          }
+      }
+  }
+
+  void ForwardTranslator::doOpaqueComponentList(const model::Model &model, QDomElement &parent)
+  {
+      QDomElement opaqueComponentList = _doc->createElement("OpaqueComponentList");
       parent.appendChild(opaqueComponentList);
 //      boost::optional<openstudio::model::Building> building = model.building();
 //      if(building){
@@ -327,70 +415,107 @@ namespace bec {
 //      }
   }
 
-  void ForwardTranslator::doOpaqueComponentDetail(const model::Model &model, QDomDocument &doc, QDomElement &parent)
+  void ForwardTranslator::doOpaqueComponentDetail(const model::Model &model, QDomElement &parent)
   {
 
   }
 
-  void ForwardTranslator::doTransparentComponentList(const model::Model &model, QDomDocument &doc, QDomElement &parent)
+  void ForwardTranslator::doTransparentComponentList(const model::Model &model, QDomElement &parent)
   {
 
   }
 
-  void ForwardTranslator::doOpaqueList(const openstudio::model::Space &model, QDomDocument &doc, QDomElement &parent)
+  void ForwardTranslator::doOpaqueList(const openstudio::model::Space &model, QDomElement &parent)
   {
 
   }
 
-  void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomDocument &doc, QDomElement &parent)
+  void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &parent)
   {
-        QDomElement sectionOfWall = doc.createElement("SectionOfWall");
+      QDomElement sectionOfWall = createTagWithText(parent, "SectionOfWall");
+      QDomElement SectionList = createTagWithText(sectionOfWall, "SectionList");
+      QDomElement SectionDetail = createTagWithText(sectionOfWall, "SectionDetail");
+
+      std::vector<openstudio::model::BuildingStory> stories = model.getConcreteModelObjects<openstudio::model::BuildingStory>();
+
+      for (const openstudio::model::BuildingStory& buildingStory : stories) {
+
+          std::vector<openstudio::model::Space> spaces = buildingStory.spaces();
+          for (openstudio::model::Space& space : spaces){
+
+              openstudio::model::SurfaceVector surfaces = space.surfaces();
+              for (openstudio::model::Surface& surface : surfaces){
+                  if(surface.surfaceType() == "Wall"){
+
+                      QDomElement SectionL = createTagWithText(SectionList,"SectionL");
+                      createTagWithText(SectionL, "SectionListName", surface.name().get().c_str());
+                      createTagWithText(SectionL, "SectionListType", surface.surfaceType().c_str());
+                      createTagWithText(SectionL, "SectionListDescription", "???");
+
+                      QDomElement SectionD = createTagWithText(SectionDetail,"SectionD");
+                      createTagWithText(SectionD, "SectionDetailSectionListName", surface.name().get().c_str());
+                      createTagWithText(SectionD, "SectionDetailComponentName", surface.construction().get().name().get().c_str());
+                      createTagWithText(SectionD, "SectionDetailArea", QString::number(surface.netArea()));
+                      createTagWithText(SectionD, "SectionDetailAreaUnit", "m^2");
+
+                      openstudio::model::SubSurfaceVector subs = surface.subSurfaces();
+
+                      for (openstudio::model::SubSurface& sub : subs){
+                          QDomElement SectionD = createTagWithText(SectionDetail,"SectionD");
+                          createTagWithText(SectionD, "SectionDetailSectionListName", surface.name().get().c_str());
+                          createTagWithText(SectionD, "SectionDetailComponentName", sub.construction().get().name().get().c_str());
+                          createTagWithText(SectionD, "SectionDetailArea", QString::number(sub.netArea()));
+                          createTagWithText(SectionD, "SectionDetailAreaUnit", "m^2");
+                      }
+                  }
+              }
+          }
+      }
   }
 
-  void ForwardTranslator::doWall(const model::Model &model, QDomDocument &doc, QDomElement &parent)
+  void ForwardTranslator::doWall(const model::Model &model, QDomElement &parent)
   {
-        QDomElement wall = doc.createElement("Wall");
+      QDomElement wall = _doc->createElement("Wall");
   }
 
-  void ForwardTranslator::doLightingSystem(const model::Model &model, QDomDocument& doc, QDomElement &root)
-  {
-
-  }
-
-  void ForwardTranslator::doACSystem(const model::Model &model, QDomDocument &doc, QDomElement &root)
+  void ForwardTranslator::doLightingSystem(const model::Model &model, QDomElement &root)
   {
 
   }
 
-  void ForwardTranslator::doPVSystem(const model::Model &model, QDomDocument& doc, QDomElement &root)
+  void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &root)
   {
 
   }
 
-  void ForwardTranslator::doHotWaterSystem(const model::Model &model, QDomDocument& doc, QDomElement &root)
+  void ForwardTranslator::doPVSystem(const model::Model &model, QDomElement &root)
   {
 
   }
 
-  void ForwardTranslator::doOtherEquipment(const model::Model &model, QDomDocument& doc, QDomElement &root)
+  void ForwardTranslator::doHotWaterSystem(const model::Model &model, QDomElement &root)
   {
 
   }
 
-  void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomDocument &doc, QDomElement &root)
+  void ForwardTranslator::doOtherEquipment(const model::Model &model, QDomElement &root)
   {
-      QDomElement buildingEnvelope = doc.createElement("BuildingEnvelope");
+
+  }
+
+  void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElement &root)
+  {
+      QDomElement buildingEnvelope = _doc->createElement("BuildingEnvelope");
       root.appendChild(buildingEnvelope);
 
-      QDomElement buildingZoneList = doc.createElement("BuildingZoneList");
+      QDomElement buildingZoneList = _doc->createElement("BuildingZoneList");
       buildingEnvelope.appendChild(buildingZoneList);
 
-      QDomElement buildingZoneDetail = doc.createElement("BuildingZoneDetail");
+      QDomElement buildingZoneDetail = _doc->createElement("BuildingZoneDetail");
       buildingEnvelope.appendChild(buildingZoneDetail);
 
-      QDomElement buildingZoneExteriorWall = doc.createElement("BuildingZoneExteriorWall");
+      QDomElement buildingZoneExteriorWall = _doc->createElement("BuildingZoneExteriorWall");
       buildingEnvelope.appendChild(buildingZoneExteriorWall);
-
 
       // Get stories
       std::vector<openstudio::model::BuildingStory> stories = model.getConcreteModelObjects<openstudio::model::BuildingStory>();
@@ -401,18 +526,18 @@ namespace bec {
           std::vector<openstudio::model::Space> spaces = buildingStory.spaces();
           for (openstudio::model::Space& space : spaces){
 
-              QDomElement buildingZoneL = doc.createElement("BuildingZoneL");
+              QDomElement buildingZoneL = _doc->createElement("BuildingZoneL");
               buildingZoneList.appendChild(buildingZoneL);
 
-              //createTagWithText(doc, buildingZoneL, "BuildingZoneListTYPE", surface.surfaceType().c_str());
-              //createTagWithText(doc, buildingZoneL, "BuildingZoneListIsGround", QString::number(surface.isGroundSurface()));
+              //createTagWithText(buildingZoneL, "BuildingZoneListTYPE", surface.surfaceType().c_str());
+              //createTagWithText(buildingZoneL, "BuildingZoneListIsGround", QString::number(surface.isGroundSurface()));
               std::string zonelistName = space.name().get();
               if(zonelistName.empty())
                   zonelistName = std::string("ZONE_") + QString::number(floor).toStdString();
 
-              createTagWithText(doc, buildingZoneL, "BuildingZoneListName", zonelistName.c_str());
-              createTagWithText(doc, buildingZoneL, "BuildingZoneListFloor", QString::number(floor));
-              createTagWithText(doc, buildingZoneL, "BuildingZoneListDescription", "???");
+              createTagWithText(buildingZoneL, "BuildingZoneListName", zonelistName.c_str());
+              createTagWithText(buildingZoneL, "BuildingZoneListFloor", QString::number(floor));
+              createTagWithText(buildingZoneL, "BuildingZoneListDescription", "???");
 
               double floorArea = 0.0;
               openstudio::model::SurfaceVector surfaces = space.surfaces();
@@ -422,21 +547,28 @@ namespace bec {
                 }
                 else if(surface.surfaceType() == "Wall"){
                     //buildingZoneExteriorWall
-                    QDomElement buildingZoneWall = createTagWithText(doc, buildingZoneExteriorWall, "BuildingZoneWall");
-                    createTagWithText(doc, buildingZoneWall, "BuildingZoneWallListName", zonelistName.c_str());
-                    //createTagWithText(doc, buildingZoneWall, "BuildingZoneWallWallName", surface.surfaceType().c_str());
-                    createTagWithText(doc, buildingZoneWall, "BuildingZoneWallWallName", surface.name().get().c_str());
+                    QDomElement buildingZoneWall = createTagWithText(buildingZoneExteriorWall, "BuildingZoneWall");
+                    createTagWithText(buildingZoneWall, "BuildingZoneWallListName", zonelistName.c_str());
+                    //createTagWithText(buildingZoneWall, "BuildingZoneWallWallName", surface.surfaceType().c_str());
+                    createTagWithText(buildingZoneWall, "BuildingZoneWallWallName", surface.name().get().c_str());
                     //TODO:LINK TO MATERIAL.
-                    createTagWithText(doc, buildingZoneWall, "BuildingZoneWallSectionName", surface.construction().get().name().get().c_str());
-                    createTagWithText(doc, buildingZoneWall, "BuildingZoneWallArea", QString::number(surface.netArea()));
-                    createTagWithText(doc, buildingZoneWall, "BuildingZoneWallAreaUnit", "m^2");
+                    createTagWithText(buildingZoneWall, "BuildingZoneWallSectionName", surface.construction().get().name().get().c_str());
+
+                    openstudio::model::SubSurfaceVector subs = surface.subSurfaces();
+
+                    double area = surface.netArea();
+                    for (openstudio::model::SubSurface& sub : subs){
+                        area+=sub.netArea();
+                    }
+                    createTagWithText(buildingZoneWall, "BuildingZoneWallArea", QString::number(area));
+                    createTagWithText(buildingZoneWall, "BuildingZoneWallAreaUnit", "m^2");
                 }
                 else{ //RoofCeiling
 
                 }
               }
-              createTagWithText(doc, buildingZoneL, "BuildingZoneListArea", QString::number(floorArea));
-              createTagWithText(doc, buildingZoneL, "BuildingZoneListAreaUnit", "m^2");
+              createTagWithText(buildingZoneL, "BuildingZoneListArea", QString::number(floorArea));
+              createTagWithText(buildingZoneL, "BuildingZoneListAreaUnit", "m^2");
           }
           floor++;
       }
@@ -448,15 +580,16 @@ namespace bec {
     doc.createProcessingInstruction("xml", "version=\"1.0\" encoding=\"utf-8\"");
 
     QDomElement BECInput = doc.createElement("BECInput");
+    _doc = &doc;
     doc.appendChild(BECInput);
 
-    doEnvelope(model, doc, BECInput);
-    doLightingSystem(model, doc, BECInput);
-    doACSystem(model, doc, BECInput);
-    doPVSystem(model, doc, BECInput);
-    doHotWaterSystem(model, doc, BECInput);
-    doOtherEquipment(model, doc, BECInput);
-    doBuildingEnvelope(model, doc, BECInput);
+    doEnvelope(model, BECInput);
+    doLightingSystem(model, BECInput);
+    doACSystem(model, BECInput);
+    doPVSystem(model, BECInput);
+    doHotWaterSystem(model, BECInput);
+    doOtherEquipment(model, BECInput);
+    doBuildingEnvelope(model, BECInput);
 
     //boost::optional<QDomElement> myModel = translateMyModel(model,doc);
     //BECElement.appendChild(*myModel);
@@ -514,7 +647,6 @@ namespace bec {
 
   boost::optional<QDomElement> ForwardTranslator::translateMyModel(const openstudio::model::Model& model, QDomDocument& doc)
   {	
-	  
 	  std::string name;
 	  //double value;
 	  QDomElement result = doc.createElement("MyModel");
