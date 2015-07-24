@@ -92,6 +92,7 @@
 #include "../utilities/plot/ProgressBar.hpp"
 #include "../utilities/core/Assert.hpp"
 
+#include <utilities/idd/IddEnums.hxx>
 
 #include <boost/math/constants/constants.hpp>
 
@@ -188,20 +189,10 @@ namespace bec {
         QDomElement material = _doc->createElement("Material");
         parent.appendChild(material);
 
-        QDomElement OpaqueMaterial = _doc->createElement("OpaqueMaterial");
-        material.appendChild(OpaqueMaterial);
-        doOpaqueMaterial(model, OpaqueMaterial);
-
-        QDomElement TransparentMaterial = _doc->createElement("TransparentMaterial");
-        material.appendChild(TransparentMaterial);
-        doTransparentMaterial(model, TransparentMaterial);
-
-        QDomElement AirGapMaterial = _doc->createElement("AirGapMaterial");
-        material.appendChild(AirGapMaterial);
-        doAirGapMaterial(model, AirGapMaterial);
+        doMaterial(model, material);
 
         //TODO:IMPLEMENT ComponentOfSection
-        loopingModel(model, parent);
+        doComponentLoop(model, parent);
 
         //TODO:IMPLEMENT SectionOfWall
         doSectionOfWall(model, parent);
@@ -210,26 +201,25 @@ namespace bec {
         doWall(model, parent);
   }
 
-  void ForwardTranslator::doOpaqueMaterial(const model::Model &model, QDomElement &parent)
+  void ForwardTranslator::doMaterial(const model::Model &model, QDomElement &parent)
   {
-      //QDomElement root = _doc->createElement("OpaqueMat");
+      QDomElement OpaqueMaterial = createTagWithText(parent, "OpaqueMaterial");
+      QDomElement TransparentMaterial = createTagWithText(parent, "TransparentMaterial");
+      QDomElement AirGapMaterial = createTagWithText(parent, "AirGapMaterial");
+
+      QDomElement UNKNOW_MATERIAL;
+
       std::vector<model::Material> materials = model.getModelObjects<model::Material>();
-      std::sort(materials.begin(), materials.end(), WorkspaceObjectNameLess());
+
       for (const model::Material& material : materials){
-
-          QDomElement OpaqueMat = _doc->createElement("OpaqueMat");
-          parent.appendChild(OpaqueMat);
-
-          //!- Name
-          createTagWithText(OpaqueMat, "OpaqueMaterialName", material.name().get().c_str());
-          //WARNING: <OpaqueMaterialType>Wall</OpaqueMaterialType> Not in Openstudio.
-          createTagWithText(OpaqueMat, "OpaqueMaterialType", "Wall");
-
           if (material.optionalCast<model::StandardOpaqueMaterial>()){
 
+              QDomElement OpaqueMat = createTagWithText(OpaqueMaterial, "OpaqueMat");
+              createTagWithText(OpaqueMat, "OpaqueMaterialName", material.name().get().c_str());
               //!- Conductivity{ W / m - K }
-              model::StandardOpaqueMaterial m = material.optionalCast<model::StandardOpaqueMaterial>().get();
-
+              model::StandardOpaqueMaterial m = material.cast<model::StandardOpaqueMaterial>();
+              //WARNING: <OpaqueMaterialType>Wall</OpaqueMaterialType> Not in Openstudio.
+              createTagWithText(OpaqueMat, "OpaqueMaterialType", "Wall");
               createTagWithText(OpaqueMat, "OpaqueMaterialThermalConductivity", QString::number(m.conductivity()));
               createTagWithText(OpaqueMat, "OpaqueMaterialThermalConductivityUnit", "W/mK");
 
@@ -240,24 +230,39 @@ namespace bec {
               //!- Specific Heat{ J / kg - K }
               createTagWithText(OpaqueMat, "OpaqueMaterialSpecificHeat", QString::number(m.specificHeat()));
               createTagWithText(OpaqueMat, "OpaqueMaterialSpecificHeatUnit", "kJ/kgK");
-
-//              //!- Thermal Absorptance
-//              std::double_t thermalAbsorptance = m.thermalAbsorptance();
-//              OpaqueMaterialName = _doc->createElement("ThermalAbsorptance");
-//              OpaqueMaterialName.appendChild(_doc->createTextNode(QString::number(thermalAbsorptance)));
-//              OpaqueMat.appendChild(OpaqueMaterialName);
-
-//              //!- Solar Absorptance
-//              std::double_t solarAbsorptance = m.solarAbsorptance();
-//              OpaqueMaterialName = _doc->createElement("SolarAbsorptance");
-//              OpaqueMaterialName.appendChild(_doc->createTextNode(QString::number(solarAbsorptance)));
-//              OpaqueMat.appendChild(OpaqueMaterialName);
-
-//              //!- Visible Absorptance
-//              std::double_t visibleAbsorptance = m.visibleAbsorptance();
-//              OpaqueMaterialName = _doc->createElement("VisibleAbsorptance");
-//              OpaqueMaterialName.appendChild(_doc->createTextNode(QString::number(visibleAbsorptance)));
-//              OpaqueMat.appendChild(OpaqueMaterialName);
+          }
+          else if(material.optionalCast<model::SimpleGlazing>())       {
+              model::SimpleGlazing glass = material.cast<model::SimpleGlazing>();
+              QDomElement TranMat = createTagWithText(TransparentMaterial, "TranMat");
+              createTagWithText(TranMat, "TransparentMaterialName", glass.name().get().c_str());
+              createTagWithText(TranMat, "TransparentMaterialThickness", QString::number(glass.thickness()));
+              createTagWithText(TranMat, "TransparentMaterialThicknessUnit", "m");
+              createTagWithText(TranMat, "TransparentMaterialVisibleRayReflectance", "");//WARNING: NOTING
+              createTagWithText(TranMat, "TransparentMaterialVisibleRayTransmittance", QString::number(glass.visibleTransmittance().get()));
+              createTagWithText(TranMat, "TransparentMaterialSolarEnergyReflectance", "");//WARNING: NOTING
+              createTagWithText(TranMat, "TransparentMaterialSolarEnergyTransmittance", "");//WARNING: NOTING
+              createTagWithText(TranMat, "TransparentMaterialSolarEnergyAbsorption", "");//WARNING: NOTING
+              createTagWithText(TranMat, "TransparentMaterialUvalue", QString::number(glass.uFactor()));
+              createTagWithText(TranMat, "TransparentMaterialUvalueUnit", "w/M^2k");
+              createTagWithText(TranMat, "TransparentMaterialSHGC", QString::number(glass.solarHeatGainCoefficient()));//WARNING: NOTING
+          }
+          else if(material.optionalCast<model::AirGap>()){
+              model::AirGap airgap = material.cast<model::AirGap>();
+              QDomElement AirGapMat = createTagWithText(AirGapMaterial, "AirGapMat");
+              createTagWithText(AirGapMat, "AirGapMaterialName", airgap.name().get().c_str());
+              createTagWithText(AirGapMat, "AirGapMaterialType", ""); //WARNING: NOTING
+              createTagWithText(AirGapMat, "AirGapMaterialSurfaceType", ""); //WARNING: NOTING
+              createTagWithText(AirGapMat, "AirGapMaterialThickness", QString::number(airgap.thickness()));
+              createTagWithText(AirGapMat, "AirGapMaterialThicknessUnit", "m");
+              createTagWithText(AirGapMat, "AirGapMaterialAirGapResistance", QString::number(airgap.thermalResistance()));
+          }
+          else{
+              if(UNKNOW_MATERIAL.isNull()){
+                  UNKNOW_MATERIAL = createTagWithText(parent, "UNKNOW_MATERIALS");
+              }
+              QDomElement UNKNOW = createTagWithText(UNKNOW_MATERIAL, "UNKNOW");
+              createTagWithText(UNKNOW, "NAME", material.name().get().c_str());
+              createTagWithText(UNKNOW, "TYPE", material.iddObject().name().c_str());
           }
       }
   }
@@ -309,7 +314,7 @@ namespace bec {
       }
   }
 
-  void ForwardTranslator::loopingModel(const model::Model &model, QDomElement &parent)
+  void ForwardTranslator::doComponentLoop(const model::Model &model, QDomElement &parent)
   {
         //Start doComponentOfSection
         QDomElement componentOfSection = createTagWithText(parent, "ComponentOfSection");
@@ -480,7 +485,7 @@ namespace bec {
 
   void ForwardTranslator::doLightingSystem(const model::Model &model, QDomElement &root)
   {
-
+        LightingSystem
   }
 
   void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &root)
@@ -503,10 +508,10 @@ namespace bec {
 
   }
 
-  void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElement &root)
+  void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElement &becInput)
   {
       QDomElement buildingEnvelope = _doc->createElement("BuildingEnvelope");
-      root.appendChild(buildingEnvelope);
+      becInput.appendChild(buildingEnvelope);
 
       QDomElement buildingZoneList = _doc->createElement("BuildingZoneList");
       buildingEnvelope.appendChild(buildingZoneList);

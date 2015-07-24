@@ -82,11 +82,10 @@ namespace bec {
 
     //Create BEC XML
     void doEnvelope(const openstudio::model::Model& model, QDomElement& parent);
-        void doOpaqueMaterial(const openstudio::model::Model& model, QDomElement& parent);
+        void doMaterial(const openstudio::model::Model& model, QDomElement& parent);
         void doTransparentMaterial(const openstudio::model::Model& model, QDomElement& parent);
         void doAirGapMaterial(const openstudio::model::Model& model, QDomElement& parent);
-
-        void loopingModel(const openstudio::model::Model& model, QDomElement& parent);
+        void doComponentLoop(const openstudio::model::Model& model, QDomElement& parent);
 
         void doComponentOfSection(model::Surface &surface
                                   , QDomElement &OpaqueComponentList
