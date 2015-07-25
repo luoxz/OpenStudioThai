@@ -591,6 +591,74 @@ void MainRightColumnController::configureForLoadsSubTab(int subTabID)
   doc->openSidebar();
 }
 
+void MainRightColumnController::configureForRenewableEnergySubTab(int subTabID)
+{
+	std::shared_ptr<OSDocument> doc = OSAppBase::instance()->currentDocument();
+
+	model::Model lib = doc->componentLibrary();
+
+
+	setEditView(nullptr);
+
+	// my model
+
+	ModelObjectTypeListView* myModelList = new ModelObjectTypeListView(m_model, true, OSItemType::CollapsibleListHeader);
+	myModelList->setItemsDraggable(true);
+	myModelList->setItemsRemoveable(false);
+	myModelList->setItemsType(OSItemType::LibraryItem);
+	myModelList->setShowFilterLayout(true);
+
+	//myModelList->addModelObjectType(IddObjectType::OS_Construction_WindowDataFile, "Window Data File Constructions");
+	//myModelList->addModelObjectType(IddObjectType::OS_Construction_FfactorGroundFloor, "F-factor Ground Floor Constructions");
+	//myModelList->addModelObjectType(IddObjectType::OS_Construction_CfactorUndergroundWall, "C-factor Underground Wall Constructions");
+	//myModelList->addModelObjectType(IddObjectType::OS_Construction_InternalSource, "Internal Source Constructions");
+	//myModelList->addModelObjectType(IddObjectType::OS_Construction, "Constructions");
+	//myModelList->addModelObjectType(IddObjectType::OS_Schedule_VariableInterval, "Variable Interval Schedules");
+	//myModelList->addModelObjectType(IddObjectType::OS_Schedule_FixedInterval, "Fixed Interval Schedules");
+	//myModelList->addModelObjectType(IddObjectType::OS_Schedule_Constant, "Constant Schedules");
+	//myModelList->addModelObjectType(IddObjectType::OS_Schedule_Compact, "Compact Schedules");
+	//myModelList->addModelObjectType(IddObjectType::OS_Schedule_Ruleset, "Ruleset Schedules");
+
+	myModelList->addModelObjectType(IddObjectType::OS_Exterior_PV, "Photovoltaic");
+
+	setMyModelView(myModelList);
+
+	// my library
+
+	ModelObjectTypeListView* myLibraryList = new ModelObjectTypeListView(lib, true, OSItemType::CollapsibleListHeader, true);
+	myLibraryList->setItemsDraggable(true);
+	myLibraryList->setItemsRemoveable(false);
+	myLibraryList->setItemsType(OSItemType::LibraryItem);
+	myLibraryList->setShowFilterLayout(true);
+
+	//myLibraryList->addModelObjectType(IddObjectType::OS_Construction_WindowDataFile, "Window Data File Constructions");
+	//myLibraryList->addModelObjectType(IddObjectType::OS_Construction_FfactorGroundFloor, "F-factor Ground Floor Constructions");
+	//myLibraryList->addModelObjectType(IddObjectType::OS_Construction_CfactorUndergroundWall, "C-factor Underground Wall Constructions");
+	//myLibraryList->addModelObjectType(IddObjectType::OS_Construction_InternalSource, "Internal Source Constructions");
+	//myLibraryList->addModelObjectType(IddObjectType::OS_Construction, "Constructions");
+	//myLibraryList->addModelObjectType(IddObjectType::OS_InternalMass_Definition, "Internal Mass Definitions");
+	//myLibraryList->addModelObjectType(IddObjectType::OS_OtherEquipment_Definition, "Other Equipment Definitions");
+	//myLibraryList->addModelObjectType(IddObjectType::OS_SteamEquipment_Definition, "Steam Equipment Definitions");
+	//myLibraryList->addModelObjectType(IddObjectType::OS_HotWaterEquipment_Definition, "Hot Water Equipment Definitions");
+	//myLibraryList->addModelObjectType(IddObjectType::OS_WaterUse_Equipment_Definition, "Water Use Equipment Definitions");
+	//myLibraryList->addModelObjectType(IddObjectType::OS_GasEquipment_Definition, "Gas Equipment Definitions");
+	//myLibraryList->addModelObjectType(IddObjectType::OS_ElectricEquipment_Definition, "Electric Equipment Definitions");
+	//myLibraryList->addModelObjectType(IddObjectType::OS_Luminaire_Definition, "Luminaire Definitions");
+	//myLibraryList->addModelObjectType(IddObjectType::OS_Lights_Definition, "Lights Definitions");
+	//myLibraryList->addModelObjectType(IddObjectType::OS_People_Definition, "People Definitions");
+	//myLibraryList->addModelObjectType(IddObjectType::OS_Schedule_VariableInterval, "Variable Interval Schedules");
+	//myLibraryList->addModelObjectType(IddObjectType::OS_Schedule_FixedInterval, "Fixed Interval Schedules");
+	//myLibraryList->addModelObjectType(IddObjectType::OS_Schedule_Constant, "Constant Schedules");
+	//myLibraryList->addModelObjectType(IddObjectType::OS_Schedule_Compact, "Compact Schedules");
+	//myLibraryList->addModelObjectType(IddObjectType::OS_Schedule_Ruleset, "Ruleset Schedules");
+	myLibraryList->addModelObjectType(IddObjectType::OS_Exterior_Lights, "Photovoltaic");
+
+	setLibraryView(myLibraryList);
+
+	doc->openSidebar();
+}
+
+
 void MainRightColumnController::configureForSpaceTypesSubTab(int subTabID)
 {
   // no sub tabs

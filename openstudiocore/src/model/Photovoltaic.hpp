@@ -28,13 +28,27 @@ class MODEL_API Photovoltaic : public ResourceObject{
   /** @name Getters */
   //@{
 
-  double designLevel() const;
-
+  std::string PVType() const;
+  double surfaceArea();
+  double factionActive();
+  double inverterEfficiency();
+  double azimuthAngle();
+  double inclinationAngle();
+  double cellEfficiency();
+  double gtEfficiency();
+  //double calculatePV();
+  static std::vector<std::string> PVTypeValues();
   //@}
   /** @name Setters */
   //@{
-
-  bool setDesignLevel(double designLevel);
+  bool setPVType(std::string PVType);
+  bool setSurfaceArea(double surfaceArea);
+  bool setFactionActive(double factionActive);
+  bool setInverterEfficiency(double inverterEfficiency);
+  bool setAzimuthAngle(double azimuthAngle);
+  bool setInclinationAngle(double inclinationAngle);
+  bool setCellEfficiency(double cellEfficiency);
+  bool setGTEfficiency(double gtEfficiency);
 
   //@}
   /** @name Other */

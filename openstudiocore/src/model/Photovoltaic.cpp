@@ -1,15 +1,28 @@
 #include "Photovoltaic.hpp"
 #include "Photovoltaic_Impl.hpp"
 
+#include <utilities/idd/IddFactory.hxx>
+
 #include <utilities/idd/OS_Exterior_PV_FieldEnums.hxx>
 #include <utilities/idd/IddEnums.hxx>
 
+#include "../utilities/math/FloatCompare.hpp"
+
 #include "../utilities/core/Assert.hpp"
+
 
 namespace openstudio {
 	namespace model {
 
 		namespace detail {
+			ATTRIBUTE_IMPLEMENTATION(0, 1, 0, surfaceArea, SurfaceArea, Photovoltaic, 0, OS_Exterior_PV, SurfaceArea)
+			ATTRIBUTE_IMPLEMENTATION(0, 1, 0, factionActive, FactionActive, Photovoltaic, 0, OS_Exterior_PV, FactionActive)
+			ATTRIBUTE_IMPLEMENTATION(0, 1, 0, inverterEfficiency, InverterEfficiency, Photovoltaic, 0, OS_Exterior_PV, InverterEfficiency)
+			ATTRIBUTE_IMPLEMENTATION(0, 1, 0, azimuthAngle, AzimuthAngle, Photovoltaic, 0, OS_Exterior_PV, AzimuthAngle)
+			ATTRIBUTE_IMPLEMENTATION(0, 1, 0, inclinationAngle, InclinationAngle, Photovoltaic, 0, OS_Exterior_PV, InclinationAngle)
+			ATTRIBUTE_IMPLEMENTATION(0, 1, 0, cellEfficiency, CellEfficiency, Photovoltaic, 0, OS_Exterior_PV, CellEfficiency)
+			ATTRIBUTE_IMPLEMENTATION(0, 1, 0, gtEfficiency, GTEfficiency, Photovoltaic, 0, OS_Exterior_PV, GTEfficiency)
+
 
 			Photovoltaic_Impl::Photovoltaic_Impl(const IdfObject& idfObject,
 				Model_Impl* model,
@@ -45,14 +58,96 @@ namespace openstudio {
 				return Photovoltaic::iddObjectType();
 			}
 
-			double Photovoltaic_Impl::designLevel() const {
-				boost::optional<double> value = getDouble(OS_Exterior_PVFields::DesignLevel, true);
+			std::string Photovoltaic_Impl::PVType() const {
+				boost::optional<std::string> value = getString(OS_Exterior_PVFields::Type, true);
 				OS_ASSERT(value);
 				return value.get();
 			}
 
-			bool Photovoltaic_Impl::setDesignLevel(double designLevel) {
-				bool result = setDouble(OS_Exterior_PVFields::DesignLevel, designLevel);
+
+			bool Photovoltaic_Impl::setSurfaceArea(double serfaceArea){
+				bool result = setDouble(OS_Exterior_PVFields::SurfaceArea, serfaceArea);
+				return result;
+			}
+			
+			bool Photovoltaic_Impl::setPVType(std::string PVType) {
+				bool result = setString(OS_Exterior_PVFields::Type, PVType);
+				return result;
+			}
+
+			std::vector<std::string> Photovoltaic_Impl::PVTypeValues() const {
+				return Photovoltaic::PVTypeValues();
+			}
+
+			double Photovoltaic_Impl::surfaceArea() const {
+				boost::optional<double> value = getDouble(OS_Exterior_PVFields::SurfaceArea, true);
+				OS_ASSERT(value);
+				return value.get();
+			}
+			
+			double Photovoltaic_Impl::factionActive() const {
+				boost::optional<double> value = getDouble(OS_Exterior_PVFields::FactionActive, true);
+				OS_ASSERT(value);
+				return value.get();
+			}
+
+			bool Photovoltaic_Impl::setFactionActive(double factionActive){
+				bool result = setDouble(OS_Exterior_PVFields::FactionActive, factionActive);
+				return result;
+			}
+
+			double Photovoltaic_Impl::inverterEfficiency() const {
+				boost::optional<double> value = getDouble(OS_Exterior_PVFields::InverterEfficiency, true);
+				OS_ASSERT(value);
+				return value.get();
+			}
+
+			bool Photovoltaic_Impl::setInverterEfficiency(double inverterEfficiency){
+				bool result = setDouble(OS_Exterior_PVFields::InverterEfficiency, inverterEfficiency);
+				return result;
+			}
+
+			double Photovoltaic_Impl::azimuthAngle() const {
+				boost::optional<double> value = getDouble(OS_Exterior_PVFields::AzimuthAngle, true);
+				OS_ASSERT(value);
+				return value.get();
+			}
+
+			bool Photovoltaic_Impl::setAzimuthAngle(double azmuthAngle){
+				bool result = setDouble(OS_Exterior_PVFields::AzimuthAngle, azmuthAngle);
+				return result;
+			}
+
+			double Photovoltaic_Impl::inclinationAngle() const {
+				boost::optional<double> value = getDouble(OS_Exterior_PVFields::InclinationAngle, true);
+				OS_ASSERT(value);
+				return value.get();
+			}
+
+			bool Photovoltaic_Impl::setInclinationAngle(double inclinationAngle){
+				bool result = setDouble(OS_Exterior_PVFields::AzimuthAngle, inclinationAngle);
+				return result;
+			}
+
+			double Photovoltaic_Impl::cellEfficiency() const {
+				boost::optional<double> value = getDouble(OS_Exterior_PVFields::CellEfficiency, true);
+				OS_ASSERT(value);
+				return value.get();
+			}
+
+			bool Photovoltaic_Impl::setCellEfficiency(double cellEfficiency){
+				bool result = setDouble(OS_Exterior_PVFields::CellEfficiency, cellEfficiency);
+				return result;
+			}
+
+			double Photovoltaic_Impl::gtEfficiency() const {
+				boost::optional<double> value = getDouble(OS_Exterior_PVFields::GTEfficiency, true);
+				OS_ASSERT(value);
+				return value.get();
+			}
+
+			bool Photovoltaic_Impl::setGTEfficiency(double gtEfficiency){
+				bool result = setDouble(OS_Exterior_PVFields::GTEfficiency, gtEfficiency);
 				return result;
 			}
 
@@ -63,8 +158,22 @@ namespace openstudio {
 		{
 			OS_ASSERT(getImpl<detail::Photovoltaic_Impl>());
 
-			bool ok = setDesignLevel(0.0);
+			bool ok = setSurfaceArea(0.0);
 			OS_ASSERT(ok);
+
+			ok = setFactionActive(0.9);
+			OS_ASSERT(ok);
+
+			ok = setInverterEfficiency(98.5);
+			OS_ASSERT(ok);
+
+			ok = setGTEfficiency(1709100.0);
+			OS_ASSERT(ok);
+
+			ok = setCellEfficiency(0.0);
+			OS_ASSERT(ok);
+
+
 		}
 
 		IddObjectType Photovoltaic::iddObjectType() {
@@ -72,12 +181,70 @@ namespace openstudio {
 			return result;
 		}
 
-		double Photovoltaic::designLevel() const {
-			return getImpl<detail::Photovoltaic_Impl>()->designLevel();
+
+		bool Photovoltaic::setPVType(std::string PVType) {
+			return getImpl<detail::Photovoltaic_Impl>()->setPVType(PVType);
 		}
 
-		bool Photovoltaic::setDesignLevel(double designLevel) {
-			return getImpl<detail::Photovoltaic_Impl>()->setDesignLevel(designLevel);
+		double Photovoltaic::surfaceArea(){
+			return getImpl<detail::Photovoltaic_Impl>()->surfaceArea();
+		}
+
+		bool Photovoltaic::setSurfaceArea(double surfaceArea){
+			return getImpl<detail::Photovoltaic_Impl>()->setSurfaceArea(surfaceArea);
+		}
+
+		std::vector<std::string> Photovoltaic::PVTypeValues() {
+			return getIddKeyNames(IddFactory::instance().getObject(iddObjectType()).get(),
+				OS_Exterior_PVFields::Type);
+		}
+
+		double Photovoltaic::factionActive(){
+			return getImpl<detail::Photovoltaic_Impl>()->factionActive();
+		}
+
+		bool Photovoltaic::setFactionActive(double factionActive){
+			return getImpl<detail::Photovoltaic_Impl>()->setFactionActive(factionActive);
+		}
+
+		double Photovoltaic::inverterEfficiency(){
+			return getImpl<detail::Photovoltaic_Impl>()->inverterEfficiency();
+		}
+
+		bool Photovoltaic::setInverterEfficiency(double inverterEfficiency){
+			return getImpl<detail::Photovoltaic_Impl>()->setInverterEfficiency(inverterEfficiency);
+		}
+
+		double Photovoltaic::azimuthAngle(){
+			return getImpl<detail::Photovoltaic_Impl>()->azimuthAngle();
+		}
+
+		bool Photovoltaic::setAzimuthAngle(double azimuthAngle){
+			return getImpl<detail::Photovoltaic_Impl>()->setAzimuthAngle(azimuthAngle);
+		}
+
+		double Photovoltaic::inclinationAngle(){
+			return getImpl<detail::Photovoltaic_Impl>()->inclinationAngle();
+		}
+
+		bool Photovoltaic::setInclinationAngle(double inclinationAngle){
+			return getImpl<detail::Photovoltaic_Impl>()->setInclinationAngle(inclinationAngle);
+		}
+
+		double Photovoltaic::cellEfficiency(){
+			return getImpl<detail::Photovoltaic_Impl>()->cellEfficiency();
+		}
+
+		bool Photovoltaic::setCellEfficiency(double cellEfficiency){
+			return getImpl<detail::Photovoltaic_Impl>()->setCellEfficiency(cellEfficiency);
+		}
+
+		double Photovoltaic::gtEfficiency(){
+			return getImpl<detail::Photovoltaic_Impl>()->gtEfficiency();
+		}
+
+		bool Photovoltaic::setGTEfficiency(double gtEfficiency){
+			return getImpl<detail::Photovoltaic_Impl>()->setGTEfficiency(gtEfficiency);
 		}
 
 /// @cond
