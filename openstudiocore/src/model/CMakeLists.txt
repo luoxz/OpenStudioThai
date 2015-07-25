@@ -568,6 +568,9 @@ set(${target_name}_src
   PumpVariableSpeed.hpp
   PumpVariableSpeed_Impl.hpp
   PumpVariableSpeed.cpp
+  Photovoltaic.hpp
+  Photovoltaic_Impl.hpp
+  Photovoltaic.cpp
   RadianceParameters.hpp
   RadianceParameters_Impl.hpp
   RadianceParameters.cpp
@@ -1100,6 +1103,7 @@ set(${target_name}_moc
   ProgramControl_Impl.hpp
   PumpConstantSpeed_Impl.hpp
   PumpVariableSpeed_Impl.hpp
+  Photovoltaic_Impl.hpp
   RadianceParameters_Impl.hpp
   RefractionExtinctionGlazing_Impl.hpp
   RenderingColor_Impl.hpp

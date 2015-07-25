@@ -88,6 +88,8 @@ class MainRightColumnController : public OSQObjectController
 
   void configureForLoadsSubTab(int subTabID);
 
+  void configureForRenewableEnergySubTab(int subTabID);
+
   void configureForSpaceTypesSubTab(int subTabID);
 
   void configureForBuildingStoriesSubTab(int subTabID);
