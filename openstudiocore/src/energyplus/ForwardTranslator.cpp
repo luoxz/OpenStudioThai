@@ -1208,11 +1208,12 @@ boost::optional<IdfObject> ForwardTranslator::translateAndMapModelObject(ModelOb
   case openstudio::IddObjectType::OS_LifeCycleCost_UsePriceEscalation :
     {
       // DLM: these objects can be created from LifeCycleCostParameters
-      LOG(Warn, "OS:LifeCycleCost:UsePriceEscalation '" << modelObject.name().get() << "' not translated to EnergyPlus.");
-      return retVal;
+      //LOG(Warn, "OS:LifeCycleCost:UsePriceEscalation '" << modelObject.name().get() << "' not translated to EnergyPlus.");
+		return retVal;
     }
   case openstudio::IddObjectType::OS_Lights :
     {
+
       model::Lights lights = modelObject.cast<Lights>();
       retVal = translateLights(lights);
       break;
