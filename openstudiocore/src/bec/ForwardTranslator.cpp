@@ -87,6 +87,8 @@
 #include "../model/ThermalZone_Impl.hpp"
 #include "../model/Photovoltaic.hpp"
 #include "../model/Photovoltaic_Impl.hpp"
+#include "../model/PhotovoltaicThermal.hpp"
+#include "../model/PhotovoltaicThermal_Impl.hpp"
 
 #include "../utilities/geometry/Transformation.hpp"
 #include "../utilities/geometry/EulerAngles.hpp"
@@ -589,6 +591,20 @@ namespace bec {
 
       std::vector<model::Photovoltaic> pvs = model.getModelObjects<model::Photovoltaic>();
       for (model::Photovoltaic& pv : pvs){
+          QDomElement PV = createTagWithText(PVSystem, "PV");
+          createTagWithText(PV, "PVName", pv.name().get().c_str());
+          createTagWithText(PV, "PVSystemEfficiency", QString::number(pv.cellEfficiency()));
+          createTagWithText(PV, "PVSystemEfficiencyUnit", "%");
+          createTagWithText(PV, "PVModuleArea", QString::number(pv.surfaceArea()));
+          createTagWithText(PV, "PVModuleAreaUnit", "m^2");
+          createTagWithText(PV, "PVAzimuth", QString::number(pv.azimuthAngle()));
+          createTagWithText(PV, "PVAzimuthUnit", "degrees");
+          createTagWithText(PV, "PVInclination", QString::number(pv.inclinationAngle()));
+          createTagWithText(PV, "PVInclinationUnit", "degrees");
+      }
+
+      std::vector<model::PhotovoltaicThermal> pvst = model.getModelObjects<model::PhotovoltaicThermal>();
+      for (model::PhotovoltaicThermal& pv : pvst){
           QDomElement PV = createTagWithText(PVSystem, "PV");
           createTagWithText(PV, "PVName", pv.name().get().c_str());
           createTagWithText(PV, "PVSystemEfficiency", QString::number(pv.cellEfficiency()));

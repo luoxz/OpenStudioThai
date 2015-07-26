@@ -109,6 +109,7 @@ namespace bec {
     void doOtherEquipment(const openstudio::model::Space& space, QDomElement& OtherEquipment);
     void doACSystem(const openstudio::model::Space& space, QDomElement& ACSystem);
     void doPV(const model::Model &model, QDomElement& becInput);
+    void doPV(const model::Model &model, QDomElement& becInput);
     void doBuildingType(QDomElement& becInput, const QString &typeName);
 
 //    void doACSystem(const openstudio::model::Model& model, QDomElement& root);
