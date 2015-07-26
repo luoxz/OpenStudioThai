@@ -127,8 +127,8 @@ namespace bec {
   {
       QInputDialog inputBuildingType;
       inputBuildingType.setOption(QInputDialog::UseListViewForComboBoxItems);
-      inputBuildingType.setWindowTitle(tr("What is building type."));
-      inputBuildingType.setLabelText(tr("Selection:"));
+      inputBuildingType.setWindowTitle("What is building type.");
+      inputBuildingType.setLabelText("Selection:");
       QStringList types;
       types <<"Office building"
             <<"Department store"
@@ -139,18 +139,17 @@ namespace bec {
             <<"Theater"
             <<"Community building"
             <<"Service Facility";
+
       inputBuildingType.setComboBoxItems(types);
 
       int ret = inputBuildingType.exec();
 
       if (ret == QDialog::Accepted){
           m_progressBar = progressBar;
-
           m_logSink.setThreadId(QThread::currentThread());
-
           m_logSink.resetStringStream();
 
-          boost::optional<QDomDocument> doc = this->translateModel(model, buildingType);
+          boost::optional<QDomDocument> doc = this->translateModel(model, inputBuildingType.textValue());
           if (!doc){
               return false;
           }

@@ -130,7 +130,13 @@ namespace openstudio {
       void locateEnergyPlus();
       void updateRunManagerStats(openstudio::runmanager::RunManager t_runManager);
       bool doBecInput(const QString &path, const model::Model& model, QString& outpath, QString &err);
+      double getPV(model::Model *model);
+      void addPVToFile(const QString& fileName
+                       , int mode
+                       );
+      void updatePVInfile();
 
+      double lastPV;
       //openstudio::path loadRmdbPath() const;
       //openstudio::path simulationDir() const;
       //openstudio::path modelPath() const;
