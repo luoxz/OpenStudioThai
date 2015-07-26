@@ -129,6 +129,7 @@ namespace openstudio {
                                          const std::vector<std::string> & errors);
       void locateEnergyPlus();
       void updateRunManagerStats(openstudio::runmanager::RunManager t_runManager);
+      bool doBecInput(const QString &path, const model::Model& model, QString& outpath, QString &err);
 
       //openstudio::path loadRmdbPath() const;
       //openstudio::path simulationDir() const;

@@ -75,8 +75,51 @@ namespace bec {
 
     QString escapeName(const std::string& name);
 
+    //Util function.
+    QDomElement createTagWithText(QDomElement& parent
+                                  , const QString &tag
+                                  , const QString &text=QString());
+
+    //Create BEC XML
+    void doEnvelope(const openstudio::model::Model& model, QDomElement& parent);
+        void doMaterial(const openstudio::model::Model& model, QDomElement& parent);
+        void doTransparentMaterial(const openstudio::model::Model& model, QDomElement& parent);
+        void doAirGapMaterial(const openstudio::model::Model& model, QDomElement& parent);
+        void doComponentLoop(const openstudio::model::Model& model, QDomElement& parent);
+
+        void doComponentOfSection(model::Surface &surface
+                                  , QDomElement &OpaqueComponentList
+                                  , QDomElement &OpaqueComponentDetail
+                                  , QDomElement &transparentComponentList
+                                  , const QHash<QString, int> &componentCheck);
+
+            void doOpaqueComponentList(const model::Model &model, QDomElement &parent);
+                void doOpaqueList(const model::Space &model, QDomElement &parent);
+            void doOpaqueComponentDetail(const model::Model &model, QDomElement &parent);
+            void doTransparentComponentList(const model::Model &model, QDomElement &parent);
+
+        void doSectionOfWall(const openstudio::model::Model& model, QDomElement& Envelope);
+        void doWall(const openstudio::model::Model& model, QDomElement& parent);
+
+    void doModelLoop(const openstudio::model::Model& model, QDomElement& becInput);
+
+    void doLightingSystem(const openstudio::model::Space& space, QDomElement& LightingSystem);
+    void doHotWaterSystem(const openstudio::model::Space& space, QDomElement& OtherEquipment);
+    void doOtherEquipment(const openstudio::model::Space& space, QDomElement& OtherEquipment);
+    void doACSystem(const openstudio::model::Space& space, QDomElement& ACSystem);
+    void doPV(const model::Model &model, QDomElement& becInput);
+
+    void doBuildingType(QDomElement& becInput, const QString &typeName);
+
+//    void doACSystem(const openstudio::model::Model& model, QDomElement& root);
+//    void doPVSystem(const openstudio::model::Model& model, QDomElement& root);
+//    void doHotWaterSystem(const openstudio::model::Model& model, QDomElement& root);
+//    void doOtherEquipment(const openstudio::model::Model& model, QDomElement& root);
+
+    void doBuildingEnvelope(const openstudio::model::Model& model, QDomElement& becInput);
+
     // listed in translation order
-    boost::optional<QDomDocument> translateModel(const openstudio::model::Model& model);
+    boost::optional<QDomDocument> translateModel(const openstudio::model::Model& model, const QString &type);
     boost::optional<QDomElement> translateFacility(const openstudio::model::Facility& facility, QDomDocument& doc);
     boost::optional<QDomElement> translateBuilding(const openstudio::model::Building& building, QDomDocument& doc);
     boost::optional<QDomElement> translateSpace(const openstudio::model::Space& space, QDomDocument& doc);
@@ -102,8 +145,8 @@ namespace bec {
     std::map<openstudio::Handle, QDomElement> m_translatedObjects;
 
     StringStreamLogSink m_logSink;
-
     ProgressBar* m_progressBar;
+    QDomDocument* _doc;
 
     REGISTER_LOGGER("openstudio.bec.ForwardTranslator");
   };
