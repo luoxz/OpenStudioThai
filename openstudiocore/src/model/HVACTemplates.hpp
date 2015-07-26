@@ -55,6 +55,15 @@ MODEL_API Loop addSystemType10(Model & model);
 
 MODEL_API Loop airLoopHVACTHAI(Model & model);
 
+/*Split type/DX Type*/
+MODEL_API Loop addSplitTypeHVACTHAIType0(Model & model);
+
+/*Split type/DX Type (Variable Speed Fan)*/
+MODEL_API Loop addSplitTypeHVACTHAIType1(Model & model);
+
+/*Central System (Air Loop and Water Loop)*/
+MODEL_API Loop addCentralSystemHVACTHAI(Model & model);
+
 } // model
 
 } // openstudio

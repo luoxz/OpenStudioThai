@@ -83,6 +83,22 @@ LoopLibraryDialog::LoopLibraryDialog(QWidget * parent)
   //         QString("Packaged Terminal Heat Pump"),
   //         QPixmap(":/images/system_type_2.png") );
 
+  newItem(ADDTOMODEL_SPLIT_TYPE_0_THAI,
+	  QString("Thai Split Type Air"),
+	  QPixmap(":/images/thai_air_loop_icon.png"));
+
+  newItem(ADDTOMODEL_SPLIT_TYPE_1_THAI,
+	  QString("Thai Split Type Air (Varibale Speed Fan)"),
+	  QPixmap(":/images/thai_air_loop_icon.png"));
+
+  newItem(ADDTOMODEL_CENTRAL_SYSTEM_TYPE_0_THAI,
+	  QString("Thai Central System Loop"),
+	  QPixmap(":/images/thai_air_loop_icon.png"));
+
+  newItem(ADDTOMODEL_AIRLOOPHVAC_THAI,
+	  QString("Thai Air Loop"),
+	  QPixmap(":/images/thai_air_loop_icon.png"));
+
   newItem( ADDTOMODEL_SYSTEM_TYPE_3,
            QString("Packaged Rooftop Unit"),
            QPixmap(":/images/system_type_3.png") );
@@ -118,10 +134,6 @@ LoopLibraryDialog::LoopLibraryDialog(QWidget * parent)
   newItem( ADDTOMODEL_AIRLOOPHVAC,
            QString("Empty Air Loop"),
            QPixmap(":/images/air_loop_icon.png") );
-
-  newItem(ADDTOMODEL_AIRLOOPHVAC_THAI,
-			QString("Thai Air Loop"),
-			QPixmap(":/images/thai_air_loop_icon.png"));
 
   newItem( ADDTOMODEL_PLANTLOOP,
            QString("Empty Plant Loop"),
