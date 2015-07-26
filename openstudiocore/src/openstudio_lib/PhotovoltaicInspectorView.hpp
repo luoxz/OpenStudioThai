@@ -30,6 +30,8 @@ class Photovoltaic;
 
 }
 
+class OSComboBox;
+
 class OSLineEdit;
 
 class OSQuantityEdit;
@@ -64,14 +66,6 @@ class PhotovoltaicInspectorView : public ModelObjectInspectorView
 
     OSLineEdit* m_nameEdit;
 
-    OSQuantityEdit * m_lightingPowerEdit;
-
-    OSQuantityEdit * m_fractionRadiantEdit;
-
-    OSQuantityEdit * m_fractionVisibleEdit;
-
-    OSQuantityEdit * m_returnAirFractionEdit;
-
 	OSQuantityEdit * m_surfaceAreaEdit;
 
 	OSQuantityEdit * m_factionActiveEdit;
@@ -87,6 +81,8 @@ class PhotovoltaicInspectorView : public ModelObjectInspectorView
 	OSQuantityEdit * m_gtEfficiencyEdit;
 
 	OSQuantityEdit * m_systemEfficiencyEdit;
+
+	OSComboBox * m_PVTypeComboBox;
 
 	bool m_isIP;
 

@@ -3924,8 +3924,11 @@ OS:Exterior:PV,
        \required-field
        \reference ExteriorPVNames
   A3, \field Type
-	   \type alpha
-	   \required-field
+       \type choice
+       \required-field
+       \key Monocrystalline
+       \key Polycrystalline
+       \key Amorphous
   N1, \field Surface Area 
        \type real
        \required-field

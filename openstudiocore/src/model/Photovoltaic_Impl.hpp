@@ -84,9 +84,10 @@ namespace detail {
 	//@{
 
 	std::string PVType() const;
+	double calculatePV(double hours, double days);
 	double calculatePV();
-
-
+	double PVTypeToValue(std::string type);
+	double PVTypeToValue();
 	//@}
 	/** @name Setters */
 	//@{

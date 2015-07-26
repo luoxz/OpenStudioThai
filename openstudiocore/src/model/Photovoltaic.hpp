@@ -29,6 +29,8 @@ class MODEL_API Photovoltaic : public ResourceObject{
   //@{
 
   std::string PVType() const;
+  double PVTypeToValue();
+  double PVTypeToValue(std::string type);
   double surfaceArea();
   double factionActive();
   double inverterEfficiency();
@@ -36,7 +38,8 @@ class MODEL_API Photovoltaic : public ResourceObject{
   double inclinationAngle();
   double cellEfficiency();
   double gtEfficiency();
-  //double calculatePV();
+  double calculatePV();
+  double calculatePV(double hours, double days);
   static std::vector<std::string> PVTypeValues();
   //@}
   /** @name Setters */
