@@ -3971,7 +3971,7 @@ OS:Exterior:PV,
 	   \minimum 0
        \default 1790100.0
  
- OS:Exterior:PV:Hotwater,
+ OS:Exterior:PV:Thermal,
        \memo only used for Meter type reporting, does not affect building loads
        \min-fields 1
   A1, \field Handle
@@ -3980,7 +3980,7 @@ OS:Exterior:PV,
   A2, \field Name
        \type alpha
        \required-field
-       \reference ExteriorPVHotwaterNames
+       \reference ExteriorPVThermalNames
   A3, \field Type
 	   \type alpha
 	   \required-field
@@ -3996,7 +3996,7 @@ OS:Exterior:PV,
        \minimum 0
        \maximum 100
        \default 0.8
-  N2, \field collector Efficiency 
+  N2, \field Collector Efficiency 
        \type real
 	   \units percent
        \minimum 0
@@ -4025,10 +4025,11 @@ OS:Exterior:PV,
        \units Wh/m2
 	   \minimum 0
        \default 1790100.0
-  N7;  \field boiler Efficiency 
+  N7;  \field Boiler Efficiency 
        \type real
        \units percent
 	   \minimum 0
+	   \maximum 100
        \default 0.8
 	   
 OS:Schedule:Day,
