@@ -1,5 +1,5 @@
-#ifndef MODEL_PHOTOVOLTAIC_HPP
-#define MODEL_PHOTOVOLTAIC_HPP
+#ifndef MODEL_PHOTOVOLTAICTHERMAL_HPP
+#define MODEL_PHOTOVOLTAICTHERMAL_HPP
 
 #include "ModelAPI.hpp"
 #include "ResourceObject.hpp"
@@ -9,18 +9,18 @@ namespace model {
 
 namespace detail {
 
-  class Photovoltaic_Impl;
+  class PhotovoltaicThermal_Impl;
 
 } // detail
 
-class MODEL_API Photovoltaic : public ResourceObject{
+class MODEL_API PhotovoltaicThermal : public ResourceObject{
  public:
   /** @name Constructors and Destructors */
   //@{
 
-  explicit Photovoltaic(const Model& model);
+  explicit PhotovoltaicThermal(const Model& model);
 
-  virtual ~Photovoltaic() {}
+  virtual ~PhotovoltaicThermal() {}
 
   //@}
 
@@ -33,11 +33,12 @@ class MODEL_API Photovoltaic : public ResourceObject{
   double PVTypeToValue(std::string type);
   double surfaceArea();
   double factionActive();
-  double inverterEfficiency();
   double azimuthAngle();
   double inclinationAngle();
   double cellEfficiency();
   double gtEfficiency();
+  double boilerEfficiency();
+  double collectorEfficiency();
   double calculatePV();
   double calculatePV(double hours, double days);
   static std::vector<std::string> PVTypeValues();
@@ -47,11 +48,12 @@ class MODEL_API Photovoltaic : public ResourceObject{
   bool setPVType(std::string PVType);
   bool setSurfaceArea(double surfaceArea);
   bool setFactionActive(double factionActive);
-  bool setInverterEfficiency(double inverterEfficiency);
   bool setAzimuthAngle(double azimuthAngle);
   bool setInclinationAngle(double inclinationAngle);
   bool setCellEfficiency(double cellEfficiency);
   bool setGTEfficiency(double gtEfficiency);
+  bool setBoilerEfficiency(double boilerEfficiency);
+  bool setCollectorEfficiency(double collectorEfficiency);
 
   //@}
   /** @name Other */
@@ -61,27 +63,27 @@ class MODEL_API Photovoltaic : public ResourceObject{
 
  protected:
   /// @cond
-  typedef detail::Photovoltaic_Impl ImplType;
+  typedef detail::PhotovoltaicThermal_Impl ImplType;
 
-  explicit Photovoltaic(std::shared_ptr<detail::Photovoltaic_Impl> impl);
+  explicit PhotovoltaicThermal(std::shared_ptr<detail::PhotovoltaicThermal_Impl> impl);
 
-  friend class detail::Photovoltaic_Impl;
+  friend class detail::PhotovoltaicThermal_Impl;
   friend class Model;
   friend class IdfObject;
   friend class openstudio::detail::IdfObject_Impl;
   /// @endcond
  private:
-  REGISTER_LOGGER("openstudio.model.Photovoltaic");
+  REGISTER_LOGGER("openstudio.model.PhotovoltaicThermal");
 };
 
-/** \relates Photovoltaic*/
-typedef boost::optional<Photovoltaic> OptionalPhotovoltaic;
+/** \relates PhotovoltaicThermal*/
+typedef boost::optional<PhotovoltaicThermal> OptionalPhotovoltaicThermal;
 
-/** \relates Photovoltaic*/
-typedef std::vector<Photovoltaic> PhotovoltaicVector;
+/** \relates PhotovoltaicThermal*/
+typedef std::vector<PhotovoltaicThermal> PhotovoltaicThermalVector;
 
 } // model
 } // openstudio
 
-#endif // MODEL_PHOTOVOLTAIC_HPP
+#endif // MODEL_PHOTOVOLTAICTHERMAL_HPP
 

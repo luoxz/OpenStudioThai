@@ -17,8 +17,8 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  **********************************************************************/
 
-#ifndef OPENSTUDIO_PHOTOVOLTAICINSPECTORVIEW_HPP
-#define OPENSTUDIO_PHOTOVOLTAICINSPECTORVIEW_HPP
+#ifndef OPENSTUDIO_PHOTOVOLTAICTHERMALINSPECTORVIEW_HPP
+#define OPENSTUDIO_PHOTOVOLTAICTHERMALINSPECTORVIEW_HPP
 
 #include "ModelObjectInspectorView.hpp"
 
@@ -26,7 +26,7 @@ namespace openstudio {
 
 namespace model {
 
-class Photovoltaic;
+class PhotovoltaicThermal;
 
 }
 
@@ -38,15 +38,15 @@ class OSQuantityEdit;
 
 class OSDropZone;
 
-class PhotovoltaicInspectorView : public ModelObjectInspectorView
+class PhotovoltaicThermalInspectorView : public ModelObjectInspectorView
 {
   Q_OBJECT
 
   public:
 
-    PhotovoltaicInspectorView(bool isIP, const openstudio::model::Model& model, QWidget * parent = 0 );
+    PhotovoltaicThermalInspectorView(bool isIP, const openstudio::model::Model& model, QWidget * parent = 0 );
 
-    virtual ~PhotovoltaicInspectorView() {}
+    virtual ~PhotovoltaicThermalInspectorView() {}
 
   protected:
 
@@ -58,7 +58,7 @@ class PhotovoltaicInspectorView : public ModelObjectInspectorView
 
   private:
 
-    void attach(openstudio::model::Photovoltaic & Photovoltaic);
+    void attach(openstudio::model::PhotovoltaicThermal & PhotovoltaicThermal);
 
     void detach();
 
@@ -70,8 +70,6 @@ class PhotovoltaicInspectorView : public ModelObjectInspectorView
 
 	OSQuantityEdit * m_factionActiveEdit;
 
-	OSQuantityEdit * m_inverterEfficiencyEdit;
-
 	OSQuantityEdit * m_azimuthAngleEdit;
 
 	OSQuantityEdit * m_inclinationAngleEdit;
@@ -82,7 +80,9 @@ class PhotovoltaicInspectorView : public ModelObjectInspectorView
 
 	OSQuantityEdit * m_systemEfficiencyEdit;
 
-	OSComboBox * m_PVTypeComboBox;
+	OSQuantityEdit * m_collectorEfficiencyEdit;
+	
+	OSQuantityEdit * m_boilerEfficiencyEdit;
 
 	bool m_isIP;
 
@@ -93,5 +93,5 @@ class PhotovoltaicInspectorView : public ModelObjectInspectorView
 
 } // openstudio
 
-#endif // OPENSTUDIO_PHOTOVOLTAICINSPECTORVIEW_HPP
+#endif // OPENSTUDIO_PHOTOVOLTAICTHERMALINSPECTORVIEW_HPP
 

@@ -525,9 +525,9 @@ void OSDocument::createTabButtons()
   // Renewable Energy
   m_mainWindow->addVerticalTabButton(RENEWABLE_ENERGY,
 	  "Renewable Energy",
-	  ":images/on_loads_tab.png",
-	  ":images/off_loads_tab.png",
-	  ":images/disabled_loads_tab.png");
+	  ":images/on_renewable_tab.png",
+	  ":images/off_renewable_tab.png",
+	  ":images/disabled_renewable_tab.png");
   
   // Space Types
 

@@ -1,5 +1,5 @@
-#ifndef MODEL_PHOTOVOLTAIC_IMPL_HPP
-#define MODEL_PHOTOVOLTAIC_IMPL_HPP
+#ifndef MODEL_PHOTOVOLTAICTHERMAL_IMPL_HPP
+#define MODEL_PHOTOVOLTAICTHERMAL_IMPL_HPP
 
 #include "ModelAPI.hpp"
 #include "ResourceObject_Impl.hpp"
@@ -10,7 +10,7 @@ namespace model {
 
 namespace detail {
 
-	class MODEL_API Photovoltaic_Impl : public ResourceObject_Impl {
+	class MODEL_API PhotovoltaicThermal_Impl : public ResourceObject_Impl {
 		Q_OBJECT;
 
 	  Q_PROPERTY(std::string PVType READ PVType WRITE setPVType);
@@ -23,10 +23,14 @@ namespace detail {
 	  Q_PROPERTY(double factionActive READ factionActive WRITE setFactionActive RESET resetFactionActive);
 	  Q_PROPERTY(openstudio::Quantity factionActive_SI  READ factionActive_SI   WRITE setFactionActive);
 	  Q_PROPERTY(openstudio::Quantity factionActive_IP  READ factionActive_IP   WRITE setFactionActive);
-	  
-	  Q_PROPERTY(double inverterEfficiency READ inverterEfficiency WRITE setInverterEfficiency RESET resetInverterEfficiency);
-	  Q_PROPERTY(openstudio::Quantity inverterEfficiency_SI  READ inverterEfficiency_SI  WRITE setInverterEfficiency);
-	  Q_PROPERTY(openstudio::Quantity inverterEfficiency_IP  READ inverterEfficiency_IP  WRITE setInverterEfficiency);
+
+	  Q_PROPERTY(double collectorEfficiency READ collectorEfficiency WRITE setCollectorEfficiency RESET resetCollectorEfficiency);
+	  Q_PROPERTY(openstudio::Quantity collectorEfficiency_SI  READ collectorEfficiency_SI  WRITE setCollectorEfficiency);
+	  Q_PROPERTY(openstudio::Quantity collectorEfficiency_IP  READ collectorEfficiency_IP  WRITE setCollectorEfficiency);
+	
+	  Q_PROPERTY(double boilerEfficiency READ boilerEfficiency WRITE setBoilerEfficiency RESET resetBoilerEfficiency);
+	  Q_PROPERTY(openstudio::Quantity boilerEfficiency_SI  READ boilerEfficiency_SI  WRITE setBoilerEfficiency);
+	  Q_PROPERTY(openstudio::Quantity boilerEfficiency_IP  READ boilerEfficiency_IP  WRITE setBoilerEfficiency);
 
 	  Q_PROPERTY(double azimuthAngle READ azimuthAngle WRITE setAzimuthAngle RESET resetAzimuthAngle);
 	  Q_PROPERTY(openstudio::Quantity azimuthAngle_SI  READ azimuthAngle_SI  WRITE setAzimuthAngle);
@@ -49,19 +53,19 @@ namespace detail {
     /** @name Constructors and Destructors */
     //@{
 
-    Photovoltaic_Impl(const IdfObject& idfObject,
+    PhotovoltaicThermal_Impl(const IdfObject& idfObject,
                          Model_Impl* model,
                          bool keepHandle);
 
-    Photovoltaic_Impl(const openstudio::detail::WorkspaceObject_Impl& other,
+    PhotovoltaicThermal_Impl(const openstudio::detail::WorkspaceObject_Impl& other,
                          Model_Impl* model,
                          bool keepHandle);
 
-    Photovoltaic_Impl(const Photovoltaic_Impl& other,
+    PhotovoltaicThermal_Impl(const PhotovoltaicThermal_Impl& other,
                          Model_Impl* model,
                          bool keepHandle);
 
-    virtual ~Photovoltaic_Impl() {}
+    virtual ~PhotovoltaicThermal_Impl() {}
 
     //@}
     /** @name Virtual Methods */
@@ -73,12 +77,12 @@ namespace detail {
 
 	ATTRIBUTE_DEFINITION(0, 1, 0, surfaceArea, SurfaceArea);
 	ATTRIBUTE_DEFINITION(0, 1, 0, factionActive, FactionActive);
-	ATTRIBUTE_DEFINITION(0, 1, 0, inverterEfficiency, InverterEfficiency); 
 	ATTRIBUTE_DEFINITION(0, 1, 0, azimuthAngle, AzimuthAngle); 
 	ATTRIBUTE_DEFINITION(0, 1, 0, inclinationAngle, InclinationAngle);
 	ATTRIBUTE_DEFINITION(0, 1, 0, cellEfficiency, CellEfficiency);
 	ATTRIBUTE_DEFINITION(0, 1, 0, gtEfficiency, GTEfficiency);
-
+	ATTRIBUTE_DEFINITION(0, 1, 0, boilerEfficiency, BoilerEfficiency);
+	ATTRIBUTE_DEFINITION(0, 1, 0, collectorEfficiency, CollectorEfficiency);
 	//@}
 	/** @name Getters */
 	//@{
@@ -102,7 +106,7 @@ namespace detail {
 	//@}
    protected:
    private:
-    REGISTER_LOGGER("openstudio.model.Photovoltaic");
+    REGISTER_LOGGER("openstudio.model.PhotovoltaicThermal");
 	std::vector<std::string> PVTypeValues() const;
 
   };

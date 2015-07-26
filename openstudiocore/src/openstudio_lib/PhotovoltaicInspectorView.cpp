@@ -18,6 +18,7 @@
 **********************************************************************/
 
 #include "PhotovoltaicInspectorView.hpp"
+#include "../shared_gui_components/OSComboBox.hpp"
 #include "../shared_gui_components/OSLineEdit.hpp"
 #include "../shared_gui_components/OSQuantityEdit.hpp"
 #include "OSDropZone.hpp"
@@ -30,7 +31,6 @@
 #include <QGridLayout>
 #include <QScrollArea>
 #include <QStackedWidget>
-#include <QComboBox>
 
 namespace openstudio {
 
@@ -68,19 +68,12 @@ PhotovoltaicInspectorView::PhotovoltaicInspectorView(bool isIP, const openstudio
   label->setObjectName("H2");
   mainGridLayout->addWidget(label, 2, 1);
 
-  QComboBox *m_filters = new QComboBox();
-  m_filters->setFixedWidth(OSItem::ITEM_WIDTH);
-
-  {
-	  m_filters->addItem("Monocrystalline");
-  }
-  {
-	  m_filters->addItem("Polycrystalline");
-  }
-  {
-	  m_filters->addItem("Amorphous");
-  }
-  mainGridLayout->addWidget(m_filters, 3, 1);
+  m_PVTypeComboBox = new OSComboBox();
+  m_PVTypeComboBox->setFixedWidth(OSItem::ITEM_WIDTH);
+  m_PVTypeComboBox->addItem("Monocrystalline");
+  m_PVTypeComboBox->addItem("Polycrystalline");
+  m_PVTypeComboBox->addItem("Amorphous");
+  mainGridLayout->addWidget(m_PVTypeComboBox, 3, 1);
 
   label = new QLabel("System Efficiecy: ");
   label->setObjectName("H2");
@@ -98,7 +91,7 @@ PhotovoltaicInspectorView::PhotovoltaicInspectorView(bool isIP, const openstudio
   connect(this, &PhotovoltaicInspectorView::toggleUnitsClicked, m_factionActiveEdit, &OSQuantityEdit::onUnitSystemChange);
   mainGridLayout->addWidget(m_factionActiveEdit, 5, 0);
 
-  label = new QLabel("Invert Efficiency: ");
+  label = new QLabel("Invert coefficiency: ");
   label->setObjectName("H2");
   mainGridLayout->addWidget(label, 6, 0);
 
@@ -122,7 +115,7 @@ PhotovoltaicInspectorView::PhotovoltaicInspectorView(bool isIP, const openstudio
   connect(this, &PhotovoltaicInspectorView::toggleUnitsClicked, m_inclinationAngleEdit, &OSQuantityEdit::onUnitSystemChange);
   mainGridLayout->addWidget(m_inclinationAngleEdit, 9, 1);
 
-  label = new QLabel("GT Efficiency: ");
+  label = new QLabel("GT : ");
   label->setObjectName("H2");
   mainGridLayout->addWidget(label, 10, 0);
 
@@ -130,49 +123,7 @@ PhotovoltaicInspectorView::PhotovoltaicInspectorView(bool isIP, const openstudio
   connect(this, &PhotovoltaicInspectorView::toggleUnitsClicked, m_gtEfficiencyEdit, &OSQuantityEdit::onUnitSystemChange);
   mainGridLayout->addWidget(m_gtEfficiencyEdit, 11, 0);
 
-  /*
-  // Lighting Power
-
-  label = new QLabel("Lighting Power: ");
-  label->setObjectName("H2");
-  mainGridLayout->addWidget(label,2,0);
-
-  m_lightingPowerEdit = new OSQuantityEdit(m_isIP);
-  connect(this, &PhotovoltaicInspectorView::toggleUnitsClicked, m_lightingPowerEdit, &OSQuantityEdit::onUnitSystemChange);
-  mainGridLayout->addWidget(m_lightingPowerEdit,3,0);
-
-  // Fraction Radiant
-
-  label = new QLabel("Fraction Radiant: ");
-  label->setObjectName("H2");
-  mainGridLayout->addWidget(label,4,0);
-
-  m_fractionRadiantEdit = new OSQuantityEdit(m_isIP);
-  connect(this, &PhotovoltaicInspectorView::toggleUnitsClicked, m_fractionRadiantEdit, &OSQuantityEdit::onUnitSystemChange);
-  mainGridLayout->addWidget(m_fractionRadiantEdit,5,0);
-
-  // Fraction Visible
-
-  label = new QLabel("Fraction Visible: ");
-  label->setObjectName("H2");
-  mainGridLayout->addWidget(label,4,1);
-
-  m_fractionVisibleEdit = new OSQuantityEdit(m_isIP);
-  connect(this, &PhotovoltaicInspectorView::toggleUnitsClicked, m_fractionVisibleEdit, &OSQuantityEdit::onUnitSystemChange);
-  mainGridLayout->addWidget(m_fractionVisibleEdit,5,1);
-
-  // Return Air Fraction 
-
-  label = new QLabel("Return Air Fraction: ");
-  label->setObjectName("H2");
-  mainGridLayout->addWidget(label,6,0);
-
-  m_returnAirFractionEdit = new OSQuantityEdit(m_isIP);
-  connect(this, &PhotovoltaicInspectorView::toggleUnitsClicked, m_returnAirFractionEdit, &OSQuantityEdit::onUnitSystemChange);
-  mainGridLayout->addWidget(m_returnAirFractionEdit,7,0);
-  */
-
-  // Stretch
+    // Stretch
 
   mainGridLayout->setRowStretch(12,100);
 
@@ -201,6 +152,7 @@ void PhotovoltaicInspectorView::onUpdate()
 void PhotovoltaicInspectorView::attach(openstudio::model::Photovoltaic & Photovoltaic)
 {
   m_nameEdit->bind(Photovoltaic,"name");
+  m_PVTypeComboBox->bind(Photovoltaic,"PVType");
   m_surfaceAreaEdit->bind(Photovoltaic, "surfaceArea", m_isIP);
   m_factionActiveEdit->bind(Photovoltaic, "factionActive", m_isIP);
   m_inverterEfficiencyEdit->bind(Photovoltaic, "inverterEfficiency", m_isIP);
@@ -208,6 +160,7 @@ void PhotovoltaicInspectorView::attach(openstudio::model::Photovoltaic & Photovo
   m_inclinationAngleEdit->bind(Photovoltaic, "inclinationAngle", m_isIP);
   m_gtEfficiencyEdit->bind(Photovoltaic, "gtEfficiency", m_isIP);
   m_systemEfficiencyEdit->bind(Photovoltaic, "cellEfficiency", m_isIP);
+  
   this->stackedWidget()->setCurrentIndex(1);
 }
 
@@ -216,6 +169,7 @@ void PhotovoltaicInspectorView::detach()
   this->stackedWidget()->setCurrentIndex(0);
 
   m_nameEdit->unbind();
+  m_PVTypeComboBox->unbind();
   m_surfaceAreaEdit->unbind();
   m_factionActiveEdit->unbind();
   m_inverterEfficiencyEdit->unbind();

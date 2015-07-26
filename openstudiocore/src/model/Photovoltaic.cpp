@@ -58,6 +58,10 @@ namespace openstudio {
 				return Photovoltaic::iddObjectType();
 			}
 
+			std::vector<std::string> Photovoltaic_Impl::PVTypeValues() const {
+				return Photovoltaic::PVTypeValues();
+			}
+
 			std::string Photovoltaic_Impl::PVType() const {
 				boost::optional<std::string> value = getString(OS_Exterior_PVFields::Type, true);
 				OS_ASSERT(value);
@@ -73,10 +77,6 @@ namespace openstudio {
 			bool Photovoltaic_Impl::setPVType(std::string PVType) {
 				bool result = setString(OS_Exterior_PVFields::Type, PVType);
 				return result;
-			}
-
-			std::vector<std::string> Photovoltaic_Impl::PVTypeValues() const {
-				return Photovoltaic::PVTypeValues();
 			}
 
 			double Photovoltaic_Impl::surfaceArea() const {
@@ -151,6 +151,39 @@ namespace openstudio {
 				return result;
 			}
 
+
+			double Photovoltaic_Impl::PVTypeToValue(std::string type){
+				if (type.compare("Monocrystalline") == 0){
+					return 15.0;
+				}
+				else if (type.compare("Polycrystalline") == 0){
+					return 12.0;
+				}
+				else if (type.compare("Amorphous") == 0) {
+					return 9.0;
+				}
+				else{
+					return 15.0; //default as Monocrystalline
+				}
+			}
+
+			double Photovoltaic_Impl::PVTypeToValue(){
+				return Photovoltaic_Impl::PVTypeToValue(Photovoltaic_Impl::PVType());
+			}
+
+
+			double Photovoltaic_Impl::calculatePV(){
+				// power = Asurface * Factive * Gt * CellEfficiency * inverterEfficiency * time
+				double result = Photovoltaic_Impl::surfaceArea() * Photovoltaic_Impl::PVTypeToValue() * (Photovoltaic_Impl::factionActive() / 100.0) * Photovoltaic_Impl::gtEfficiency() * (Photovoltaic_Impl::inverterEfficiency() / 100.0) * (8 * 365);
+				return result;
+			}
+
+			double Photovoltaic_Impl::calculatePV(double hours, double days){
+				// power = Asurface * Factive * Gt * CellEfficiency * inverterEfficiency * time
+				double result = Photovoltaic_Impl::surfaceArea() * Photovoltaic_Impl::PVTypeToValue() * (Photovoltaic_Impl::factionActive() / 100.0) * Photovoltaic_Impl::gtEfficiency() * (Photovoltaic_Impl::inverterEfficiency() / 100.0) * (days * hours);
+				return result;
+			}
+
 		} // detail
 
 		Photovoltaic::Photovoltaic(const Model& model)
@@ -173,6 +206,14 @@ namespace openstudio {
 			ok = setCellEfficiency(0.0);
 			OS_ASSERT(ok);
 
+			ok = setAzimuthAngle(0.0);
+			OS_ASSERT(ok);
+
+			ok = setInclinationAngle(0.0);
+			OS_ASSERT(ok);
+
+			ok = setPVType("Monocrystalline");
+			OS_ASSERT(ok);
 
 		}
 
@@ -181,6 +222,10 @@ namespace openstudio {
 			return result;
 		}
 
+		std::vector<std::string> Photovoltaic::PVTypeValues() {
+			return getIddKeyNames(IddFactory::instance().getObject(iddObjectType()).get(),
+				OS_Exterior_PVFields::Type);
+		}
 
 		bool Photovoltaic::setPVType(std::string PVType) {
 			return getImpl<detail::Photovoltaic_Impl>()->setPVType(PVType);
@@ -192,11 +237,6 @@ namespace openstudio {
 
 		bool Photovoltaic::setSurfaceArea(double surfaceArea){
 			return getImpl<detail::Photovoltaic_Impl>()->setSurfaceArea(surfaceArea);
-		}
-
-		std::vector<std::string> Photovoltaic::PVTypeValues() {
-			return getIddKeyNames(IddFactory::instance().getObject(iddObjectType()).get(),
-				OS_Exterior_PVFields::Type);
 		}
 
 		double Photovoltaic::factionActive(){
@@ -245,6 +285,22 @@ namespace openstudio {
 
 		bool Photovoltaic::setGTEfficiency(double gtEfficiency){
 			return getImpl<detail::Photovoltaic_Impl>()->setGTEfficiency(gtEfficiency);
+		}
+
+		double Photovoltaic::calculatePV(double hours, double days){
+			return getImpl<detail::Photovoltaic_Impl>()->calculatePV(hours, days);
+		}
+
+		double Photovoltaic::calculatePV(){
+			return getImpl<detail::Photovoltaic_Impl>()->calculatePV();
+		}
+
+		double Photovoltaic::PVTypeToValue(std::string type){
+			return getImpl<detail::Photovoltaic_Impl>()->PVTypeToValue(type);
+		}
+
+		double Photovoltaic::PVTypeToValue(){
+			return getImpl<detail::Photovoltaic_Impl>()->PVTypeToValue();
 		}
 
 /// @cond

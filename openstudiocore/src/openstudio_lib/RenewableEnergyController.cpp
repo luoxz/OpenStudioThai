@@ -43,6 +43,8 @@
 #include "../model/PeopleDefinition_Impl.hpp"
 #include "../model/Photovoltaic.hpp"
 #include "../model/Photovoltaic_Impl.hpp"
+#include "../model/PhotovoltaicThermal.hpp"
+#include "../model/PhotovoltaicThermal_Impl.hpp"
 
 #include "../utilities/core/Assert.hpp"
 
@@ -67,6 +69,9 @@ RenewableEnergyController::~RenewableEnergyController()
 void RenewableEnergyController::onAddObject(const openstudio::IddObjectType& iddObjectType)
 {
   switch(iddObjectType.value()){
+	  case IddObjectType::OS_Exterior_PV_Thermal:
+		  openstudio::model::PhotovoltaicThermal(this->model());
+		  break;
 	case IddObjectType::OS_Exterior_PV:
 		openstudio::model::Photovoltaic(this->model());
 		break;
@@ -82,23 +87,10 @@ void RenewableEnergyController::onCopyObject(const openstudio::model::ModelObjec
 
 void RenewableEnergyController::onRemoveObject(openstudio::model::ModelObject modelObject)
 {
-  boost::optional<model::SpaceLoadDefinition> spaceLoadDefinition = modelObject.optionalCast<model::SpaceLoadDefinition>();
-  if (spaceLoadDefinition){
-
-    unsigned numInstances = spaceLoadDefinition->instances().size();
-    if (numInstances > 0){
-      QMessageBox msgBox(subTabView());
-      msgBox.setText("There are " + QString::number(numInstances) + " instances that reference this definition.");
-      msgBox.setInformativeText("Do you want to remove this definition and all of its instances?");
-      msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-      msgBox.setDefaultButton(QMessageBox::Yes);
-      int ret = msgBox.exec();
-      if (ret == QMessageBox::No){
-        return;
-      }
-    }
-    modelObject.remove();
-  }
+	boost::optional<model::ResourceObject> spaceLoadDefinition = modelObject.optionalCast<model::ResourceObject>();
+	if (spaceLoadDefinition){
+		modelObject.remove();
+	}
 }
 
 void RenewableEnergyController::onReplaceObject(openstudio::model::ModelObject modelObject, const OSItemId& replacementItemId)

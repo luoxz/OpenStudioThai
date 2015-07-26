@@ -93,6 +93,8 @@ class RenewableEnergyInspectorView : public ModelObjectInspectorView
 
 	void showPhotovoltaicInspector(const openstudio::model::ModelObject& modelObject);
 
+	void showPhotovoltaicThermalInspector(const openstudio::model::ModelObject& modelObject);
+
     void showInspector(QWidget * widget);
 
     void showDefaultView();
