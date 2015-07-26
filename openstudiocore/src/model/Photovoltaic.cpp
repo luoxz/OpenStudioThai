@@ -174,7 +174,7 @@ namespace openstudio {
 
 			double Photovoltaic_Impl::calculatePV(){
 				// power = Asurface * Factive * Gt * CellEfficiency * inverterEfficiency * time
-				double result = Photovoltaic_Impl::surfaceArea() * Photovoltaic_Impl::PVTypeToValue() * (Photovoltaic_Impl::factionActive() / 100.0) * Photovoltaic_Impl::gtEfficiency() * (Photovoltaic_Impl::inverterEfficiency() / 100.0) * (8 * 356);
+				double result = Photovoltaic_Impl::surfaceArea() * Photovoltaic_Impl::PVTypeToValue() * (Photovoltaic_Impl::factionActive() / 100.0) * Photovoltaic_Impl::gtEfficiency() * (Photovoltaic_Impl::inverterEfficiency() / 100.0) * (8 * 365);
 				return result;
 			}
 
