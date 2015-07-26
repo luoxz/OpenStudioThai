@@ -55,6 +55,13 @@
 #include "../energyplus/ForwardTranslator.hpp"
 #include "../bec/ForwardTranslator.hpp"
 
+#include "../model/Photovoltaic.hpp"
+#include "../model/PhotovoltaicThermal.hpp"
+#include "../model/Photovoltaic_Impl.hpp"
+#include "../model/PhotovoltaicThermal_Impl.hpp"
+
+enum PVReportMode { PVReportMode_OPENSTUDIO, PVReportMode_BEC, PVReportMode_ENERGYPLUS};
+
 #include <QButtonGroup>
 #include <QDir>
 #include <QGroupBox>
@@ -933,7 +940,7 @@ void callBEC(const QString &path, QPlainTextEdit * log){
     //connect(becProcess, SIGNAL(finished(int, QProcess::ExitStatus))
     //        , this, SLOT(becFinished(int, QProcess::ExitStatus)));
 
-    int numFiles = 60000;
+    int numFiles = 60;
     QProgressDialog progress("Generate BEC output....", "Abort", 0, numFiles, 0);
     progress.setWindowModality(Qt::WindowModal);
 
@@ -1242,11 +1249,129 @@ bool RunView::doBecInput(const QString &path, const model::Model &model, QString
   outpath = output;
 
   bec::ForwardTranslator trans;
-  bool success = trans.modelTobec(model, path);
-  err = trans.errors();
+  m_outputWindow->appendPlainText(QString("Create input.xml at %1").arg(path));
+
+  bool success = trans.modelTobec(model, path.toStdString().c_str());
+
+  std::vector<LogMessage> translatorErrors = trans.errors();
+  //std::vector<LogMessage> translatorWarnings = trans.warnings();
+
+  QString log;
+  for( std::vector<LogMessage>::iterator it = translatorErrors.begin();
+        it < translatorErrors.end();
+        ++it )
+  {
+    err.append(QString::fromStdString(it->logMessage()));
+    err.append("\n");
+  }
   //translatorWarnings = trans.warnings();
 
+  m_outputWindow->appendPlainText(QString("Create input.xml at %1 success").arg(path));
   return success;
+}
+
+double RunView::getPV(openstudio::model::Model* model)
+{
+    double res = 0.0;
+    std::vector<model::Photovoltaic> pvs = model->getModelObjects<model::Photovoltaic>();
+    for (model::Photovoltaic& pv : pvs){
+        res += pv.calculatePV();
+    }
+
+    std::vector<model::PhotovoltaicThermal> pvst = model->getModelObjects<model::PhotovoltaicThermal>();
+    for (model::PhotovoltaicThermal& pv : pvst){
+        res += pv.calculatePV();
+    }
+    return res;
+}
+
+void RunView::addPVToFile(const QString &fileName, int mode)
+{
+    static QString id = "_Z_O_axz1d0_j_i_";
+
+    QString fn = fileName;
+    fn.replace("file:///", "");
+
+    QByteArray fileData;
+    QFile file(fn);
+
+    if(!file.open(QIODevice::ReadWrite)){
+        file.close();
+        return;
+    }
+    fileData = file.readAll();
+    QString text(fileData);
+    if(text.indexOf(id)<0){
+        double pv = lastPV;
+        switch (mode) {
+        case PVReportMode_OPENSTUDIO:
+        {
+            QString table = QString("<h4>Photovoltaic(watt)</h4>\n"
+                                    "<table id=\"%1\" class=\"table table-striped table-bordered table-condensed\">\n"
+                                    "	<thead>\n"
+                                    "		<tr>\n"
+                                    "			<th>&nbsp;</th>\n"
+                                    "			<th>watt</th>\n"
+                                    "		</tr>\n"
+                                    "	</thead>\n"
+                                    "	<tbody>\n"
+                                    "		<tr>\n"
+                                    "			<td>Photovoltaic</td>\n"
+                                    "			<td>%2</td>\n"
+                                    "		</tr>\n"
+                                    "	</tbody>\n"
+                                    "</table>\n"
+                                    "</body>\n").arg(id).arg(pv);
+            text.replace("</body>", table);
+        }
+            break;
+        case PVReportMode_BEC:
+        {
+            QString table = QString("<h3>Photovoltaic</h3><b>Photovoltaic</b><br>\n"
+                                    "<table id=\"%1\" border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n"
+                                    "  <tbody>\n"
+                                    "  <tr><td>Photovoltaic(watt)</td></tr>\n"
+                                    "  <tr>\n"
+                                    "    <td align=\"right\">%2</td>\n"
+                                    "  </tr>\n"
+                                    "</tbody></table><br>\n</body>\n").arg(id).arg(pv);
+            text.replace("</body>", table);
+        }
+            break;
+        case PVReportMode_ENERGYPLUS:
+        {
+            QString table = QString("<b>Photovoltaic</b><br><br>\n"
+                                    "<table id=\"%1\" border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n"
+                                    "  <tbody>\n"
+                                    "  <tr><td></td><td align=\"right\">watt</td></tr>\n"
+                                    "  <tr>\n"
+                                    "    <td align=\"right\">Photovoltaic(watt)</td>\n"
+                                    "    <td align=\"right\">%2</td>\n"
+                                    "  </tr>\n"
+                                    "</tbody></table><br><br>\n</body>\n").arg(id).arg(pv);
+            text.replace("</body>", table);
+        }
+            break;
+        }
+        file.seek(0);
+        file.write(text.toUtf8());
+    }
+    file.close();
+}
+
+void RunView::updatePVInfile()
+{
+    QString outpath = (m_tempFolder/"resources").string().c_str();
+    QString becReport = outpath + "/run/9-BEC-0/report.html";
+    QString opsReport = outpath + "/run/6-UserScript-0/report.html";
+    QString eReport = outpath + "/run/5-EnergyPlus-0/eplustbl.htm";
+
+    m_outputWindow->appendPlainText(QString("Update bec report pv value is %1 at %2").arg(lastPV).arg(becReport));
+    addPVToFile(becReport, PVReportMode_BEC);
+    m_outputWindow->appendPlainText(QString("Update OpenStudio report pv value is %1 at %2").arg(lastPV).arg(opsReport));
+    addPVToFile(opsReport, PVReportMode_OPENSTUDIO);
+    m_outputWindow->appendPlainText(QString("Update EnergyPlus report pv value is %1 at %2").arg(lastPV).arg(eReport));
+    addPVToFile(eReport, PVReportMode_ENERGYPLUS);
 }
 
 void RunView::runManagerStatsChanged()
@@ -1280,6 +1405,7 @@ void RunView::runFinished(const openstudio::path &t_sqlFile, const openstudio::p
   runManager().setPaused(true);
 
   m_playButton->setChecked(false);
+  updatePVInfile();
   osdocument->enableTabsAfterRun();
 }
 
@@ -1370,6 +1496,8 @@ void RunView::playButtonClicked(bool t_checked)
     }
   }
 
+  lastPV = getPV(&osdocument->model());
+
   if(m_becButton->isChecked()){
 
       QString outpath = (m_tempFolder/"resources").string().c_str();
@@ -1388,7 +1516,7 @@ void RunView::playButtonClicked(bool t_checked)
 
           QString becoutputPath = outpath+"output.xml";
 
-          doBecInput(outpath+"input.xml", filePath, err);
+          doBecInput(outpath+"input.xml", osdocument->model(), filePath, err);
 
           if(!err.isEmpty())
               m_outputWindow->appendPlainText(err);
@@ -1406,9 +1534,11 @@ void RunView::playButtonClicked(bool t_checked)
               std::shared_ptr<OSDocument> osdocument = OSAppBase::instance()->currentDocument();
               m_outputWindow->appendPlainText("Generate bec complete.");
               m_playButton->setChecked(false);
-              osdocument->runComplete();
-              osdocument->enableTabsAfterRun();
+              updatePVInfile();
+              //osdocument->runComplete();
+              //osdocument->enableTabsAfterRun();
           }
+          runFinished(openstudio::path(), openstudio::path());
       }
       return;
   }
