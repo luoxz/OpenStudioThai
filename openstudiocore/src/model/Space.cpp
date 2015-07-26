@@ -1437,6 +1437,7 @@ namespace detail {
     return true;
   }
 
+  //NOTE:IT RESULT POWER PER SPACE.
   double Space_Impl::electricEquipmentPower() const {
     double result(0.0);
     double area = floorArea();

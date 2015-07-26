@@ -684,6 +684,7 @@ namespace detail {
     return lp / np;
   }
 
+  //NOTE:IT RESULT POWER PER BUILDING.
   double Building_Impl::electricEquipmentPower() const {
     double result(0.0);
     for (const Space& space : spaces()){

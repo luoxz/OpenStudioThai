@@ -81,9 +81,12 @@
 
 #include "../model/AirGap.hpp"
 #include "../model/AirGap_Impl.hpp"
+#include "../model/HotWaterEquipment.hpp"
 
 #include "../model/ThermalZone.hpp"
 #include "../model/ThermalZone_Impl.hpp"
+#include "../model/Photovoltaic.hpp"
+#include "../model/Photovoltaic_Impl.hpp"
 
 #include "../utilities/geometry/Transformation.hpp"
 #include "../utilities/geometry/EulerAngles.hpp"
@@ -198,7 +201,7 @@ namespace bec {
         doSectionOfWall(model, parent);
 
         //TODO:IMPLEMENT Wall
-        doWall(model, parent);
+        //doWall(model, parent);
   }
 
   void ForwardTranslator::doMaterial(const model::Model &model, QDomElement &parent)
@@ -435,11 +438,15 @@ namespace bec {
 
   }
 
-  void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &parent)
+  void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &Envelope)
   {
-      QDomElement sectionOfWall = createTagWithText(parent, "SectionOfWall");
+      QDomElement sectionOfWall = createTagWithText(Envelope, "SectionOfWall");
       QDomElement SectionList = createTagWithText(sectionOfWall, "SectionList");
       QDomElement SectionDetail = createTagWithText(sectionOfWall, "SectionDetail");
+
+      QDomElement Wall = createTagWithText(Envelope, "Wall");
+      QDomElement WallList = createTagWithText(Wall, "WallList");
+      QDomElement WallDetail = createTagWithText(Wall, "WallDetail");
 
       std::vector<openstudio::model::BuildingStory> stories = model.getConcreteModelObjects<openstudio::model::BuildingStory>();
 
@@ -463,6 +470,18 @@ namespace bec {
                       createTagWithText(SectionD, "SectionDetailArea", QString::number(surface.netArea()));
                       createTagWithText(SectionD, "SectionDetailAreaUnit", "m^2");
 
+                      QDomElement WallL = createTagWithText(WallList,"WallL");
+                      createTagWithText(WallL, "WallListName", surface.name().get().c_str());
+                      createTagWithText(WallL, "WallListType", "Wall");
+                      createTagWithText(WallL, "WallListPlanAzimuth", QString::number(surface.azimuth()));
+                      createTagWithText(WallL, "WallListInclination", QString::number(surface.tilt()));
+                      createTagWithText(WallL, "WallListDescription", "???");
+
+                      QDomElement WallD = createTagWithText(WallDetail,"WallD");
+                      createTagWithText(WallD, "WallDetailWallListName", surface.name().get().c_str());
+                      createTagWithText(WallD, "WallDetailSectionName", surface.name().get().c_str());
+                      createTagWithText(WallD, "WallDetailSC", "1");
+
                       openstudio::model::SubSurfaceVector subs = surface.subSurfaces();
 
                       for (openstudio::model::SubSurface& sub : subs){
@@ -483,30 +502,147 @@ namespace bec {
       QDomElement wall = _doc->createElement("Wall");
   }
 
-  void ForwardTranslator::doLightingSystem(const model::Model &model, QDomElement &root)
+  void ForwardTranslator::doModelLoop(const model::Model &model, QDomElement &becInput)
   {
-        LightingSystem
+      QDomElement LightingSystem = createTagWithText(becInput, "LightingSystem");
+      QDomElement ACSystem = createTagWithText(becInput, "ACSystem");
+      QDomElement HotWaterSystem = createTagWithText(becInput, "HotWaterSystem");
+      QDomElement OtherEquipment = createTagWithText(becInput, "OtherEquipment");
+      doPV(model, becInput);
+
+
+      std::vector<openstudio::model::BuildingStory> stories = model.getConcreteModelObjects<openstudio::model::BuildingStory>();
+
+      for (const openstudio::model::BuildingStory& buildingStory : stories) {
+
+          std::vector<openstudio::model::Space> spaces = buildingStory.spaces();
+          for (openstudio::model::Space& space : spaces){
+
+              doLightingSystem(space, LightingSystem);
+              doACSystem(space, ACSystem);
+              doHotWaterSystem(space, HotWaterSystem);
+              doOtherEquipment(space, OtherEquipment);
+
+              openstudio::model::SurfaceVector surfaces = space.surfaces();
+              for (openstudio::model::Surface& surface : surfaces){
+
+              }
+          }
+      }
+
   }
 
-  void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &root)
+  void ForwardTranslator::doLightingSystem(const model::Space &space, QDomElement &LightingSystem)
   {
-
+      if(true){
+          std::vector<model::Lights> lights = space.spaceType().get().lights();
+          for (const model::Lights& light : lights){
+              if(light.lightingLevel()){
+                  QDomElement Lighting = createTagWithText(LightingSystem, "Lighting");
+                  createTagWithText(Lighting, "LightingSystemName"
+                                            , light.lightsDefinition().name().get().c_str());
+                  createTagWithText(Lighting, "LightingSystemPower", QString::number(light.lightingLevel().get()));
+                  createTagWithText(Lighting, "LightingSystemPowerUnit", "W");
+                  createTagWithText(Lighting, "LightingSystemDescription", "???");
+              }
+          }
+      }
   }
 
-  void ForwardTranslator::doPVSystem(const model::Model &model, QDomElement &root)
+  void ForwardTranslator::doOtherEquipment(const model::Space &space, QDomElement &OtherEquipment)
   {
-
+      if(true){
+          std::vector<model::OtherEquipment> others = space.spaceType().get().otherEquipment();
+          for (const model::OtherEquipment& other : others){
+              QDomElement OtherEQ = createTagWithText(OtherEquipment, "OtherEQ");
+              createTagWithText(OtherEQ, "OtherEQName"
+                                        , other.otherEquipmentDefinition().name().get().c_str());
+              if(other.otherEquipmentDefinition().designLevel()){
+                    createTagWithText(OtherEQ, "OtherEQPower", QString::number(other.otherEquipmentDefinition().designLevel().get()));
+              }else if(other.otherEquipmentDefinition().wattsperPerson()){
+                  createTagWithText(OtherEQ, "OtherEQPower", QString::number(other.otherEquipmentDefinition().wattsperPerson().get()));
+              }else if(other.otherEquipmentDefinition().wattsperSpaceFloorArea()){
+                  createTagWithText(OtherEQ, "OtherEQPower", QString::number(other.otherEquipmentDefinition().wattsperSpaceFloorArea().get()));
+              }
+              createTagWithText(OtherEQ, "OtherEQPowerUnit", "watt");
+              createTagWithText(OtherEQ, "OtherEQDescription", "???");
+          }
+      }
   }
 
-  void ForwardTranslator::doHotWaterSystem(const model::Model &model, QDomElement &root)
+  void ForwardTranslator::doACSystem(const model::Space &space, QDomElement &ACSystem)
   {
-
+      createTagWithText(ACSystem, "SplitTypeSystem", "");
+      createTagWithText(ACSystem, "PackagedAirCooledUnit", "");
+      createTagWithText(ACSystem, "PackagedWaterCooledUnit", "");
+      createTagWithText(ACSystem, "CentralACSystem", "");
   }
 
-  void ForwardTranslator::doOtherEquipment(const model::Model &model, QDomElement &root)
+  void ForwardTranslator::doBuildingType(QDomElement &becInput, const QString& typeName)
   {
-
+      createTagWithText(becInput, "BuildingType", typeName);
   }
+
+  void ForwardTranslator::doPV(const model::Model &model, QDomElement &becInput)
+  {
+      QDomElement PVSystem = createTagWithText(becInput, "PVSystem");
+
+      std::vector<model::Photovoltaic> pvs = model.getModelObjects<model::Photovoltaic>();
+      for (model::Photovoltaic& pv : pvs){
+          QDomElement PV = createTagWithText(PVSystem, "PV");
+          createTagWithText(PV, "PVName", pv.name().get().c_str());
+          createTagWithText(PV, "PVSystemEfficiency", QString::number(pv.cellEfficiency()));
+          createTagWithText(PV, "PVSystemEfficiencyUnit", "%");
+          createTagWithText(PV, "PVModuleArea", QString::number(pv.surfaceArea()));
+          createTagWithText(PV, "PVModuleAreaUnit", "m^2");
+          createTagWithText(PV, "PVAzimuth", QString::number(pv.azimuthAngle()));
+          createTagWithText(PV, "PVAzimuthUnit", "degrees");
+          createTagWithText(PV, "PVInclination", QString::number(pv.inclinationAngle()));
+          createTagWithText(PV, "PVInclinationUnit", "degrees");
+      }
+  }
+
+  void ForwardTranslator::doHotWaterSystem(const model::Space &space, QDomElement &OtherEquipment)
+  {
+      std::vector<model::HotWaterEquipment> hws = space.spaceType().get().hotWaterEquipment();
+      for (const model::HotWaterEquipment& hw : hws){
+          //TODO:NOT IMPLEMENT YET.
+          QDomElement Lighting = createTagWithText(OtherEquipment, "HW");
+          createTagWithText(Lighting, "HWName"
+                                    , hw.name().get().c_str());
+          createTagWithText(Lighting, "HWBoilerType", "");
+          createTagWithText(Lighting, "HWBoilerEfficiency", "");
+          createTagWithText(Lighting, "HWBoilerEfficiencyUnit", "%");
+          createTagWithText(Lighting, "HWHeatPumpType", "");
+          createTagWithText(Lighting, "HWHeatPumpCOP", "");
+          createTagWithText(Lighting, "HWDescription", "???");
+      }
+  }
+
+//  void ForwardTranslator::doLightingSystem(const model::Model &model, QDomElement &root)
+//  {
+//        LightingSystem
+//  }
+
+//  void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &root)
+//  {
+
+//  }
+
+//  void ForwardTranslator::doPVSystem(const model::Model &model, QDomElement &root)
+//  {
+
+//  }
+
+//  void ForwardTranslator::doHotWaterSystem(const model::Model &model, QDomElement &root)
+//  {
+
+//  }
+
+//  void ForwardTranslator::doOtherEquipment(const model::Model &model, QDomElement &root)
+//  {
+
+//  }
 
   void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElement &becInput)
   {
@@ -588,12 +724,14 @@ namespace bec {
     _doc = &doc;
     doc.appendChild(BECInput);
 
+    doBuildingType(BECInput, "");
     doEnvelope(model, BECInput);
-    doLightingSystem(model, BECInput);
-    doACSystem(model, BECInput);
-    doPVSystem(model, BECInput);
-    doHotWaterSystem(model, BECInput);
-    doOtherEquipment(model, BECInput);
+    doModelLoop(model, BECInput);
+    //doLightingSystem(model, BECInput);
+    //doACSystem(model, BECInput);
+    //doPVSystem(model, BECInput);
+    //doHotWaterSystem(model, BECInput);
+    //doOtherEquipment(model, BECInput);
     doBuildingEnvelope(model, BECInput);
 
     //boost::optional<QDomElement> myModel = translateMyModel(model,doc);

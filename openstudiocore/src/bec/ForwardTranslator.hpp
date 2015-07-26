@@ -98,15 +98,25 @@ namespace bec {
             void doOpaqueComponentDetail(const model::Model &model, QDomElement &parent);
             void doTransparentComponentList(const model::Model &model, QDomElement &parent);
 
-        void doSectionOfWall(const openstudio::model::Model& model, QDomElement& parent);
+        void doSectionOfWall(const openstudio::model::Model& model, QDomElement& Envelope);
         void doWall(const openstudio::model::Model& model, QDomElement& parent);
 
-    void doLightingSystem(const openstudio::model::Model& model, QDomElement& root);
-    void doACSystem(const openstudio::model::Model& model, QDomElement& root);
-    void doPVSystem(const openstudio::model::Model& model, QDomElement& root);
-    void doHotWaterSystem(const openstudio::model::Model& model, QDomElement& root);
-    void doOtherEquipment(const openstudio::model::Model& model, QDomElement& root);
-    void doBuildingEnvelope(const openstudio::model::Model& model, QDomElement& root);
+
+    void doModelLoop(const openstudio::model::Model& model, QDomElement& becInput);
+
+    void doLightingSystem(const openstudio::model::Space& space, QDomElement& LightingSystem);
+    void doHotWaterSystem(const openstudio::model::Space& space, QDomElement& OtherEquipment);
+    void doOtherEquipment(const openstudio::model::Space& space, QDomElement& OtherEquipment);
+    void doACSystem(const openstudio::model::Space& space, QDomElement& ACSystem);
+    void doPV(const model::Model &model, QDomElement& becInput);
+    void doBuildingType(QDomElement& becInput, const QString &typeName);
+
+//    void doACSystem(const openstudio::model::Model& model, QDomElement& root);
+//    void doPVSystem(const openstudio::model::Model& model, QDomElement& root);
+//    void doHotWaterSystem(const openstudio::model::Model& model, QDomElement& root);
+//    void doOtherEquipment(const openstudio::model::Model& model, QDomElement& root);
+
+    void doBuildingEnvelope(const openstudio::model::Model& model, QDomElement& becInput);
 
     // listed in translation order
     boost::optional<QDomDocument> translateModel(const openstudio::model::Model& model);

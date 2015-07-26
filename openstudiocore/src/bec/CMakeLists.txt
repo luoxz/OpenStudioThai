@@ -29,6 +29,8 @@ set(${target_name}_depends
   openstudio_utilities
   openstudio_model
   openstudio_energyplus
+  openstudio_osversion
+  openstudio_lib
   zkexpat
 )
 
