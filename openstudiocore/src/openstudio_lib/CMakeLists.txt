@@ -212,6 +212,8 @@ set(${target_name}_SRC
   PlanarSurfaceWidget.hpp
   PhotovoltaicInspectorView.hpp
   PhotovoltaicInspectorView.cpp
+  PhotovoltaicThermalInspectorView.hpp
+  PhotovoltaicThermalInspectorView.cpp
   RadianceDialog.cpp
   RadianceDialog.hpp
   RefrigerationController.cpp
@@ -576,6 +578,7 @@ set(${target_name}_moc
   OtherEquipmentInspectorView.hpp
   PeopleInspectorView.hpp
   PhotovoltaicInspectorView.hpp
+  PhotovoltaicThermalInspectorView.hpp
   PlanarSurfaceWidget.hpp
   RadianceDialog.hpp
   RefrigerationController.hpp

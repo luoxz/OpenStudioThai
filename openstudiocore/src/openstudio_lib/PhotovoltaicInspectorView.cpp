@@ -91,7 +91,7 @@ PhotovoltaicInspectorView::PhotovoltaicInspectorView(bool isIP, const openstudio
   connect(this, &PhotovoltaicInspectorView::toggleUnitsClicked, m_factionActiveEdit, &OSQuantityEdit::onUnitSystemChange);
   mainGridLayout->addWidget(m_factionActiveEdit, 5, 0);
 
-  label = new QLabel("Invert Efficiency: ");
+  label = new QLabel("Invert coefficiency: ");
   label->setObjectName("H2");
   mainGridLayout->addWidget(label, 6, 0);
 
@@ -115,7 +115,7 @@ PhotovoltaicInspectorView::PhotovoltaicInspectorView(bool isIP, const openstudio
   connect(this, &PhotovoltaicInspectorView::toggleUnitsClicked, m_inclinationAngleEdit, &OSQuantityEdit::onUnitSystemChange);
   mainGridLayout->addWidget(m_inclinationAngleEdit, 9, 1);
 
-  label = new QLabel("GT Efficiency: ");
+  label = new QLabel("GT : ");
   label->setObjectName("H2");
   mainGridLayout->addWidget(label, 10, 0);
 

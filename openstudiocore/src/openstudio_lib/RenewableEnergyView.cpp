@@ -29,6 +29,7 @@
 #include "OtherEquipmentInspectorView.hpp"
 #include "WaterUseEquipmentInspectorView.hpp"
 #include "PhotovoltaicInspectorView.hpp"
+#include "PhotovoltaicThermalInspectorView.hpp"
 
 #include "../model/Model_Impl.hpp"
 
@@ -64,6 +65,7 @@ RenewableEnergyView::RenewableEnergyView(bool isIP, const openstudio::model::Mod
 std::vector<std::pair<IddObjectType, std::string> > RenewableEnergyView::modelObjectTypesAndNames()
 {
   std::vector<std::pair<IddObjectType, std::string> > result;
+  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_Exterior_PV_Thermal, "Photovoltaic Thermal Definitions"));
   result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_Exterior_PV, "Photovoltaic Definitions"));
 
   return result;
@@ -92,6 +94,9 @@ void RenewableEnergyInspectorView::onSelectModelObject(const openstudio::model::
 {
   switch( modelObject.iddObjectType().value() )
   {
+  case IddObjectType::OS_Exterior_PV_Thermal:
+	  this->showPhotovoltaicThermalInspector(modelObject);
+	  break;
     case IddObjectType::OS_Exterior_PV:
       this->showPhotovoltaicInspector(modelObject);
       break;
@@ -204,6 +209,16 @@ void RenewableEnergyInspectorView::showPhotovoltaicInspector(const openstudio::m
 	photovoltaicInspectorView->selectModelObject(modelObject);
 
 	showInspector(photovoltaicInspectorView);
+}
+
+void RenewableEnergyInspectorView::showPhotovoltaicThermalInspector(const openstudio::model::ModelObject& modelObject)
+{
+	PhotovoltaicThermalInspectorView * photovoltaicThermalInspectorView = new PhotovoltaicThermalInspectorView(m_isIP, m_model);
+	connect(this, &RenewableEnergyInspectorView::toggleUnitsClicked, photovoltaicThermalInspectorView, &PhotovoltaicThermalInspectorView::toggleUnitsClicked);
+
+	photovoltaicThermalInspectorView->selectModelObject(modelObject);
+
+	showInspector(photovoltaicThermalInspectorView);
 }
 
 void RenewableEnergyInspectorView::showInternalMassDefinitionsInspector(const openstudio::model::ModelObject& modelObject)
