@@ -105,6 +105,7 @@
 #include <QDomDocument>
 #include <QDomElement>
 #include <QThread>
+#include <QInputDialog>
 
 namespace openstudio {
 namespace bec {
@@ -120,28 +121,51 @@ namespace bec {
   {
   }
 
-  bool ForwardTranslator::modelTobec(const openstudio::model::Model& model, const openstudio::path& path, ProgressBar* progressBar)
+  bool ForwardTranslator::modelTobec(const openstudio::model::Model& model
+                                     , const openstudio::path& path
+                                     , ProgressBar* progressBar)
   {
-    m_progressBar = progressBar;
+      QInputDialog inputBuildingType;
+      inputBuildingType.setOption(QInputDialog::UseListViewForComboBoxItems);
+      inputBuildingType.setWindowTitle(tr("What is building type."));
+      inputBuildingType.setLabelText(tr("Selection:"));
+      QStringList types;
+      types <<"Office building"
+            <<"Department store"
+            <<"Educational Institution"
+            <<"Hotel"
+            <<"Condominium"
+            <<"Medical Center"
+            <<"Theater"
+            <<"Community building"
+            <<"Service Facility";
+      inputBuildingType.setComboBoxItems(types);
 
-    m_logSink.setThreadId(QThread::currentThread());
+      int ret = inputBuildingType.exec();
 
-    m_logSink.resetStringStream();
+      if (ret == QDialog::Accepted){
+          m_progressBar = progressBar;
 
-    boost::optional<QDomDocument> doc = this->translateModel(model);
-    if (!doc){
+          m_logSink.setThreadId(QThread::currentThread());
+
+          m_logSink.resetStringStream();
+
+          boost::optional<QDomDocument> doc = this->translateModel(model, buildingType);
+          if (!doc){
+              return false;
+          }
+
+          QFile file(toQString(path));
+          if (file.open(QFile::WriteOnly)){
+              QTextStream textStream(&file);
+              textStream << doc->toString(2);
+              file.close();
+              return true;
+          }
+
+          return false;
+      }
       return false;
-    }
-
-    QFile file(toQString(path));
-    if (file.open(QFile::WriteOnly)){
-      QTextStream textStream(&file);
-      textStream << doc->toString(2);
-      file.close();
-      return true;
-    }
-
-    return false;
   }
 
   std::vector<LogMessage> ForwardTranslator::warnings() const
@@ -731,7 +755,7 @@ namespace bec {
       }
   }
 
-  boost::optional<QDomDocument> ForwardTranslator::translateModel(const openstudio::model::Model& model)
+  boost::optional<QDomDocument> ForwardTranslator::translateModel(const openstudio::model::Model& model, const QString& type)
   {
     QDomDocument doc;
     doc.createProcessingInstruction("xml", "version=\"1.0\" encoding=\"utf-8\"");
@@ -740,7 +764,7 @@ namespace bec {
     _doc = &doc;
     doc.appendChild(BECInput);
 
-    doBuildingType(BECInput, "");
+    doBuildingType(BECInput, type);
     doEnvelope(model, BECInput);
     doModelLoop(model, BECInput);
     //doLightingSystem(model, BECInput);

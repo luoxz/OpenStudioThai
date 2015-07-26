@@ -53,6 +53,7 @@
 #include <boost/filesystem.hpp>
 
 #include "../energyplus/ForwardTranslator.hpp"
+#include "../bec/ForwardTranslator.hpp"
 
 #include <QButtonGroup>
 #include <QDir>
@@ -955,37 +956,6 @@ void callBEC(const QString &path, QPlainTextEdit * log){
     log->appendPlainText("call bec...");
 }
 
-bool doBecInput(const QString &path, QString& outpath, QString &err){
-    QString output = path;
-    outpath = output;
-
-    //TODO:Use this code.
-    //#include <ForwardTranslator.hpp>
-    //bec::ForwardTranslator trans;
-    //trans.modelToBEC(m, outDir);
-    //translatorErrors = trans.errors();
-    //translatorWarnings = trans.warnings();
-
-    QFile file(output);
-    if (file.open(QIODevice::WriteOnly | QIODevice::Text))
-    {
-        file.write(
-            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\
-            <root>\
-            <title>\
-            BEC INPUT FILE\
-            </title>\
-            </root>");
-
-        file.close();
-        return true;
-    }
-    else{
-        err = file.errorString();
-    }
-    return false;
-}
-
 bool doBecReport(const QString &path, QString& outpath, QString &err){
     QDomDocument doc("becreport");
 
@@ -1266,6 +1236,19 @@ void RunView::updateRunManagerStats(openstudio::runmanager::RunManager t_runMana
   m_errorsLabel->setText(openstudio::toQString("<b>Errors:</b> " + boost::lexical_cast<std::string>(int(totalerrors))));
 }
 
+bool RunView::doBecInput(const QString &path, const model::Model &model, QString &outpath, QString &err){
+  QString output = path;
+
+  outpath = output;
+
+  bec::ForwardTranslator trans;
+  bool success = trans.modelTobec(model, path);
+  err = trans.errors();
+  //translatorWarnings = trans.warnings();
+
+  return success;
+}
+
 void RunView::runManagerStatsChanged()
 {
   updateRunManagerStats(runManager());
@@ -1403,7 +1386,7 @@ void RunView::playButtonClicked(bool t_checked)
               dir.mkpath(".");
           }
 
-          QString becoutputPath = outpath+"bec.xml";
+          QString becoutputPath = outpath+"output.xml";
 
           doBecInput(outpath+"input.xml", filePath, err);
 

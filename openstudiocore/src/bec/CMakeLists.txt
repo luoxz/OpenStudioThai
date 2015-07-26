@@ -26,11 +26,10 @@ set(${target_name}_depends
   ${Boost_LIBRARIES}
   ${CMAKE_THREAD_LIBS}
   ${QT_LIBS}
+  openstudio_osversion
   openstudio_utilities
   openstudio_model
   openstudio_energyplus
-  openstudio_osversion
-  openstudio_lib
   zkexpat
 )
 

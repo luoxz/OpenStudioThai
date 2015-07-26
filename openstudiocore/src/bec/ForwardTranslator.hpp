@@ -101,7 +101,6 @@ namespace bec {
         void doSectionOfWall(const openstudio::model::Model& model, QDomElement& Envelope);
         void doWall(const openstudio::model::Model& model, QDomElement& parent);
 
-
     void doModelLoop(const openstudio::model::Model& model, QDomElement& becInput);
 
     void doLightingSystem(const openstudio::model::Space& space, QDomElement& LightingSystem);
@@ -109,7 +108,7 @@ namespace bec {
     void doOtherEquipment(const openstudio::model::Space& space, QDomElement& OtherEquipment);
     void doACSystem(const openstudio::model::Space& space, QDomElement& ACSystem);
     void doPV(const model::Model &model, QDomElement& becInput);
-    void doPV(const model::Model &model, QDomElement& becInput);
+
     void doBuildingType(QDomElement& becInput, const QString &typeName);
 
 //    void doACSystem(const openstudio::model::Model& model, QDomElement& root);
@@ -120,7 +119,7 @@ namespace bec {
     void doBuildingEnvelope(const openstudio::model::Model& model, QDomElement& becInput);
 
     // listed in translation order
-    boost::optional<QDomDocument> translateModel(const openstudio::model::Model& model);
+    boost::optional<QDomDocument> translateModel(const openstudio::model::Model& model, const QString &type);
     boost::optional<QDomElement> translateFacility(const openstudio::model::Facility& facility, QDomDocument& doc);
     boost::optional<QDomElement> translateBuilding(const openstudio::model::Building& building, QDomDocument& doc);
     boost::optional<QDomElement> translateSpace(const openstudio::model::Space& space, QDomDocument& doc);
