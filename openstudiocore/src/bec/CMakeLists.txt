@@ -61,6 +61,8 @@ AddPCH(BECToIdf)
 target_link_libraries(BECToIdf
   ${${target_name}_depends}
   openstudio_bec
+  openstudio_osversion
+  openstudio_lib
 )
 
 install(TARGETS BECToIdf
