@@ -143,6 +143,8 @@ set(${target_name}_SRC
   MainTabView.hpp
   MainWindow.cpp
   MainWindow.hpp
+  benchmarkdialog.cpp
+  benchmarkdialog.hpp
   MaterialAirGapInspectorView.cpp
   MaterialAirGapInspectorView.hpp
   MaterialAirWallInspectorView.cpp
@@ -545,6 +547,7 @@ set(${target_name}_moc
   MainTabController.hpp
   MainTabView.hpp
   MainWindow.hpp
+  benchmarkdialog.hpp
   MaterialAirGapInspectorView.hpp
   MaterialAirWallInspectorView.hpp
   MaterialInfraredTransparentInspectorView.hpp
