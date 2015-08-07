@@ -205,7 +205,7 @@ namespace bec {
   {
       QDomElement elm = _doc->createElement(tag);
       if(!text.isEmpty())
-            elm.appendChild(_doc->createTextNode(escapeName(text.toStdString())));
+            elm.appendChild(_doc->createTextNode(text.toStdString()));
 
       parent.appendChild(elm);
       return elm;
