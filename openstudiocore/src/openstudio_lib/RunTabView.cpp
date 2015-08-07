@@ -1287,6 +1287,8 @@ double RunView::getPV(openstudio::model::Model* model)
 
 void RunView::addPVToFile(const QString &fileName, int mode)
 {
+
+    double pv = lastPV;
     static QString id = "_Z_O_axz1d0_j_i_";
 
     QString fn = fileName;
@@ -1301,61 +1303,83 @@ void RunView::addPVToFile(const QString &fileName, int mode)
     }
     fileData = file.readAll();
     QString text(fileData);
-    if(text.indexOf(id)<0){
-        double pv = lastPV;
-        switch (mode) {
-        case PVReportMode_OPENSTUDIO:
-        {
-            QString table = QString("<h4>Photovoltaic(watt)</h4>\n"
-                                    "<table id=\"%1\" class=\"table table-striped table-bordered table-condensed\">\n"
-                                    "	<thead>\n"
-                                    "		<tr>\n"
-                                    "			<th>&nbsp;</th>\n"
-                                    "			<th>watt</th>\n"
-                                    "		</tr>\n"
-                                    "	</thead>\n"
-                                    "	<tbody>\n"
-                                    "		<tr>\n"
-                                    "			<td>Photovoltaic</td>\n"
-                                    "			<td>%2</td>\n"
-                                    "		</tr>\n"
-                                    "	</tbody>\n"
-                                    "</table>\n"
-                                    "</body>\n").arg(id).arg(pv);
+    bool first = text.indexOf(id)<0;
+    switch (mode) {
+    case PVReportMode_OPENSTUDIO:
+    {
+        QString table = QString("<h4>Photovoltaic(watt)</h4>\n"
+                                "<table id=\"%1\" class=\"table table-striped table-bordered table-condensed\">\n"
+                                "	<thead>\n"
+                                "		<tr>\n"
+                                "			<th>&nbsp;</th>\n"
+                                "			<th>watt</th>\n"
+                                "		</tr>\n"
+                                "	</thead>\n"
+                                "	<tbody>\n"
+                                "		<tr>\n"
+                                "			<td>Photovoltaic</td>\n"
+                                "			<td>%2</td>\n"
+                                "		</tr>\n"
+                                "	</tbody>\n"
+                                "</table>\n"
+                                "</body>\n").arg(id).arg(QString::number(pv, 'f', 2));
+        if(first){
             text.replace("</body>", table);
         }
-            break;
-        case PVReportMode_BEC:
-        {
-            QString table = QString("<h3>Photovoltaic</h3><b>Photovoltaic</b><br>\n"
-                                    "<table id=\"%1\" border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n"
-                                    "  <tbody>\n"
-                                    "  <tr><td>Photovoltaic(watt)</td></tr>\n"
-                                    "  <tr>\n"
-                                    "    <td align=\"right\">%2</td>\n"
-                                    "  </tr>\n"
-                                    "</tbody></table><br>\n</body>\n").arg(id).arg(pv);
-            text.replace("</body>", table);
+        else{
+            int start = text.indexOf("<h4>Photovoltaic(watt)</h4>\n");
+            QString endstr = "</body>\n";
+            int end = text.indexOf(endstr, start)+endstr.size();
+            text.replace(start, end-start, table);
         }
-            break;
-        case PVReportMode_ENERGYPLUS:
-        {
-            QString table = QString("<b>Photovoltaic</b><br><br>\n"
-                                    "<table id=\"%1\" border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n"
-                                    "  <tbody>\n"
-                                    "  <tr><td></td><td align=\"right\">watt</td></tr>\n"
-                                    "  <tr>\n"
-                                    "    <td align=\"right\">Photovoltaic(watt)</td>\n"
-                                    "    <td align=\"right\">%2</td>\n"
-                                    "  </tr>\n"
-                                    "</tbody></table><br><br>\n</body>\n").arg(id).arg(pv);
-            text.replace("</body>", table);
-        }
-            break;
-        }
-        file.seek(0);
-        file.write(text.toUtf8());
     }
+        break;
+    case PVReportMode_BEC:
+    {
+        QString table = QString("<h3>Photovoltaic</h3><b>Photovoltaic</b><br>\n"
+                                "<table id=\"%1\" border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n"
+                                "  <tbody>\n"
+                                "  <tr><td>Photovoltaic(watt)</td></tr>\n"
+                                "  <tr>\n"
+                                "    <td align=\"right\">%2</td>\n"
+                                "  </tr>\n"
+                                "</tbody></table><br>\n</body>\n").arg(id).arg(QString::number(pv, 'f', 2));
+        if(first){
+            text.replace("</body>", table);
+        }
+        else{
+            int start = text.indexOf("<h3>Photovoltaic</h3><b>Photovoltaic</b><br>\n");
+            QString endstr = "</tbody></table><br>\n</body>\n";
+            int end = text.indexOf( endstr, start)+endstr.size();
+            text.replace(start, end-start, table);
+        }
+    }
+        break;
+    case PVReportMode_ENERGYPLUS:
+    {
+        QString table = QString("<b>Photovoltaic</b><br><br>\n"
+                                "<table id=\"%1\" border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n"
+                                "  <tbody>\n"
+                                "  <tr><td></td><td align=\"right\">watt</td></tr>\n"
+                                "  <tr>\n"
+                                "    <td align=\"right\">Photovoltaic(watt)</td>\n"
+                                "    <td align=\"right\">%2</td>\n"
+                                "  </tr>\n"
+                                "</tbody></table><br><br>\n</body>\n").arg(id).arg(QString::number(pv, 'f', 2));
+        if(first){
+            text.replace("</body>", table);
+        }
+        else{
+            int start = text.indexOf("<b>Photovoltaic</b><br><br>\n");
+            QString endstr = "\n</body>\n";
+            int end = text.indexOf( endstr, start)+endstr.size();
+            text.replace(start, end-start, table);
+        }
+    }
+        break;
+    }
+    file.seek(0);
+    file.write(text.toUtf8());
     file.close();
 }
 

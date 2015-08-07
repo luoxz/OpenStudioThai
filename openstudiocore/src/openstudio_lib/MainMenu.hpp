@@ -94,6 +94,8 @@ class MainMenu : public QMenuBar
 
   void changeBclLogin();
 
+  void configureBenchmarkClicked();
+
   private:
 
   bool m_isPlugin;
