@@ -310,7 +310,7 @@ void MainWindow::configureProxyClicked()
   }
 }
 
-openstudio::path resourcesPath()
+static openstudio::path resourcesPath()
 {
   if (openstudio::applicationIsRunningFromBuildDirectory())
   {

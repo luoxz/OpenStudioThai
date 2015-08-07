@@ -67,7 +67,7 @@ double BenchmarkDialog::getValueByName(const QString &name)
             return value->value();
         it++;
     }
-    return 0.0f;
+    return 0.0;
 }
 
 BenchmarkDialog::BenchmarkDialog(const QString &defaultConfigPath, QWidget *parent)

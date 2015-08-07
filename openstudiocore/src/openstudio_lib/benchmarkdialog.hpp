@@ -49,6 +49,7 @@ public:
     void setupBenchmarkValues(QSettings &settingINI, QSettings *settingsReg);
     size_t valuesCount() const;
     BenchmarkValue* valueAt(size_t idx) const;
+    double getValueByName(const QString &name);
 signals:
 
 public slots:

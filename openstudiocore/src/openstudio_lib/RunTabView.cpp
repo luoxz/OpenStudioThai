@@ -931,7 +931,7 @@ const QString bec_xml
   </WholeBuildingEnergy >\
 </BuildingReport>";
 
-openstudio::path resourcesPath()
+static openstudio::path resourcesPath()
 {
   if (openstudio::applicationIsRunningFromBuildDirectory())
   {
@@ -1042,7 +1042,6 @@ RunView::RunView(const model::Model & model,
   : m_model(model),
     m_modelPath(t_modelPath),
     m_tempFolder(t_tempFolder),
-    m_canceling(false)
     m_canceling(false),
     becProcess(NULL)
 
@@ -1301,6 +1300,132 @@ double RunView::getPV(openstudio::model::Model* model)
     return res;
 }
 
+static QString doubleToMoney(double val){
+    QString sValue = QString("%L1").arg(val ,12,'d',9);
+    while(sValue.endsWith('0'))
+        sValue.remove(sValue.length()-1, 1);
+
+    if(sValue.endsWith('.'))
+        sValue.append('0');
+
+    return sValue;
+}
+
+static double sumArrayStringOfDouble(const QString& arrayStr, int begin){
+    //qDebug() << QStringRef(&arrayStr, begin, 5).toString();
+    QString res;
+    double out=0;
+    for(int i=begin;i<arrayStr.size();i++){
+        QChar ch = arrayStr.at(i);
+        if(ch.isNumber()){
+            res.append(ch);
+        }
+        else if(ch == '.'){
+            res.append(ch);
+        }
+        else if(ch==','){
+            out += res.toDouble();
+            //qDebug() << "in out sum: " << out << ", res:" <<res ;
+            res.clear();
+        }
+        else if(ch==']'){
+            out += res.toDouble();
+            //qDebug() << "in out sum: " << out << ", res:" <<res ;
+            res.clear();
+            break;
+        }
+    }
+    return out;
+}
+
+static double getDouble(const QString& str){
+    QString res;
+    for(int i=0;i<str.size();i++){
+        QChar ch = str.at(i);
+        if(ch.isNumber()){
+            res.append(ch);
+        }
+        else if(ch == '.'){
+            res.append(ch);
+        }
+    }
+    bool isOk;
+    double out = res.toDouble(&isOk);
+    if(isOk)
+        return out;
+    else
+        return 0;
+}
+
+static double findEnergyPlusPowerTotal(const QString& str){
+    const QString key1 = "<b>Site and Source Energy</b><br><br>";
+    const QString key2 = "<td align=\"right\">Total Source Energy</td>";
+    const QString end1 = "</td>";
+
+    //qDebug() << "==============\n" << str;
+    //qDebug() << "++++++++++++++\n" << key1;
+
+    int idx = str.indexOf(key1);
+    if(idx<0)
+        return 0;
+
+    idx = str.indexOf(key2, idx+key1.size());
+    if(idx<0)
+        return 0;
+
+    int end = str.indexOf(end1, idx+key2.size());
+    if(end<0)
+        return 0;
+
+    QStringRef sub(&str, idx, end-idx);
+    return getDouble(sub.toString());
+}
+
+static double findOpenStudioPowerTotal(const QString& str){
+    const QString key0 = "\"Electricity Consumption\":{";
+
+    QStringList sls;
+    sls.push_back("\"Heating\":[");
+    sls.push_back("\"Cooling\":[");
+    sls.push_back("\"Interior Lighting\":[");
+    sls.push_back("\"Exterior Lighting\":[");
+    sls.push_back("\"Interior Equipment\":[");
+    sls.push_back("\"Exterior Equipment\":[");
+    sls.push_back("\"Fans\":[");
+    sls.push_back("\"Pumps\":[");
+    sls.push_back("\"Heat Rejection\":[");
+    sls.push_back("\"Humidification\":[");
+    sls.push_back("\"Heat Recovery\":[");
+    sls.push_back("\"Water Systems\":[");
+    sls.push_back("\"Refrigeration\":[");
+    sls.push_back("\"Generators\":[");
+
+    double out = 0;
+    int begin = str.indexOf(key0);
+    if(begin<0)
+        return 0;
+
+    begin = begin+key0.size();
+    begin = str.indexOf(sls.at(0), begin);
+    if(begin<0)
+        return out;
+    else
+        out += sumArrayStringOfDouble(str, begin+sls.at(0).size());
+
+    for(int i=1;i<sls.size();i++){
+        begin = begin+sls.at(i-1).size();
+        begin = str.indexOf(sls.at(i), begin);
+        if(begin<0)
+            return out;
+        else{
+            //qDebug() << QStringRef(&str, begin, 5).toString();
+            out += sumArrayStringOfDouble(str, begin+sls.at(i).size());
+            //qDebug() << "CURRENT OUT :" << out;
+        }
+    }
+    return out;
+}
+
 void RunView::addPVToFile(const QString &fileName, int mode)
 {
 
@@ -1355,26 +1480,28 @@ void RunView::addPVToFile(const QString &fileName, int mode)
 
         ///////////////////////////////
         //BENCHMARK
+        double val = findOpenStudioPowerTotal(text);
         table = QString("<h4>Benchmark</h4>\n"
                                 "<table id=\"%1\" class=\"table table-striped table-bordered table-condensed\">\n"
                                 "	<thead>\n"
                                 "		<tr>\n"
-                                "			<th>%1</th>\n"
                                 "			<th>%2</th>\n"
+                                "			<th>%3</th>\n"
                                 "		</tr>\n"
                                 "	</thead>\n"
                                 "	<tbody>\n"
                                 "		<tr>\n"
-                                "			<td>%3</td>\n"
                                 "			<td>%4</td>\n"
+                                "			<td>%5</td>\n"
                                 "		</tr>\n"
                                 "	</tbody>\n"
                                 "</table>\n"
                                 "</body>\n")
+                .arg(bvid)
                 .arg(bvName)
-                .arg(QString::number(bvVal, 'f', 2))
                 .arg("")
-                .arg(QString::number(0.0f, 'f', 2));
+                .arg(doubleToMoney(bvVal))
+                .arg(doubleToMoney(val));
         if(firstBV){
             text.replace("</body>", table);
         }
@@ -1409,6 +1536,9 @@ void RunView::addPVToFile(const QString &fileName, int mode)
         break;
     case PVReportMode_ENERGYPLUS:
     {
+        if(text.indexOf("<meta charset=\"utf-8\">")<0){
+            text.replace("<head>", "<head>\n<meta charset=\"utf-8\">");
+        }
         QString table = QString("<b>Photovoltaic</b><br><br>\n"
                                 "<table id=\"%1\" border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n"
                                 "  <tbody>\n"
@@ -1428,24 +1558,28 @@ void RunView::addPVToFile(const QString &fileName, int mode)
             text.replace(start, end-start, table);
         }
 
+        ///////////////////////////////
+        //BENCHMARK
+        double val = findEnergyPlusPowerTotal(text);
         table = QString("<b>Benchmark</b><br><br>\n"
                                 "<table id=\"%1\" border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n"
                                 "  <tbody>\n"
-                                "  <tr><td>%1</td><td align=\"right\">%2</td></tr>\n"
+                                "  <tr><td>%2</td><td align=\"right\">%3</td></tr>\n"
                                 "  <tr>\n"
-                                "    <td align=\"right\">%3</td>\n"
                                 "    <td align=\"right\">%4</td>\n"
+                                "    <td align=\"right\">%5</td>\n"
                                 "  </tr>\n"
                                 "</tbody></table><br><br>\n</body>\n")
+                .arg(bvid)
                 .arg(bvName)
-                .arg(QString::number(bvVal, 'f', 2))
                 .arg("")
-                .arg(QString::number(0.0, 'f', 2));
-        if(firstPV){
+                .arg(doubleToMoney(bvVal))
+                .arg(doubleToMoney(val));
+        if(firstBV){
             text.replace("</body>", table);
         }
         else{
-            int start = text.indexOf("<b>Photovoltaic</b><br><br>\n");
+            int start = text.indexOf("<b>Benchmark</b><br><br>\n");
             QString endstr = "\n</body>\n";
             int end = text.indexOf( endstr, start)+endstr.size();
             text.replace(start, end-start, table);
@@ -1458,6 +1592,7 @@ void RunView::addPVToFile(const QString &fileName, int mode)
     file.close();
 }
 
+//TODO:CHANGE TO POSTPORCESSING
 void RunView::updatePVInfile()
 {
     QString outpath = (m_tempFolder/"resources").string().c_str();
@@ -1680,7 +1815,7 @@ void RunView::playButtonClicked(bool t_checked)
       std::string bvsdefault = resourcesPath().string() +"/"+ "default_building_standard.bvs";
       BenchmarkDialog* bmdlg = new BenchmarkDialog(bvsdefault.c_str(), this);
 
-      for(int idx=0;idx<bmdlg->valuesCount();idx++){
+      for(size_t idx=0;idx<bmdlg->valuesCount();idx++){
           BenchmarkValue* bv = bmdlg->valueAt(idx);
           if(bv){
               types << bv->name();
@@ -1691,7 +1826,7 @@ void RunView::playButtonClicked(bool t_checked)
       int ret = inputBuildingType.exec();
       (void)ret;
       bvName = inputBuildingType.textValue();
-      bvVal = bmdlg->getValueByName(name);
+      bvVal = bmdlg->getValueByName(bvName);
       bmdlg->accept();
   }
 
