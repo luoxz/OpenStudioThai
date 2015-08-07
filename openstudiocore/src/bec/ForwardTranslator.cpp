@@ -161,7 +161,6 @@ namespace bec {
               file.close();
               return true;
           }
-
           return false;
       }
       return false;

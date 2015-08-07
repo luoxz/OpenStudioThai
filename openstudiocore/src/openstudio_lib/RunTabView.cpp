@@ -59,6 +59,7 @@
 #include "../model/PhotovoltaicThermal.hpp"
 #include "../model/Photovoltaic_Impl.hpp"
 #include "../model/PhotovoltaicThermal_Impl.hpp"
+#include "benchmarkdialog.hpp"
 
 enum PVReportMode { PVReportMode_OPENSTUDIO, PVReportMode_BEC, PVReportMode_ENERGYPLUS};
 
@@ -88,6 +89,7 @@ enum PVReportMode { PVReportMode_OPENSTUDIO, PVReportMode_BEC, PVReportMode_ENER
 #include <QTextStream>
 #include <QProgressDialog>
 #include <QDesktopServices>
+#include <QInputDialog>
 
 QString insertSpaceInTag(const QString& tagName){
     QChar ch0 = 'A';
@@ -1040,6 +1042,7 @@ RunView::RunView(const model::Model & model,
   : m_model(model),
     m_modelPath(t_modelPath),
     m_tempFolder(t_tempFolder),
+    m_canceling(false)
     m_canceling(false),
     becProcess(NULL)
 
@@ -1302,7 +1305,8 @@ void RunView::addPVToFile(const QString &fileName, int mode)
 {
 
     double pv = lastPV;
-    static QString id = "_Z_O_axz1d0_j_i_";
+    static QString pvid = "_Z_O_axz1d0_j_i_";
+    static QString bvid = "_A_w08_B_p3_O_vv";
 
     QString fn = fileName;
     fn.replace("file:///", "");
@@ -1316,10 +1320,13 @@ void RunView::addPVToFile(const QString &fileName, int mode)
     }
     fileData = file.readAll();
     QString text(fileData);
-    bool first = text.indexOf(id)<0;
+    bool firstPV = text.indexOf(pvid)<0;
+    bool firstBV = text.indexOf(bvid)<0;
+
     switch (mode) {
     case PVReportMode_OPENSTUDIO:
     {
+        //PV
         QString table = QString("<h4>Photovoltaic(watt)</h4>\n"
                                 "<table id=\"%1\" class=\"table table-striped table-bordered table-condensed\">\n"
                                 "	<thead>\n"
@@ -1335,12 +1342,44 @@ void RunView::addPVToFile(const QString &fileName, int mode)
                                 "		</tr>\n"
                                 "	</tbody>\n"
                                 "</table>\n"
-                                "</body>\n").arg(id).arg(QString::number(pv, 'f', 2));
-        if(first){
+                                "</body>\n").arg(pvid).arg(QString::number(pv, 'f', 2));
+        if(firstPV){
             text.replace("</body>", table);
         }
         else{
             int start = text.indexOf("<h4>Photovoltaic(watt)</h4>\n");
+            QString endstr = "</body>\n";
+            int end = text.indexOf(endstr, start)+endstr.size();
+            text.replace(start, end-start, table);
+        }
+
+        ///////////////////////////////
+        //BENCHMARK
+        table = QString("<h4>Benchmark</h4>\n"
+                                "<table id=\"%1\" class=\"table table-striped table-bordered table-condensed\">\n"
+                                "	<thead>\n"
+                                "		<tr>\n"
+                                "			<th>%1</th>\n"
+                                "			<th>%2</th>\n"
+                                "		</tr>\n"
+                                "	</thead>\n"
+                                "	<tbody>\n"
+                                "		<tr>\n"
+                                "			<td>%3</td>\n"
+                                "			<td>%4</td>\n"
+                                "		</tr>\n"
+                                "	</tbody>\n"
+                                "</table>\n"
+                                "</body>\n")
+                .arg(bvName)
+                .arg(QString::number(bvVal, 'f', 2))
+                .arg("")
+                .arg(QString::number(0.0f, 'f', 2));
+        if(firstBV){
+            text.replace("</body>", table);
+        }
+        else{
+            int start = text.indexOf("<h4>Benchmark</h4>\n");
             QString endstr = "</body>\n";
             int end = text.indexOf(endstr, start)+endstr.size();
             text.replace(start, end-start, table);
@@ -1356,8 +1395,8 @@ void RunView::addPVToFile(const QString &fileName, int mode)
                                 "  <tr>\n"
                                 "    <td align=\"right\">%2</td>\n"
                                 "  </tr>\n"
-                                "</tbody></table><br>\n</body>\n").arg(id).arg(QString::number(pv, 'f', 2));
-        if(first){
+                                "</tbody></table><br>\n</body>\n").arg(pvid).arg(QString::number(pv, 'f', 2));
+        if(firstPV){
             text.replace("</body>", table);
         }
         else{
@@ -1378,8 +1417,31 @@ void RunView::addPVToFile(const QString &fileName, int mode)
                                 "    <td align=\"right\">Photovoltaic(watt)</td>\n"
                                 "    <td align=\"right\">%2</td>\n"
                                 "  </tr>\n"
-                                "</tbody></table><br><br>\n</body>\n").arg(id).arg(QString::number(pv, 'f', 2));
-        if(first){
+                                "</tbody></table><br><br>\n</body>\n").arg(pvid).arg(QString::number(pv, 'f', 2));
+        if(firstPV){
+            text.replace("</body>", table);
+        }
+        else{
+            int start = text.indexOf("<b>Photovoltaic</b><br><br>\n");
+            QString endstr = "\n</body>\n";
+            int end = text.indexOf( endstr, start)+endstr.size();
+            text.replace(start, end-start, table);
+        }
+
+        table = QString("<b>Benchmark</b><br><br>\n"
+                                "<table id=\"%1\" border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n"
+                                "  <tbody>\n"
+                                "  <tr><td>%1</td><td align=\"right\">%2</td></tr>\n"
+                                "  <tr>\n"
+                                "    <td align=\"right\">%3</td>\n"
+                                "    <td align=\"right\">%4</td>\n"
+                                "  </tr>\n"
+                                "</tbody></table><br><br>\n</body>\n")
+                .arg(bvName)
+                .arg(QString::number(bvVal, 'f', 2))
+                .arg("")
+                .arg(QString::number(0.0, 'f', 2));
+        if(firstPV){
             text.replace("</body>", table);
         }
         else{
@@ -1551,6 +1613,18 @@ openstudio::runmanager::ToolVersion RunView::getRequiredEnergyPlusVersion()
   }
 }
 
+openstudio::path resourcesPath()
+{
+  if (openstudio::applicationIsRunningFromBuildDirectory())
+  {
+    return openstudio::getApplicationSourceDirectory() / openstudio::toPath("src/openstudio_app/Resources");
+  }
+  else
+  {
+    return openstudio::getApplicationRunDirectory() / openstudio::toPath("../share/openstudio-" + openStudioVersion() + "/OSApp");
+  }
+}
+
 void RunView::playButtonClicked(bool t_checked)
 {
   LOG(Debug, "playButtonClicked " << t_checked);
@@ -1591,27 +1665,34 @@ void RunView::playButtonClicked(bool t_checked)
           if(!err.isEmpty())
               m_outputWindow->appendPlainText(err);
 
-          //callBEC(becoutputPath, m_outputWindow);
           callRealBEC(outpath);
-
-//          if(!doBecReport(becoutputPath, outpath, err)){
-//              m_outputWindow->appendPlainText("Error BEC Report.");
-//              m_outputWindow->appendPlainText(err);
-//          }
-//          else{
-//              //QString foutpath = QString("file:///") + outpath + "report.html";
-//              //QUrl url(foutpath);
-//              //QDesktopServices::openUrl(url);
-//              std::shared_ptr<OSDocument> osdocument = OSAppBase::instance()->currentDocument();
-//              m_outputWindow->appendPlainText("Generate bec complete.");
-//              m_playButton->setChecked(false);
-//              updatePVInfile();
-//              //osdocument->runComplete();
-//              //osdocument->enableTabsAfterRun();
-//          }
-//          runFinished(openstudio::path(), openstudio::path());
       }
       return;
+  }else if(m_energyPlusButton->isChecked()){
+      bvName = QString();
+      bvVal = 0.0f;
+      QInputDialog inputBuildingType;
+      inputBuildingType.setOption(QInputDialog::UseListViewForComboBoxItems);
+      inputBuildingType.setWindowTitle("What is building type.");
+      inputBuildingType.setLabelText("Selection:");
+      QStringList types;
+
+      std::string bvsdefault = resourcesPath().string() +"/"+ "default_building_standard.bvs";
+      BenchmarkDialog* bmdlg = new BenchmarkDialog(bvsdefault.c_str(), this);
+
+      for(int idx=0;idx<bmdlg->valuesCount();idx++){
+          BenchmarkValue* bv = bmdlg->valueAt(idx);
+          if(bv){
+              types << bv->name();
+          }
+      }
+
+      inputBuildingType.setComboBoxItems(types);
+      int ret = inputBuildingType.exec();
+      (void)ret;
+      bvName = inputBuildingType.textValue();
+      bvVal = bmdlg->getValueByName(name);
+      bmdlg->accept();
   }
 
   updateToolsWarnings();

@@ -48,6 +48,28 @@ void BenchmarkDialog::setupBenchmarkValues(QSettings& settingBase, QSettings *se
     }
 }
 
+size_t BenchmarkDialog::valuesCount() const
+{
+    return values.count();
+}
+
+BenchmarkValue *BenchmarkDialog::valueAt(size_t idx) const
+{
+    return values.at(idx);
+}
+
+double BenchmarkDialog::getValueByName(const QString &name)
+{
+    QList<BenchmarkValue*>::iterator it = values.begin();
+    while (it!=values.end()) {
+        BenchmarkValue* value = (*it);
+        if(value->name() == name)
+            return value->value();
+        it++;
+    }
+    return 0.0f;
+}
+
 BenchmarkDialog::BenchmarkDialog(const QString &defaultConfigPath, QWidget *parent)
     : QDialog(parent, Qt::Dialog)
 {
@@ -343,6 +365,16 @@ BenchmarkValue::~BenchmarkValue()
     qDebug() << __FUNCTION__;
 }
 
+void BenchmarkValue::setName(const QString &name)
+{
+    lnName->setText(name);
+}
+
+void BenchmarkValue::setValue(double value)
+{
+    dValue->setValue(value);
+}
+
 void BenchmarkValue::setEditable(bool isEdit)
 {
     lnName->setReadOnly(!isEdit);
@@ -365,7 +397,17 @@ QString BenchmarkValue::toString()
     return lnName->text() + "=" + QString::number(dValue->value());
 }
 
-QString BenchmarkValue::key()
+QString BenchmarkValue::name()
+{
+    return lnName->text();
+}
+
+QString BenchmarkValue::key() const
 {
     return _key;
+}
+
+double BenchmarkValue::value() const
+{
+    return dValue->value();
 }

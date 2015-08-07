@@ -147,6 +147,8 @@ namespace openstudio {
       void callRealBEC(const QString& outpath);
 
       double lastPV;
+      QString bvName;
+      double bvVal;
       //openstudio::path loadRmdbPath() const;
       //openstudio::path simulationDir() const;
       //openstudio::path modelPath() const;
