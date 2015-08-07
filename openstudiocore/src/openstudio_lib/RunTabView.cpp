@@ -929,6 +929,18 @@ const QString bec_xml
   </WholeBuildingEnergy >\
 </BuildingReport>";
 
+openstudio::path resourcesPath()
+{
+  if (openstudio::applicationIsRunningFromBuildDirectory())
+  {
+    return openstudio::getApplicationSourceDirectory() / openstudio::toPath("src/openstudio_app/Resources");
+  }
+  else
+  {
+    return openstudio::getApplicationRunDirectory() / openstudio::toPath("../share/openstudio-" + openStudioVersion() + "/OSApp");
+  }
+}
+
 void callBEC(const QString &path, QPlainTextEdit * log){
 
     //Start bec for gen xml.
@@ -1028,7 +1040,8 @@ RunView::RunView(const model::Model & model,
   : m_model(model),
     m_modelPath(t_modelPath),
     m_tempFolder(t_tempFolder),
-    m_canceling(false)
+    m_canceling(false),
+    becProcess(NULL)
 
 {
   bool isConnected = t_runManager.connect(SIGNAL(statsChanged()), this, SLOT(runManagerStatsChanged()));
@@ -1398,22 +1411,55 @@ void RunView::updatePVInfile()
     addPVToFile(eReport, PVReportMode_ENERGYPLUS);
 }
 
+void RunView::callRealBEC(const QString &dir){
+    QString outpath = dir;
+    outpath.replace("\\", "/");
+    if(!outpath.endsWith("//")){
+        outpath.append("/");
+    }
+    openstudio::path path = resourcesPath();
+    std::string program = path.string() + "/newBEC.exe";
+
+    QStringList arguments;
+    arguments << outpath;
+
+    if(becProcess)
+        becProcess->deleteLater();
+
+    becProcess = new QProcess(this);
+    becProcess->start(program.c_str(), arguments);
+
+    //BEC SLOT
+    connect(becProcess, SIGNAL(error(QProcess::ProcessError))
+            , SLOT(becError(QProcess::ProcessError)));
+    connect(becProcess, SIGNAL(finished(int, QProcess::ExitStatus))
+            , SLOT(becFinished(int, QProcess::ExitStatus)));
+    connect(becProcess, SIGNAL(readyReadStandardError())
+            , SLOT(becReadyReadStandardError()));
+    connect(becProcess, SIGNAL(readyReadStandardOutput())
+            , SLOT(becReadyReadStandardOutput()));
+    connect(becProcess, SIGNAL(started())
+            , SLOT(becStarted()));
+    connect(becProcess, SIGNAL(stateChanged(QProcess::ProcessState))
+            , SLOT(becStateChanged(QProcess::ProcessState)));
+}
+
 void RunView::runManagerStatsChanged()
 {
-  updateRunManagerStats(runManager());
+    updateRunManagerStats(runManager());
 }
 
 void RunView::runFinished(const openstudio::path &t_sqlFile, const openstudio::path &t_radianceOutputPath)
 {
-  if (m_canceling)
-  {
-    m_statusLabel->setText("Canceled");
-  }
+    if (m_canceling)
+    {
+        m_statusLabel->setText("Canceled");
+    }
 
-  std::shared_ptr<OSDocument> osdocument = OSAppBase::instance()->currentDocument();
+    std::shared_ptr<OSDocument> osdocument = OSAppBase::instance()->currentDocument();
 
-  // DLM: should we attach the sql file to the model here?
-  // DLM: if model is re-opened with results they will not be added here, better to do this on results tab
+    // DLM: should we attach the sql file to the model here?
+    // DLM: if model is re-opened with results they will not be added here, better to do this on results tab
   //if (exists(t_sqlFile)){
   //  SqlFile sqlFile(t_sqlFile);
   //  if (sqlFile.connectionOpen()){
@@ -1538,31 +1584,32 @@ void RunView::playButtonClicked(bool t_checked)
               dir.mkpath(".");
           }
 
-          QString becoutputPath = outpath+"output.xml";
+          becoutputPath = outpath+"output.xml";
 
           doBecInput(outpath+"input.xml", osdocument->model(), filePath, err);
 
           if(!err.isEmpty())
               m_outputWindow->appendPlainText(err);
 
-          callBEC(becoutputPath, m_outputWindow);
+          //callBEC(becoutputPath, m_outputWindow);
+          callRealBEC(outpath);
 
-          if(!doBecReport(becoutputPath, outpath, err)){
-              m_outputWindow->appendPlainText("Error BEC Report.");
-              m_outputWindow->appendPlainText(err);
-          }
-          else{
-              //QString foutpath = QString("file:///") + outpath + "report.html";
-              //QUrl url(foutpath);
-              //QDesktopServices::openUrl(url);
-              std::shared_ptr<OSDocument> osdocument = OSAppBase::instance()->currentDocument();
-              m_outputWindow->appendPlainText("Generate bec complete.");
-              m_playButton->setChecked(false);
-              updatePVInfile();
-              //osdocument->runComplete();
-              //osdocument->enableTabsAfterRun();
-          }
-          runFinished(openstudio::path(), openstudio::path());
+//          if(!doBecReport(becoutputPath, outpath, err)){
+//              m_outputWindow->appendPlainText("Error BEC Report.");
+//              m_outputWindow->appendPlainText(err);
+//          }
+//          else{
+//              //QString foutpath = QString("file:///") + outpath + "report.html";
+//              //QUrl url(foutpath);
+//              //QDesktopServices::openUrl(url);
+//              std::shared_ptr<OSDocument> osdocument = OSAppBase::instance()->currentDocument();
+//              m_outputWindow->appendPlainText("Generate bec complete.");
+//              m_playButton->setChecked(false);
+//              updatePVInfile();
+//              //osdocument->runComplete();
+//              //osdocument->enableTabsAfterRun();
+//          }
+//          runFinished(openstudio::path(), openstudio::path());
       }
       return;
   }
@@ -1661,6 +1708,57 @@ void RunView::requestStartRunManager()
   bool requireCalibrationReports = (osdocument->model().getConcreteModelObjects<model::UtilityBill>().size() > 0);
   openstudio::runmanager::RunManager rm = runManager();
   startRunManager(rm, m_modelPath, m_tempFolder, m_radianceButton->isChecked(), requireCalibrationReports, this);
+}
+
+void RunView::becFinished(int exitCode, QProcess::ExitStatus exitStatus)
+{
+    m_outputWindow->appendPlainText("BEC Finished.");
+    m_outputWindow->appendPlainText("Generate Report.");
+    QString outpath, err;
+    if(!doBecReport(becoutputPath, outpath, err)){
+        m_outputWindow->appendPlainText("Error BEC Report.");
+        m_outputWindow->appendPlainText(err);
+    }
+    else{
+        std::shared_ptr<OSDocument> osdocument = OSAppBase::instance()->currentDocument();
+        m_outputWindow->appendPlainText("Generate bec complete.");
+        m_playButton->setChecked(false);
+        updatePVInfile();
+    }
+    runFinished(openstudio::path(), openstudio::path());
+    becProcess->deleteLater();
+    becProcess = NULL;
+}
+
+void RunView::becReadyReadStandardError()
+{
+    QByteArray array = becProcess->readAllStandardError();
+    QString str = QString("<font color=\"red\">%1</font><br>").arg(QString(array));
+    m_outputWindow->appendHtml(str);
+}
+
+void RunView::becReadyReadStandardOutput()
+{
+    QByteArray array = becProcess->readAllStandardOutput();
+    QString str = QString("%1\n").arg(QString(array));
+    m_outputWindow->appendPlainText(str);
+}
+
+void RunView::becStarted()
+{
+    m_outputWindow->appendPlainText("Start running bec.");
+}
+
+void RunView::becStateChanged(QProcess::ProcessState newState)
+{
+    //TODO:IMPLEMENT becStateChanged
+    (void)newState;
+}
+
+void RunView::becError(QProcess::ProcessError error)
+{
+    //TODO:IMPLEMENT becError
+    (void)error;
 }
 
 openstudio::runmanager::RunManager RunView::runManager()
