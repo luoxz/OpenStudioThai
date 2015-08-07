@@ -119,6 +119,14 @@ namespace openstudio {
       void on_radianceGroupClicked(int idx);
       void requestStartRunManager();
 
+      //BEC SLOT
+      void	becError(QProcess::ProcessError error);
+      void	becFinished(int exitCode, QProcess::ExitStatus exitStatus);
+      void	becReadyReadStandardError();
+      void	becReadyReadStandardOutput();
+      void	becStarted();
+      void	becStateChanged(QProcess::ProcessState newState);
+
     private:
       REGISTER_LOGGER("openstudio::RunView");
       void runFinished(const openstudio::path &t_sqlFile, const openstudio::path &t_radianceOutputFile);
@@ -135,6 +143,8 @@ namespace openstudio {
                        , int mode
                        );
       void updatePVInfile();
+
+      void callRealBEC(const QString& outpath);
 
       double lastPV;
       //openstudio::path loadRmdbPath() const;
@@ -162,6 +172,8 @@ namespace openstudio {
       std::shared_ptr<RunListModel> m_runListModel;
       openstudio::path m_modelPath;
       openstudio::path m_tempFolder;
+      QString becoutputPath;
+      QProcess *becProcess;
   
       bool m_canceling;
       bool m_statsConnected;
