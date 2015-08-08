@@ -1531,27 +1531,6 @@ void RunView::addPVToFile(const QString &fileName, int mode)
         text.replace("</body>", table);
     }
         break;
-    case PVReportMode_BEC:
-    {
-        QString table = QString("<h3>Photovoltaic</h3><b>Photovoltaic</b><br>\n"
-                                "<table id=\"%1\" border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n"
-                                "  <tbody>\n"
-                                "  <tr><td>Photovoltaic(watt)</td></tr>\n"
-                                "  <tr>\n"
-                                "    <td align=\"right\">%2</td>\n"
-                                "  </tr>\n"
-                                "</tbody></table><br>\n</body>").arg(pvid).arg(QString::number(pv, 'f', 2));
-        if(firstPV){
-            text.replace("</body>", table);
-        }
-        else{
-            int start = text.indexOf("<h3>Photovoltaic</h3><b>Photovoltaic</b><br>\n");
-            QString endstr = "</body>";
-            int end = text.indexOf( endstr, start)+endstr.size();
-            text.replace(start, end-start, table);
-        }
-    }
-        break;
     case PVReportMode_ENERGYPLUS:
     {
         double val = findEnergyPlusPowerTotal(text);
@@ -1622,12 +1601,9 @@ void RunView::addPVToFile(const QString &fileName, int mode)
 void RunView::updatePVInfile()
 {
     QString outpath = (m_tempFolder/"resources").string().c_str();
-    QString becReport = outpath + "/run/9-BEC-0/report.html";
     QString opsReport = outpath + "/run/6-UserScript-0/report.html";
     QString eReport = outpath + "/run/5-EnergyPlus-0/eplustbl.htm";
 
-    m_outputWindow->appendPlainText(QString("Update bec report pv value is %1 at %2").arg(lastPV).arg(becReport));
-    addPVToFile(becReport, PVReportMode_BEC);
     m_outputWindow->appendPlainText(QString("Update OpenStudio report pv value is %1 at %2").arg(lastPV).arg(opsReport));
     addPVToFile(opsReport, PVReportMode_OPENSTUDIO);
     m_outputWindow->appendPlainText(QString("Update EnergyPlus report pv value is %1 at %2").arg(lastPV).arg(eReport));
