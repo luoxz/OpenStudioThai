@@ -2355,3 +2355,20 @@ OS:ScheduleTypeLimits,
   1,                                      !- Upper Limit Value {BasedOnField A4}
   Continuous;                             !- Numeric Type
 
+OS:SpaceType,
+  {eeef9103-13d0-4e1d-8af6-940d0065700a}, !- Handle
+  Thai Community building,                !- Name
+  ,                                       !- Default Construction Set Name
+  {5c10e497-c0af-498e-90a4-997d1b5b84a4}, !- Default Schedule Set Name
+  {b7c9fed7-e597-4fbf-a04c-eea9abbc8a14}, !- Group Rendering Name
+  ,                                       !- Design Specification Outdoor Air Object Name
+  Office,                                 !- Standards Building Type
+  ClosedOffice;                           !- Standards Space Type
+
+OS:Rendering:Color,
+  {b7c9fed7-e597-4fbf-a04c-eea9abbc8a14}, !- Handle
+  Rendering Color 2,                      !- Name
+  178,                                    !- Rendering Red Value
+  34,                                     !- Rendering Green Value
+  34;                                     !- Rendering Blue Value
+
