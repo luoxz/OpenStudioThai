@@ -1481,17 +1481,33 @@ void RunView::addPVToFile(const QString &fileName, int mode)
         ///////////////////////////////
         //BENCHMARK
         double val = findOpenStudioPowerTotal(text);
+        QString pass = "Failed";
+        if(val<bvVal){
+            pass = "Passed";
+        }
         table = QString("<h4>Benchmark</h4>\n"
                                 "<table id=\"%1\" class=\"table table-striped table-bordered table-condensed\">\n"
                                 "	<thead>\n"
                                 "		<tr>\n"
-                                "			<th>%2</th>\n"
-                                "			<th>%3</th>\n"
+                                "			<th></th>\n"
+                                "			<th>Value</th>\n"
                                 "		</tr>\n"
                                 "	</thead>\n"
                                 "	<tbody>\n"
                                 "		<tr>\n"
+                                "			<td>Type</td>\n"
+                                "			<td>%2</td>\n"
+                                "		</tr>\n"
+                                "		<tr>\n"
+                                "			<td>Standard</td>\n"
+                                "			<td>%3</td>\n"
+                                "		</tr>\n"
+                                "		<tr>\n"
+                                "			<td>Result</td>\n"
                                 "			<td>%4</td>\n"
+                                "		</tr>\n"
+                                "		<tr>\n"
+                                "			<td>Status</td>\n"
                                 "			<td>%5</td>\n"
                                 "		</tr>\n"
                                 "	</tbody>\n"
@@ -1499,9 +1515,9 @@ void RunView::addPVToFile(const QString &fileName, int mode)
                                 "</body>\n")
                 .arg(bvid)
                 .arg(bvName)
-                .arg("")
                 .arg(doubleToMoney(bvVal))
-                .arg(doubleToMoney(val));
+                .arg(doubleToMoney(val))
+                .arg(pass);
         if(firstBV){
             text.replace("</body>", table);
         }
@@ -1561,20 +1577,32 @@ void RunView::addPVToFile(const QString &fileName, int mode)
         ///////////////////////////////
         //BENCHMARK
         double val = findEnergyPlusPowerTotal(text);
+        QString pass = "Failed";
+        if(val<bvVal){
+            pass = "Passed";
+        }
         table = QString("<b>Benchmark</b><br><br>\n"
                                 "<table id=\"%1\" border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n"
                                 "  <tbody>\n"
-                                "  <tr><td>%2</td><td align=\"right\">%3</td></tr>\n"
                                 "  <tr>\n"
+                                "    <td align=\"center\"></td>\n"
+                                "    <td align=\"center\">Type</td>\n"
+                                "    <td align=\"center\">Standard</td>\n"
+                                "    <td align=\"center\">Result</td>\n"
+                                "    <td align=\"center\">Status</td>\n"
+                                "  <tr>\n"
+                                "    <td align=\"right\">Benchmark</td>\n"
+                                "    <td align=\"right\">%2</td>\n"
+                                "    <td align=\"right\">%3</td>\n"
                                 "    <td align=\"right\">%4</td>\n"
                                 "    <td align=\"right\">%5</td>\n"
                                 "  </tr>\n"
                                 "</tbody></table><br><br>\n</body>\n")
                 .arg(bvid)
                 .arg(bvName)
-                .arg("")
                 .arg(doubleToMoney(bvVal))
-                .arg(doubleToMoney(val));
+                .arg(doubleToMoney(val))
+                .arg(pass);
         if(firstBV){
             text.replace("</body>", table);
         }
