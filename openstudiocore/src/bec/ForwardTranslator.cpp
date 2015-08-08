@@ -604,7 +604,9 @@ namespace bec {
 
   void ForwardTranslator::doBuildingType(QDomElement &becInput, const QString& typeName)
   {
-      createTagWithText(becInput, "BuildingType", typeName);
+      QDomElement BT = createTagWithText(becInput, "BT");
+      QDomElement BuildType = createTagWithText(BT, "BuildType");
+      createTagWithText(BuildType, "BuildingType", typeName);
   }
 
   void ForwardTranslator::doPV(const model::Model &model, QDomElement &becInput)

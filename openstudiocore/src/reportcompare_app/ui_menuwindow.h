@@ -31,6 +31,7 @@ public:
     QPushButton *btCPBEC;
     QPushButton *btGenBEC;
     QPushButton *btTest;
+    QPushButton *btAddPV;
 
     void setupUi(QMainWindow *MenuWindow)
     {
@@ -68,6 +69,11 @@ public:
 
         verticalLayout->addWidget(btTest);
 
+        btAddPV = new QPushButton(centralWidget);
+        btAddPV->setObjectName(QStringLiteral("btAddPV"));
+
+        verticalLayout->addWidget(btAddPV);
+
         MenuWindow->setCentralWidget(centralWidget);
 
         retranslateUi(MenuWindow);
@@ -83,6 +89,7 @@ public:
         btCPBEC->setText(QApplication::translate("MenuWindow", "Compare BEC", 0));
         btGenBEC->setText(QApplication::translate("MenuWindow", "Gen BEC Report", 0));
         btTest->setText(QApplication::translate("MenuWindow", "Test", 0));
+        btAddPV->setText(QApplication::translate("MenuWindow", "Add PV", 0));
     } // retranslateUi
 
 };
