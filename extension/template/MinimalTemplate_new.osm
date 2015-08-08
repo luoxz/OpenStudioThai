@@ -1621,13 +1621,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {2c4fd89a-591e-4a89-9a3a-27ad899e7545}, !- Handle
   Community Building Light Schedule Ruleset, !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {6938a084-3f89-4369-8a3b-8de86c671dae}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {6938a084-3f89-4369-8a3b-8de86c671dae}, !- Handle
   Schedule Day 58,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1650,7 +1650,7 @@ OS:Schedule:Rule,
 OS:Schedule:Day,
   {d8191332-9a54-4e0c-bb4f-782c19caa842}, !- Handle
   Schedule Day 59,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   9,                                      !- Hour 1
   0,                                      !- Minute 1
@@ -1665,13 +1665,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {42a22930-999e-4f25-b488-53a86482ad39}, !- Handle
   Community Building Electronic Schedule Ruleset, !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {2caea7b2-f574-47e7-92f5-8561b8757547}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {2caea7b2-f574-47e7-92f5-8561b8757547}, !- Handle
   Schedule Day 60,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1694,7 +1694,7 @@ OS:Schedule:Rule,
 OS:Schedule:Day,
   {c2d81f77-436f-45b1-aae9-f5f1b44ef83c}, !- Handle
   Schedule Day 61,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   9,                                      !- Hour 1
   0,                                      !- Minute 1
@@ -1709,13 +1709,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {3c6bc983-7be5-438e-976c-789203305fea}, !- Handle
   Community Building Activity Schedule Ruleset, !- Name
-  ,                                       !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   {02e71bfe-0596-4219-aed4-c00670f3e7ce}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {02e71bfe-0596-4219-aed4-c00670f3e7ce}, !- Handle
   Schedule Day 62,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1739,13 +1739,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {98e30d2c-1b78-483b-9ff4-7b7d12fb7088}, !- Handle
   Community Building Other Equipment Schedule Ruleset, !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {d15a6c0a-287c-45a0-9c48-7db2d09fc5a8}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {d15a6c0a-287c-45a0-9c48-7db2d09fc5a8}, !- Handle
   Schedule Day 64,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1768,7 +1768,7 @@ OS:Schedule:Rule,
 OS:Schedule:Day,
   {3876e32f-bf79-43ff-9a1d-37a3d6357600}, !- Handle
   Schedule Day 65,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   9,                                      !- Hour 1
   0,                                      !- Minute 1
@@ -2333,4 +2333,25 @@ OS:Building,
 
 OS:Facility,
   {6e50ecc7-fb61-44ab-9047-36c4c457f2e8}; !- Handle
+
+OS:DefaultScheduleSet,
+  {5c10e497-c0af-498e-90a4-997d1b5b84a4}, !- Handle
+  Thai Community building Schedule Set,   !- Name
+  ,                                       !- Hours of Operation Schedule Name
+  ,                                       !- Number of People Schedule Name
+  {3c6bc983-7be5-438e-976c-789203305fea}, !- People Activity Level Schedule Name
+  {2c4fd89a-591e-4a89-9a3a-27ad899e7545}, !- Lighting Schedule Name
+  {42a22930-999e-4f25-b488-53a86482ad39}, !- Electric Equipment Schedule Name
+  ,                                       !- Gas Equipment Schedule Name
+  ,                                       !- Hot Water Equipment Schedule Name
+  ,                                       !- Infiltration Schedule Name
+  ,                                       !- Steam Equipment Schedule Name
+  {98e30d2c-1b78-483b-9ff4-7b7d12fb7088}; !- Other Equipment Schedule Name
+
+OS:ScheduleTypeLimits,
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Handle
+  Fractional,                             !- Name
+  0,                                      !- Lower Limit Value {BasedOnField A4}
+  1,                                      !- Upper Limit Value {BasedOnField A4}
+  Continuous;                             !- Numeric Type
 
