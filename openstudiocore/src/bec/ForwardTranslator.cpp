@@ -75,6 +75,8 @@
 #include "../model/Surface_Impl.hpp"
 #include "../model/RenderingColor.hpp"
 #include "../model/RenderingColor_Impl.hpp"
+#include "../model/BoilerHotWater.hpp"
+#include "../model/BoilerHotWater_Impl.hpp"
 
 #include "../model/SimpleGlazing.hpp"
 #include "../model/SimpleGlazing_Impl.hpp"
@@ -534,6 +536,7 @@ namespace bec {
       QDomElement OtherEquipment = createTagWithText(becInput, "OtherEquipment");
       doPV(model, becInput);
 
+      doHotWaterSystem(model, HotWaterSystem);
 
       std::vector<openstudio::model::BuildingStory> stories = model.getConcreteModelObjects<openstudio::model::BuildingStory>();
 
@@ -544,7 +547,6 @@ namespace bec {
 
               doLightingSystem(space, LightingSystem);
               doACSystem(space, ACSystem);
-              doHotWaterSystem(space, HotWaterSystem);
               doOtherEquipment(space, OtherEquipment);
 
               openstudio::model::SurfaceVector surfaces = space.surfaces();
@@ -642,20 +644,28 @@ namespace bec {
       }
   }
 
-  void ForwardTranslator::doHotWaterSystem(const model::Space &space, QDomElement &OtherEquipment)
+  void ForwardTranslator::doHotWaterSystem(const model::Model &model, QDomElement &hotWaterSystem)
   {
-      std::vector<model::HotWaterEquipment> hws = space.spaceType().get().hotWaterEquipment();
-      for (const model::HotWaterEquipment& hw : hws){
-          //TODO:NOT IMPLEMENT YET.
-          QDomElement Lighting = createTagWithText(OtherEquipment, "HW");
-          createTagWithText(Lighting, "HWName"
-                                    , hw.name().get().c_str());
-          createTagWithText(Lighting, "HWBoilerType", "");
-          createTagWithText(Lighting, "HWBoilerEfficiency", "");
-          createTagWithText(Lighting, "HWBoilerEfficiencyUnit", "%");
-          createTagWithText(Lighting, "HWHeatPumpType", "");
-          createTagWithText(Lighting, "HWHeatPumpCOP", "");
-          createTagWithText(Lighting, "HWDescription", "???");
+      std::vector<openstudio::model::HVACComponent> hvacs = model.getModelObjects<model::HVACComponent>();
+      for (const model::HVACComponent & hvac : hvacs) {
+
+          boost::optional<openstudio::model::BoilerHotWater> isHW
+                  = hvac.optionalCast<openstudio::model::BoilerHotWater>();
+
+          if(isHW){
+              openstudio::model::BoilerHotWater boiler = isHW.get();
+              QDomElement hw = createTagWithText(hotWaterSystem, "HW");
+              createTagWithText(hw, "HWName"
+                                , boiler.name().get().c_str());
+              createTagWithText(hw, "HWBoilerType", boiler.fuelType().c_str());
+              createTagWithText(hw, "HWBoilerEfficiency", QString::number(boiler.nominalThermalEfficiency()*10));
+              createTagWithText(hw, "HWBoilerEfficiencyUnit", "%");
+              createTagWithText(hw, "HWHeatPumpType", "None");
+              //boiler.children.r.briefDescription.boilerFlowMode.ratedHeatingCOP()
+              createTagWithText(hw, "HWHeatPumpCOP", "0");
+              createTagWithText(hw, "HWDescription", "");
+              continue;
+          }
       }
   }
 

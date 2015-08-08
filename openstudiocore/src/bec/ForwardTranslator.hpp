@@ -104,7 +104,7 @@ namespace bec {
     void doModelLoop(const openstudio::model::Model& model, QDomElement& becInput);
 
     void doLightingSystem(const openstudio::model::Space& space, QDomElement& LightingSystem);
-    void doHotWaterSystem(const openstudio::model::Space& space, QDomElement& OtherEquipment);
+    void doHotWaterSystem(const model::Model &model, QDomElement& hotWaterSystem);
     void doOtherEquipment(const openstudio::model::Space& space, QDomElement& OtherEquipment);
     void doACSystem(const openstudio::model::Space& space, QDomElement& ACSystem);
     void doPV(const model::Model &model, QDomElement& becInput);
