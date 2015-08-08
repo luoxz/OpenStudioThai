@@ -1817,12 +1817,12 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {5c1754b4-7f60-49be-8a26-3e89eabc24fe}, !- Handle
   Condominium Electronic Schedule Ruleset, !- Name
-  {0936680e-bc63-4e8b-ab0a-0816571ec263}, !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {8f9717bd-1d8d-482c-b9b0-6a030bee2598}; !- Default Day Schedule Name
 OS:Schedule:Day,
   {8f9717bd-1d8d-482c-b9b0-6a030bee2598}, !- Handle
   Schedule Day 76,                        !- Name
-  {0936680e-bc63-4e8b-ab0a-0816571ec263}, !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1830,12 +1830,12 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {2b8b39c3-c35c-4171-889b-082d4ca4790e}, !- Handle
   Condominium Light Schedule Ruleset,     !- Name
-  {0936680e-bc63-4e8b-ab0a-0816571ec263}, !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {f2260e00-6846-4dcc-a24d-4e5b2df294d5}; !- Default Day Schedule Name
 OS:Schedule:Day,
   {f2260e00-6846-4dcc-a24d-4e5b2df294d5}, !- Handle
   Schedule Day 77,                        !- Name
-  {0936680e-bc63-4e8b-ab0a-0816571ec263}, !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1843,12 +1843,12 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {c865cd66-c8ec-4bed-b464-1b35d9080800}, !- Handle
   Condominium Other Equipment Schedule Ruleset, !- Name
-  {0936680e-bc63-4e8b-ab0a-0816571ec263}, !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {09f31a82-7276-4c0c-8bdc-1f6aeac8525b}; !- Default Day Schedule Name
 OS:Schedule:Day,
   {09f31a82-7276-4c0c-8bdc-1f6aeac8525b}, !- Handle
   Schedule Day 78,                        !- Name
-  {0936680e-bc63-4e8b-ab0a-0816571ec263}, !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1983,4 +1983,32 @@ OS:Rendering:Color,
   178,                                    !- Rendering Red Value
   34,                                     !- Rendering Green Value
   34;                                     !- Rendering Blue Value
+
+OS:DefaultScheduleSet,
+  {63998346-ac5c-4872-8fb5-d3bf0e410391}, !- Handle
+  Thai Condominium,                       !- Name
+  ,                                       !- Hours of Operation Schedule Name
+  ,                                       !- Number of People Schedule Name
+  {cb113ee1-d558-41fa-8bac-70994e65ddcd}, !- People Activity Level Schedule Name
+  {2b8b39c3-c35c-4171-889b-082d4ca4790e}, !- Lighting Schedule Name
+  {5c1754b4-7f60-49be-8a26-3e89eabc24fe}, !- Electric Equipment Schedule Name
+  ,                                       !- Gas Equipment Schedule Name
+  ,                                       !- Hot Water Equipment Schedule Name
+  ,                                       !- Infiltration Schedule Name
+  ,                                       !- Steam Equipment Schedule Name
+  {c865cd66-c8ec-4bed-b464-1b35d9080800}; !- Other Equipment Schedule Name
+
+OS:SpaceType,
+  {15b13e47-1237-4b02-a3db-9e5fcb41b247}, !- Handle
+  Thai Condominium,                       !- Name
+  ,                                       !- Default Construction Set Name
+  {63998346-ac5c-4872-8fb5-d3bf0e410391}, !- Default Schedule Set Name
+  {714a7038-6384-4a95-ba9a-016649b9d225}; !- Group Rendering Name
+
+OS:Rendering:Color,
+  {714a7038-6384-4a95-ba9a-016649b9d225}, !- Handle
+  Rendering Color 3,                      !- Name
+  250,                                    !- Rendering Red Value
+  250,                                    !- Rendering Green Value
+  210;                                    !- Rendering Blue Value
 
