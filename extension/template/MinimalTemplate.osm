@@ -1000,12 +1000,12 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {86fd08a2-2745-4bd1-9006-baed41a1dd1d}, !- Handle
   Educational Instituion Activity Schedule Ruleset, !- Name
-  {000dd0e8-babf-4f52-a0ab-29bd35e9d72f}, !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   {180f4f37-d9d1-4986-9c02-1de1c6a1ad53}; !- Default Day Schedule Name
 OS:Schedule:Day,
   {180f4f37-d9d1-4986-9c02-1de1c6a1ad53}, !- Handle
   Schedule Day 28,                        !- Name
-  {000dd0e8-babf-4f52-a0ab-29bd35e9d72f}, !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1143,12 +1143,12 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {5cacf0c0-80f7-4502-8cae-875b4e96689b}, !- Handle
   Office Activity Schedule Ruleset,       !- Name
-  {000dd0e8-babf-4f52-a0ab-29bd35e9d72f}, !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   {1a6635ba-4b23-43ee-a236-65ff37ea8c4c}; !- Default Day Schedule Name
 OS:Schedule:Day,
   {1a6635ba-4b23-43ee-a236-65ff37ea8c4c}, !- Handle
   Schedule Day 36,                        !- Name
-  {000dd0e8-babf-4f52-a0ab-29bd35e9d72f}, !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1369,12 +1369,12 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {65c478f3-c2b6-4786-a35a-53015a2055e5}, !- Handle
   Department Store Activity Schedule Ruleset, !- Name
-  {000dd0e8-babf-4f52-a0ab-29bd35e9d72f}, !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   {f1ca58a1-e307-43ce-a393-77b8051ac7ef}; !- Default Day Schedule Name
 OS:Schedule:Day,
   {f1ca58a1-e307-43ce-a393-77b8051ac7ef}, !- Handle
   Schedule Day 48,                        !- Name
-  {000dd0e8-babf-4f52-a0ab-29bd35e9d72f}, !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1475,12 +1475,12 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {bb6958e6-f21f-435d-8137-c72bfb642f1d}, !- Handle
   Service Facility Activity Schedule Ruleset, !- Name
-  {000dd0e8-babf-4f52-a0ab-29bd35e9d72f}, !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   {b990afe1-0150-4250-9458-e7fa1f9ff760}; !- Default Day Schedule Name
 OS:Schedule:Day,
   {b990afe1-0150-4250-9458-e7fa1f9ff760}, !- Handle
   Schedule Day 54,                        !- Name
-  {000dd0e8-babf-4f52-a0ab-29bd35e9d72f}, !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1621,12 +1621,12 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {3c6bc983-7be5-438e-976c-789203305fea}, !- Handle
   Community Building Activity Schedule Ruleset, !- Name
-  {000dd0e8-babf-4f52-a0ab-29bd35e9d72f}, !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   {02e71bfe-0596-4219-aed4-c00670f3e7ce}; !- Default Day Schedule Name
 OS:Schedule:Day,
   {02e71bfe-0596-4219-aed4-c00670f3e7ce}, !- Handle
   Schedule Day 62,                        !- Name
-  {000dd0e8-babf-4f52-a0ab-29bd35e9d72f}, !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1726,12 +1726,12 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {53383dda-ff79-414b-9da2-4d94c7619c21}, !- Handle
   Hotel Activity Schedule Ruleset,        !- Name
-  {000dd0e8-babf-4f52-a0ab-29bd35e9d72f}, !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   {bd648913-c2bd-43c1-b166-700085990147}; !- Default Day Schedule Name
 OS:Schedule:Day,
   {bd648913-c2bd-43c1-b166-700085990147}, !- Handle
   Schedule Day 69,                        !- Name
-  {000dd0e8-babf-4f52-a0ab-29bd35e9d72f}, !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1791,12 +1791,12 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {49300f04-bef0-4fe4-9153-06a37586867d}, !- Handle
   Medical Center Activity Schedule Ruleset, !- Name
-  {000dd0e8-babf-4f52-a0ab-29bd35e9d72f}, !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   {4f3bacec-c10b-4492-b96f-4e5bff02182a}; !- Default Day Schedule Name
 OS:Schedule:Day,
   {4f3bacec-c10b-4492-b96f-4e5bff02182a}, !- Handle
   Schedule Day 74,                        !- Name
-  {000dd0e8-babf-4f52-a0ab-29bd35e9d72f}, !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1856,12 +1856,12 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {cb113ee1-d558-41fa-8bac-70994e65ddcd}, !- Handle
   Condominium Activity Schedule Ruleset,  !- Name
-  {000dd0e8-babf-4f52-a0ab-29bd35e9d72f}, !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   {d66d8087-fdc9-4206-9e8e-7f62530204e1}; !- Default Day Schedule Name
 OS:Schedule:Day,
   {d66d8087-fdc9-4206-9e8e-7f62530204e1}, !- Handle
   Schedule Day 79,                        !- Name
-  {000dd0e8-babf-4f52-a0ab-29bd35e9d72f}, !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1922,12 +1922,12 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {054783a8-71a4-4507-8fe7-550271e6ab5c}, !- Handle
   Theater Activity Schedule Ruleset,      !- Name
-  {000dd0e8-babf-4f52-a0ab-29bd35e9d72f}, !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   {3f54e5f7-0c81-41ca-863d-2eeafe5f21a5}; !- Default Day Schedule Name
 OS:Schedule:Day,
   {3f54e5f7-0c81-41ca-863d-2eeafe5f21a5}, !- Handle
   Schedule Day 83,                        !- Name
-  {000dd0e8-babf-4f52-a0ab-29bd35e9d72f}, !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -2011,4 +2011,200 @@ OS:Rendering:Color,
   250,                                    !- Rendering Red Value
   250,                                    !- Rendering Green Value
   210;                                    !- Rendering Blue Value
+
+OS:DefaultScheduleSet,
+  {a6f743dd-850b-4df6-99ee-6f5d477530cd}, !- Handle
+  Thai Department Store Schedule Set,     !- Name
+  ,                                       !- Hours of Operation Schedule Name
+  ,                                       !- Number of People Schedule Name
+  {65c478f3-c2b6-4786-a35a-53015a2055e5}, !- People Activity Level Schedule Name
+  {e9e1e693-3e83-43e3-94f9-b5a322b2e1d7}, !- Lighting Schedule Name
+  {6c852acb-95be-415e-ad1d-6c4eb9c20071}, !- Electric Equipment Schedule Name
+  ,                                       !- Gas Equipment Schedule Name
+  ,                                       !- Hot Water Equipment Schedule Name
+  ,                                       !- Infiltration Schedule Name
+  ,                                       !- Steam Equipment Schedule Name
+  {6d33b993-140c-4b54-99ad-b8eaadf3d9e7}; !- Other Equipment Schedule Name
+
+OS:DefaultScheduleSet,
+  {a836f441-13d4-4501-bea7-987d4db4ea83}, !- Handle
+  Thai Educational Institution Schedule Set, !- Name
+  ,                                       !- Hours of Operation Schedule Name
+  ,                                       !- Number of People Schedule Name
+  {86fd08a2-2745-4bd1-9006-baed41a1dd1d}, !- People Activity Level Schedule Name
+  {342f4dcd-6d67-4754-b5d5-ae5cb4ecd8b1}, !- Lighting Schedule Name
+  {6e603ddf-afd8-4140-8faf-0242b66742e6}, !- Electric Equipment Schedule Name
+  ,                                       !- Gas Equipment Schedule Name
+  ,                                       !- Hot Water Equipment Schedule Name
+  ,                                       !- Infiltration Schedule Name
+  ,                                       !- Steam Equipment Schedule Name
+  {a1438b8b-6197-45c9-aecc-cd0c69fb1b52}; !- Other Equipment Schedule Name
+
+OS:DefaultScheduleSet,
+  {dcaacfb6-5745-4f46-ac91-5dc1a4774a7f}, !- Handle
+  Thai Hotel Schedule Set,                !- Name
+  ,                                       !- Hours of Operation Schedule Name
+  ,                                       !- Number of People Schedule Name
+  {53383dda-ff79-414b-9da2-4d94c7619c21}, !- People Activity Level Schedule Name
+  {98159c78-0161-4245-a001-618c3c422429}, !- Lighting Schedule Name
+  {44dbf982-73f3-4ad4-ab62-54d6deb91e9c}, !- Electric Equipment Schedule Name
+  ,                                       !- Gas Equipment Schedule Name
+  ,                                       !- Hot Water Equipment Schedule Name
+  ,                                       !- Infiltration Schedule Name
+  ,                                       !- Steam Equipment Schedule Name
+  {bac91769-7829-421f-bd26-c3fc47147e83}; !- Other Equipment Schedule Name
+
+OS:DefaultScheduleSet,
+  {7e2ba0a3-b398-4d25-a8bf-d48774c44eb6}, !- Handle
+  Thai Medical Center Schedule Set,       !- Name
+  ,                                       !- Hours of Operation Schedule Name
+  ,                                       !- Number of People Schedule Name
+  {49300f04-bef0-4fe4-9153-06a37586867d}, !- People Activity Level Schedule Name
+  {6676c7e7-7739-4557-bf00-1e02a9fb4901}, !- Lighting Schedule Name
+  {bbbf308e-7d92-4d31-b8d8-011574a149b8}, !- Electric Equipment Schedule Name
+  ,                                       !- Gas Equipment Schedule Name
+  ,                                       !- Hot Water Equipment Schedule Name
+  ,                                       !- Infiltration Schedule Name
+  ,                                       !- Steam Equipment Schedule Name
+  {6931753a-732f-4d02-b424-8ac0707bf209}; !- Other Equipment Schedule Name
+
+OS:DefaultScheduleSet,
+  {98a0c01e-1ce9-437e-b007-90194324de90}, !- Handle
+  Thai Office Schedule Set,               !- Name
+  ,                                       !- Hours of Operation Schedule Name
+  ,                                       !- Number of People Schedule Name
+  {5cacf0c0-80f7-4502-8cae-875b4e96689b}, !- People Activity Level Schedule Name
+  {9d5f53c3-7f0b-4392-8cb2-3f3f8cedd6dc}, !- Lighting Schedule Name
+  {743d6498-fa16-46de-bc4f-126bbf14d5c6}, !- Electric Equipment Schedule Name
+  ,                                       !- Gas Equipment Schedule Name
+  ,                                       !- Hot Water Equipment Schedule Name
+  ,                                       !- Infiltration Schedule Name
+  ,                                       !- Steam Equipment Schedule Name
+  {91d0c431-1e51-4d96-ab83-12a38805a436}; !- Other Equipment Schedule Name
+
+OS:DefaultScheduleSet,
+  {2c1adb50-7a15-4955-a388-863423e20f03}, !- Handle
+  Thai Service Facility Schedule Set,     !- Name
+  ,                                       !- Hours of Operation Schedule Name
+  ,                                       !- Number of People Schedule Name
+  {bb6958e6-f21f-435d-8137-c72bfb642f1d}, !- People Activity Level Schedule Name
+  {543f74de-b104-43fe-8fe9-a35deb06f9e5}, !- Lighting Schedule Name
+  {aa3743eb-03f4-4fbd-b8ec-ac0b07e0ea83}, !- Electric Equipment Schedule Name
+  ,                                       !- Gas Equipment Schedule Name
+  ,                                       !- Hot Water Equipment Schedule Name
+  ,                                       !- Infiltration Schedule Name
+  ,                                       !- Steam Equipment Schedule Name
+  {4bf0bcf9-68f2-4fe6-ae06-5c9900e8a6a9}; !- Other Equipment Schedule Name
+
+OS:DefaultScheduleSet,
+  {66ebf25c-092c-4339-b022-981d6e5f12b5}, !- Handle
+  Thai Theater Schedule Set,              !- Name
+  ,                                       !- Hours of Operation Schedule Name
+  ,                                       !- Number of People Schedule Name
+  {054783a8-71a4-4507-8fe7-550271e6ab5c}, !- People Activity Level Schedule Name
+  {478b56cc-9064-4870-9b08-3615eb66234a}, !- Lighting Schedule Name
+  {3a62581d-92dd-4b0f-936c-a672bde1804b}, !- Electric Equipment Schedule Name
+  ,                                       !- Gas Equipment Schedule Name
+  ,                                       !- Hot Water Equipment Schedule Name
+  ,                                       !- Infiltration Schedule Name
+  ,                                       !- Steam Equipment Schedule Name
+  {a0e43136-8713-4705-bda6-83f5d3b7d93f}; !- Other Equipment Schedule Name
+
+OS:SpaceType,
+  {8faa3998-2a66-4930-ae38-511d629d514d}, !- Handle
+  Thai Department Store,                  !- Name
+  ,                                       !- Default Construction Set Name
+  {a6f743dd-850b-4df6-99ee-6f5d477530cd}, !- Default Schedule Set Name
+  {c58de1e0-61c7-4f65-99e4-6bc62120177f}; !- Group Rendering Name
+
+OS:Rendering:Color,
+  {c58de1e0-61c7-4f65-99e4-6bc62120177f}, !- Handle
+  Rendering Color 4,                      !- Name
+  127,                                    !- Rendering Red Value
+  255,                                    !- Rendering Green Value
+  0;                                      !- Rendering Blue Value
+
+OS:SpaceType,
+  {557a40cc-2e0a-4057-a850-1328ee2ceeca}, !- Handle
+  Thai Educational Institution,           !- Name
+  ,                                       !- Default Construction Set Name
+  {a836f441-13d4-4501-bea7-987d4db4ea83}, !- Default Schedule Set Name
+  {a106c921-a274-4d89-994c-fb9b627db234}; !- Group Rendering Name
+
+OS:Rendering:Color,
+  {a106c921-a274-4d89-994c-fb9b627db234}, !- Handle
+  Rendering Color 5,                      !- Name
+  165,                                    !- Rendering Red Value
+  42,                                     !- Rendering Green Value
+  42;                                     !- Rendering Blue Value
+
+OS:SpaceType,
+  {c3f25df7-92a3-47b2-a03d-600a7f27f1e9}, !- Handle
+  Thai Hotel,                             !- Name
+  ,                                       !- Default Construction Set Name
+  {dcaacfb6-5745-4f46-ac91-5dc1a4774a7f}, !- Default Schedule Set Name
+  {3c2981be-b6fd-407b-9b81-9da465b699b4}; !- Group Rendering Name
+
+OS:Rendering:Color,
+  {3c2981be-b6fd-407b-9b81-9da465b699b4}, !- Handle
+  Rendering Color 6,                      !- Name
+  220,                                    !- Rendering Red Value
+  220,                                    !- Rendering Green Value
+  220;                                    !- Rendering Blue Value
+
+OS:SpaceType,
+  {fe361666-82f5-48b9-940e-3645a65238b1}, !- Handle
+  Thai Medical Center,                    !- Name
+  ,                                       !- Default Construction Set Name
+  {7e2ba0a3-b398-4d25-a8bf-d48774c44eb6}, !- Default Schedule Set Name
+  {94817175-e030-4689-8773-8bfcf7b7941b}; !- Group Rendering Name
+
+OS:Rendering:Color,
+  {94817175-e030-4689-8773-8bfcf7b7941b}, !- Handle
+  Rendering Color 7,                      !- Name
+  25,                                     !- Rendering Red Value
+  25,                                     !- Rendering Green Value
+  112;                                    !- Rendering Blue Value
+
+OS:SpaceType,
+  {4f1cb726-3de8-4c84-8aec-e7a8201699ac}, !- Handle
+  Thai Office,                            !- Name
+  ,                                       !- Default Construction Set Name
+  {98a0c01e-1ce9-437e-b007-90194324de90}, !- Default Schedule Set Name
+  {3cd00400-5604-4a38-b48d-5eb4ebf16a04}; !- Group Rendering Name
+
+OS:Rendering:Color,
+  {3cd00400-5604-4a38-b48d-5eb4ebf16a04}, !- Handle
+  Rendering Color 8,                      !- Name
+  46,                                     !- Rendering Red Value
+  139,                                    !- Rendering Green Value
+  87;                                     !- Rendering Blue Value
+
+OS:SpaceType,
+  {6a8e5714-3c84-4e83-b44f-33e07ca6262d}, !- Handle
+  Thai Service Facility,                  !- Name
+  ,                                       !- Default Construction Set Name
+  {2c1adb50-7a15-4955-a388-863423e20f03}, !- Default Schedule Set Name
+  {4b62d9c7-8ddb-421e-807b-3e1d71624e4b}; !- Group Rendering Name
+
+OS:Rendering:Color,
+  {4b62d9c7-8ddb-421e-807b-3e1d71624e4b}, !- Handle
+  Rendering Color 9,                      !- Name
+  255,                                    !- Rendering Red Value
+  248,                                    !- Rendering Green Value
+  220;                                    !- Rendering Blue Value
+
+OS:SpaceType,
+  {105d9e6b-4503-4fd1-91da-82725c518c45}, !- Handle
+  Thai Theater,                           !- Name
+  ,                                       !- Default Construction Set Name
+  {66ebf25c-092c-4339-b022-981d6e5f12b5}, !- Default Schedule Set Name
+  {45b06c70-5c54-412e-9e07-3e75b3f4a126}; !- Group Rendering Name
+
+OS:Rendering:Color,
+  {45b06c70-5c54-412e-9e07-3e75b3f4a126}, !- Handle
+  Rendering Color 10,                     !- Name
+  189,                                    !- Rendering Red Value
+  183,                                    !- Rendering Green Value
+  107;                                    !- Rendering Blue Value
 

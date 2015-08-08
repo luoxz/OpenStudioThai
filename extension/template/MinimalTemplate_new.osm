@@ -891,13 +891,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {342f4dcd-6d67-4754-b5d5-ae5cb4ecd8b1}, !- Handle
   Educational Instituion Light Schedule Ruleset, !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {8940202b-63e5-47dd-a1a8-bfe89cb40bde}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {8940202b-63e5-47dd-a1a8-bfe89cb40bde}, !- Handle
   Schedule Day 22,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -919,7 +919,7 @@ OS:Schedule:Rule,
 OS:Schedule:Day,
   {a33810c4-8bf8-47d4-9117-ab322056dec4}, !- Handle
   Schedule Day 23,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   8,                                      !- Hour 1
   0,                                      !- Minute 1
@@ -934,13 +934,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {6e603ddf-afd8-4140-8faf-0242b66742e6}, !- Handle
   Educational Instituion Electronic Schedule Ruleset, !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {67a34fa0-2513-41af-a619-396869369493}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {67a34fa0-2513-41af-a619-396869369493}, !- Handle
   Schedule Day 24,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -962,7 +962,7 @@ OS:Schedule:Rule,
 OS:Schedule:Day,
   {bf1c79c1-f963-4cab-ad26-e020051d4bf6}, !- Handle
   Schedule Day 25,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   8,                                      !- Hour 1
   0,                                      !- Minute 1
@@ -977,13 +977,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {a1438b8b-6197-45c9-aecc-cd0c69fb1b52}, !- Handle
   Educational Instituion Other Equipment Schedule Ruleset, !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {e5c21ea2-167a-4dba-a3b3-5bfd32ad8969}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {e5c21ea2-167a-4dba-a3b3-5bfd32ad8969}, !- Handle
   Schedule Day 26,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1005,7 +1005,7 @@ OS:Schedule:Rule,
 OS:Schedule:Day,
   {354767c4-1c26-4919-a2bc-c5fa3bb4ee99}, !- Handle
   Schedule Day 27,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   8,                                      !- Hour 1
   0,                                      !- Minute 1
@@ -1020,13 +1020,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {86fd08a2-2745-4bd1-9006-baed41a1dd1d}, !- Handle
   Educational Instituion Activity Schedule Ruleset, !- Name
-  ,                                       !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   {180f4f37-d9d1-4986-9c02-1de1c6a1ad53}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {180f4f37-d9d1-4986-9c02-1de1c6a1ad53}, !- Handle
   Schedule Day 28,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1050,13 +1050,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {9d5f53c3-7f0b-4392-8cb2-3f3f8cedd6dc}, !- Handle
   Office Light Schedule Ruleset,          !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {ccc7a534-da15-46fe-baec-bbcc5dadeff9}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {ccc7a534-da15-46fe-baec-bbcc5dadeff9}, !- Handle
   Schedule Day 30,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1078,7 +1078,7 @@ OS:Schedule:Rule,
 OS:Schedule:Day,
   {dc272786-2b34-4447-9f8a-5636f32baa0f}, !- Handle
   Schedule Day 31,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   8,                                      !- Hour 1
   0,                                      !- Minute 1
@@ -1093,13 +1093,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {743d6498-fa16-46de-bc4f-126bbf14d5c6}, !- Handle
   Office Electronic Schedule Ruleset,     !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {c7a95702-8438-4c21-92d2-378f75aeb8c1}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {c7a95702-8438-4c21-92d2-378f75aeb8c1}, !- Handle
   Schedule Day 32,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1121,7 +1121,7 @@ OS:Schedule:Rule,
 OS:Schedule:Day,
   {c71d17b3-d95d-4191-9f66-5f4f7ea6703a}, !- Handle
   Schedule Day 33,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   8,                                      !- Hour 1
   0,                                      !- Minute 1
@@ -1136,13 +1136,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {91d0c431-1e51-4d96-ab83-12a38805a436}, !- Handle
   Office Other Equipment Schedule Ruleset, !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {7be6c952-8f19-4f4a-a7fb-51cbabea5047}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {7be6c952-8f19-4f4a-a7fb-51cbabea5047}, !- Handle
   Schedule Day 34,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1164,7 +1164,7 @@ OS:Schedule:Rule,
 OS:Schedule:Day,
   {ae3b0996-e6a1-41bc-b6b0-dabdb14704ef}, !- Handle
   Schedule Day 35,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   8,                                      !- Hour 1
   0,                                      !- Minute 1
@@ -1179,13 +1179,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {5cacf0c0-80f7-4502-8cae-875b4e96689b}, !- Handle
   Office Activity Schedule Ruleset,       !- Name
-  ,                                       !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   {1a6635ba-4b23-43ee-a236-65ff37ea8c4c}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {1a6635ba-4b23-43ee-a236-65ff37ea8c4c}, !- Handle
   Schedule Day 36,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1209,13 +1209,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {478b56cc-9064-4870-9b08-3615eb66234a}, !- Handle
   Theater Light Schedule Ruleset,         !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {011f2fce-4dde-41ad-a8dd-199c31cf7e36}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {011f2fce-4dde-41ad-a8dd-199c31cf7e36}, !- Handle
   Schedule Day 38,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1238,7 +1238,7 @@ OS:Schedule:Rule,
 OS:Schedule:Day,
   {96a19682-a0e5-49f7-a2ac-cc88cd308496}, !- Handle
   Schedule Day 39,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   9,                                      !- Hour 1
   0,                                      !- Minute 1
@@ -1253,13 +1253,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {3a62581d-92dd-4b0f-936c-a672bde1804b}, !- Handle
   Theater Electronic Schedule Ruleset,    !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {c889660b-d23a-46eb-8c35-b49b7b64c6bb}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {c889660b-d23a-46eb-8c35-b49b7b64c6bb}, !- Handle
   Schedule Day 40,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1282,7 +1282,7 @@ OS:Schedule:Rule,
 OS:Schedule:Day,
   {d0d25da1-084c-4de3-a13e-23f08e3e2a2c}, !- Handle
   Schedule Day 41,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   9,                                      !- Hour 1
   0,                                      !- Minute 1
@@ -1297,13 +1297,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {e9e1e693-3e83-43e3-94f9-b5a322b2e1d7}, !- Handle
   Department Store Light Schedule Ruleset, !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {4e73f143-3c50-43cb-b34e-29dce96f487a}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {4e73f143-3c50-43cb-b34e-29dce96f487a}, !- Handle
   Schedule Day 42,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1326,7 +1326,7 @@ OS:Schedule:Rule,
 OS:Schedule:Day,
   {b3cb691e-fe42-4b50-9b00-ea4ef7d72fbe}, !- Handle
   Schedule Day 43,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   9,                                      !- Hour 1
   0,                                      !- Minute 1
@@ -1341,13 +1341,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {6c852acb-95be-415e-ad1d-6c4eb9c20071}, !- Handle
   Department Store Electronic Schedule Ruleset, !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {cc00c9bb-d70c-4d57-a6c6-0572f02ca148}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {cc00c9bb-d70c-4d57-a6c6-0572f02ca148}, !- Handle
   Schedule Day 44,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1370,7 +1370,7 @@ OS:Schedule:Rule,
 OS:Schedule:Day,
   {574f7311-9ba5-48d3-95d8-69666cd16eb8}, !- Handle
   Schedule Day 45,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   9,                                      !- Hour 1
   0,                                      !- Minute 1
@@ -1385,13 +1385,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {6d33b993-140c-4b54-99ad-b8eaadf3d9e7}, !- Handle
   Department Store Other Equipment Schedule Ruleset, !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {a061784f-bf34-4996-99e7-83ec82bb43c6}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {a061784f-bf34-4996-99e7-83ec82bb43c6}, !- Handle
   Schedule Day 46,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1414,7 +1414,7 @@ OS:Schedule:Rule,
 OS:Schedule:Day,
   {9a5d3cac-a2d4-4d77-9efe-e1ff9054c018}, !- Handle
   Schedule Day 47,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   9,                                      !- Hour 1
   0,                                      !- Minute 1
@@ -1429,13 +1429,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {65c478f3-c2b6-4786-a35a-53015a2055e5}, !- Handle
   Department Store Activity Schedule Ruleset, !- Name
-  ,                                       !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   {f1ca58a1-e307-43ce-a393-77b8051ac7ef}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {f1ca58a1-e307-43ce-a393-77b8051ac7ef}, !- Handle
   Schedule Day 48,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1459,13 +1459,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {543f74de-b104-43fe-8fe9-a35deb06f9e5}, !- Handle
   Service Facility Light Schedule Ruleset, !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {1bdeed59-0ef4-4332-8758-df5c8479e976}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {1bdeed59-0ef4-4332-8758-df5c8479e976}, !- Handle
   Schedule Day 50,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1488,7 +1488,7 @@ OS:Schedule:Rule,
 OS:Schedule:Day,
   {84d9f9d7-553e-452d-a726-4731424b0c43}, !- Handle
   Schedule Day 51,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   9,                                      !- Hour 1
   0,                                      !- Minute 1
@@ -1503,13 +1503,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {aa3743eb-03f4-4fbd-b8ec-ac0b07e0ea83}, !- Handle
   Service Facility Electronic Schedule Ruleset, !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {46f563ca-840c-4356-a24d-e98200a17b3e}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {46f563ca-840c-4356-a24d-e98200a17b3e}, !- Handle
   Schedule Day 52,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1532,7 +1532,7 @@ OS:Schedule:Rule,
 OS:Schedule:Day,
   {de01285b-054a-46e5-ac34-ddce721bee36}, !- Handle
   Schedule Day 53,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   9,                                      !- Hour 1
   0,                                      !- Minute 1
@@ -1547,13 +1547,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {bb6958e6-f21f-435d-8137-c72bfb642f1d}, !- Handle
   Service Facility Activity Schedule Ruleset, !- Name
-  ,                                       !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   {b990afe1-0150-4250-9458-e7fa1f9ff760}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {b990afe1-0150-4250-9458-e7fa1f9ff760}, !- Handle
   Schedule Day 54,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1577,13 +1577,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {4bf0bcf9-68f2-4fe6-ae06-5c9900e8a6a9}, !- Handle
   Service Facility Other Equipment Schedule Ruleset, !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {40b89b92-e95b-4b5c-afa0-09c465e454dc}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {40b89b92-e95b-4b5c-afa0-09c465e454dc}, !- Handle
   Schedule Day 56,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1606,7 +1606,7 @@ OS:Schedule:Rule,
 OS:Schedule:Day,
   {b8be2cf5-23b3-44d5-8d4e-c9ac04be1817}, !- Handle
   Schedule Day 57,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   9,                                      !- Hour 1
   0,                                      !- Minute 1
@@ -1783,13 +1783,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {98159c78-0161-4245-a001-618c3c422429}, !- Handle
   Hotel Light Schedule Ruleset,           !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {b3f8ee4d-5e50-41e8-bfd2-44e44a467ce9}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {b3f8ee4d-5e50-41e8-bfd2-44e44a467ce9}, !- Handle
   Schedule Day 66,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1798,13 +1798,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {44dbf982-73f3-4ad4-ab62-54d6deb91e9c}, !- Handle
   Hotel Electronic Schedule Ruleset,      !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {ad896ed5-2ba5-450c-9a94-daf0a273820c}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {ad896ed5-2ba5-450c-9a94-daf0a273820c}, !- Handle
   Schedule Day 67,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1813,13 +1813,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {bac91769-7829-421f-bd26-c3fc47147e83}, !- Handle
   Hotel Other Equipment Schedule Ruleset, !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {76516c5c-0d97-4885-903b-64859976217a}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {76516c5c-0d97-4885-903b-64859976217a}, !- Handle
   Schedule Day 68,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1828,13 +1828,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {53383dda-ff79-414b-9da2-4d94c7619c21}, !- Handle
   Hotel Activity Schedule Ruleset,        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   {bd648913-c2bd-43c1-b166-700085990147}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {bd648913-c2bd-43c1-b166-700085990147}, !- Handle
   Schedule Day 69,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1858,13 +1858,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {bbbf308e-7d92-4d31-b8d8-011574a149b8}, !- Handle
   Medical Center Electronic Schedule Ruleset, !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {a3c08e58-1592-4066-a16b-10122f0ba8d3}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {a3c08e58-1592-4066-a16b-10122f0ba8d3}, !- Handle
   Schedule Day 71,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1873,13 +1873,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {6676c7e7-7739-4557-bf00-1e02a9fb4901}, !- Handle
   Medical Center Light Schedule Ruleset,  !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {7a6e2a56-1447-463f-9b86-ace125fb580c}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {7a6e2a56-1447-463f-9b86-ace125fb580c}, !- Handle
   Schedule Day 72,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1888,13 +1888,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {6931753a-732f-4d02-b424-8ac0707bf209}, !- Handle
   Medical Center Other Equipment Schedule Ruleset, !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {7d43e94f-dcf9-4838-972b-5f981c6c266d}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {7d43e94f-dcf9-4838-972b-5f981c6c266d}, !- Handle
   Schedule Day 73,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -1903,13 +1903,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {49300f04-bef0-4fe4-9153-06a37586867d}, !- Handle
   Medical Center Activity Schedule Ruleset, !- Name
-  ,                                       !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   {4f3bacec-c10b-4492-b96f-4e5bff02182a}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {4f3bacec-c10b-4492-b96f-4e5bff02182a}, !- Handle
   Schedule Day 74,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -2008,13 +2008,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {a0e43136-8713-4705-bda6-83f5d3b7d93f}, !- Handle
   Theater Other Equipment Schedule Ruleset, !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   {fa1a835c-5675-4604-a329-594d1d4bd1d9}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {fa1a835c-5675-4604-a329-594d1d4bd1d9}, !- Handle
   Schedule Day 81,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -2037,7 +2037,7 @@ OS:Schedule:Rule,
 OS:Schedule:Day,
   {fb0af46f-ea85-47b4-9e6e-e43f96e2b5b3}, !- Handle
   Schedule Day 82,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {00d8a08d-fdaf-40f4-9427-ac27fd74bfe4}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   9,                                      !- Hour 1
   0,                                      !- Minute 1
@@ -2052,13 +2052,13 @@ OS:Schedule:Day,
 OS:Schedule:Ruleset,
   {054783a8-71a4-4507-8fe7-550271e6ab5c}, !- Handle
   Theater Activity Schedule Ruleset,      !- Name
-  ,                                       !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   {3f54e5f7-0c81-41ca-863d-2eeafe5f21a5}; !- Default Day Schedule Name
 
 OS:Schedule:Day,
   {3f54e5f7-0c81-41ca-863d-2eeafe5f21a5}, !- Handle
   Schedule Day 83,                        !- Name
-  ,                                       !- Schedule Type Limits Name
+  {115aba64-18e9-477b-9f56-bc49f71a3d65}, !- Schedule Type Limits Name
   ,                                       !- Interpolate to Timestep
   24,                                     !- Hour 1
   0,                                      !- Minute 1
@@ -2103,7 +2103,7 @@ OS:WeatherFile,
   100.6,                                  !- Longitude {deg}
   7,                                      !- Time Zone {hr}
   12,                                     !- Elevation {m}
-  file:files/THA_Bangkok.484560_IWEC.epw, !- Url
+  file:///D:/OpenStudio/extension/template/MinimalTemplate_new/files/THA_Bangkok.484560_IWEC.epw, !- Url
   03A88054;                               !- Checksum
 
 OS:RunPeriod,
@@ -2374,7 +2374,7 @@ OS:Rendering:Color,
 
 OS:DefaultScheduleSet,
   {63998346-ac5c-4872-8fb5-d3bf0e410391}, !- Handle
-  Thai Condominium,                       !- Name
+  Thai Condominium Schedule Set,          !- Name
   ,                                       !- Hours of Operation Schedule Name
   ,                                       !- Number of People Schedule Name
   {cb113ee1-d558-41fa-8bac-70994e65ddcd}, !- People Activity Level Schedule Name
@@ -2399,4 +2399,200 @@ OS:Rendering:Color,
   250,                                    !- Rendering Red Value
   250,                                    !- Rendering Green Value
   210;                                    !- Rendering Blue Value
+
+OS:DefaultScheduleSet,
+  {a6f743dd-850b-4df6-99ee-6f5d477530cd}, !- Handle
+  Thai Department Store Schedule Set,     !- Name
+  ,                                       !- Hours of Operation Schedule Name
+  ,                                       !- Number of People Schedule Name
+  {65c478f3-c2b6-4786-a35a-53015a2055e5}, !- People Activity Level Schedule Name
+  {e9e1e693-3e83-43e3-94f9-b5a322b2e1d7}, !- Lighting Schedule Name
+  {6c852acb-95be-415e-ad1d-6c4eb9c20071}, !- Electric Equipment Schedule Name
+  ,                                       !- Gas Equipment Schedule Name
+  ,                                       !- Hot Water Equipment Schedule Name
+  ,                                       !- Infiltration Schedule Name
+  ,                                       !- Steam Equipment Schedule Name
+  {6d33b993-140c-4b54-99ad-b8eaadf3d9e7}; !- Other Equipment Schedule Name
+
+OS:DefaultScheduleSet,
+  {a836f441-13d4-4501-bea7-987d4db4ea83}, !- Handle
+  Thai Educational Institution Schedule Set, !- Name
+  ,                                       !- Hours of Operation Schedule Name
+  ,                                       !- Number of People Schedule Name
+  {86fd08a2-2745-4bd1-9006-baed41a1dd1d}, !- People Activity Level Schedule Name
+  {342f4dcd-6d67-4754-b5d5-ae5cb4ecd8b1}, !- Lighting Schedule Name
+  {6e603ddf-afd8-4140-8faf-0242b66742e6}, !- Electric Equipment Schedule Name
+  ,                                       !- Gas Equipment Schedule Name
+  ,                                       !- Hot Water Equipment Schedule Name
+  ,                                       !- Infiltration Schedule Name
+  ,                                       !- Steam Equipment Schedule Name
+  {a1438b8b-6197-45c9-aecc-cd0c69fb1b52}; !- Other Equipment Schedule Name
+
+OS:DefaultScheduleSet,
+  {dcaacfb6-5745-4f46-ac91-5dc1a4774a7f}, !- Handle
+  Thai Hotel Schedule Set,                !- Name
+  ,                                       !- Hours of Operation Schedule Name
+  ,                                       !- Number of People Schedule Name
+  {53383dda-ff79-414b-9da2-4d94c7619c21}, !- People Activity Level Schedule Name
+  {98159c78-0161-4245-a001-618c3c422429}, !- Lighting Schedule Name
+  {44dbf982-73f3-4ad4-ab62-54d6deb91e9c}, !- Electric Equipment Schedule Name
+  ,                                       !- Gas Equipment Schedule Name
+  ,                                       !- Hot Water Equipment Schedule Name
+  ,                                       !- Infiltration Schedule Name
+  ,                                       !- Steam Equipment Schedule Name
+  {bac91769-7829-421f-bd26-c3fc47147e83}; !- Other Equipment Schedule Name
+
+OS:DefaultScheduleSet,
+  {7e2ba0a3-b398-4d25-a8bf-d48774c44eb6}, !- Handle
+  Thai Medical Center Schedule Set,       !- Name
+  ,                                       !- Hours of Operation Schedule Name
+  ,                                       !- Number of People Schedule Name
+  {49300f04-bef0-4fe4-9153-06a37586867d}, !- People Activity Level Schedule Name
+  {6676c7e7-7739-4557-bf00-1e02a9fb4901}, !- Lighting Schedule Name
+  {bbbf308e-7d92-4d31-b8d8-011574a149b8}, !- Electric Equipment Schedule Name
+  ,                                       !- Gas Equipment Schedule Name
+  ,                                       !- Hot Water Equipment Schedule Name
+  ,                                       !- Infiltration Schedule Name
+  ,                                       !- Steam Equipment Schedule Name
+  {6931753a-732f-4d02-b424-8ac0707bf209}; !- Other Equipment Schedule Name
+
+OS:DefaultScheduleSet,
+  {98a0c01e-1ce9-437e-b007-90194324de90}, !- Handle
+  Thai Office Schedule Set,               !- Name
+  ,                                       !- Hours of Operation Schedule Name
+  ,                                       !- Number of People Schedule Name
+  {5cacf0c0-80f7-4502-8cae-875b4e96689b}, !- People Activity Level Schedule Name
+  {9d5f53c3-7f0b-4392-8cb2-3f3f8cedd6dc}, !- Lighting Schedule Name
+  {743d6498-fa16-46de-bc4f-126bbf14d5c6}, !- Electric Equipment Schedule Name
+  ,                                       !- Gas Equipment Schedule Name
+  ,                                       !- Hot Water Equipment Schedule Name
+  ,                                       !- Infiltration Schedule Name
+  ,                                       !- Steam Equipment Schedule Name
+  {91d0c431-1e51-4d96-ab83-12a38805a436}; !- Other Equipment Schedule Name
+
+OS:DefaultScheduleSet,
+  {2c1adb50-7a15-4955-a388-863423e20f03}, !- Handle
+  Thai Service Facility Schedule Set,     !- Name
+  ,                                       !- Hours of Operation Schedule Name
+  ,                                       !- Number of People Schedule Name
+  {bb6958e6-f21f-435d-8137-c72bfb642f1d}, !- People Activity Level Schedule Name
+  {543f74de-b104-43fe-8fe9-a35deb06f9e5}, !- Lighting Schedule Name
+  {aa3743eb-03f4-4fbd-b8ec-ac0b07e0ea83}, !- Electric Equipment Schedule Name
+  ,                                       !- Gas Equipment Schedule Name
+  ,                                       !- Hot Water Equipment Schedule Name
+  ,                                       !- Infiltration Schedule Name
+  ,                                       !- Steam Equipment Schedule Name
+  {4bf0bcf9-68f2-4fe6-ae06-5c9900e8a6a9}; !- Other Equipment Schedule Name
+
+OS:DefaultScheduleSet,
+  {66ebf25c-092c-4339-b022-981d6e5f12b5}, !- Handle
+  Thai Theater Schedule Set,              !- Name
+  ,                                       !- Hours of Operation Schedule Name
+  ,                                       !- Number of People Schedule Name
+  {054783a8-71a4-4507-8fe7-550271e6ab5c}, !- People Activity Level Schedule Name
+  {478b56cc-9064-4870-9b08-3615eb66234a}, !- Lighting Schedule Name
+  {3a62581d-92dd-4b0f-936c-a672bde1804b}, !- Electric Equipment Schedule Name
+  ,                                       !- Gas Equipment Schedule Name
+  ,                                       !- Hot Water Equipment Schedule Name
+  ,                                       !- Infiltration Schedule Name
+  ,                                       !- Steam Equipment Schedule Name
+  {a0e43136-8713-4705-bda6-83f5d3b7d93f}; !- Other Equipment Schedule Name
+
+OS:SpaceType,
+  {8faa3998-2a66-4930-ae38-511d629d514d}, !- Handle
+  Thai Department Store,                  !- Name
+  ,                                       !- Default Construction Set Name
+  {a6f743dd-850b-4df6-99ee-6f5d477530cd}, !- Default Schedule Set Name
+  {c58de1e0-61c7-4f65-99e4-6bc62120177f}; !- Group Rendering Name
+
+OS:Rendering:Color,
+  {c58de1e0-61c7-4f65-99e4-6bc62120177f}, !- Handle
+  Rendering Color 4,                      !- Name
+  127,                                    !- Rendering Red Value
+  255,                                    !- Rendering Green Value
+  0;                                      !- Rendering Blue Value
+
+OS:SpaceType,
+  {557a40cc-2e0a-4057-a850-1328ee2ceeca}, !- Handle
+  Thai Educational Institution,           !- Name
+  ,                                       !- Default Construction Set Name
+  {a836f441-13d4-4501-bea7-987d4db4ea83}, !- Default Schedule Set Name
+  {a106c921-a274-4d89-994c-fb9b627db234}; !- Group Rendering Name
+
+OS:Rendering:Color,
+  {a106c921-a274-4d89-994c-fb9b627db234}, !- Handle
+  Rendering Color 5,                      !- Name
+  165,                                    !- Rendering Red Value
+  42,                                     !- Rendering Green Value
+  42;                                     !- Rendering Blue Value
+
+OS:SpaceType,
+  {c3f25df7-92a3-47b2-a03d-600a7f27f1e9}, !- Handle
+  Thai Hotel,                             !- Name
+  ,                                       !- Default Construction Set Name
+  {dcaacfb6-5745-4f46-ac91-5dc1a4774a7f}, !- Default Schedule Set Name
+  {3c2981be-b6fd-407b-9b81-9da465b699b4}; !- Group Rendering Name
+
+OS:Rendering:Color,
+  {3c2981be-b6fd-407b-9b81-9da465b699b4}, !- Handle
+  Rendering Color 6,                      !- Name
+  220,                                    !- Rendering Red Value
+  220,                                    !- Rendering Green Value
+  220;                                    !- Rendering Blue Value
+
+OS:SpaceType,
+  {fe361666-82f5-48b9-940e-3645a65238b1}, !- Handle
+  Thai Medical Center,                    !- Name
+  ,                                       !- Default Construction Set Name
+  {7e2ba0a3-b398-4d25-a8bf-d48774c44eb6}, !- Default Schedule Set Name
+  {94817175-e030-4689-8773-8bfcf7b7941b}; !- Group Rendering Name
+
+OS:Rendering:Color,
+  {94817175-e030-4689-8773-8bfcf7b7941b}, !- Handle
+  Rendering Color 7,                      !- Name
+  25,                                     !- Rendering Red Value
+  25,                                     !- Rendering Green Value
+  112;                                    !- Rendering Blue Value
+
+OS:SpaceType,
+  {4f1cb726-3de8-4c84-8aec-e7a8201699ac}, !- Handle
+  Thai Office,                            !- Name
+  ,                                       !- Default Construction Set Name
+  {98a0c01e-1ce9-437e-b007-90194324de90}, !- Default Schedule Set Name
+  {3cd00400-5604-4a38-b48d-5eb4ebf16a04}; !- Group Rendering Name
+
+OS:Rendering:Color,
+  {3cd00400-5604-4a38-b48d-5eb4ebf16a04}, !- Handle
+  Rendering Color 8,                      !- Name
+  46,                                     !- Rendering Red Value
+  139,                                    !- Rendering Green Value
+  87;                                     !- Rendering Blue Value
+
+OS:SpaceType,
+  {6a8e5714-3c84-4e83-b44f-33e07ca6262d}, !- Handle
+  Thai Service Facility,                  !- Name
+  ,                                       !- Default Construction Set Name
+  {2c1adb50-7a15-4955-a388-863423e20f03}, !- Default Schedule Set Name
+  {4b62d9c7-8ddb-421e-807b-3e1d71624e4b}; !- Group Rendering Name
+
+OS:Rendering:Color,
+  {4b62d9c7-8ddb-421e-807b-3e1d71624e4b}, !- Handle
+  Rendering Color 9,                      !- Name
+  255,                                    !- Rendering Red Value
+  248,                                    !- Rendering Green Value
+  220;                                    !- Rendering Blue Value
+
+OS:SpaceType,
+  {105d9e6b-4503-4fd1-91da-82725c518c45}, !- Handle
+  Thai Theater,                           !- Name
+  ,                                       !- Default Construction Set Name
+  {66ebf25c-092c-4339-b022-981d6e5f12b5}, !- Default Schedule Set Name
+  {45b06c70-5c54-412e-9e07-3e75b3f4a126}; !- Group Rendering Name
+
+OS:Rendering:Color,
+  {45b06c70-5c54-412e-9e07-3e75b3f4a126}, !- Handle
+  Rendering Color 10,                     !- Name
+  189,                                    !- Rendering Red Value
+  183,                                    !- Rendering Green Value
+  107;                                    !- Rendering Blue Value
 
