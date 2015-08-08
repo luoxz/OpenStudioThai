@@ -2596,3 +2596,404 @@ OS:Rendering:Color,
   183,                                    !- Rendering Green Value
   107;                                    !- Rendering Blue Value
 
+OS:DefaultConstructionSet,
+  {ef7d7aaf-6ca2-4925-a323-095751cea629}, !- Handle
+  Thai Default Constructions,             !- Name
+  {c8657ed0-123d-44c0-a607-522cdebc3277}, !- Default Exterior Surface Constructions Name
+  {21cfafbd-d4a5-47e5-9b1d-4008c52d5679}, !- Default Interior Surface Constructions Name
+  {8ca495ac-3933-47cc-be8a-ca802056012d}, !- Default Ground Contact Surface Constructions Name
+  {934dc260-60a4-48c0-80a0-a9c1d6e32a49}, !- Default Exterior SubSurface Constructions Name
+  {8bfb7436-9838-4e36-b821-ede94524fd75}, !- Default Interior SubSurface Constructions Name
+  {d2cc1c98-90a4-475e-b39f-b6637a25efc5}, !- Interior Partition Construction Name
+  ,                                       !- Space Shading Construction Name
+  ,                                       !- Building Shading Construction Name
+  ;                                       !- Site Shading Construction Name
+
+OS:DefaultSurfaceConstructions,
+  {c8657ed0-123d-44c0-a607-522cdebc3277}, !- Handle
+  Default Surface Constructions 1,        !- Name
+  ,                                       !- Floor Construction Name
+  {e6a75b10-9fb0-4024-a56f-097b23010883}, !- Wall Construction Name
+  {94ec98e2-e266-4496-8264-ad4ab6e54b9c}; !- Roof Ceiling Construction Name
+
+OS:DefaultSurfaceConstructions,
+  {21cfafbd-d4a5-47e5-9b1d-4008c52d5679}, !- Handle
+  Default Surface Constructions 2,        !- Name
+  {80c9d67f-5ed2-4cf1-ac81-16d51d1cd489}, !- Floor Construction Name
+  {6fa4af26-e939-4c96-a6ba-43bae870f7ab}, !- Wall Construction Name
+  {f7a7b863-f6d0-4bc6-ba36-ded36445bca8}; !- Roof Ceiling Construction Name
+
+OS:DefaultSurfaceConstructions,
+  {8ca495ac-3933-47cc-be8a-ca802056012d}, !- Handle
+  Default Surface Constructions 3,        !- Name
+  {f029b75a-347a-4c7a-a6a2-bca5d9a3c2eb}, !- Floor Construction Name
+  ,                                       !- Wall Construction Name
+  ;                                       !- Roof Ceiling Construction Name
+
+OS:DefaultSubSurfaceConstructions,
+  {934dc260-60a4-48c0-80a0-a9c1d6e32a49}, !- Handle
+  Default Sub Surface Constructions 1,    !- Name
+  {c85d751d-12e4-4b70-a328-2b48063b2c2e}, !- Fixed Window Construction Name
+  {c85d751d-12e4-4b70-a328-2b48063b2c2e}, !- Operable Window Construction Name
+  {5e83ac07-ebec-407f-b4b1-44f2db8b56e8}, !- Door Construction Name
+  {c85d751d-12e4-4b70-a328-2b48063b2c2e}, !- Glass Door Construction Name
+  {5e83ac07-ebec-407f-b4b1-44f2db8b56e8}, !- Overhead Door Construction Name
+  {c85d751d-12e4-4b70-a328-2b48063b2c2e}, !- Skylight Construction Name
+  {c85d751d-12e4-4b70-a328-2b48063b2c2e}, !- Tubular Daylight Dome Construction Name
+  {c85d751d-12e4-4b70-a328-2b48063b2c2e}; !- Tubular Daylight Diffuser Construction Name
+
+OS:DefaultSubSurfaceConstructions,
+  {8bfb7436-9838-4e36-b821-ede94524fd75}, !- Handle
+  Default Sub Surface Constructions 2,    !- Name
+  {7dbfddf8-0287-4087-810d-45faf71e4afe}, !- Fixed Window Construction Name
+  {7dbfddf8-0287-4087-810d-45faf71e4afe}, !- Operable Window Construction Name
+  {2552be44-24f7-4e0b-8a1d-f54ed78ce3dd}, !- Door Construction Name
+  ,                                       !- Glass Door Construction Name
+  ,                                       !- Overhead Door Construction Name
+  ,                                       !- Skylight Construction Name
+  ,                                       !- Tubular Daylight Dome Construction Name
+  ;                                       !- Tubular Daylight Diffuser Construction Name
+
+OS:Construction,
+  {6fa4af26-e939-4c96-a6ba-43bae870f7ab}, !- Handle
+  Thai Air Wall,                          !- Name
+  ,                                       !- Surface Rendering Name
+  {987897a4-90b7-4b4d-b15e-e88e05ab98db}; !- Layer 1
+
+OS:Material:AirWall,
+  {987897a4-90b7-4b4d-b15e-e88e05ab98db}, !- Handle
+  Air Wall Material;                      !- Name
+
+OS:StandardsInformation:Construction,
+  {c9b7d073-1b42-4b34-9c4c-905340dbe9fb}, !- Handle
+  {6fa4af26-e939-4c96-a6ba-43bae870f7ab}; !- Construction Name
+
+OS:StandardsInformation:Material,
+  {0996e82c-24c1-46d0-9773-48b4b9d80d79}, !- Handle
+  {987897a4-90b7-4b4d-b15e-e88e05ab98db}; !- Material Name
+
+OS:Construction,
+  {5e83ac07-ebec-407f-b4b1-44f2db8b56e8}, !- Handle
+  Thai Exterior Door,                     !- Name
+  ,                                       !- Surface Rendering Name
+  {5626007d-bec6-4211-8d7e-eb364f1ab47a}, !- Layer 1
+  {54ca2ed9-6e20-48aa-9edf-413b5d3d2e1d}; !- Layer 2
+
+OS:Material,
+  {5626007d-bec6-4211-8d7e-eb364f1ab47a}, !- Handle
+  F08 Metal surface,                      !- Name
+  Smooth,                                 !- Roughness
+  0.0008,                                 !- Thickness {m}
+  45.28,                                  !- Conductivity {W/m-K}
+  7824,                                   !- Density {kg/m3}
+  500;                                    !- Specific Heat {J/kg-K}
+
+OS:Material,
+  {54ca2ed9-6e20-48aa-9edf-413b5d3d2e1d}, !- Handle
+  I02 25mm insulation board,              !- Name
+  MediumRough,                            !- Roughness
+  0.0254,                                 !- Thickness {m}
+  0.03,                                   !- Conductivity {W/m-K}
+  43,                                     !- Density {kg/m3}
+  1210;                                   !- Specific Heat {J/kg-K}
+
+OS:StandardsInformation:Construction,
+  {eef52d82-d5bf-41cf-a702-54ea81a53ba8}, !- Handle
+  {5e83ac07-ebec-407f-b4b1-44f2db8b56e8}, !- Construction Name
+  ,                                       !- Intended Surface Type
+  ,                                       !- Standards Construction Type
+  1,                                      !- Perturbable Layer
+  Insulation,                             !- Perturbable Layer Type
+  ;                                       !- Other Perturbable Layer Type
+
+OS:StandardsInformation:Material,
+  {bd8c3d0b-dd48-4145-ab23-82c35ba605e8}, !- Handle
+  {5626007d-bec6-4211-8d7e-eb364f1ab47a}; !- Material Name
+
+OS:StandardsInformation:Material,
+  {ca95222e-0fa4-49da-8d51-ef227fec06c7}, !- Handle
+  {54ca2ed9-6e20-48aa-9edf-413b5d3d2e1d}; !- Material Name
+
+OS:Construction,
+  {94ec98e2-e266-4496-8264-ad4ab6e54b9c}, !- Handle
+  Thai Exterior Roof,                     !- Name
+  ,                                       !- Surface Rendering Name
+  {24c05331-4ae1-4451-8600-402640bdf65b}, !- Layer 1
+  {9b860ce6-d87b-4aab-84a2-a4d88ee46620}, !- Layer 2
+  {b5b2f727-1af7-40fe-a3c5-75d30c074c3a}; !- Layer 3
+
+OS:Material,
+  {24c05331-4ae1-4451-8600-402640bdf65b}, !- Handle
+  M11 100mm lightweight concrete,         !- Name
+  MediumRough,                            !- Roughness
+  0.1016,                                 !- Thickness {m}
+  0.53,                                   !- Conductivity {W/m-K}
+  1280,                                   !- Density {kg/m3}
+  840;                                    !- Specific Heat {J/kg-K}
+
+OS:Material:AirGap,
+  {9b860ce6-d87b-4aab-84a2-a4d88ee46620}, !- Handle
+  F05 Ceiling air space resistance,       !- Name
+  0.18;                                   !- Thermal Resistance {m2-K/W}
+
+OS:Material,
+  {b5b2f727-1af7-40fe-a3c5-75d30c074c3a}, !- Handle
+  F16 Acoustic tile,                      !- Name
+  MediumSmooth,                           !- Roughness
+  0.0191,                                 !- Thickness {m}
+  0.06,                                   !- Conductivity {W/m-K}
+  368,                                    !- Density {kg/m3}
+  590;                                    !- Specific Heat {J/kg-K}
+
+OS:StandardsInformation:Construction,
+  {88a2338c-7ae6-4cf6-b915-419915727838}, !- Handle
+  {94ec98e2-e266-4496-8264-ad4ab6e54b9c}; !- Construction Name
+
+OS:StandardsInformation:Material,
+  {1db18e38-49e2-414f-a1cb-13ebe1ef7121}, !- Handle
+  {24c05331-4ae1-4451-8600-402640bdf65b}; !- Material Name
+
+OS:StandardsInformation:Material,
+  {5556bbe4-f051-4bfe-8e37-fc8c0306ec9c}, !- Handle
+  {9b860ce6-d87b-4aab-84a2-a4d88ee46620}; !- Material Name
+
+OS:StandardsInformation:Material,
+  {34aa16b5-c858-4f86-b629-db4a7a0cb258}, !- Handle
+  {b5b2f727-1af7-40fe-a3c5-75d30c074c3a}; !- Material Name
+
+OS:Construction,
+  {e6a75b10-9fb0-4024-a56f-097b23010883}, !- Handle
+  Thai Exterior Wall,                     !- Name
+  ,                                       !- Surface Rendering Name
+  {73a73b7e-1ea6-4c59-9ac4-b2cad0c7954c}, !- Layer 1
+  {551020ff-5ff4-4cca-ae3c-eef8f525b3c6}, !- Layer 2
+  {a081859f-9c1d-4e3b-8558-6e98f6e31dde}, !- Layer 3
+  {1641a4f7-c4b6-4f84-90d1-9fdfeea18daa}, !- Layer 4
+  {20c1964c-70ce-42a3-9475-14eede8aa5f3}; !- Layer 5
+
+OS:Material,
+  {73a73b7e-1ea6-4c59-9ac4-b2cad0c7954c}, !- Handle
+  M01 100mm brick,                        !- Name
+  MediumRough,                            !- Roughness
+  0.1016,                                 !- Thickness {m}
+  0.89,                                   !- Conductivity {W/m-K}
+  1920,                                   !- Density {kg/m3}
+  790;                                    !- Specific Heat {J/kg-K}
+
+OS:Material,
+  {551020ff-5ff4-4cca-ae3c-eef8f525b3c6}, !- Handle
+  M15 200mm heavyweight concrete,         !- Name
+  MediumRough,                            !- Roughness
+  0.2032,                                 !- Thickness {m}
+  1.95,                                   !- Conductivity {W/m-K}
+  2240,                                   !- Density {kg/m3}
+  900;                                    !- Specific Heat {J/kg-K}
+
+OS:Material,
+  {a081859f-9c1d-4e3b-8558-6e98f6e31dde}, !- Handle
+  I02 50mm insulation board,              !- Name
+  MediumRough,                            !- Roughness
+  0.0508,                                 !- Thickness {m}
+  0.03,                                   !- Conductivity {W/m-K}
+  43,                                     !- Density {kg/m3}
+  1210;                                   !- Specific Heat {J/kg-K}
+
+OS:Material:AirGap,
+  {1641a4f7-c4b6-4f84-90d1-9fdfeea18daa}, !- Handle
+  F04 Wall air space resistance,          !- Name
+  0.15;                                   !- Thermal Resistance {m2-K/W}
+
+OS:Material,
+  {20c1964c-70ce-42a3-9475-14eede8aa5f3}, !- Handle
+  G01a 19mm gypsum board,                 !- Name
+  MediumSmooth,                           !- Roughness
+  0.019,                                  !- Thickness {m}
+  0.16,                                   !- Conductivity {W/m-K}
+  800,                                    !- Density {kg/m3}
+  1090;                                   !- Specific Heat {J/kg-K}
+
+OS:StandardsInformation:Construction,
+  {a159c103-8472-41af-b30f-f6944c00f9d1}, !- Handle
+  {e6a75b10-9fb0-4024-a56f-097b23010883}, !- Construction Name
+  ,                                       !- Intended Surface Type
+  ,                                       !- Standards Construction Type
+  2,                                      !- Perturbable Layer
+  Insulation,                             !- Perturbable Layer Type
+  ;                                       !- Other Perturbable Layer Type
+
+OS:StandardsInformation:Material,
+  {ed5db5c1-36a8-4cc2-a6f2-ff18fec571ab}, !- Handle
+  {73a73b7e-1ea6-4c59-9ac4-b2cad0c7954c}; !- Material Name
+
+OS:StandardsInformation:Material,
+  {510a695f-aa94-41b9-8e6e-ec182e81fa41}, !- Handle
+  {551020ff-5ff4-4cca-ae3c-eef8f525b3c6}; !- Material Name
+
+OS:StandardsInformation:Material,
+  {43f7c64f-4f2a-44d1-9370-92474aa8c750}, !- Handle
+  {a081859f-9c1d-4e3b-8558-6e98f6e31dde}; !- Material Name
+
+OS:StandardsInformation:Material,
+  {00cccd6c-0722-4752-8b75-7913b7ff8c7f}, !- Handle
+  {1641a4f7-c4b6-4f84-90d1-9fdfeea18daa}; !- Material Name
+
+OS:StandardsInformation:Material,
+  {ca65d8a5-088d-47b1-9da4-6cab4eea3cc5}, !- Handle
+  {20c1964c-70ce-42a3-9475-14eede8aa5f3}; !- Material Name
+
+OS:Construction,
+  {c85d751d-12e4-4b70-a328-2b48063b2c2e}, !- Handle
+  Thai Exterior Window,                   !- Name
+  ,                                       !- Surface Rendering Name
+  {81709dcb-9629-43ac-b77c-36b0480ae87b}; !- Layer 1
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {81709dcb-9629-43ac-b77c-36b0480ae87b}, !- Handle
+  Simple Glazing,                         !- Name
+  3.23646,                                !- U-Factor {W/m2-K}
+  0.39,                                   !- Solar Heat Gain Coefficient
+  0.6;                                    !- Visible Transmittance
+
+OS:StandardsInformation:Construction,
+  {2241b9e1-5843-4bbc-b903-4414bdf77312}, !- Handle
+  {c85d751d-12e4-4b70-a328-2b48063b2c2e}, !- Construction Name
+  ,                                       !- Intended Surface Type
+  ,                                       !- Standards Construction Type
+  ,                                       !- Perturbable Layer
+  ,                                       !- Perturbable Layer Type
+  ,                                       !- Other Perturbable Layer Type
+  ,                                       !- Construction Standard
+  ,                                       !- Construction Standard Source
+  ,                                       !- Fenestration Type
+  ,                                       !- Fenestration Assembly Context
+  ,                                       !- Fenestration Number of Panes
+  ,                                       !- Fenestration Frame Type
+  ,                                       !- Fenestration Divider Type
+  ,                                       !- Fenestration Tint
+  ;                                       !- Fenestration Gas Fill
+
+OS:StandardsInformation:Material,
+  {a5b66322-5515-4cde-9c88-e7caa82bad6a}, !- Handle
+  {81709dcb-9629-43ac-b77c-36b0480ae87b}; !- Material Name
+
+OS:Construction,
+  {f7a7b863-f6d0-4bc6-ba36-ded36445bca8}, !- Handle
+  Thai Interior Ceiling,                  !- Name
+  ,                                       !- Surface Rendering Name
+  {24c05331-4ae1-4451-8600-402640bdf65b}, !- Layer 1
+  {9b860ce6-d87b-4aab-84a2-a4d88ee46620}, !- Layer 2
+  {b5b2f727-1af7-40fe-a3c5-75d30c074c3a}; !- Layer 3
+
+OS:StandardsInformation:Construction,
+  {74a7be5f-665f-492d-8456-463cbcde9af7}, !- Handle
+  {f7a7b863-f6d0-4bc6-ba36-ded36445bca8}; !- Construction Name
+
+OS:Construction,
+  {2552be44-24f7-4e0b-8a1d-f54ed78ce3dd}, !- Handle
+  Thai Interior Door,                     !- Name
+  ,                                       !- Surface Rendering Name
+  {6ea0174a-06eb-4bfc-b29b-32012de9a2f2}; !- Layer 1
+
+OS:Material,
+  {6ea0174a-06eb-4bfc-b29b-32012de9a2f2}, !- Handle
+  G05 25mm wood,                          !- Name
+  MediumSmooth,                           !- Roughness
+  0.0254,                                 !- Thickness {m}
+  0.15,                                   !- Conductivity {W/m-K}
+  608,                                    !- Density {kg/m3}
+  1630;                                   !- Specific Heat {J/kg-K}
+
+OS:StandardsInformation:Construction,
+  {14ac76b0-471d-4388-af04-92a327c0e170}, !- Handle
+  {2552be44-24f7-4e0b-8a1d-f54ed78ce3dd}; !- Construction Name
+
+OS:StandardsInformation:Material,
+  {25f97338-d321-4563-ab77-83efbf3465b1}, !- Handle
+  {6ea0174a-06eb-4bfc-b29b-32012de9a2f2}; !- Material Name
+
+OS:Construction,
+  {80c9d67f-5ed2-4cf1-ac81-16d51d1cd489}, !- Handle
+  Thai Interior Floor,                    !- Name
+  ,                                       !- Surface Rendering Name
+  {b5b2f727-1af7-40fe-a3c5-75d30c074c3a}, !- Layer 1
+  {9b860ce6-d87b-4aab-84a2-a4d88ee46620}, !- Layer 2
+  {24c05331-4ae1-4451-8600-402640bdf65b}; !- Layer 3
+
+OS:StandardsInformation:Construction,
+  {4005d4f8-4159-4027-bc8c-c9fcffdb47ad}, !- Handle
+  {80c9d67f-5ed2-4cf1-ac81-16d51d1cd489}; !- Construction Name
+
+OS:Construction,
+  {d2cc1c98-90a4-475e-b39f-b6637a25efc5}, !- Handle
+  Thai Interior Partition,                !- Name
+  ,                                       !- Surface Rendering Name
+  {6ea0174a-06eb-4bfc-b29b-32012de9a2f2}; !- Layer 1
+
+OS:StandardsInformation:Construction,
+  {08fb05a7-58fb-4d6d-a8f6-a74cc5dcc717}, !- Handle
+  {d2cc1c98-90a4-475e-b39f-b6637a25efc5}; !- Construction Name
+
+OS:Construction,
+  {7dbfddf8-0287-4087-810d-45faf71e4afe}, !- Handle
+  Thai Interior Window,                   !- Name
+  ,                                       !- Surface Rendering Name
+  {81709dcb-9629-43ac-b77c-36b0480ae87b}; !- Layer 1
+
+OS:StandardsInformation:Construction,
+  {1e77a774-d635-4e06-960c-d0400f1e8fe7}, !- Handle
+  {7dbfddf8-0287-4087-810d-45faf71e4afe}, !- Construction Name
+  ,                                       !- Intended Surface Type
+  ,                                       !- Standards Construction Type
+  ,                                       !- Perturbable Layer
+  ,                                       !- Perturbable Layer Type
+  ,                                       !- Other Perturbable Layer Type
+  ,                                       !- Construction Standard
+  ,                                       !- Construction Standard Source
+  ,                                       !- Fenestration Type
+  ,                                       !- Fenestration Assembly Context
+  ,                                       !- Fenestration Number of Panes
+  ,                                       !- Fenestration Frame Type
+  ,                                       !- Fenestration Divider Type
+  ,                                       !- Fenestration Tint
+  ;                                       !- Fenestration Gas Fill
+
+OS:Construction,
+  {f029b75a-347a-4c7a-a6a2-bca5d9a3c2eb}, !- Handle
+  Thai Slab,                              !- Name
+  ,                                       !- Surface Rendering Name
+  {d3370d71-c5af-49ec-94ee-94c22eb66070}, !- Layer 1
+  {dde49c5b-0755-4f04-a193-e4e95e00a83d}; !- Layer 2
+
+OS:Material,
+  {d3370d71-c5af-49ec-94ee-94c22eb66070}, !- Handle
+  MAT-CC05 8 HW CONCRETE,                 !- Name
+  Rough,                                  !- Roughness
+  0.2032,                                 !- Thickness {m}
+  1.311,                                  !- Conductivity {W/m-K}
+  2240,                                   !- Density {kg/m3}
+  836.8,                                  !- Specific Heat {J/kg-K}
+  0.9,                                    !- Thermal Absorptance
+  0.7,                                    !- Solar Absorptance
+  0.7;                                    !- Visible Absorptance
+
+OS:Material:NoMass,
+  {dde49c5b-0755-4f04-a193-e4e95e00a83d}, !- Handle
+  CP02 CARPET PAD,                        !- Name
+  VeryRough,                              !- Roughness
+  0.2165,                                 !- Thermal Resistance {m2-K/W}
+  0.9,                                    !- Thermal Absorptance
+  0.7,                                    !- Solar Absorptance
+  0.8;                                    !- Visible Absorptance
+
+OS:StandardsInformation:Construction,
+  {10aea964-9d33-4ad6-b363-ce5293542c09}, !- Handle
+  {f029b75a-347a-4c7a-a6a2-bca5d9a3c2eb}; !- Construction Name
+
+OS:StandardsInformation:Material,
+  {8ee9f16f-f359-481c-ad48-b549f5ee0330}, !- Handle
+  {d3370d71-c5af-49ec-94ee-94c22eb66070}; !- Material Name
+
+OS:StandardsInformation:Material,
+  {dcb8042e-e5d1-4faf-91ba-6c9ad050ef36}, !- Handle
+  {dde49c5b-0755-4f04-a193-e4e95e00a83d}; !- Material Name
+
