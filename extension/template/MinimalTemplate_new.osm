@@ -6228,3 +6228,1649 @@ OS:Material,
   0.9;										!- Visible Absorptance
 
 !-------------------------End Materails---------------------------
+
+!------------ Glazing System Window Materails -----------
+OS:WindowMaterial:SimpleGlazingSystem,
+  {939db906-70a4-4d81-9c41-4b6230077a6a}, !- Handle
+  Th-Arctic Snow 3 mm (3-0.38-0.38-3),    !- Name
+  5.68,                                   !- U-Factor {W/m2-K}
+  0.55,                                   !- Solar Heat Gain Coefficient
+  0.445;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {6c1f94d6-b5cb-4f14-a4d6-4e259e5b9cee}, !- Handle
+  Th-Arctic Snow 4 mm (4-0.38-0.38-4),    !- Name
+  5.62,                                   !- U-Factor {W/m2-K}
+  0.53,                                   !- Solar Heat Gain Coefficient
+  0.437;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {1e0e66cd-dff4-4235-9978-3fc6b9e1431d}, !- Handle
+  Th-Arctic Snow 5 mm (5-0.38-0.38-5),    !- Name
+  5.56,                                   !- U-Factor {W/m2-K}
+  0.52,                                   !- Solar Heat Gain Coefficient
+  0.435;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {9d9cf698-7df8-41ae-98b7-241a724d1130}, !- Handle
+  Th-Arctic Snow 6 mm (6-0.38-0.38-6),    !- Name
+  5.5,                                    !- U-Factor {W/m2-K}
+  0.51,                                   !- Solar Heat Gain Coefficient
+  0.428;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {03b1af70-30ef-4c58-bd4b-db2ce95f8317}, !- Handle
+  Th-Arctic Snow 8 mm (8-0.38-0.38-8),    !- Name
+  5.32,                                   !- U-Factor {W/m2-K}
+  0.5,                                    !- Solar Heat Gain Coefficient
+  0.422;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {6b8adfe6-c91f-4612-8e57-e13eea07146b}, !- Handle
+  Th-Blue Green 3 mm (3-0.38-0.38-3),     !- Name
+  5.68,                                   !- U-Factor {W/m2-K}
+  0.72,                                   !- Solar Heat Gain Coefficient
+  0.724;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {f5290938-565b-4b87-92d1-43a6c5863752}, !- Handle
+  Th-Blue Green 4 mm (4-0.38-0.38-4),     !- Name
+  5.62,                                   !- U-Factor {W/m2-K}
+  0.7,                                    !- Solar Heat Gain Coefficient
+  0.71;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {42e00d88-0d17-4a47-96c7-7e064af3d788}, !- Handle
+  Th-Blue Green 5 mm (5-0.38-0.38-5),     !- Name
+  5.56,                                   !- U-Factor {W/m2-K}
+  0.67,                                   !- Solar Heat Gain Coefficient
+  0.707;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {63571687-253d-46df-8a1d-b4e2b7cecf57}, !- Handle
+  Th-Blue Green 6 mm (6-0.38-0.38-6),     !- Name
+  5.5,                                    !- U-Factor {W/m2-K}
+  0.66,                                   !- Solar Heat Gain Coefficient
+  0.697;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {74b96f9e-fa0e-4cff-86f3-7557abbeb21f}, !- Handle
+  Th-Blue Green 8 mm (8-0.38-0.38-8),     !- Name
+  5.32,                                   !- U-Factor {W/m2-K}
+  0.64,                                   !- Solar Heat Gain Coefficient
+  0.686;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {4324c8e8-0c2b-411a-9750-e02dfd41e44f}, !- Handle
+  Th-Clear 3 mm (3-0.38-3),               !- Name
+  5.68,                                   !- U-Factor {W/m2-K}
+  0.79,                                   !- Solar Heat Gain Coefficient
+  0.879;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {8e078b66-0da2-4018-b16c-1d5999d1cd37}, !- Handle
+  Th-Clear 4 mm (4-0.38-4),               !- Name
+  5.62,                                   !- U-Factor {W/m2-K}
+  0.77,                                   !- Solar Heat Gain Coefficient
+  0.862;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {5be891df-74c6-41b7-8ea9-7956d69d0930}, !- Handle
+  Th-Clear 4 mm (4-12-4),                 !- Name
+  3.14,                                   !- U-Factor {W/m2-K}
+  0.75,                                   !- Solar Heat Gain Coefficient
+  0.797;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {d08b8ff1-2444-4873-a5a7-028d340ee8f3}, !- Handle
+  Th-Clear 4 mm (4-6-4),                  !- Name
+  3.52,                                   !- U-Factor {W/m2-K}
+  0.75,                                   !- Solar Heat Gain Coefficient
+  0.797;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {7aa15c93-1e79-4847-8b68-16d5cb6d974b}, !- Handle
+  Th-Clear 5 mm (5-0.76-5),               !- Name
+  5.5,                                    !- U-Factor {W/m2-K}
+  0.73,                                   !- Solar Heat Gain Coefficient
+  0.859;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {d771e874-f6d9-4f0d-ba6e-1c4c809d050d}, !- Handle
+  Th-Clear 5 mm (5-12-5),                 !- Name
+  3.12,                                   !- U-Factor {W/m2-K}
+  0.72,                                   !- Solar Heat Gain Coefficient
+  0.795;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {59b0f0dc-4140-4202-a980-284139730d20}, !- Handle
+  Th-Clear 5 mm (5-6-5),                  !- Name
+  3.5,                                    !- U-Factor {W/m2-K}
+  0.72,                                   !- Solar Heat Gain Coefficient
+  0.795;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {d74ed782-74bc-4b2f-98c6-246bd1731000}, !- Handle
+  Th-Clear 6 mm (6-0.76-6),               !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.72,                                   !- Solar Heat Gain Coefficient
+  0.846;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {d7a8a76b-a261-4620-a631-34b4e33818a7}, !- Handle
+  Th-Clear 6 mm (6-12-6),                 !- Name
+  3.1,                                    !- U-Factor {W/m2-K}
+  0.7,                                    !- Solar Heat Gain Coefficient
+  0.779;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {a3f657d8-55d9-4c90-aef4-82c507cec5d2}, !- Handle
+  Th-Clear 6 mm (6-6-6),                  !- Name
+  3.47,                                   !- U-Factor {W/m2-K}
+  0.7,                                    !- Solar Heat Gain Coefficient
+  0.779;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {9de11fa4-4615-4cb9-9e2f-7473cb4575ea}, !- Handle
+  Th-Clear 8 mm (8-0.76-8),               !- Name
+  5.32,                                   !- U-Factor {W/m2-K}
+  0.69,                                   !- Solar Heat Gain Coefficient
+  0.833;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {b14667ec-950a-4c35-a88c-916eb34394ee}, !- Handle
+  Th-Clear 8 mm (8-12-8),                 !- Name
+  3.06,                                   !- U-Factor {W/m2-K}
+  0.68,                                   !- Solar Heat Gain Coefficient
+  0.767;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {26e3c23b-7118-45e7-be6e-3c1a3c51b232}, !- Handle
+  Th-Clear 8 mm (8-6-8),                  !- Name
+  3.42,                                   !- U-Factor {W/m2-K}
+  0.68,                                   !- Solar Heat Gain Coefficient
+  0.767;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {abf9fb5c-fc95-45b6-a9ee-ec246dc2193e}, !- Handle
+  Th-Clear Color Single Silver Low-E coat on Clear 10 mm (10-12-10), !- Name
+  1.97,                                   !- U-Factor {W/m2-K}
+  0.61,                                   !- Solar Heat Gain Coefficient
+  0.703;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {b8d4944f-acc5-4beb-968b-921af991de7e}, !- Handle
+  Th-Clear Color Single Silver Low-E coat on Clear 10 mm (10-6-10), !- Name
+  2.67,                                   !- U-Factor {W/m2-K}
+  0.61,                                   !- Solar Heat Gain Coefficient
+  0.703;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {d5103f60-6069-4985-97e2-4b6606cba7d3}, !- Handle
+  Th-Clear Color Single Silver Low-E coat on Clear 12 mm (12-12-12), !- Name
+  1.95,                                   !- U-Factor {W/m2-K}
+  0.51,                                   !- Solar Heat Gain Coefficient
+  0.687;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {c86ad9da-19e7-4d25-afe8-14f69b6284c9}, !- Handle
+  Th-Clear Color Single Silver Low-E coat on Clear 12 mm (12-6-12), !- Name
+  2.65,                                   !- U-Factor {W/m2-K}
+  0.51,                                   !- Solar Heat Gain Coefficient
+  0.687;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {e1c4399f-5483-466a-829d-9f7b2d2719cf}, !- Handle
+  Th-Clear Color Single Silver Low-E coat on Clear 6 mm (6-12-6), !- Name
+  2,                                      !- U-Factor {W/m2-K}
+  0.57,                                   !- Solar Heat Gain Coefficient
+  0.747;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {eed5631c-32ab-44a0-ba48-7858310a520a}, !- Handle
+  Th-Clear Color Single Silver Low-E coat on Clear 6 mm (6-6-6), !- Name
+  2.73,                                   !- U-Factor {W/m2-K}
+  0.57,                                   !- Solar Heat Gain Coefficient
+  0.747;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {b62d855f-9670-41a4-8b44-078f4b3798d4}, !- Handle
+  Th-Clear Color Single Silver Low-E coat on Clear 8 mm (8-12-8), !- Name
+  1.98,                                   !- U-Factor {W/m2-K}
+  0.55,                                   !- Solar Heat Gain Coefficient
+  0.732;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {3330753d-b9d8-4e7f-85ef-935254be6128}, !- Handle
+  Th-Clear Color Single Silver Low-E coat on Clear 8 mm (8-6-8), !- Name
+  2.7,                                    !- U-Factor {W/m2-K}
+  0.55,                                   !- Solar Heat Gain Coefficient
+  0.732;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {1804c3cb-16a3-423d-aa71-dea6d834746a}, !- Handle
+  Th-Clear Color Single Silver Low-E coat on Ocean Green 10 mm (10-12-10), !- Name
+  1.97,                                   !- U-Factor {W/m2-K}
+  0.3,                                    !- Solar Heat Gain Coefficient
+  0.559;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {3978a694-2cfb-4365-8f48-8c4365d73519}, !- Handle
+  Th-Clear Color Single Silver Low-E coat on Ocean Green 10 mm (10-6-10), !- Name
+  2.67,                                   !- U-Factor {W/m2-K}
+  0.32,                                   !- Solar Heat Gain Coefficient
+  0.559;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {930badb7-b6ae-46a2-ae7a-b3fc83ff5e74}, !- Handle
+  Th-Clear Color Single Silver Low-E coat on Ocean Green 12 mm (12-12-12), !- Name
+  1.95,                                   !- U-Factor {W/m2-K}
+  0.27,                                   !- Solar Heat Gain Coefficient
+  0.52;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {6e8c7004-6c56-40a3-8fb7-78eb945ab78c}, !- Handle
+  Th-Clear Color Single Silver Low-E coat on Ocean Green 12 mm (12-6-12), !- Name
+  2.65,                                   !- U-Factor {W/m2-K}
+  0.29,                                   !- Solar Heat Gain Coefficient
+  0.52;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {350ec5ff-1250-4ab7-b34e-374d8f9350d1}, !- Handle
+  Th-Clear Color Single Silver Low-E coat on Ocean Green 6 mm (6-12-6), !- Name
+  2,                                      !- U-Factor {W/m2-K}
+  0.39,                                   !- Solar Heat Gain Coefficient
+  0.641;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {1f18c379-a4dc-4a10-b755-4b0d9d16dcaa}, !- Handle
+  Th-Clear Color Single Silver Low-E coat on Ocean Green 6 mm (6-6-6), !- Name
+  2.73,                                   !- U-Factor {W/m2-K}
+  0.4,                                    !- Solar Heat Gain Coefficient
+  0.641;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {6289e656-7689-4cb1-a1a7-80eeb4105e77}, !- Handle
+  Th-Clear Color Single Silver Low-E coat on Ocean Green 8 mm (8-12-8), !- Name
+  1.98,                                   !- U-Factor {W/m2-K}
+  0.35,                                   !- Solar Heat Gain Coefficient
+  0.606;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {41a9b08f-cb1d-41f3-8ba8-1691d620ac72}, !- Handle
+  Th-Clear Color Single Silver Low-E coat on Ocean Green 8 mm (8-6-8), !- Name
+  2.7,                                    !- U-Factor {W/m2-K}
+  0.37,                                   !- Solar Heat Gain Coefficient
+  0.606;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {1012d69a-db39-43f6-8050-f296ea261939}, !- Handle
+  Th-Clear Color Single Silver Low-E coat on Sky Blue 6 mm (6-12-6), !- Name
+  2,                                      !- U-Factor {W/m2-K}
+  0.37,                                   !- Solar Heat Gain Coefficient
+  0.489;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {5e27b098-658e-482f-af45-e713fee69eb1}, !- Handle
+  Th-Clear Color Single Silver Low-E coat on Sky Blue 6 mm (6-6-6), !- Name
+  2.73,                                   !- U-Factor {W/m2-K}
+  0.38,                                   !- Solar Heat Gain Coefficient
+  0.489;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {71999a91-fd71-411d-80b4-ad34a39444ad}, !- Handle
+  Th-Clear Color Single Silver Low-E coat on Sky Blue 8 mm (8-12-8), !- Name
+  1.98,                                   !- U-Factor {W/m2-K}
+  0.3,                                    !- Solar Heat Gain Coefficient
+  0.432;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {c481cc27-bde6-4d58-ba7a-bddfc262827d}, !- Handle
+  Th-Clear Color Single Silver Low-E coat on Sky Blue 8 mm (8-6-8), !- Name
+  2.7,                                    !- U-Factor {W/m2-K}
+  0.32,                                   !- Solar Heat Gain Coefficient
+  0.432;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {8a7e02e3-2d5a-4147-a656-628c8454317b}, !- Handle
+  Th-Clear Float Glass 10 mm,             !- Name
+  5.61,                                   !- U-Factor {W/m2-K}
+  0.77,                                   !- Solar Heat Gain Coefficient
+  0.86;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {760785e0-e526-4e39-a74e-23704f67c4ad}, !- Handle
+  Th-Clear Float Glass 12 mm,             !- Name
+  5.55,                                   !- U-Factor {W/m2-K}
+  0.76,                                   !- Solar Heat Gain Coefficient
+  0.85;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {cf10d194-96ab-4299-bce9-6109f824eb7d}, !- Handle
+  Th-Clear Float Glass 15 mm,             !- Name
+  5.46,                                   !- U-Factor {W/m2-K}
+  0.73,                                   !- Solar Heat Gain Coefficient
+  0.85;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {319880e5-1f96-4695-b101-480ebac58ada}, !- Handle
+  Th-Clear Float Glass 19 mm,             !- Name
+  5.34,                                   !- U-Factor {W/m2-K}
+  0.7,                                    !- Solar Heat Gain Coefficient
+  0.83;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {6dc280e1-5c5f-4585-a2c8-1383e5262c74}, !- Handle
+  Th-Clear Float Glass 2 mm,              !- Name
+  5.87,                                   !- U-Factor {W/m2-K}
+  0.88,                                   !- Solar Heat Gain Coefficient
+  0.91;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {cb0955b7-5ea5-448a-b4e6-45117d816acd}, !- Handle
+  Th-Clear Float Glass 3 mm,              !- Name
+  5.84,                                   !- U-Factor {W/m2-K}
+  0.87,                                   !- Solar Heat Gain Coefficient
+  0.9;                                    !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {488ee074-3532-4a51-8750-0fbda9252afa}, !- Handle
+  Th-Clear Float Glass 4 mm,              !- Name
+  5.81,                                   !- U-Factor {W/m2-K}
+  0.84,                                   !- Solar Heat Gain Coefficient
+  0.89;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {beddae66-b551-44ba-a5dd-39ea7a6058ae}, !- Handle
+  Th-Clear Float Glass 5 mm,              !- Name
+  5.77,                                   !- U-Factor {W/m2-K}
+  0.83,                                   !- Solar Heat Gain Coefficient
+  0.89;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {dc9a0568-6bc8-4eae-84ae-9134134be597}, !- Handle
+  Th-Clear Float Glass 6 mm,              !- Name
+  5.74,                                   !- U-Factor {W/m2-K}
+  0.82,                                   !- Solar Heat Gain Coefficient
+  0.88;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {e34fa562-e659-484f-b1a0-da218b7f72f5}, !- Handle
+  Th-Clear Float Glass 8 mm,              !- Name
+  5.67,                                   !- U-Factor {W/m2-K}
+  0.8,                                    !- Solar Heat Gain Coefficient
+  0.87;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {ad812678-0022-45d3-ab81-53b61262451b}, !- Handle
+  Th-Dark Coolgray 5 mm (5-0.76-5),       !- Name
+  5.5,                                    !- U-Factor {W/m2-K}
+  0.45,                                   !- Solar Heat Gain Coefficient
+  0.208;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {6fa54499-9d03-4725-b277-7beb0074264b}, !- Handle
+  Th-Dark Coolgray 6 mm (6-0.76-6),       !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.41,                                   !- Solar Heat Gain Coefficient
+  0.154;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {e28d80ce-ef1a-4e16-9bcb-f266be6fc13e}, !- Handle
+  Th-Dark Coolgray 6 mm (6-12-6),         !- Name
+  3.1,                                    !- U-Factor {W/m2-K}
+  0.34,                                   !- Solar Heat Gain Coefficient
+  0.141;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {2d090cff-1d5f-4912-9568-efd6ed5606b9}, !- Handle
+  Th-Dark Coolgray 6 mm (6-6-6),          !- Name
+  3.47,                                   !- U-Factor {W/m2-K}
+  0.35,                                   !- Solar Heat Gain Coefficient
+  0.141;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {c4610df9-fd68-497b-8384-f344cdbc38bc}, !- Handle
+  Th-Dark Coolgray Float Glass 5 mm,      !- Name
+  5.77,                                   !- U-Factor {W/m2-K}
+  0.49,                                   !- Solar Heat Gain Coefficient
+  0.22;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {3403148f-51d8-44bc-b7bb-09ed36c91218}, !- Handle
+  Th-Dark Coolgray Float Glass 6 mm,      !- Name
+  5.74,                                   !- U-Factor {W/m2-K}
+  0.44,                                   !- Solar Heat Gain Coefficient
+  0.16;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {92bdcca7-0e96-4382-92c5-93a0ce499753}, !- Handle
+  Th-Gray 3 mm (3-0.38-0.38-3),           !- Name
+  5.68,                                   !- U-Factor {W/m2-K}
+  0.57,                                   !- Solar Heat Gain Coefficient
+  0.423;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {360f0586-8053-43b2-97f2-7ebdc56e812b}, !- Handle
+  Th-Gray 4 mm (4-0.38-0.38-4),           !- Name
+  5.62,                                   !- U-Factor {W/m2-K}
+  0.57,                                   !- Solar Heat Gain Coefficient
+  0.415;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {05cbcafa-981e-4067-892b-f48f133d1096}, !- Handle
+  Th-Gray 5 mm (5-0.38-0.38-5),           !- Name
+  5.5,                                    !- U-Factor {W/m2-K}
+  0.55,                                   !- Solar Heat Gain Coefficient
+  0.413;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {deea0029-857e-4fd8-b278-46895ed617c2}, !- Handle
+  Th-Gray 6 mm (6-0.38-0.38-6),           !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.54,                                   !- Solar Heat Gain Coefficient
+  0.407;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {02e37e64-f537-4f33-b797-68ba7b9b5c42}, !- Handle
+  Th-Gray 8 mm (8-0.38-0.38-8),           !- Name
+  5.32,                                   !- U-Factor {W/m2-K}
+  0.52,                                   !- Solar Heat Gain Coefficient
+  0.401;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {f16dfa8f-e377-437f-9a91-ecc790f67a84}, !- Handle
+  Th-Ocean Green 5 mm (5-0.38-0.38-5),    !- Name
+  5.56,                                   !- U-Factor {W/m2-K}
+  0.43,                                   !- Solar Heat Gain Coefficient
+  0.383;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {56d751aa-88d9-4629-871b-1da8836780a0}, !- Handle
+  Th-Ocean Green 5 mm (5-0.76-5),         !- Name
+  5.5,                                    !- U-Factor {W/m2-K}
+  0.57,                                   !- Solar Heat Gain Coefficient
+  0.756;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {ef67df94-b9f7-4271-9ce8-4109b3f4b0ce}, !- Handle
+  Th-Ocean Green 5 mm (5-12-5),           !- Name
+  3.12,                                   !- U-Factor {W/m2-K}
+  0.53,                                   !- Solar Heat Gain Coefficient
+  0.699;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {443f76c0-0c4e-41e4-abfb-113d451fdf1b}, !- Handle
+  Th-Ocean Green 5 mm (5-6-5),            !- Name
+  3.5,                                    !- U-Factor {W/m2-K}
+  0.53,                                   !- Solar Heat Gain Coefficient
+  0.699;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {37d61806-db7b-4432-8f03-63783abe3873}, !- Handle
+  Th-Ocean Green 6 mm (6-0.38-0.38-6),    !- Name
+  5.5,                                    !- U-Factor {W/m2-K}
+  0.41,                                   !- Solar Heat Gain Coefficient
+  0.368;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {6225e36c-f03f-44dc-8eca-d5e89b7ef09d}, !- Handle
+  Th-Ocean Green 6 mm (6-0.76-6),         !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.54,                                   !- Solar Heat Gain Coefficient
+  0.727;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {9314d173-236c-405e-9c2d-5488eb07e955}, !- Handle
+  Th-Ocean Green 6 mm (6-12-6),           !- Name
+  3.1,                                    !- U-Factor {W/m2-K}
+  0.49,                                   !- Solar Heat Gain Coefficient
+  0.671;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {ff303edc-41e0-4afb-995a-45889a674b05}, !- Handle
+  Th-Ocean Green 6 mm (6-6-6),            !- Name
+  3.47,                                   !- U-Factor {W/m2-K}
+  0.5,                                    !- Solar Heat Gain Coefficient
+  0.671;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {34d4ad24-e289-4bff-a292-daaac7820a1b}, !- Handle
+  Th-Ocean Green 8 mm (8-0.38-0.38-8),    !- Name
+  5.32,                                   !- U-Factor {W/m2-K}
+  0.38,                                   !- Solar Heat Gain Coefficient
+  0.348;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {560b6f95-8769-4860-89c4-bb32481c2709}, !- Handle
+  Th-Ocean Green 8 mm (8-0.76-8),         !- Name
+  5.32,                                   !- U-Factor {W/m2-K}
+  0.5,                                    !- Solar Heat Gain Coefficient
+  0.687;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {a21dff1f-4239-46d2-b297-c88499610821}, !- Handle
+  Th-Ocean Green 8 mm (8-12-8),           !- Name
+  3.06,                                   !- U-Factor {W/m2-K}
+  0.44,                                   !- Solar Heat Gain Coefficient
+  0.633;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {4ca03fa8-2d8f-4939-a9f1-282a064bbee1}, !- Handle
+  Th-Ocean Green 8 mm (8-6-8),            !- Name
+  3.42,                                   !- U-Factor {W/m2-K}
+  0.44,                                   !- Solar Heat Gain Coefficient
+  0.633;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {9a0fca78-0d6f-4f96-9fb4-ba2cd1bcaaf9}, !- Handle
+  Th-Ocean Green Float Glass 10 mm,       !- Name
+  5.61,                                   !- U-Factor {W/m2-K}
+  0.5,                                    !- Solar Heat Gain Coefficient
+  0.67;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {c1518e5e-f41f-445a-9e22-af3ea9d6828b}, !- Handle
+  Th-Ocean Green Float Glass 12 mm,       !- Name
+  5.55,                                   !- U-Factor {W/m2-K}
+  0.47,                                   !- Solar Heat Gain Coefficient
+  0.63;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {2a068ad6-4357-48b5-b8c9-dc11f0134f7b}, !- Handle
+  Th-Ocean Green Float Glass 5 mm,        !- Name
+  5.77,                                   !- U-Factor {W/m2-K}
+  0.64,                                   !- Solar Heat Gain Coefficient
+  0.78;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {eb1033de-3fa4-4300-88f2-609aed710dea}, !- Handle
+  Th-Ocean Green Float Glass 6 mm,        !- Name
+  5.74,                                   !- U-Factor {W/m2-K}
+  0.6,                                    !- Solar Heat Gain Coefficient
+  0.76;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {fd028306-47f5-4825-8972-e473418b5448}, !- Handle
+  Th-Ocean Green Float Glass 8 mm,        !- Name
+  5.67,                                   !- U-Factor {W/m2-K}
+  0.56,                                   !- Solar Heat Gain Coefficient
+  0.72;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {1888b59e-4035-4057-8348-2c372575080e}, !- Handle
+  Th-Silver Color Single Silver Low-E coat on Clear 10 mm (10-12-10), !- Name
+  1.94,                                   !- U-Factor {W/m2-K}
+  0.5,                                    !- Solar Heat Gain Coefficient
+  0.663;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {f59c5bde-6920-433b-a6ee-b3a31cfa1936}, !- Handle
+  Th-Silver Color Single Silver Low-E coat on Clear 10 mm (10-6-10), !- Name
+  2.66,                                   !- U-Factor {W/m2-K}
+  0.5,                                    !- Solar Heat Gain Coefficient
+  0.663;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {f616c913-3a86-4f90-94e8-46097a08fc27}, !- Handle
+  Th-Silver Color Single Silver Low-E coat on Clear 12 mm (12-12-12), !- Name
+  1.93,                                   !- U-Factor {W/m2-K}
+  0.48,                                   !- Solar Heat Gain Coefficient
+  0.644;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {8f7664b4-b691-4b09-aed2-3c735f341fb6}, !- Handle
+  Th-Silver Color Single Silver Low-E coat on Clear 12 mm (12-6-12), !- Name
+  2.63,                                   !- U-Factor {W/m2-K}
+  0.48,                                   !- Solar Heat Gain Coefficient
+  0.644;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {045e4bec-590f-497e-87f5-172977ed3b42}, !- Handle
+  Th-Silver Color Single Silver Low-E coat on Clear 6 mm (6-12-6), !- Name
+  1.97,                                   !- U-Factor {W/m2-K}
+  0.55,                                   !- Solar Heat Gain Coefficient
+  0.696;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {2069ca48-52ea-44df-8229-9e4bd1d8817d}, !- Handle
+  Th-Silver Color Single Silver Low-E coat on Clear 6 mm (6-6-6), !- Name
+  2.71,                                   !- U-Factor {W/m2-K}
+  0.55,                                   !- Solar Heat Gain Coefficient
+  0.696;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {0287f24e-a70e-428a-9490-8720c19614aa}, !- Handle
+  Th-Silver Color Single Silver Low-E coat on Clear 8 mm (8-12-8), !- Name
+  1.96,                                   !- U-Factor {W/m2-K}
+  0.53,                                   !- Solar Heat Gain Coefficient
+  0.681;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {04a2ddaf-1fd4-47bc-804f-b6d23e37290e}, !- Handle
+  Th-Silver Color Single Silver Low-E coat on Clear 8 mm (8-6-8), !- Name
+  2.68,                                   !- U-Factor {W/m2-K}
+  0.53,                                   !- Solar Heat Gain Coefficient
+  0.681;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {fe879e9b-57d9-4125-b891-1e5ac4dba3de}, !- Handle
+  Th-Silver Color Single Silver Low-E coat on Ocean Green 10 mm (10-12-10), !- Name
+  1.94,                                   !- U-Factor {W/m2-K}
+  0.31,                                   !- Solar Heat Gain Coefficient
+  0.517;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {598dd17a-9aca-4fc4-999c-a0f608af6bf3}, !- Handle
+  Th-Silver Color Single Silver Low-E coat on Ocean Green 10 mm (10-6-10), !- Name
+  2.66,                                   !- U-Factor {W/m2-K}
+  0.33,                                   !- Solar Heat Gain Coefficient
+  0.517;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {d58f06e2-6523-411e-945f-532930a00fb0}, !- Handle
+  Th-Silver Color Single Silver Low-E coat on Ocean Green 12 mm (12-12-12), !- Name
+  1.93,                                   !- U-Factor {W/m2-K}
+  0.28,                                   !- Solar Heat Gain Coefficient
+  0.481;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {1447131b-3cac-4d14-bc11-4621fcb23913}, !- Handle
+  Th-Silver Color Single Silver Low-E coat on Ocean Green 12 mm (12-6-12), !- Name
+  2.63,                                   !- U-Factor {W/m2-K}
+  0.3,                                    !- Solar Heat Gain Coefficient
+  0.481;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {71b196f0-a550-4c1c-83e3-c6dfcf3559f2}, !- Handle
+  Th-Silver Color Single Silver Low-E coat on Ocean Green 6 mm (6-12-6), !- Name
+  1.97,                                   !- U-Factor {W/m2-K}
+  0.4,                                    !- Solar Heat Gain Coefficient
+  0.597;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {871c00ed-d0cd-4aba-9457-8e95cf9d28f1}, !- Handle
+  Th-Silver Color Single Silver Low-E coat on Ocean Green 6 mm (6-6-6), !- Name
+  2.71,                                   !- U-Factor {W/m2-K}
+  0.41,                                   !- Solar Heat Gain Coefficient
+  0.597;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {de28a1cb-74f8-4b29-a713-60ca9f1d598d}, !- Handle
+  Th-Silver Color Single Silver Low-E coat on Ocean Green 8 mm (8-12-8), !- Name
+  1.96,                                   !- U-Factor {W/m2-K}
+  0.36,                                   !- Solar Heat Gain Coefficient
+  0.561;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {53082ee9-b6d6-4a42-a9ed-e1f586c1ca4f}, !- Handle
+  Th-Silver Color Single Silver Low-E coat on Ocean Green 8 mm (8-6-8), !- Name
+  2.68,                                   !- U-Factor {W/m2-K}
+  0.37,                                   !- Solar Heat Gain Coefficient
+  0.561;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {0c0680d8-9389-41f4-9ecf-7f3426828279}, !- Handle
+  Th-Silver Color Single Silver Low-E coat on Sky Blue 6 mm (6-12-6), !- Name
+  1.97,                                   !- U-Factor {W/m2-K}
+  0.37,                                   !- Solar Heat Gain Coefficient
+  0.458;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {4af3cfb9-fa81-4918-83b4-5c4427553754}, !- Handle
+  Th-Silver Color Single Silver Low-E coat on Sky Blue 6 mm (6-6-6), !- Name
+  2.71,                                   !- U-Factor {W/m2-K}
+  0.38,                                   !- Solar Heat Gain Coefficient
+  0.458;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {792a1010-487e-4cd3-bfd9-5b3ea7c4fe05}, !- Handle
+  Th-Silver Color Single Silver Low-E coat on Sky Blue 8 mm (8-12-8), !- Name
+  1.96,                                   !- U-Factor {W/m2-K}
+  0.3,                                    !- Solar Heat Gain Coefficient
+  0.404;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {0ed1daf2-6a67-44a0-a620-2dc7184551b3}, !- Handle
+  Th-Silver Color Single Silver Low-E coat on Sky Blue 8 mm (8-6-8), !- Name
+  2.68,                                   !- U-Factor {W/m2-K}
+  0.32,                                   !- Solar Heat Gain Coefficient
+  0.404;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {fa82bac8-49dd-4403-ab52-9848afcc77f6}, !- Handle
+  Th-Sky Blue 6 mm (6-0.38-0.38-6),       !- Name
+  5.5,                                    !- U-Factor {W/m2-K}
+  0.46,                                   !- Solar Heat Gain Coefficient
+  0.281;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {bea926b7-8d92-44ca-84f8-4a1ee1456b40}, !- Handle
+  Th-Sky Blue 6 mm (6-0.76-6),            !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.52,                                   !- Solar Heat Gain Coefficient
+  0.554;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {fbf3acbd-f012-4a7e-826a-32cb75c6ad79}, !- Handle
+  Th-Sky Blue 8 mm (8-0.38-0.38-8),       !- Name
+  5.32,                                   !- U-Factor {W/m2-K}
+  0.37,                                   !- Solar Heat Gain Coefficient
+  0.248;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {583f90f3-aad3-4be9-8b5a-3d44876f9897}, !- Handle
+  Th-Sky Blue 8 mm (8-0.76-8),            !- Name
+  5.32,                                   !- U-Factor {W/m2-K}
+  0.45,                                   !- Solar Heat Gain Coefficient
+  0.49;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {a0a3f79e-cb97-4072-bc70-ecdd37a8565e}, !- Handle
+  Th-Solartag (SG 110) 6 mm,              !- Name
+  4.66,                                   !- U-Factor {W/m2-K}
+  0.21,                                   !- Solar Heat Gain Coefficient
+  0.084;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {ddfbcee6-3459-4071-a62f-7d3b22e51ca2}, !- Handle
+  Th-Solartag (SG 110) 6 mm (6-0.76-6),   !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.21,                                   !- Solar Heat Gain Coefficient
+  0.091;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {e37e5b17-461f-4f27-b32e-2d77d1a7e0a8}, !- Handle
+  Th-SOLARTAG (SG 110) 6 mm (6-12-6),     !- Name
+  2.65,                                   !- U-Factor {W/m2-K}
+  0.14,                                   !- Solar Heat Gain Coefficient
+  0.076;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {744379a4-83e2-4ab4-85b9-9b23749b7f6e}, !- Handle
+  Th-SOLARTAG (SG 110) 6 mm (6-6-6),      !- Name
+  3.16,                                   !- U-Factor {W/m2-K}
+  0.16,                                   !- Solar Heat Gain Coefficient
+  0.076;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {2b4d99b6-c7b0-4e7c-9218-89d1cdd9bd36}, !- Handle
+  Th-Solartag (SG 110) 8 mm,              !- Name
+  4.62,                                   !- U-Factor {W/m2-K}
+  0.21,                                   !- Solar Heat Gain Coefficient
+  0.083;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {c607640e-9c31-4b99-b4f4-9d5a8f2c1156}, !- Handle
+  Th-Solartag (SGY 132) 6 mm,             !- Name
+  5.28,                                   !- U-Factor {W/m2-K}
+  0.44,                                   !- Solar Heat Gain Coefficient
+  0.343;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {724da050-5742-48fe-8aec-c987b01fbb12}, !- Handle
+  Th-Solartag (SGY 132) 6 mm (6-0.76-6),  !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.43,                                   !- Solar Heat Gain Coefficient
+  0.369;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {103da368-a172-4ffc-a638-c759fcd41aa7}, !- Handle
+  Th-SOLARTAG (SGY 132) 6 mm (6-12-6),    !- Name
+  2.93,                                   !- U-Factor {W/m2-K}
+  0.34,                                   !- Solar Heat Gain Coefficient
+  0.307;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {29b9cfec-6b1e-4dec-be5f-204780de72a6}, !- Handle
+  Th-SOLARTAG (SGY 132) 6 mm (6-6-6),     !- Name
+  3.35,                                   !- U-Factor {W/m2-K}
+  0.36,                                   !- Solar Heat Gain Coefficient
+  0.307;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {ddc8606c-2eab-459f-80eb-267b922bb2cc}, !- Handle
+  Th-Solartag (SGY 132) 8 mm,             !- Name
+  5.22,                                   !- U-Factor {W/m2-K}
+  0.43,                                   !- Solar Heat Gain Coefficient
+  0.34;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {85711edc-852d-4d60-ae38-d68904689d2d}, !- Handle
+  Th-Solartag (SLX 130) 6 mm,             !- Name
+  5.74,                                   !- U-Factor {W/m2-K}
+  0.66,                                   !- Solar Heat Gain Coefficient
+  0.642;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {0722fe48-2b33-4f48-86aa-45a2c0c4ef2d}, !- Handle
+  Th-Solartag (SLX 230) 6 mm,             !- Name
+  5.74,                                   !- U-Factor {W/m2-K}
+  0.48,                                   !- Solar Heat Gain Coefficient
+  0.526;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {a87841ec-7b43-46b9-a0cc-4f3fb1d3d97b}, !- Handle
+  Th-Solartag (SLX 530) 6 mm,             !- Name
+  5.74,                                   !- U-Factor {W/m2-K}
+  0.44,                                   !- Solar Heat Gain Coefficient
+  0.419;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {1fc8febf-47d1-4b14-bd5a-55eb169a349c}, !- Handle
+  Th-Solartag (SLX 630) 6 mm,             !- Name
+  5.74,                                   !- U-Factor {W/m2-K}
+  0.46,                                   !- Solar Heat Gain Coefficient
+  0.461;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {1a425c68-54c4-4d79-aa65-0c3b2994c8b3}, !- Handle
+  Th-Solartag (SS 108) 6 mm (6-0.76-6),   !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.24,                                   !- Solar Heat Gain Coefficient
+  0.126;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {2e34cc24-5054-42a6-aa00-e35e380aaa9b}, !- Handle
+  Th-Solartag (SS 114) 6 mm,              !- Name
+  4.82,                                   !- U-Factor {W/m2-K}
+  0.28,                                   !- Solar Heat Gain Coefficient
+  0.189;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {2422545c-826f-4318-9325-80f9b5606ec4}, !- Handle
+  Th-Solartag (SS 114) 6 mm (6-0.76-6),   !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.3,                                    !- Solar Heat Gain Coefficient
+  0.211;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {6c3ffd82-e792-4c2b-a586-b55bc26cb215}, !- Handle
+  Th-SOLARTAG (SS 114) 6 mm (6-12-6),     !- Name
+  2.73,                                   !- U-Factor {W/m2-K}
+  0.21,                                   !- Solar Heat Gain Coefficient
+  0.17;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {9b7eb029-a81b-4269-817d-c138909b648a}, !- Handle
+  Th-SOLARTAG (SS 114) 6 mm (6-6-6),      !- Name
+  3.21,                                   !- U-Factor {W/m2-K}
+  0.22,                                   !- Solar Heat Gain Coefficient
+  0.17;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {b7e29c66-ecb0-43f0-9cb9-c581093a082f}, !- Handle
+  Th-Solartag (SS 114) 8 mm,              !- Name
+  4.78,                                   !- U-Factor {W/m2-K}
+  0.28,                                   !- Solar Heat Gain Coefficient
+  0.187;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {ef7d29f4-01ee-4b2f-a6d5-179d0e7409ca}, !- Handle
+  Th-Solartag (SS 120) 6 mm,              !- Name
+  4.93,                                   !- U-Factor {W/m2-K}
+  0.32,                                   !- Solar Heat Gain Coefficient
+  0.237;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {feb03e7d-4085-4fce-864c-64678be4ba66}, !- Handle
+  Th-Solartag (SS 120) 6 mm (6-0.76-6),   !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.35,                                   !- Solar Heat Gain Coefficient
+  0.274;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {70de08a7-6b56-4047-8832-139868f93e12}, !- Handle
+  Th-SOLARTAG (SS 120) 6 mm (6-12-6),     !- Name
+  2.78,                                   !- U-Factor {W/m2-K}
+  0.24,                                   !- Solar Heat Gain Coefficient
+  0.214;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {77b3936e-ee43-4e69-bc69-f3f6b8a26b6a}, !- Handle
+  Th-SOLARTAG (SS 120) 6 mm (6-6-6),      !- Name
+  3.24,                                   !- U-Factor {W/m2-K}
+  0.26,                                   !- Solar Heat Gain Coefficient
+  0.214;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {b5987004-13f2-403f-a077-2d92bbdb1a3d}, !- Handle
+  Th-Solartag (SS 120) 8 mm,              !- Name
+  4.88,                                   !- U-Factor {W/m2-K}
+  0.32,                                   !- Solar Heat Gain Coefficient
+  0.235;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {b78d3f4e-939d-4259-b969-a34e18bcf912}, !- Handle
+  Th-Solartag (SS 130) 6 mm (6-0.76-6),   !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.42,                                   !- Solar Heat Gain Coefficient
+  0.339;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {c046087c-ff12-4a61-a2a8-72f150df525e}, !- Handle
+  Th-Solartag (SS 208) 6 mm,              !- Name
+  4.49,                                   !- U-Factor {W/m2-K}
+  0.21,                                   !- Solar Heat Gain Coefficient
+  0.09;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {10a5345c-42b0-4f8d-a958-5198805eb692}, !- Handle
+  Th-Solartag (SS 208) 6 mm (6-0.76-6),   !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.25,                                   !- Solar Heat Gain Coefficient
+  0.099;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {40fb9806-c51c-402a-9e59-5aa83df930e5}, !- Handle
+  Th-SOLARTAG (SS 208) 6 mm (6-12-6),     !- Name
+  2.57,                                   !- U-Factor {W/m2-K}
+  0.14,                                   !- Solar Heat Gain Coefficient
+  0.081;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {13664fb4-2ad1-440e-b845-3690c08f4628}, !- Handle
+  Th-SOLARTAG (SS 208) 6 mm (6-6-6),      !- Name
+  3.1,                                    !- U-Factor {W/m2-K}
+  0.16,                                   !- Solar Heat Gain Coefficient
+  0.081;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {34f6cbed-4fc1-42ae-99c0-03ad52b13996}, !- Handle
+  Th-Solartag (SS 208) 8 mm,              !- Name
+  4.45,                                   !- U-Factor {W/m2-K}
+  0.21,                                   !- Solar Heat Gain Coefficient
+  0.086;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {2488464b-497c-424a-8e2f-bef96e48f98b}, !- Handle
+  Th-Solartag (SS 214) 6 mm,              !- Name
+  4.49,                                   !- U-Factor {W/m2-K}
+  0.25,                                   !- Solar Heat Gain Coefficient
+  0.166;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {dcb2d88c-3f2f-4d24-a9b2-049e87b10849}, !- Handle
+  Th-Solartag (SS 214) 6 mm (6-0.76-6),   !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.3,                                    !- Solar Heat Gain Coefficient
+  0.186;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {231914a6-207e-437e-975b-64855e1b51e2}, !- Handle
+  Th-SOLARTAG (SS 214) 6 mm (6-12-6),     !- Name
+  2.57,                                   !- U-Factor {W/m2-K}
+  0.18,                                   !- Solar Heat Gain Coefficient
+  0.15;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {2102adba-49be-4162-9d84-6b26a21b2c65}, !- Handle
+  Th-SOLARTAG (SS 214) 6 mm (6-6-6),      !- Name
+  3.1,                                    !- U-Factor {W/m2-K}
+  0.2,                                    !- Solar Heat Gain Coefficient
+  0.15;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {d4ab70b9-1749-48af-b065-a51d226675a6}, !- Handle
+  Th-Solartag (SS 214) 8 mm,              !- Name
+  4.45,                                   !- U-Factor {W/m2-K}
+  0.24,                                   !- Solar Heat Gain Coefficient
+  0.158;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {44eb41ab-2531-4e14-9f51-05c85b04bd4b}, !- Handle
+  Th-Solartag (SS 220) 6 mm (6-0.76-6),   !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.3,                                    !- Solar Heat Gain Coefficient
+  0.211;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {c5afa180-cdc5-472b-bf73-448e58e33c62}, !- Handle
+  Th-Solartag (SS 230) 6 mm (6-0.76-6),   !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.35,                                   !- Solar Heat Gain Coefficient
+  0.276;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {53cedb74-fe8f-48e2-a607-f43307253c60}, !- Handle
+  Th-Solartag (SS 240) 6 mm (6-0.76-6),   !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.38,                                   !- Solar Heat Gain Coefficient
+  0.366;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {097df011-0b30-4f4a-b47f-2168a722cb22}, !- Handle
+  Th-Solartag (SS 508) 6 mm,              !- Name
+  4.58,                                   !- U-Factor {W/m2-K}
+  0.22,                                   !- Solar Heat Gain Coefficient
+  0.073;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {e12bd319-b8ec-47cd-b8d8-7d571ffceb7b}, !- Handle
+  Th-Solartag (SS 508) 6 mm (6-0.76-6),   !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.26,                                   !- Solar Heat Gain Coefficient
+  0.08;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {d4e7ed48-f85e-4d3e-b9b6-459016113a1c}, !- Handle
+  Th-SOLARTAG (SS 508) 6 mm (6-12-6),     !- Name
+  2.61,                                   !- U-Factor {W/m2-K}
+  0.14,                                   !- Solar Heat Gain Coefficient
+  0.066;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {f35e46e1-5816-418e-8363-f13f4a43c9a2}, !- Handle
+  Th-SOLARTAG (SS 508) 6 mm (6-6-6),      !- Name
+  3.13,                                   !- U-Factor {W/m2-K}
+  0.16,                                   !- Solar Heat Gain Coefficient
+  0.066;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {6c0b3cf1-eb45-4623-abc8-5d333638cef7}, !- Handle
+  Th-Solartag (SS 508) 8 mm,              !- Name
+  4.54,                                   !- U-Factor {W/m2-K}
+  0.21,                                   !- Solar Heat Gain Coefficient
+  0.065;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {bd59250d-84e1-43d4-8f92-68fbec005180}, !- Handle
+  Th-Solartag (SS 514) 6 mm,              !- Name
+  4.82,                                   !- U-Factor {W/m2-K}
+  0.24,                                   !- Solar Heat Gain Coefficient
+  0.11;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {5733a0b7-fd7a-459b-9ced-43fddc86f8f7}, !- Handle
+  Th-Solartag (SS 514) 6 mm (6-0.76-6),   !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.28,                                   !- Solar Heat Gain Coefficient
+  0.124;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {9594d960-5100-423f-96b7-1044645b2041}, !- Handle
+  Th-SOLARTAG (SS 514) 6 mm (6-12-6),     !- Name
+  2.73,                                   !- U-Factor {W/m2-K}
+  0.17,                                   !- Solar Heat Gain Coefficient
+  0.099;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {5cbec127-9d6a-49cb-b477-4d102a845e64}, !- Handle
+  Th-SOLARTAG (SS 514) 6 mm (6-6-6),      !- Name
+  3.21,                                   !- U-Factor {W/m2-K}
+  0.18,                                   !- Solar Heat Gain Coefficient
+  0.099;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {1e8d3b37-7a88-4d71-bffd-1cdf56cb0a3a}, !- Handle
+  Th-Solartag (SS 514) 8 mm,              !- Name
+  4.78,                                   !- U-Factor {W/m2-K}
+  0.24,                                   !- Solar Heat Gain Coefficient
+  0.098;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {4bf58109-e5df-4cef-85f2-91fb8002a80a}, !- Handle
+  Th-Solartag (SS 520) 6 mm (6-0.76-6),   !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.31,                                   !- Solar Heat Gain Coefficient
+  0.18;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {3a0fcb55-34c2-4c37-8a24-3a28de9338cf}, !- Handle
+  Th-Solartag (SS 530) 6 mm (6-0.76-6),   !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.35,                                   !- Solar Heat Gain Coefficient
+  0.223;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {90544798-219a-478e-a892-60ae7d10ad2a}, !- Handle
+  Th-Solartag (TBL 135) 6 mm,             !- Name
+  5.08,                                   !- U-Factor {W/m2-K}
+  0.39,                                   !- Solar Heat Gain Coefficient
+  0.345;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {968390e3-5495-41ca-a100-2716fe04f0c6}, !- Handle
+  Th-Solartag (TBL 135) 6 mm (6-0.76-6),  !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.37,                                   !- Solar Heat Gain Coefficient
+  0.364;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {95081f59-8eb5-4187-b35b-6633386ded8a}, !- Handle
+  Th-SOLARTAG (TBL 135) 6 mm (6-12-6),    !- Name
+  2.84,                                   !- U-Factor {W/m2-K}
+  0.3,                                    !- Solar Heat Gain Coefficient
+  0.31;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {71b1b3b5-455e-4bf1-839a-b4584692fc16}, !- Handle
+  Th-SOLARTAG (TBL 135) 6 mm (6-6-6),     !- Name
+  3.29,                                   !- U-Factor {W/m2-K}
+  0.31,                                   !- Solar Heat Gain Coefficient
+  0.31;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {46c67e4f-20d4-4dd5-96e0-73be21a85407}, !- Handle
+  Th-Solartag (TBL 135) 8 mm,             !- Name
+  5.03,                                   !- U-Factor {W/m2-K}
+  0.38,                                   !- Solar Heat Gain Coefficient
+  0.342;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {67df20e3-04e3-4d48-816f-fbc27966aa63}, !- Handle
+  Th-Solartag (TBL 235) 6 mm,             !- Name
+  5.08,                                   !- U-Factor {W/m2-K}
+  0.32,                                   !- Solar Heat Gain Coefficient
+  0.289;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {eb50cf1a-d87a-40de-9944-dbe3efe7c305}, !- Handle
+  Th-Solartag (TBL 235) 6 mm (6-0.76-6),  !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.33,                                   !- Solar Heat Gain Coefficient
+  0.305;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {b75f4160-17e2-4e65-941a-eb4eb2c6582c}, !- Handle
+  Th-SOLARTAG (TBL 235) 6 mm (6-12-6),    !- Name
+  2.84,                                   !- U-Factor {W/m2-K}
+  0.23,                                   !- Solar Heat Gain Coefficient
+  0.259;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {3f255a7c-23a0-45cd-8258-edc3369c97d3}, !- Handle
+  Th-SOLARTAG (TBL 235) 6 mm (6-6-6),     !- Name
+  3.29,                                   !- U-Factor {W/m2-K}
+  0.24,                                   !- Solar Heat Gain Coefficient
+  0.259;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {44054526-4c6d-4cdf-b687-205c159ccdf9}, !- Handle
+  Th-Solartag (TBL 235) 8 mm,             !- Name
+  5.03,                                   !- U-Factor {W/m2-K}
+  0.3,                                    !- Solar Heat Gain Coefficient
+  0.275;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {a95ce805-28ae-4df8-ab24-106990031e68}, !- Handle
+  Th-Solartag (TBL 535) 6 mm,             !- Name
+  5.08,                                   !- U-Factor {W/m2-K}
+  0.34,                                   !- Solar Heat Gain Coefficient
+  0.299;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {c1783385-12f2-44b6-8c60-6fab5532cea3}, !- Handle
+  Th-Solartag (TBL 535) 6 mm (6-0.76-6),  !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.34,                                   !- Solar Heat Gain Coefficient
+  0.317;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {f0b5fae5-79d7-44e4-ac8e-752e720f5850}, !- Handle
+  Th-SOLARTAG (TBL 535) 6 mm (6-12-6),    !- Name
+  2.84,                                   !- U-Factor {W/m2-K}
+  0.25,                                   !- Solar Heat Gain Coefficient
+  0.268;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {7c57baff-be43-4a6e-842b-2a3a0eae08e1}, !- Handle
+  Th-SOLARTAG (TBL 535) 6 mm (6-6-6),     !- Name
+  3.29,                                   !- U-Factor {W/m2-K}
+  0.26,                                   !- Solar Heat Gain Coefficient
+  0.268;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {6cb32580-dcb2-40a9-8462-0000a01d8ff1}, !- Handle
+  Th-Solartag (TBL 535) 8 mm,             !- Name
+  5.03,                                   !- U-Factor {W/m2-K}
+  0.31,                                   !- Solar Heat Gain Coefficient
+  0.266;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {0f1c047a-c2d3-46c9-a325-bd4e138e56c0}, !- Handle
+  Th-Solartag (TE 110) 6 mm,              !- Name
+  4.34,                                   !- U-Factor {W/m2-K}
+  0.19,                                   !- Solar Heat Gain Coefficient
+  0.108;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {a0bd94ea-ade6-46de-93a9-0f048a6b5f7d}, !- Handle
+  Th-Solartag (TE 110) 6 mm (6-0.76-6),   !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.2,                                    !- Solar Heat Gain Coefficient
+  0.116;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {3cb18107-ab8b-4d0a-a399-9ec704daa312}, !- Handle
+  Th-SOLARTAG (TE 110) 6 mm (6-12-6),     !- Name
+  2.49,                                   !- U-Factor {W/m2-K}
+  0.13,                                   !- Solar Heat Gain Coefficient
+  0.097;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {4a977db1-cf35-4077-8ecf-9b50fe00ee4e}, !- Handle
+  Th-SOLARTAG (TE 110) 6 mm (6-6-6),      !- Name
+  3.05,                                   !- U-Factor {W/m2-K}
+  0.15,                                   !- Solar Heat Gain Coefficient
+  0.097;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {bf3a66c5-fb2c-43bc-8794-747c7e3f64a7}, !- Handle
+  Th-Solartag (TE 110) 8 mm,              !- Name
+  4.3,                                    !- U-Factor {W/m2-K}
+  0.19,                                   !- Solar Heat Gain Coefficient
+  0.107;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {dd4138eb-2660-4e47-8a8c-ab9ff42cee94}, !- Handle
+  Th-Solartag (TE 115) 6 mm,              !- Name
+  4.58,                                   !- U-Factor {W/m2-K}
+  0.24,                                   !- Solar Heat Gain Coefficient
+  0.171;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {1dbd3130-e210-41ad-b83f-f6bd4d2ccaa8}, !- Handle
+  Th-Solartag (TE 115) 6 mm (6-0.76-6),   !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.24,                                   !- Solar Heat Gain Coefficient
+  0.184;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {dc420e20-8a4d-43da-a82f-12991b5c42d6}, !- Handle
+  Th-SOLARTAG (TE 115) 6 mm (6-12-6),     !- Name
+  2.61,                                   !- U-Factor {W/m2-K}
+  0.18,                                   !- Solar Heat Gain Coefficient
+  0.155;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {28a06627-d2a2-486a-aa44-7fa393b9b28b}, !- Handle
+  Th-SOLARTAG (TE 115) 6 mm (6-6-6),      !- Name
+  3.13,                                   !- U-Factor {W/m2-K}
+  0.19,                                   !- Solar Heat Gain Coefficient
+  0.155;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {0c752a36-c1b9-4536-b89e-68f928944cde}, !- Handle
+  Th-Solartag (TE 115) 8 mm,              !- Name
+  4.54,                                   !- U-Factor {W/m2-K}
+  0.24,                                   !- Solar Heat Gain Coefficient
+  0.17;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {19819d7e-f24c-441c-9a79-9ee8eb3178e2}, !- Handle
+  Th-Solartag (TS 120) 6 mm,              !- Name
+  4.95,                                   !- U-Factor {W/m2-K}
+  0.3,                                    !- Solar Heat Gain Coefficient
+  0.214;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {8a6b2a75-4791-40f0-9d39-8379808c75da}, !- Handle
+  Th-Solartag (TS 120) 6 mm (6-0.76-6),   !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.29,                                   !- Solar Heat Gain Coefficient
+  0.23;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {9d2163cc-c170-45d5-91aa-0cc89ceaa29f}, !- Handle
+  Th-SOLARTAG (TS 120) 6 mm (6-12-6),     !- Name
+  2.79,                                   !- U-Factor {W/m2-K}
+  0.22,                                   !- Solar Heat Gain Coefficient
+  0.193;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {9f151a52-4a31-46f8-ac76-2410929738ed}, !- Handle
+  Th-SOLARTAG (TS 120) 6 mm (6-6-6),      !- Name
+  3.25,                                   !- U-Factor {W/m2-K}
+  0.23,                                   !- Solar Heat Gain Coefficient
+  0.193;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {717e9a8a-9284-4e29-b6f6-23badaa7c36a}, !- Handle
+  Th-Solartag (TS 120) 8 mm,              !- Name
+  4.91,                                   !- U-Factor {W/m2-K}
+  0.3,                                    !- Solar Heat Gain Coefficient
+  0.212;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {0c4519cb-7fd4-4ebd-be79-69401b3f4dc6}, !- Handle
+  Th-Solartag (TS 130) 6 mm,              !- Name
+  5.08,                                   !- U-Factor {W/m2-K}
+  0.38,                                   !- Solar Heat Gain Coefficient
+  0.314;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {f9acafd6-57ba-4c6c-9b12-48456bee2f26}, !- Handle
+  Th-Solartag (TS 130) 6 mm (6-0.76-6),   !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.37,                                   !- Solar Heat Gain Coefficient
+  0.337;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {377484eb-cf96-4e03-b7e4-bb62b2612c12}, !- Handle
+  Th-SOLARTAG (TS 130) 6 mm (6-12-6),     !- Name
+  2.84,                                   !- U-Factor {W/m2-K}
+  0.3,                                    !- Solar Heat Gain Coefficient
+  0.282;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {48173ac1-dc8e-4c10-9c39-21e61d12c4f4}, !- Handle
+  Th-SOLARTAG (TS 130) 6 mm (6-6-6),      !- Name
+  3.29,                                   !- U-Factor {W/m2-K}
+  0.3,                                    !- Solar Heat Gain Coefficient
+  0.282;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {be656e82-1609-4f6a-9c84-433859e5129f}, !- Handle
+  Th-Solartag (TS 130) 8 mm,              !- Name
+  5.03,                                   !- U-Factor {W/m2-K}
+  0.37,                                   !- Solar Heat Gain Coefficient
+  0.312;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {c3e9a7fe-f023-44b5-8726-ffecd3d77f60}, !- Handle
+  Th-Solartag (TS 140) 6 mm,              !- Name
+  5.21,                                   !- U-Factor {W/m2-K}
+  0.45,                                   !- Solar Heat Gain Coefficient
+  0.398;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {7c3932f7-a522-4333-b2e7-337f07fe9a11}, !- Handle
+  Th-Solartag (TS 140) 6 mm (6-0.76-6),   !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.44,                                   !- Solar Heat Gain Coefficient
+  0.426;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {034c714d-180c-4f82-901a-8d9457e3865b}, !- Handle
+  Th-SOLARTAG (TS 140) 6 mm (6-12-6),     !- Name
+  2.9,                                    !- U-Factor {W/m2-K}
+  0.37,                                   !- Solar Heat Gain Coefficient
+  0.357;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {4efd2713-9974-4323-917a-3d2a4b0d5ab4}, !- Handle
+  Th-SOLARTAG (TS 140) 6 mm (6-6-6),      !- Name
+  3.33,                                   !- U-Factor {W/m2-K}
+  0.37,                                   !- Solar Heat Gain Coefficient
+  0.357;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {139cfbe7-e72d-4440-a4c6-023df7e5d62c}, !- Handle
+  Th-Solartag (TS 140) 8 mm,              !- Name
+  5.15,                                   !- U-Factor {W/m2-K}
+  0.44,                                   !- Solar Heat Gain Coefficient
+  0.395;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {7e09c4c7-1f11-4f10-83e2-87498f7d29d5}, !- Handle
+  Th-Solartag (TS 150) 6 mm,              !- Name
+  5.16,                                   !- U-Factor {W/m2-K}
+  0.54,                                   !- Solar Heat Gain Coefficient
+  0.516;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {d27e467e-3fbd-4ab5-9f10-b87d51c038e3}, !- Handle
+  Th-Solartag (TS 160) 6 mm,              !- Name
+  5.25,                                   !- U-Factor {W/m2-K}
+  0.57,                                   !- Solar Heat Gain Coefficient
+  0.559;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {a6607c8a-2a74-4298-8e78-b35abfcda15b}, !- Handle
+  Th-Solartag (TS 220) 6 mm,              !- Name
+  4.95,                                   !- U-Factor {W/m2-K}
+  0.27,                                   !- Solar Heat Gain Coefficient
+  0.175;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {05526787-0cc9-4ead-998c-8ada738ea050}, !- Handle
+  Th-Solartag (TS 220) 6 mm (6-0.76-6),   !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.29,                                   !- Solar Heat Gain Coefficient
+  0.188;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {dde236e1-bb52-4161-b69f-2a819323d1f0}, !- Handle
+  Th-SOLARTAG (TS 220) 6 mm (6-12-6),     !- Name
+  2.79,                                   !- U-Factor {W/m2-K}
+  0.18,                                   !- Solar Heat Gain Coefficient
+  0.158;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {6c4cea6c-48a4-4dfb-bcd8-ed001c139f9f}, !- Handle
+  Th-SOLARTAG (TS 220) 6 mm (6-6-6),      !- Name
+  3.25,                                   !- U-Factor {W/m2-K}
+  0.2,                                    !- Solar Heat Gain Coefficient
+  0.158;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {0d10914f-44b6-4916-99bd-161e6b85756a}, !- Handle
+  Th-Solartag (TS 220) 8 mm,              !- Name
+  4.91,                                   !- U-Factor {W/m2-K}
+  0.26,                                   !- Solar Heat Gain Coefficient
+  0.167;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {45db8fb3-56aa-4513-8180-d9171ffaf472}, !- Handle
+  Th-Solartag (TS 230) 6 mm,              !- Name
+  5.16,                                   !- U-Factor {W/m2-K}
+  0.33,                                   !- Solar Heat Gain Coefficient
+  0.269;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {3007d8a3-d4d2-4d47-ac19-d0a66ce04e88}, !- Handle
+  Th-Solartag (TS 230) 6 mm (6-0.76-6),   !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.34,                                   !- Solar Heat Gain Coefficient
+  0.289;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {d76f6cc9-9874-425c-a49a-f63bb8dc1407}, !- Handle
+  Th-SOLARTAG (TS 230) 6 mm (6-12-6),     !- Name
+  2.88,                                   !- U-Factor {W/m2-K}
+  0.23,                                   !- Solar Heat Gain Coefficient
+  0.242;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {fa93b6e7-af38-427d-9d27-15bb42b9a9a2}, !- Handle
+  Th-SOLARTAG (TS 230) 6 mm (6-6-6),      !- Name
+  3.31,                                   !- U-Factor {W/m2-K}
+  0.25,                                   !- Solar Heat Gain Coefficient
+  0.242;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {88fd69ef-ba9a-4ccb-98ad-e15596fb7c69}, !- Handle
+  Th-Solartag (TS 230) 8 mm,              !- Name
+  5.11,                                   !- U-Factor {W/m2-K}
+  0.31,                                   !- Solar Heat Gain Coefficient
+  0.256;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {80b3d8af-8a94-4f5c-884a-61b4c983d42a}, !- Handle
+  Th-Solartag (TS 240) 6 mm,              !- Name
+  5.21,                                   !- U-Factor {W/m2-K}
+  0.37,                                   !- Solar Heat Gain Coefficient
+  0.342;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {4169bb29-678e-44b8-b1e9-1e047075cdac}, !- Handle
+  Th-Solartag (TS 240) 6 mm (6-0.76-6),   !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.37,                                   !- Solar Heat Gain Coefficient
+  0.367;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {db7fa85e-c577-4ec7-be1e-10feee731545}, !- Handle
+  Th-SOLARTAG (TS 240) 6 mm (6-12-6),     !- Name
+  2.9,                                    !- U-Factor {W/m2-K}
+  0.28,                                   !- Solar Heat Gain Coefficient
+  0.307;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {1a928a28-718b-4d0d-8e5c-9f538eecedcd}, !- Handle
+  Th-SOLARTAG (TS 240) 6 mm (6-6-6),      !- Name
+  3.33,                                   !- U-Factor {W/m2-K}
+  0.29,                                   !- Solar Heat Gain Coefficient
+  0.307;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {2d6b5167-1a06-4afb-bb21-66d635b608ae}, !- Handle
+  Th-Solartag (TS 240) 8 mm,              !- Name
+  5.15,                                   !- U-Factor {W/m2-K}
+  0.35,                                   !- Solar Heat Gain Coefficient
+  0.326;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {3c614cde-b3f7-490f-9f65-60e6c77cb854}, !- Handle
+  Th-Solartag (TS 250) 6 mm,              !- Name
+  5.25,                                   !- U-Factor {W/m2-K}
+  0.41,                                   !- Solar Heat Gain Coefficient
+  0.433;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {cb802ce5-2f6b-4095-83a7-b061ea6bfd5d}, !- Handle
+  Th-Solartag (TS 260) 6 mm,              !- Name
+  5.21,                                   !- U-Factor {W/m2-K}
+  0.44,                                   !- Solar Heat Gain Coefficient
+  0.479;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {9fe18c85-1b24-4947-83fa-88a48634c192}, !- Handle
+  Th-Solartag (TS 520) 6 mm,              !- Name
+  4.95,                                   !- U-Factor {W/m2-K}
+  0.27,                                   !- Solar Heat Gain Coefficient
+  0.143;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {2a5f6327-b1d2-4146-9343-bf077b41dff8}, !- Handle
+  Th-Solartag (TS 520) 6 mm (6-0.76-6),   !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.29,                                   !- Solar Heat Gain Coefficient
+  0.154;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {cab15a33-2274-4182-a297-1af275b2f741}, !- Handle
+  Th-SOLARTAG (TS 520) 6 mm (6-12-6),     !- Name
+  2.79,                                   !- U-Factor {W/m2-K}
+  0.18,                                   !- Solar Heat Gain Coefficient
+  0.129;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {b9d020e8-8b53-4293-94b2-290a3642f23d}, !- Handle
+  Th-SOLARTAG (TS 520) 6 mm (6-6-6),      !- Name
+  3.25,                                   !- U-Factor {W/m2-K}
+  0.2,                                    !- Solar Heat Gain Coefficient
+  0.129;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {d7babf3c-f86e-41aa-a6bf-b36f200fde59}, !- Handle
+  Th-Solartag (TS 520) 8 mm,              !- Name
+  4.91,                                   !- U-Factor {W/m2-K}
+  0.25,                                   !- Solar Heat Gain Coefficient
+  0.127;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {682ef51e-43d1-44cb-bc14-a40ee921a883}, !- Handle
+  Th-Solartag (TS 530) 6 mm,              !- Name
+  5.08,                                   !- U-Factor {W/m2-K}
+  0.32,                                   !- Solar Heat Gain Coefficient
+  0.214;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {0c3e013e-90df-41ed-9152-add596cf2f8b}, !- Handle
+  Th-Solartag (TS 530) 6 mm (6-0.76-6),   !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.33,                                   !- Solar Heat Gain Coefficient
+  0.23;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {0ab15683-4b96-4c49-9419-abe9ea05f2ac}, !- Handle
+  Th-SOLARTAG (TS 530) 6 mm (6-12-6),     !- Name
+  2.84,                                   !- U-Factor {W/m2-K}
+  0.23,                                   !- Solar Heat Gain Coefficient
+  0.192;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {a127fb23-4622-4568-9710-03123d0ed4f3}, !- Handle
+  Th-SOLARTAG (TS 530) 6 mm (6-6-6),      !- Name
+  3.29,                                   !- U-Factor {W/m2-K}
+  0.24,                                   !- Solar Heat Gain Coefficient
+  0.192;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {48c2d340-66ad-4af0-8535-48e0b5bc46c1}, !- Handle
+  Th-Solartag (TS 530) 8 mm,              !- Name
+  5.03,                                   !- U-Factor {W/m2-K}
+  0.3,                                    !- Solar Heat Gain Coefficient
+  0.191;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {50aba0d4-501b-4f55-bfb1-6cd09fc5e26c}, !- Handle
+  Th-Solartag (TS 540) 6 mm,              !- Name
+  5.21,                                   !- U-Factor {W/m2-K}
+  0.36,                                   !- Solar Heat Gain Coefficient
+  0.261;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {1fbc2c11-5cc9-4872-96aa-2a98196afd78}, !- Handle
+  Th-Solartag (TS 540) 6 mm (6-0.76-6),   !- Name
+  5.44,                                   !- U-Factor {W/m2-K}
+  0.37,                                   !- Solar Heat Gain Coefficient
+  0.28;                                   !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {b639c192-8081-4002-8fb8-54ba26b1e11e}, !- Handle
+  Th-SOLARTAG (TS 540) 6 mm (6-12-6),     !- Name
+  2.9,                                    !- U-Factor {W/m2-K}
+  0.26,                                   !- Solar Heat Gain Coefficient
+  0.234;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {a3f15908-6ede-4558-98db-b85cdc92916d}, !- Handle
+  Th-SOLARTAG (TS 540) 6 mm (6-6-6),      !- Name
+  3.33,                                   !- U-Factor {W/m2-K}
+  0.28,                                   !- Solar Heat Gain Coefficient
+  0.234;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {266ee5f9-ce2e-4a6a-8750-f31bbb8b8026}, !- Handle
+  Th-Solartag (TS 540) 8 mm,              !- Name
+  5.15,                                   !- U-Factor {W/m2-K}
+  0.33,                                   !- Solar Heat Gain Coefficient
+  0.233;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {d3095501-57dc-4bd2-9809-959801cc2a26}, !- Handle
+  Th-Solartag (TS 550) 6 mm,              !- Name
+  5.28,                                   !- U-Factor {W/m2-K}
+  0.37,                                   !- Solar Heat Gain Coefficient
+  0.325;                                  !- Visible Transmittance
+
+OS:WindowMaterial:SimpleGlazingSystem,
+  {88d8a7cd-9d8f-4ad9-90c7-8526e7784c47}, !- Handle
+  Th-Solartag (TS 560) 6 mm,              !- Name
+  5.35,                                   !- U-Factor {W/m2-K}
+  0.4,                                    !- Solar Heat Gain Coefficient
+  0.361;                                  !- Visible Transmittance
+
+OS:StandardsInformation:Material,
+  {db9d7911-332d-4bbd-b096-460bff66bf6e}, !- Handle
+  {17a9a9f8-84bb-4fde-b5e1-38ee17df3097}; !- Material Name
+
+OS:StandardsInformation:Material,
+  {a95f9a91-951f-4a1b-a496-6ee0ab03fd40}, !- Handle
+  {939db906-70a4-4d81-9c41-4b6230077a6a}; !- Material Name
+
+OS:StandardsInformation:Material,
+  {be935abe-e5b4-41ae-90f0-93bc509fd454}, !- Handle
+  {b14667ec-950a-4c35-a88c-916eb34394ee}; !- Material Name
+
+OS:StandardsInformation:Material,
+  {e95499f5-6c5d-4aba-ab76-a04cbccab20a}, !- Handle
+  {a3f657d8-55d9-4c90-aef4-82c507cec5d2}; !- Material Name
+
+OS:StandardsInformation:Material,
+  {d14ffa3e-d75c-4443-afd4-8417655dd7d5}, !- Handle
+  {88d8a7cd-9d8f-4ad9-90c7-8526e7784c47}; !- Material Name
+
