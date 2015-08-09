@@ -705,9 +705,11 @@ namespace bec {
               QDomElement PackagedAirCooled = createTagWithText(PackagedAirCooledUnit, "PackagedAirCooled");
               createTagWithText(PackagedAirCooled, "PackagedAirCooledName"
                                 , vrf.name().get().c_str());
+              //WARNING: NOTING
               createTagWithText(PackagedAirCooled, "PackagedAirCooledCoolingCapacity"
                                 , QString::number(vrf.ratedTotalCoolingCapacity().get()));
               createTagWithText(PackagedAirCooled, "PackagedAirCooledCoolingCapacityUnit", "TR");
+              //WARNING: NOTING
               createTagWithText(PackagedAirCooled, "PackagedAirCooledPower"
                                 , "0");
               createTagWithText(PackagedAirCooled, "PackagedAirCooledPowerUnit","kW");
@@ -839,6 +841,7 @@ namespace bec {
               createTagWithText(hw, "HWBoilerEfficiencyUnit", "%");
               createTagWithText(hw, "HWHeatPumpType", "None");
               //boiler.children.r.briefDescription.boilerFlowMode.ratedHeatingCOP()
+              //WARNING: NOTING
               createTagWithText(hw, "HWHeatPumpCOP", "0");
               createTagWithText(hw, "HWDescription", "");
               continue;
