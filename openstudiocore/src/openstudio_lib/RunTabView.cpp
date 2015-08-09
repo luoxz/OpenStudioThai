@@ -59,6 +59,7 @@
 #include "../model/PhotovoltaicThermal.hpp"
 #include "../model/Photovoltaic_Impl.hpp"
 #include "../model/PhotovoltaicThermal_Impl.hpp"
+#include "benchmarkdialog.hpp"
 
 enum PVReportMode { PVReportMode_OPENSTUDIO, PVReportMode_BEC, PVReportMode_ENERGYPLUS};
 
@@ -88,6 +89,7 @@ enum PVReportMode { PVReportMode_OPENSTUDIO, PVReportMode_BEC, PVReportMode_ENER
 #include <QTextStream>
 #include <QProgressDialog>
 #include <QDesktopServices>
+#include <QInputDialog>
 
 QString insertSpaceInTag(const QString& tagName){
     QChar ch0 = 'A';
@@ -213,12 +215,23 @@ void doTable(const QString &title, QDomNode& root, QFile& file, int level){
         elm = node.toElement();
         fe = elm.firstChildElement();
         if(fe.isNull()){
-            int mylevel=0;
-            QString table = doHorizontalTable(root, node, mylevel);
-            //qDebug() << "mylevel:" << mylevel;
-            file.write(table.toStdString().c_str());
-            escapeTitle = title;
-            return;
+            if(level == 0){
+                QString table = Bold(insertSpaceInTag(elm.tagName()));
+                table +=    "<table border=\"1\" cellpadding=\"4\" cellspacing=\"0\">"
+                            "<tbody>"
+                            "<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>"
+                            "<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>"
+                            "</tbody>"
+                            "</table>";
+                file.write(table.toStdString().c_str());
+            }else{
+                int mylevel=0;
+                QString table = doHorizontalTable(root, node, mylevel);
+                //qDebug() << "mylevel:" << mylevel;
+                file.write(table.toStdString().c_str());
+                escapeTitle = title;
+                return;
+            }
         }
         else{
             doTable(elm.tagName(), elm, file, level+1);
@@ -929,7 +942,7 @@ const QString bec_xml
   </WholeBuildingEnergy >\
 </BuildingReport>";
 
-openstudio::path resourcesPath()
+static openstudio::path resourcesPath()
 {
   if (openstudio::applicationIsRunningFromBuildDirectory())
   {
@@ -1298,11 +1311,137 @@ double RunView::getPV(openstudio::model::Model* model)
     return res;
 }
 
+static QString doubleToMoney(double val){
+    QString sValue = QString("%L1").arg(val ,12,'d',9);
+    while(sValue.endsWith('0'))
+        sValue.remove(sValue.length()-1, 1);
+
+    if(sValue.endsWith('.'))
+        sValue.append('0');
+
+    return sValue;
+}
+
+static double sumArrayStringOfDouble(const QString& arrayStr, int begin){
+    //qDebug() << QStringRef(&arrayStr, begin, 5).toString();
+    QString res;
+    double out=0;
+    for(int i=begin;i<arrayStr.size();i++){
+        QChar ch = arrayStr.at(i);
+        if(ch.isNumber()){
+            res.append(ch);
+        }
+        else if(ch == '.'){
+            res.append(ch);
+        }
+        else if(ch==','){
+            out += res.toDouble();
+            //qDebug() << "in out sum: " << out << ", res:" <<res ;
+            res.clear();
+        }
+        else if(ch==']'){
+            out += res.toDouble();
+            //qDebug() << "in out sum: " << out << ", res:" <<res ;
+            res.clear();
+            break;
+        }
+    }
+    return out;
+}
+
+static double getDouble(const QString& str){
+    QString res;
+    for(int i=0;i<str.size();i++){
+        QChar ch = str.at(i);
+        if(ch.isNumber()){
+            res.append(ch);
+        }
+        else if(ch == '.'){
+            res.append(ch);
+        }
+    }
+    bool isOk;
+    double out = res.toDouble(&isOk);
+    if(isOk)
+        return out;
+    else
+        return 0;
+}
+
+static double findEnergyPlusPowerTotal(const QString& str){
+    const QString key1 = "<b>Site and Source Energy</b><br><br>";
+    const QString key2 = "<td align=\"right\">Total Source Energy</td>";
+    const QString end1 = "</td>";
+
+    //qDebug() << "==============\n" << str;
+    //qDebug() << "++++++++++++++\n" << key1;
+
+    int idx = str.indexOf(key1);
+    if(idx<0)
+        return 0;
+
+    idx = str.indexOf(key2, idx+key1.size());
+    if(idx<0)
+        return 0;
+
+    int end = str.indexOf(end1, idx+key2.size());
+    if(end<0)
+        return 0;
+
+    QStringRef sub(&str, idx, end-idx);
+    return getDouble(sub.toString());
+}
+
+static double findOpenStudioPowerTotal(const QString& str){
+    const QString key0 = "\"Electricity Consumption\":{";
+
+    QStringList sls;
+    sls.push_back("\"Heating\":[");
+    sls.push_back("\"Cooling\":[");
+    sls.push_back("\"Interior Lighting\":[");
+    sls.push_back("\"Exterior Lighting\":[");
+    sls.push_back("\"Interior Equipment\":[");
+    sls.push_back("\"Exterior Equipment\":[");
+    sls.push_back("\"Fans\":[");
+    sls.push_back("\"Pumps\":[");
+    sls.push_back("\"Heat Rejection\":[");
+    sls.push_back("\"Humidification\":[");
+    sls.push_back("\"Heat Recovery\":[");
+    sls.push_back("\"Water Systems\":[");
+    sls.push_back("\"Refrigeration\":[");
+    sls.push_back("\"Generators\":[");
+
+    double out = 0;
+    int begin = str.indexOf(key0);
+    if(begin<0)
+        return 0;
+
+    begin = begin+key0.size();
+    begin = str.indexOf(sls.at(0), begin);
+    if(begin<0)
+        return out;
+    else
+        out += sumArrayStringOfDouble(str, begin+sls.at(0).size());
+
+    for(int i=1;i<sls.size();i++){
+        begin = begin+sls.at(i-1).size();
+        begin = str.indexOf(sls.at(i), begin);
+        if(begin<0)
+            return out;
+        else{
+            //qDebug() << QStringRef(&str, begin, 5).toString();
+            out += sumArrayStringOfDouble(str, begin+sls.at(i).size());
+            //qDebug() << "CURRENT OUT :" << out;
+        }
+    }
+    return out;
+}
+
 void RunView::addPVToFile(const QString &fileName, int mode)
 {
-
     double pv = lastPV;
-    static QString id = "_Z_O_axz1d0_j_i_";
+    static QString pvid = "_Z_O_axz1d0_j_i_";
+    static QString bvid = "_A_w08_B_p3_O_vv";
 
     QString fn = fileName;
     fn.replace("file:///", "");
@@ -1316,10 +1455,13 @@ void RunView::addPVToFile(const QString &fileName, int mode)
     }
     fileData = file.readAll();
     QString text(fileData);
-    bool first = text.indexOf(id)<0;
+    bool firstPV = text.lastIndexOf(pvid)<0;
+
     switch (mode) {
     case PVReportMode_OPENSTUDIO:
     {
+        double val = findOpenStudioPowerTotal(text);
+        //PV
         QString table = QString("<h4>Photovoltaic(watt)</h4>\n"
                                 "<table id=\"%1\" class=\"table table-striped table-bordered table-condensed\">\n"
                                 "	<thead>\n"
@@ -1335,41 +1477,66 @@ void RunView::addPVToFile(const QString &fileName, int mode)
                                 "		</tr>\n"
                                 "	</tbody>\n"
                                 "</table>\n"
-                                "</body>\n").arg(id).arg(QString::number(pv, 'f', 2));
-        if(first){
+                                "</body>").arg(pvid).arg(QString::number(pv, 'f', 2));
+        if(firstPV){
             text.replace("</body>", table);
         }
         else{
-            int start = text.indexOf("<h4>Photovoltaic(watt)</h4>\n");
-            QString endstr = "</body>\n";
-            int end = text.indexOf(endstr, start)+endstr.size();
-            text.replace(start, end-start, table);
+            int start = text.lastIndexOf("<h4>Photovoltaic(watt)</h4>\n");
+            int count = text.size()-start;
+            text.replace(start, count+1, table);
+            text.append("\n</html>\n");
         }
-    }
-        break;
-    case PVReportMode_BEC:
-    {
-        QString table = QString("<h3>Photovoltaic</h3><b>Photovoltaic</b><br>\n"
-                                "<table id=\"%1\" border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n"
-                                "  <tbody>\n"
-                                "  <tr><td>Photovoltaic(watt)</td></tr>\n"
-                                "  <tr>\n"
-                                "    <td align=\"right\">%2</td>\n"
-                                "  </tr>\n"
-                                "</tbody></table><br>\n</body>\n").arg(id).arg(QString::number(pv, 'f', 2));
-        if(first){
-            text.replace("</body>", table);
+
+        ///////////////////////////////
+        //BENCHMARK
+        QString pass = "Failed";
+        if(val<bvVal){
+            pass = "Passed";
         }
-        else{
-            int start = text.indexOf("<h3>Photovoltaic</h3><b>Photovoltaic</b><br>\n");
-            QString endstr = "</tbody></table><br>\n</body>\n";
-            int end = text.indexOf( endstr, start)+endstr.size();
-            text.replace(start, end-start, table);
-        }
+        table = QString("<h4>Benchmark</h4>\n"
+                                "<table id=\"%1\" class=\"table table-striped table-bordered table-condensed\">\n"
+                                "	<thead>\n"
+                                "		<tr>\n"
+                                "			<th></th>\n"
+                                "			<th>Value</th>\n"
+                                "		</tr>\n"
+                                "	</thead>\n"
+                                "	<tbody>\n"
+                                "		<tr>\n"
+                                "			<td>Type</td>\n"
+                                "			<td>%2</td>\n"
+                                "		</tr>\n"
+                                "		<tr>\n"
+                                "			<td>Standard</td>\n"
+                                "			<td>%3</td>\n"
+                                "		</tr>\n"
+                                "		<tr>\n"
+                                "			<td>Result</td>\n"
+                                "			<td>%4</td>\n"
+                                "		</tr>\n"
+                                "		<tr>\n"
+                                "			<td>Status</td>\n"
+                                "			<td>%5</td>\n"
+                                "		</tr>\n"
+                                "	</tbody>\n"
+                                "</table>\n"
+                                "</body>")
+                .arg(bvid)
+                .arg(bvName)
+                .arg(doubleToMoney(bvVal))
+                .arg(doubleToMoney(val))
+                .arg(pass);
+
+        text.replace("</body>", table);
     }
         break;
     case PVReportMode_ENERGYPLUS:
     {
+        double val = findEnergyPlusPowerTotal(text);
+        if(text.indexOf("<meta charset=\"utf-8\">")<0){
+            text.replace("<head>", "<head>\n<meta charset=\"utf-8\">");
+        }
         QString table = QString("<b>Photovoltaic</b><br><br>\n"
                                 "<table id=\"%1\" border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n"
                                 "  <tbody>\n"
@@ -1378,33 +1545,65 @@ void RunView::addPVToFile(const QString &fileName, int mode)
                                 "    <td align=\"right\">Photovoltaic(watt)</td>\n"
                                 "    <td align=\"right\">%2</td>\n"
                                 "  </tr>\n"
-                                "</tbody></table><br><br>\n</body>\n").arg(id).arg(QString::number(pv, 'f', 2));
-        if(first){
+                                "</tbody></table><br><br>\n</body>").arg(pvid).arg(QString::number(pv, 'f', 2));
+
+        if(firstPV){
             text.replace("</body>", table);
         }
         else{
-            int start = text.indexOf("<b>Photovoltaic</b><br><br>\n");
-            QString endstr = "\n</body>\n";
-            int end = text.indexOf( endstr, start)+endstr.size();
-            text.replace(start, end-start, table);
+            int start = text.lastIndexOf("<b>Photovoltaic</b><br><br>");
+            int count = text.size()-start;
+            text.replace(start, count+1, table);
+            text.append("\n</html>\n");
         }
+
+        ///////////////////////////////
+        //BENCHMARK
+        QString pass = "Failed";
+        if(val<bvVal){
+            pass = "Passed";
+        }
+        table.clear();
+        table = QString("<b>Benchmark</b><br><br>\n"
+                                "<table id=\"%1\" border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n"
+                                "  <tbody>\n"
+                                "  <tr>\n"
+                                "    <td align=\"center\"></td>\n"
+                                "    <td align=\"center\">Type</td>\n"
+                                "    <td align=\"center\">Standard</td>\n"
+                                "    <td align=\"center\">Result</td>\n"
+                                "    <td align=\"center\">Status</td>\n"
+                                "  <tr>\n"
+                                "    <td align=\"right\">Benchmark</td>\n"
+                                "    <td align=\"right\">%2</td>\n"
+                                "    <td align=\"right\">%3</td>\n"
+                                "    <td align=\"right\">%4</td>\n"
+                                "    <td align=\"right\">%5</td>\n"
+                                "  </tr>\n"
+                                "</tbody></table><br><br>\n</body>")
+                .arg(bvid)
+                .arg(bvName)
+                .arg(doubleToMoney(bvVal))
+                .arg(doubleToMoney(val))
+                .arg(pass);
+
+        text.replace("</body>", table);
     }
         break;
     }
     file.seek(0);
     file.write(text.toUtf8());
+    file.flush();
     file.close();
 }
 
+//TODO:CHANGE TO POSTPORCESSING
 void RunView::updatePVInfile()
 {
     QString outpath = (m_tempFolder/"resources").string().c_str();
-    QString becReport = outpath + "/run/9-BEC-0/report.html";
     QString opsReport = outpath + "/run/6-UserScript-0/report.html";
     QString eReport = outpath + "/run/5-EnergyPlus-0/eplustbl.htm";
 
-    m_outputWindow->appendPlainText(QString("Update bec report pv value is %1 at %2").arg(lastPV).arg(becReport));
-    addPVToFile(becReport, PVReportMode_BEC);
     m_outputWindow->appendPlainText(QString("Update OpenStudio report pv value is %1 at %2").arg(lastPV).arg(opsReport));
     addPVToFile(opsReport, PVReportMode_OPENSTUDIO);
     m_outputWindow->appendPlainText(QString("Update EnergyPlus report pv value is %1 at %2").arg(lastPV).arg(eReport));
@@ -1466,16 +1665,14 @@ void RunView::runFinished(const openstudio::path &t_sqlFile, const openstudio::p
   //    osdocument->model().setSqlFile(sqlFile);
   //  }
   //}
-  
+  updatePVInfile();
   m_canceling = false;
   LOG(Debug, "Emitting results generated for sqlfile: " << openstudio::toString(t_sqlFile) << " and radiance file " << openstudio::toString(t_radianceOutputPath));
   emit resultsGenerated(t_sqlFile, t_radianceOutputPath);
 
   // needed so save of osm file does not trigger out of date and start running again
   runManager().setPaused(true);
-
   m_playButton->setChecked(false);
-  updatePVInfile();
   osdocument->enableTabsAfterRun();
 }
 
@@ -1551,6 +1748,18 @@ openstudio::runmanager::ToolVersion RunView::getRequiredEnergyPlusVersion()
   }
 }
 
+openstudio::path resourcesPath()
+{
+  if (openstudio::applicationIsRunningFromBuildDirectory())
+  {
+    return openstudio::getApplicationSourceDirectory() / openstudio::toPath("src/openstudio_app/Resources");
+  }
+  else
+  {
+    return openstudio::getApplicationRunDirectory() / openstudio::toPath("../share/openstudio-" + openStudioVersion() + "/OSApp");
+  }
+}
+
 void RunView::playButtonClicked(bool t_checked)
 {
   LOG(Debug, "playButtonClicked " << t_checked);
@@ -1591,27 +1800,37 @@ void RunView::playButtonClicked(bool t_checked)
           if(!err.isEmpty())
               m_outputWindow->appendPlainText(err);
 
-          //callBEC(becoutputPath, m_outputWindow);
           callRealBEC(outpath);
-
-//          if(!doBecReport(becoutputPath, outpath, err)){
-//              m_outputWindow->appendPlainText("Error BEC Report.");
-//              m_outputWindow->appendPlainText(err);
-//          }
-//          else{
-//              //QString foutpath = QString("file:///") + outpath + "report.html";
-//              //QUrl url(foutpath);
-//              //QDesktopServices::openUrl(url);
-//              std::shared_ptr<OSDocument> osdocument = OSAppBase::instance()->currentDocument();
-//              m_outputWindow->appendPlainText("Generate bec complete.");
-//              m_playButton->setChecked(false);
-//              updatePVInfile();
-//              //osdocument->runComplete();
-//              //osdocument->enableTabsAfterRun();
-//          }
-//          runFinished(openstudio::path(), openstudio::path());
       }
       return;
+  }else if(m_energyPlusButton->isChecked()){
+      bvName = QString();
+      bvVal = 0.0f;
+      QInputDialog inputBuildingType;
+      inputBuildingType.setOption(QInputDialog::UseListViewForComboBoxItems);
+      inputBuildingType.setWindowTitle("What is building type.");
+      inputBuildingType.setLabelText("Selection:");
+      QStringList types;
+
+      std::string bvsdefault = resourcesPath().string() +"/"+ "default_building_standard.bvs";
+      BenchmarkDialog* bmdlg = new BenchmarkDialog(bvsdefault.c_str(), this);
+
+      for(size_t idx=0;idx<bmdlg->valuesCount();idx++){
+          BenchmarkValue* bv = bmdlg->valueAt(idx);
+          if(bv){
+              types << bv->name();
+          }
+      }
+
+      inputBuildingType.setComboBoxItems(types);
+      int ret = inputBuildingType.exec();
+
+      if(ret == QDialog::Rejected)
+          return;
+
+      bvName = inputBuildingType.textValue();
+      bvVal = bmdlg->getValueByName(bvName);
+      bmdlg->accept();
   }
 
   updateToolsWarnings();
@@ -1723,7 +1942,7 @@ void RunView::becFinished(int exitCode, QProcess::ExitStatus exitStatus)
         std::shared_ptr<OSDocument> osdocument = OSAppBase::instance()->currentDocument();
         m_outputWindow->appendPlainText("Generate bec complete.");
         m_playButton->setChecked(false);
-        updatePVInfile();
+        //updatePVInfile();
     }
     runFinished(openstudio::path(), openstudio::path());
     becProcess->deleteLater();

@@ -18,10 +18,12 @@ public:
     explicit BenchmarkValue(const QString& key, const QString &name, double value, QWidget *parent = 0);
     ~BenchmarkValue();
     void setName(const QString& name);
-    void setValue(const QString& value);
+    void setValue(double value);
     void setEditable(bool isEdit);
     QString toString();
-    QString key();
+    QString name();
+    QString key() const;
+    double value() const;
 signals:
 
 public slots:
@@ -45,6 +47,9 @@ public:
     bool isCorrectPass(const QString& pass);
     void setNewPassword(const QString& pass);
     void setupBenchmarkValues(QSettings &settingINI, QSettings *settingsReg);
+    size_t valuesCount() const;
+    BenchmarkValue* valueAt(size_t idx) const;
+    double getValueByName(const QString &name);
 signals:
 
 public slots:

@@ -322,12 +322,23 @@ void doTable(const QString &title, QDomNode& root, QFile& file, int level){
         elm = node.toElement();
         fe = elm.firstChildElement();
         if(fe.isNull()){
-            int mylevel=0;
-            QString table = doHorizontalTable(root, node, mylevel);
-            //qDebug() << "mylevel:" << mylevel;
-            file.write(table.toStdString().c_str());
-            escapeTitle = title;
-            return;
+            if(level == 0){
+                QString table = Bold(insertSpaceInTag(elm.tagName()));
+                table +=    "<table border=\"1\" cellpadding=\"4\" cellspacing=\"0\">"
+                            "<tbody>"
+                            "<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>"
+                            "<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>"
+                            "</tbody>"
+                            "</table>";
+                file.write(table.toStdString().c_str());
+            }else{
+                int mylevel=0;
+                QString table = doHorizontalTable(root, node, mylevel);
+                //qDebug() << "mylevel:" << mylevel;
+                file.write(table.toStdString().c_str());
+                escapeTitle = title;
+                return;
+            }
         }
         else{
             doTable(elm.tagName(), elm, file, level+1);
