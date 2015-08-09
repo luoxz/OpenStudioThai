@@ -249,10 +249,8 @@ QString doHorizontalTable(QDomNode& root, QDomNode &node, int& level){
 
     while(!node.isNull()) {
         QDomElement e = node.toElement();
-        if(!e.text().isEmpty()){
-            row1 += QString("<td align=\"left\">%1</td>").arg(insertSpaceInTag(e.tagName()));
-            row2 += QString("<td align=\"right\">%1</td>").arg(e.text());
-        }
+        row1 += QString("<td align=\"left\">%1</td>").arg(insertSpaceInTag(e.tagName()));
+        row2 += QString("<td align=\"right\">%1</td>").arg(e.text());
         node = node.nextSibling();
     }
     row1 += "</tr>\n";
