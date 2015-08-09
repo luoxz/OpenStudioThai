@@ -1015,6 +1015,13 @@ OS:Schedule:Ruleset,
   Educational Instituion Cooling Schedule Ruleset, !- Name
   {18985602-6601-4741-ad8a-8b439ace1883}, !- Schedule Type Limits Name
   {4e8c424d-e881-43a6-b533-1e83dce78874}; !- Default Day Schedule Name
+OS:ScheduleTypeLimits,
+  {18985602-6601-4741-ad8a-8b439ace1883}, !- Handle
+  Temperature 4,                          !- Name
+  -60,                                    !- Lower Limit Value {BasedOnField A4}
+  200,                                    !- Upper Limit Value {BasedOnField A4}
+  Continuous,                             !- Numeric Type
+  Temperature;                            !- Unit Type
 OS:Schedule:Day,
   {4e8c424d-e881-43a6-b533-1e83dce78874}, !- Handle
   Schedule Day 29,                        !- Name
@@ -3414,3 +3421,211 @@ OS:ThermostatSetpoint:DualSetpoint,
   Thai Threater Thermostat Setpoint Dual Setpoint, !- Name
   {c49c1596-8621-4479-a62c-e53d27669200}, !- Heating Setpoint Temperature Schedule Name
   {bd265d43-021c-4a8d-9b8c-0a52268e1603}; !- Cooling Setpoint Temperature Schedule Name
+
+OS:Schedule:Rule,
+  {2818a5f9-0c85-4d67-9aeb-7ecdba68e00f}, !- Handle
+  Community Building Cooling Schedule Rule, !- Name
+  {085acd6c-835d-4724-b755-486a5ce7279a}, !- Schedule Ruleset Name
+  0,                                      !- Rule Order
+  {581bd88b-3fd3-47e0-bcad-a0926c662bc9}, !- Day Schedule Name
+  Yes,                                    !- Apply Sunday
+  Yes,                                    !- Apply Monday
+  Yes,                                    !- Apply Tuesday
+  Yes,                                    !- Apply Wednesday
+  Yes,                                    !- Apply Thursday
+  Yes,                                    !- Apply Friday
+  Yes;                                    !- Apply Saturday
+
+OS:Schedule:Day,
+  {581bd88b-3fd3-47e0-bcad-a0926c662bc9}, !- Handle
+  Schedule Day 2,                         !- Name
+  {18985602-6601-4741-ad8a-8b439ace1883}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  24,                                     !- Hour 1
+  0,                                      !- Minute 1
+  25;                                     !- Value Until Time 1
+
+OS:Schedule:Rule,
+  {e92ffa2b-2819-4e21-9a81-7b01ea17cef8}, !- Handle
+  Condominium Cooling Schedule Rule,      !- Name
+  {f6255af2-00f1-48a0-a0a0-3eeb816dccde}, !- Schedule Ruleset Name
+  0,                                      !- Rule Order
+  {1c1dd6dd-6bc2-40e3-8472-0fc332e67862}, !- Day Schedule Name
+  Yes,                                    !- Apply Sunday
+  Yes,                                    !- Apply Monday
+  Yes,                                    !- Apply Tuesday
+  Yes,                                    !- Apply Wednesday
+  Yes,                                    !- Apply Thursday
+  Yes,                                    !- Apply Friday
+  Yes;                                    !- Apply Saturday
+
+OS:Schedule:Day,
+  {1c1dd6dd-6bc2-40e3-8472-0fc332e67862}, !- Handle
+  Schedule Day 3,                         !- Name
+  {18985602-6601-4741-ad8a-8b439ace1883}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  24,                                     !- Hour 1
+  0,                                      !- Minute 1
+  25;                                     !- Value Until Time 1
+
+OS:Schedule:Rule,
+  {1fc68fca-bea8-4612-bc54-d6791ea17a41}, !- Handle
+  Department Store Cooling Schedule Rule, !- Name
+  {eaccdeff-89e7-4e2e-8a2b-d28a7e18722e}, !- Schedule Ruleset Name
+  0,                                      !- Rule Order
+  {bda74d02-fbac-41e2-9f4d-b1f2ad8ac195}, !- Day Schedule Name
+  Yes,                                    !- Apply Sunday
+  Yes,                                    !- Apply Monday
+  Yes,                                    !- Apply Tuesday
+  Yes,                                    !- Apply Wednesday
+  Yes,                                    !- Apply Thursday
+  Yes,                                    !- Apply Friday
+  Yes;                                    !- Apply Saturday
+
+OS:Schedule:Day,
+  {bda74d02-fbac-41e2-9f4d-b1f2ad8ac195}, !- Handle
+  Schedule Day 4,                         !- Name
+  {18985602-6601-4741-ad8a-8b439ace1883}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  24,                                     !- Hour 1
+  0,                                      !- Minute 1
+  25;                                     !- Value Until Time 1
+
+OS:Schedule:Rule,
+  {0adb3ac5-81fb-4bd0-a51c-142c0db12fec}, !- Handle
+  Educational Instituion Cooling Schedule Rule, !- Name
+  {cdc3ae36-14aa-4372-81be-1421a936f333}, !- Schedule Ruleset Name
+  0,                                      !- Rule Order
+  {1e5d9ea1-8c6c-41a0-9594-c8b1011d9372}, !- Day Schedule Name
+  Yes,                                    !- Apply Sunday
+  Yes,                                    !- Apply Monday
+  Yes,                                    !- Apply Tuesday
+  Yes,                                    !- Apply Wednesday
+  Yes,                                    !- Apply Thursday
+  Yes,                                    !- Apply Friday
+  Yes;                                    !- Apply Saturday
+
+OS:Schedule:Day,
+  {1e5d9ea1-8c6c-41a0-9594-c8b1011d9372}, !- Handle
+  Schedule Day 5,                         !- Name
+  {18985602-6601-4741-ad8a-8b439ace1883}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  24,                                     !- Hour 1
+  0,                                      !- Minute 1
+  25;                                     !- Value Until Time 1
+
+OS:Schedule:Rule,
+  {7eaf432f-dfe0-418d-a7ee-b01b13ddd48a}, !- Handle
+  Hotel Cooling Schedule Rule,            !- Name
+  {42f167cc-52cc-4a4b-a7da-c801e5177d35}, !- Schedule Ruleset Name
+  0,                                      !- Rule Order
+  {28e2c9f2-70eb-4aba-af45-1925a9ca87df}, !- Day Schedule Name
+  Yes,                                    !- Apply Sunday
+  Yes,                                    !- Apply Monday
+  Yes,                                    !- Apply Tuesday
+  Yes,                                    !- Apply Wednesday
+  Yes,                                    !- Apply Thursday
+  Yes,                                    !- Apply Friday
+  Yes;                                    !- Apply Saturday
+
+OS:Schedule:Day,
+  {28e2c9f2-70eb-4aba-af45-1925a9ca87df}, !- Handle
+  Schedule Day 6,                         !- Name
+  {18985602-6601-4741-ad8a-8b439ace1883}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  24,                                     !- Hour 1
+  0,                                      !- Minute 1
+  25;                                     !- Value Until Time 1
+
+OS:Schedule:Rule,
+  {49f82ffc-7cff-4546-98c6-d2c82dd74219}, !- Handle
+  Medical Center Cooling Schedule Rule,   !- Name
+  {32da57f6-240d-4806-8839-c8dfbe2da30c}, !- Schedule Ruleset Name
+  0,                                      !- Rule Order
+  {dd6f5303-4be7-4795-a786-0a0828c34af4}, !- Day Schedule Name
+  Yes,                                    !- Apply Sunday
+  Yes,                                    !- Apply Monday
+  Yes,                                    !- Apply Tuesday
+  Yes,                                    !- Apply Wednesday
+  Yes,                                    !- Apply Thursday
+  Yes,                                    !- Apply Friday
+  Yes;                                    !- Apply Saturday
+
+OS:Schedule:Day,
+  {dd6f5303-4be7-4795-a786-0a0828c34af4}, !- Handle
+  Schedule Day 7,                         !- Name
+  {18985602-6601-4741-ad8a-8b439ace1883}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  24,                                     !- Hour 1
+  0,                                      !- Minute 1
+  25;                                     !- Value Until Time 1
+
+OS:Schedule:Rule,
+  {31ade134-d0b9-4109-ac56-1e22f7a16c8a}, !- Handle
+  Office Cooling Schedule Rule,           !- Name
+  {d7de3b1c-a351-40b0-9883-ee88aafd4f29}, !- Schedule Ruleset Name
+  0,                                      !- Rule Order
+  {01d2bd36-3ec9-4447-912a-a222ccf855fb}, !- Day Schedule Name
+  Yes,                                    !- Apply Sunday
+  Yes,                                    !- Apply Monday
+  Yes,                                    !- Apply Tuesday
+  Yes,                                    !- Apply Wednesday
+  Yes,                                    !- Apply Thursday
+  Yes,                                    !- Apply Friday
+  Yes;                                    !- Apply Saturday
+
+OS:Schedule:Day,
+  {01d2bd36-3ec9-4447-912a-a222ccf855fb}, !- Handle
+  Schedule Day 8,                         !- Name
+  {18985602-6601-4741-ad8a-8b439ace1883}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  24,                                     !- Hour 1
+  0,                                      !- Minute 1
+  25;                                     !- Value Until Time 1
+
+OS:Schedule:Rule,
+  {3bfbabe5-ccf4-4c25-8e52-f9d6a1e96a70}, !- Handle
+  Service Facility Cooling Schedule Rule, !- Name
+  {83d52c90-bd5b-4afb-9239-10b03b7b26fe}, !- Schedule Ruleset Name
+  0,                                      !- Rule Order
+  {01de7b27-f53c-44be-8624-cebf41fb0b91}, !- Day Schedule Name
+  Yes,                                    !- Apply Sunday
+  Yes,                                    !- Apply Monday
+  Yes,                                    !- Apply Tuesday
+  Yes,                                    !- Apply Wednesday
+  Yes,                                    !- Apply Thursday
+  Yes,                                    !- Apply Friday
+  Yes;                                    !- Apply Saturday
+
+OS:Schedule:Day,
+  {01de7b27-f53c-44be-8624-cebf41fb0b91}, !- Handle
+  Schedule Day 9,                         !- Name
+  {18985602-6601-4741-ad8a-8b439ace1883}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  24,                                     !- Hour 1
+  0,                                      !- Minute 1
+  25;                                     !- Value Until Time 1
+
+OS:Schedule:Rule,
+  {80cce465-90e0-428b-922e-7f6929cb479c}, !- Handle
+  Theater Cooling Schedule Rule,          !- Name
+  {bd265d43-021c-4a8d-9b8c-0a52268e1603}, !- Schedule Ruleset Name
+  0,                                      !- Rule Order
+  {6e64ea87-27bb-42f6-a111-87a8a71e9537}, !- Day Schedule Name
+  Yes,                                    !- Apply Sunday
+  Yes,                                    !- Apply Monday
+  Yes,                                    !- Apply Tuesday
+  Yes,                                    !- Apply Wednesday
+  Yes,                                    !- Apply Thursday
+  Yes,                                    !- Apply Friday
+  Yes;                                    !- Apply Saturday
+
+OS:Schedule:Day,
+  {6e64ea87-27bb-42f6-a111-87a8a71e9537}, !- Handle
+  Schedule Day 10,                        !- Name
+  {18985602-6601-4741-ad8a-8b439ace1883}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  24,                                     !- Hour 1
+  0,                                      !- Minute 1
+  25;                                     !- Value Until Time 1
+
