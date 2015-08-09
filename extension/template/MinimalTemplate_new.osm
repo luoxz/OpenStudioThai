@@ -3108,15 +3108,6 @@ OS:Schedule:Day,
   0,                                      !- Minute 1
   15.6000003814697;                       !- Value Until Time 1
 
-OS:Schedule:Day,
-  {975fb4f5-94a1-4e7b-bdd9-20fbb300362f}, !- Handle
-  Schedule Day 85,                        !- Name
-  {39bcb3ad-c249-4e1e-963c-be23295372e4}, !- Schedule Type Limits Name
-  ,                                       !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  15.6000003814697;                       !- Value Until Time 1
-
 OS:Schedule:Rule,
   {7ff26471-ce5a-4c0d-8a68-8385c124e90b}, !- Handle
   Community Building HtgSetp Schedule Weekdays Rule, !- Name
@@ -3145,15 +3136,6 @@ OS:Schedule:Day,
   24,                                     !- Hour 3
   0,                                      !- Minute 3
   15.6000003814697;                       !- Value Until Time 3
-
-OS:Schedule:Day,
-  {f2d18756-d4dd-473a-a804-13b6394ec1c1}, !- Handle
-  Schedule Day 87,                        !- Name
-  {39bcb3ad-c249-4e1e-963c-be23295372e4}, !- Schedule Type Limits Name
-  ,                                       !- Interpolate to Timestep
-  24,                                     !- Hour 1
-  0,                                      !- Minute 1
-  15.6000003814697;                       !- Value Until Time 1
 
 OS:Schedule:Rule,
   {ec76c082-5a35-49dc-bcac-24b8ed012ff0}, !- Handle
@@ -3767,4 +3749,58 @@ OS:Schedule:Day,
   24,                                     !- Hour 3
   0,                                      !- Minute 3
   15.6000003814697;                       !- Value Until Time 3
+
+OS:ThermostatSetpoint:DualSetpoint,
+  {101cb622-f8a9-44f1-b849-7414972debfb}, !- Handle
+  Thai Community Thermostat Setpoint Dual Setpoint, !- Name
+  {69f1037e-56bb-4c62-a6f7-c96d567558d1}, !- Heating Setpoint Temperature Schedule Name
+  {085acd6c-835d-4724-b755-486a5ce7279a}; !- Cooling Setpoint Temperature Schedule Name
+
+OS:ThermostatSetpoint:DualSetpoint,
+  {a83d15d1-b0c8-4599-9adc-7bde7e6c2496}, !- Handle
+  Thai Condominium Thermostat Setpoint Dual Setpoint, !- Name
+  {3111df29-f2f1-4667-af43-4b6896fc8f92}, !- Heating Setpoint Temperature Schedule Name
+  {f6255af2-00f1-48a0-a0a0-3eeb816dccde}; !- Cooling Setpoint Temperature Schedule Name
+
+OS:ThermostatSetpoint:DualSetpoint,
+  {a34537b0-ae05-4288-beab-e70dca2f3447}, !- Handle
+  Thai Department Store Thermostat Setpoint Dual Setpoint, !- Name
+  {bee3c775-af3e-45f2-af85-337157152193}, !- Heating Setpoint Temperature Schedule Name
+  {eaccdeff-89e7-4e2e-8a2b-d28a7e18722e}; !- Cooling Setpoint Temperature Schedule Name
+
+OS:ThermostatSetpoint:DualSetpoint,
+  {5d3bda0c-41e8-418f-a5d3-1a80ae37ca72}, !- Handle
+  Thai Educational Institution Thermostat Setpoint Dual Setpoint, !- Name
+  {c046174f-dd8a-4e94-98ce-0661ae1f0129}, !- Heating Setpoint Temperature Schedule Name
+  {cdc3ae36-14aa-4372-81be-1421a936f333}; !- Cooling Setpoint Temperature Schedule Name
+
+OS:ThermostatSetpoint:DualSetpoint,
+  {9f2cb363-dc95-43f8-b731-2fb06ed58cfa}, !- Handle
+  Thai Hotel Thermostat Setpoint Dual Setpoint, !- Name
+  {40d3a8e8-1d43-4028-bf37-902b5fa6110d}, !- Heating Setpoint Temperature Schedule Name
+  {42f167cc-52cc-4a4b-a7da-c801e5177d35}; !- Cooling Setpoint Temperature Schedule Name
+
+OS:ThermostatSetpoint:DualSetpoint,
+  {323c07f0-d89a-40ca-a33d-409c0ea3ec63}, !- Handle
+  Thai Medical Center Thermostat Setpoint Dual Setpoint, !- Name
+  {5692ce51-ad3d-44d8-b800-56c26ce56c76}, !- Heating Setpoint Temperature Schedule Name
+  {32da57f6-240d-4806-8839-c8dfbe2da30c}; !- Cooling Setpoint Temperature Schedule Name
+
+OS:ThermostatSetpoint:DualSetpoint,
+  {6ab1555a-8a9a-4df0-816a-08e763f9eff4}, !- Handle
+  Thai Office Thermostat Setpoint Dual Setpoint, !- Name
+  {d1b9d451-7ddd-4c76-8d8b-5a1d665656ff}, !- Heating Setpoint Temperature Schedule Name
+  {d7de3b1c-a351-40b0-9883-ee88aafd4f29}; !- Cooling Setpoint Temperature Schedule Name
+
+OS:ThermostatSetpoint:DualSetpoint,
+  {3e0a6ce6-0ef5-4de4-bad0-4af9b1a8881e}, !- Handle
+  Thai Service Facility Thermostat Setpoint Dual Setpoint, !- Name
+  {a21baaca-f40d-432e-8092-a0ad219f962b}, !- Heating Setpoint Temperature Schedule Name
+  {83d52c90-bd5b-4afb-9239-10b03b7b26fe}; !- Cooling Setpoint Temperature Schedule Name
+
+OS:ThermostatSetpoint:DualSetpoint,
+  {5ce82297-b138-401e-9b34-74b8a216d775}, !- Handle
+  Thai Threater Thermostat Setpoint Dual Setpoint, !- Name
+  {c49c1596-8621-4479-a62c-e53d27669200}, !- Heating Setpoint Temperature Schedule Name
+  {bd265d43-021c-4a8d-9b8c-0a52268e1603}; !- Cooling Setpoint Temperature Schedule Name
 
