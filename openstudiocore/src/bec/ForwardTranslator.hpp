@@ -91,7 +91,7 @@ namespace bec {
                                   , QDomElement &OpaqueComponentList
                                   , QDomElement &OpaqueComponentDetail
                                   , QDomElement &transparentComponentList
-                                  , const QHash<QString, int> &componentCheck);
+                                  , QHash<QString, int> &componentCheck);
 
             void doOpaqueComponentList(const model::Model &model, QDomElement &parent);
                 void doOpaqueList(const model::Space &model, QDomElement &parent);
@@ -106,7 +106,7 @@ namespace bec {
     void doLightingSystem(const openstudio::model::Space& space, QDomElement& LightingSystem);
     void doHotWaterSystem(const model::Model &model, QDomElement& hotWaterSystem);
     void doOtherEquipment(const openstudio::model::Space& space, QDomElement& OtherEquipment);
-    void doACSystem(const openstudio::model::Space& space, QDomElement& ACSystem);
+    void doACSystem(const model::Model &model, QDomElement& ACSystem);
     void doPV(const model::Model &model, QDomElement& becInput);
 
     void doBuildingType(QDomElement& becInput, const QString &typeName);

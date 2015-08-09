@@ -77,20 +77,41 @@
 #include "../model/RenderingColor_Impl.hpp"
 #include "../model/BoilerHotWater.hpp"
 #include "../model/BoilerHotWater_Impl.hpp"
-
 #include "../model/SimpleGlazing.hpp"
 #include "../model/SimpleGlazing_Impl.hpp"
-
 #include "../model/AirGap.hpp"
 #include "../model/AirGap_Impl.hpp"
 #include "../model/HotWaterEquipment.hpp"
-
 #include "../model/ThermalZone.hpp"
 #include "../model/ThermalZone_Impl.hpp"
 #include "../model/Photovoltaic.hpp"
 #include "../model/Photovoltaic_Impl.hpp"
 #include "../model/PhotovoltaicThermal.hpp"
 #include "../model/PhotovoltaicThermal_Impl.hpp"
+#include "../model/Splitter.hpp"
+#include "../model/Splitter_Impl.hpp"
+#include "../model/AirLoopHVAC.hpp"
+#include "../model/AirLoopHVAC_Impl.hpp"
+
+#include "../model/SubSurface.hpp"
+#include "../model/SubSurface_Impl.hpp"
+#include "../model/Surface.hpp"
+#include "../model/Surface_Impl.hpp"
+
+#include "../model/AirConditionerVariableRefrigerantFlow.hpp"
+#include "../model/AirConditionerVariableRefrigerantFlow_Impl.hpp"
+#include "../model/CoilCoolingDXSingleSpeed.hpp"
+#include "../model/CoilCoolingDXSingleSpeed_Impl.hpp"
+#include "../model/CoilCoolingDXVariableRefrigerantFlow.hpp"
+#include "../model/CoilCoolingDXVariableRefrigerantFlow_Impl.hpp"
+#include "../model/CoilCoolingWaterToAirHeatPumpEquationFit.hpp"
+#include "../model/CoilCoolingWaterToAirHeatPumpEquationFit_Impl.hpp"
+#include "../model/CoilCoolingDXSingleSpeed.hpp"
+#include "../model/CoilCoolingDXSingleSpeed_Impl.hpp"
+#include "../model/RefrigerationCase.hpp"
+#include "../model/RefrigerationCase_Impl.hpp"
+
+
 
 #include "../utilities/geometry/Transformation.hpp"
 #include "../utilities/geometry/EulerAngles.hpp"
@@ -108,6 +129,12 @@
 #include <QDomElement>
 #include <QThread>
 #include <QInputDialog>
+
+#include <math.h>
+
+double rtod(double rad){
+    return rad*180/3.141592653589793;
+}
 
 namespace openstudio {
 namespace bec {
@@ -377,11 +404,12 @@ namespace bec {
                                                , QDomElement &OpaqueComponentList
                                                , QDomElement &OpaqueComponentDetail
                                                , QDomElement &transparentComponentList
-                                               , const QHash<QString, int>& componentCheck)
+                                               , QHash<QString, int>& componentCheck)
   {
       std::string name = surface.construction().get().name().get();
       std::string stype = surface.surfaceType();
       if(!((name.empty())|| componentCheck.contains(name.c_str()))){
+          componentCheck.insert(name.c_str(), 1);
           boost::optional<model::ConstructionBase> scon = surface.construction();
           if (scon){
               boost::optional<model::Construction> construction = scon->optionalCast<model::Construction>();
@@ -432,6 +460,67 @@ namespace bec {
                   }
               }
           }
+      }
+      std::vector<model::SubSurface> subSurfaces = surface.subSurfaces();
+      std::vector<model::SubSurface>::iterator it = subSurfaces.begin();
+      while (it!=subSurfaces.end()) {
+          model::SubSurface sub = (*it);
+          std::string name = sub.construction().get().name().get();
+          std::string stype = sub.subSurfaceType();
+          if(!((name.empty())|| componentCheck.contains(name.c_str()))){
+              componentCheck.insert(name.c_str(), 1);
+              boost::optional<model::ConstructionBase> scon = sub.construction();
+              if (scon){
+                  boost::optional<model::Construction> construction = scon->optionalCast<model::Construction>();
+                  if (construction){
+                      std::vector<model::Material> layers = construction->layers();
+                      if (!layers.empty()){
+                          if (layers[0].optionalCast<model::StandardOpaqueMaterial>()){
+                              model::StandardOpaqueMaterial outerMaterial = layers[0].cast<model::StandardOpaqueMaterial>();
+
+                              QDomElement OpaqueDetail = createTagWithText(OpaqueComponentDetail, "OpaqueDetail");
+                              createTagWithText(OpaqueDetail, "OpaqueComponentDetailListName", name.c_str());
+                              createTagWithText(OpaqueDetail, "OpaqueComponentDetailMaterialName", outerMaterial.name().get().c_str());
+                              createTagWithText(OpaqueDetail, "OpaqueComponentDetailThickness", QString::number(outerMaterial.thickness()));
+                              //createTagWithText(OpaqueDetail, "IsOpaque", QString(layers[0]->isOpaque()));
+                              createTagWithText(OpaqueDetail, "OpaqueComponentDetailThicknessUnit", "m");
+
+                              QDomElement OpaqueList = createTagWithText(OpaqueComponentList, "OpaqueList");
+                              createTagWithText(OpaqueList, "OpaqueComponentListName", name.c_str());
+                              createTagWithText(OpaqueList, "OpaqueComponentListType", stype.c_str());
+
+                              QString colorName = "White";
+                              if(construction->renderingColor()){
+                                  QColor color;
+                                  color.setRed(construction->renderingColor()->renderingRedValue());
+                                  color.setGreen(construction->renderingColor()->renderingGreenValue());
+                                  color.setBlue(construction->renderingColor()->renderingBlueValue());
+                                  color.setAlpha(construction->renderingColor()->renderingAlphaValue());
+                                  colorName = color.name();
+                              }
+                              createTagWithText(OpaqueList, "OpaqueComponentListOuterSurfaceColor", colorName);
+                              createTagWithText(OpaqueList, "OpaqueComponentListInnerSurfaceType", "UNKNOW");
+                              createTagWithText(OpaqueList, "OpaqueComponentListDescription", "???");
+                          }
+                          else if (layers[0].optionalCast<model::SimpleGlazing>()){
+                              model::SimpleGlazing glass = layers[0].cast<model::SimpleGlazing>();
+
+                              QDomElement TransparentList = createTagWithText(transparentComponentList, "TransparentList");
+                              createTagWithText(TransparentList, "TransparentComponentListName", name.c_str());
+                              createTagWithText(TransparentList, "TransparentComponentListType", stype.c_str());
+                              createTagWithText(TransparentList, "TransparentComponentListSHGC", QString::number(glass.solarHeatGainCoefficient()));
+                              createTagWithText(TransparentList, "TransparentComponentListTransmittance", QString::number(glass.visibleTransmittance().get()));
+                              //createTagWithText(TransparentList, "IsOpaque", QString(layers[0]->isOpaque()));
+                              createTagWithText(TransparentList, "TransparentComponentListDescription", "???");
+                          }
+                          else{
+                              createTagWithText(OpaqueComponentList, "ERROR", name.c_str());
+                          }
+                      }
+                  }
+              }
+          }
+          it++;
       }
   }
 
@@ -499,8 +588,8 @@ namespace bec {
                       QDomElement WallL = createTagWithText(WallList,"WallL");
                       createTagWithText(WallL, "WallListName", surface.name().get().c_str());
                       createTagWithText(WallL, "WallListType", "Wall");
-                      createTagWithText(WallL, "WallListPlanAzimuth", QString::number(surface.azimuth()));
-                      createTagWithText(WallL, "WallListInclination", QString::number(surface.tilt()));
+                      createTagWithText(WallL, "WallListPlanAzimuth", QString::number(rtod(surface.azimuth())));
+                      createTagWithText(WallL, "WallListInclination", QString::number(rtod(surface.tilt())));
                       createTagWithText(WallL, "WallListDescription", "???");
 
                       QDomElement WallD = createTagWithText(WallDetail,"WallD");
@@ -537,6 +626,8 @@ namespace bec {
       doPV(model, becInput);
 
       doHotWaterSystem(model, HotWaterSystem);
+      doACSystem(model, ACSystem);
+      //doOtherEquipment(model, OtherEquipment);
 
       std::vector<openstudio::model::BuildingStory> stories = model.getConcreteModelObjects<openstudio::model::BuildingStory>();
 
@@ -546,8 +637,6 @@ namespace bec {
           for (openstudio::model::Space& space : spaces){
 
               doLightingSystem(space, LightingSystem);
-              doACSystem(space, ACSystem);
-              doOtherEquipment(space, OtherEquipment);
 
               openstudio::model::SurfaceVector surfaces = space.surfaces();
               for (openstudio::model::Surface& surface : surfaces){
@@ -568,7 +657,7 @@ namespace bec {
                   createTagWithText(Lighting, "LightingSystemName"
                                             , light.lightsDefinition().name().get().c_str());
                   createTagWithText(Lighting, "LightingSystemPower", QString::number(light.lightingLevel().get()));
-                  createTagWithText(Lighting, "LightingSystemPowerUnit", "W");
+                  createTagWithText(Lighting, "LightingSystemPowerUnit", "watt");
                   createTagWithText(Lighting, "LightingSystemDescription", "???");
               }
           }
@@ -596,12 +685,100 @@ namespace bec {
       }
   }
 
-  void ForwardTranslator::doACSystem(const model::Space &space, QDomElement &ACSystem)
+  void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSystem)
   {
-      createTagWithText(ACSystem, "SplitTypeSystem", "");
-      createTagWithText(ACSystem, "PackagedAirCooledUnit", "");
-      createTagWithText(ACSystem, "PackagedWaterCooledUnit", "");
-      createTagWithText(ACSystem, "CentralACSystem", "");
+      QDomElement SplitTypeSystem = createTagWithText(ACSystem, "SplitTypeSystem");
+      QDomElement PackagedAirCooledUnit = createTagWithText(ACSystem, "PackagedAirCooledUnit");
+      QDomElement PackagedWaterCooledUnit = createTagWithText(ACSystem, "PackagedWaterCooledUnit");
+      QDomElement CentralACSystem = createTagWithText(ACSystem, "CentralACSystem");
+
+      std::vector<openstudio::model::HVACComponent> hvacs = model.getModelObjects<model::HVACComponent>();
+      for (const model::HVACComponent & hvac : hvacs) {
+            //boost::optional<model::AirLoopHVAC> airLoop = hvac.optionalCast<model::AirLoopHVAC>();
+
+          //QDomElement tmp = createTagWithText(SplitTypeSystem, "tmp");
+          switch(hvac.iddObject().type().value())
+          {
+          case openstudio::IddObjectType::OS_AirConditioner_VariableRefrigerantFlow :
+          {
+              model::AirConditionerVariableRefrigerantFlow vrf = hvac.cast<model::AirConditionerVariableRefrigerantFlow>();
+              QDomElement PackagedAirCooled = createTagWithText(PackagedAirCooledUnit, "PackagedAirCooled");
+              createTagWithText(PackagedAirCooled, "PackagedAirCooledName"
+                                , vrf.name().get().c_str());
+              createTagWithText(PackagedAirCooled, "PackagedAirCooledCoolingCapacity"
+                                , QString::number(vrf.ratedTotalCoolingCapacity().get()));
+              createTagWithText(PackagedAirCooled, "PackagedAirCooledCoolingCapacityUnit", "TR");
+              createTagWithText(PackagedAirCooled, "PackagedAirCooledPower"
+                                , "0");
+              createTagWithText(PackagedAirCooled, "PackagedAirCooledPowerUnit","kW");
+              createTagWithText(PackagedAirCooled, "PackagedAirCooledDescription", "...");
+              break;
+          }
+          case openstudio::IddObjectType::OS_Coil_Cooling_DX_SingleSpeed :
+          {
+              model::CoilCoolingDXSingleSpeed coil = hvac.cast<model::CoilCoolingDXSingleSpeed>();
+              createTagWithText(SplitTypeSystem, "CoilCoolingDXSingleSpeed");
+              break;
+          }
+          case openstudio::IddObjectType::OS_Coil_Cooling_DX_VariableRefrigerantFlow :
+          {
+              model::CoilCoolingDXVariableRefrigerantFlow coil = hvac.cast<model::CoilCoolingDXVariableRefrigerantFlow>();
+              createTagWithText(SplitTypeSystem, "CoilCoolingDXVariableRefrigerantFlow");
+              break;
+          }
+          case openstudio::IddObjectType::OS_Coil_Cooling_WaterToAirHeatPump_EquationFit :
+          {
+              model::CoilCoolingWaterToAirHeatPumpEquationFit coil = hvac.cast<model::CoilCoolingWaterToAirHeatPumpEquationFit>();
+              createTagWithText(SplitTypeSystem, "CoilCoolingWaterToAirHeatPumpEquationFit");
+              break;
+          }
+          case openstudio::IddObjectType::OS_Refrigeration_Case :
+          {
+              model::RefrigerationCase refrigerationCase = hvac.cast<model::RefrigerationCase>();
+              createTagWithText(SplitTypeSystem, "RefrigerationCase");
+              break;
+          }
+          default:
+          {
+              createTagWithText(CentralACSystem, "unknow", hvac.name().get().c_str());
+              break;
+          }
+          }
+
+          //createTagWithText(tmp, "IDDOENUM"
+          //                  , hvac.iddObject().enumName().c_str());
+
+
+//          if( boost::optional<model::Node> node = hvac.optionalCast<model::Node>() )
+//          {
+//            added = hvacComponent->addToNode(node.get());
+//          }
+//          else if( boost::optional<model::Splitter> splitter = hvac.optionalCast<model::Splitter>() )
+//          {
+//            if( boost::optional<model::PlantLoop> plant = splitter->plantLoop() )
+//            {
+//              if( plant->supplyComponent(splitter->handle()) )
+//              {
+//                added = plant->addSupplyBranchForComponent(hvacComponent.get());
+//              }
+//              else if( plant->demandComponent(splitter->handle()) )
+//              {
+//                added = plant->addDemandBranchForComponent(hvacComponent.get());
+//              }
+//            }
+//            else if( boost::optional<model::AirLoopHVAC> airLoop = splitter->airLoopHVAC() )
+//            {
+//              if( boost::optional<model::ThermalZone> zone = object->optionalCast<model::ThermalZone>() )
+//              {
+//                added = airLoop->addBranchForZone(zone.get());
+//              }
+//            }
+//          }
+
+
+
+      }
+
   }
 
   void ForwardTranslator::doBuildingType(QDomElement &becInput, const QString& typeName)
@@ -658,7 +835,7 @@ namespace bec {
               createTagWithText(hw, "HWName"
                                 , boiler.name().get().c_str());
               createTagWithText(hw, "HWBoilerType", boiler.fuelType().c_str());
-              createTagWithText(hw, "HWBoilerEfficiency", QString::number(boiler.nominalThermalEfficiency()*10));
+              createTagWithText(hw, "HWBoilerEfficiency", QString::number(boiler.nominalThermalEfficiency()*100));
               createTagWithText(hw, "HWBoilerEfficiencyUnit", "%");
               createTagWithText(hw, "HWHeatPumpType", "None");
               //boiler.children.r.briefDescription.boilerFlowMode.ratedHeatingCOP()
@@ -705,8 +882,18 @@ namespace bec {
       QDomElement buildingZoneDetail = _doc->createElement("BuildingZoneDetail");
       buildingEnvelope.appendChild(buildingZoneDetail);
 
-      QDomElement buildingZoneExteriorWall = _doc->createElement("BuildingZoneExteriorWall");
-      buildingEnvelope.appendChild(buildingZoneExteriorWall);
+      QDomElement buildingZoneExteriorWall = createTagWithText(buildingZoneDetail
+                                                               , "BuildingZoneExteriorWall");
+
+      //TODO: THIS ELEMENT
+      QDomElement BuildingZoneDXACUnit
+              = createTagWithText(buildingZoneDetail, "BuildingZoneDXACUnit");
+      //TODO: THIS ELEMENT
+      QDomElement BuildingZoneCentralACEQ
+              = createTagWithText(buildingZoneDetail, "BuildingZoneCentralACEQ");
+      //TODO: THIS ELEMENT
+      QDomElement BuildingZoneOtherEquipment
+              = createTagWithText(buildingZoneDetail, "BuildingZoneOtherEquipment");
 
       // Get stories
       std::vector<openstudio::model::BuildingStory> stories = model.getConcreteModelObjects<openstudio::model::BuildingStory>();
