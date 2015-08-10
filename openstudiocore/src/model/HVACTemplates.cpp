@@ -1240,7 +1240,6 @@ Loop addCentralSystemHVACTHAI(Model & model){
 
 	chilledWaterSPM.addToNode(chilledWaterOutletNode);
 
-	CoilHeatingWater waterReheatCoil(model, _alwaysOnSchedule);
 	AirTerminalSingleDuctUncontrolled waterTerminal(model, _alwaysOnSchedule);
 	airLoopHVAC.addBranchForHVACComponent(waterTerminal);
 
