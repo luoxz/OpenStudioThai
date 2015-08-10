@@ -1793,10 +1793,18 @@ void RunView::playButtonClicked(bool t_checked)
 
           becoutputPath = outpath+"output.xml";
 
-          doBecInput(outpath+"input.xml", osdocument->model(), filePath, err);
+          bool success = doBecInput(outpath+"input.xml", osdocument->model(), filePath, err);
 
           if(!err.isEmpty())
               m_outputWindow->appendPlainText(err);
+
+          if(!success){
+              osdocument->enableTabsAfterRun();
+              runFinished(openstudio::path(), openstudio::path());
+              return;
+          }
+          else
+              m_outputWindow->appendPlainText("Call newBEC.");
 
           callRealBEC(outpath);
       }
@@ -1823,8 +1831,11 @@ void RunView::playButtonClicked(bool t_checked)
       inputBuildingType.setComboBoxItems(types);
       int ret = inputBuildingType.exec();
 
-      if(ret == QDialog::Rejected)
+      if(ret == QDialog::Rejected){
+          osdocument->enableTabsAfterRun();
+          runFinished(openstudio::path(), openstudio::path());
           return;
+      }
 
       bvName = inputBuildingType.textValue();
       bvVal = bmdlg->getValueByName(bvName);
@@ -1942,6 +1953,10 @@ void RunView::becFinished(int exitCode, QProcess::ExitStatus exitStatus)
         m_playButton->setChecked(false);
         //updatePVInfile();
     }
+
+    if(m_progressBar->value()!=50)
+        m_progressBar->setValue(100);
+
     runFinished(openstudio::path(), openstudio::path());
     becProcess->deleteLater();
     becProcess = NULL;
@@ -1952,17 +1967,19 @@ void RunView::becReadyReadStandardError()
     QByteArray array = becProcess->readAllStandardError();
     QString str = QString("<font color=\"red\">%1</font><br>").arg(QString(array));
     m_outputWindow->appendHtml(str);
+    m_progressBar->setValue(50);
 }
 
 void RunView::becReadyReadStandardOutput()
 {
     QByteArray array = becProcess->readAllStandardOutput();
-    QString str = QString("%1\n").arg(QString(array));
+    QString str = QString("%1").arg(QString(array));
     m_outputWindow->appendPlainText(str);
 }
 
 void RunView::becStarted()
 {
+    m_progressBar->setRange(0,100);
     m_outputWindow->appendPlainText("Start running bec.");
 }
 
@@ -1975,6 +1992,7 @@ void RunView::becStateChanged(QProcess::ProcessState newState)
 void RunView::becError(QProcess::ProcessError error)
 {
     //TODO:IMPLEMENT becError
+    m_progressBar->setValue(50);
     (void)error;
 }
 
