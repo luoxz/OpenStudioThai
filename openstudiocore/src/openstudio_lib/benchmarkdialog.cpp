@@ -160,7 +160,7 @@ BenchmarkDialog::BenchmarkDialog(const QString &defaultConfigPath, QWidget *pare
     else
         setupBenchmarkValues(settingsReg, NULL);
 
-
+    setWindowTitle("Setting Benchmark(kWh)");
     setEditable(false);
 }
 

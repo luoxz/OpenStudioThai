@@ -1310,7 +1310,7 @@ double RunView::getPV(openstudio::model::Model* model)
 }
 
 static QString doubleToMoney(double val){
-    QString sValue = QString("%L1").arg(val ,12,'d',9);
+    QString sValue = QString("%L1").arg(val ,12,'d',2);
     while(sValue.endsWith('0'))
         sValue.remove(sValue.length()-1, 1);
 
@@ -1366,10 +1366,10 @@ static double getDouble(const QString& str){
         return 0;
 }
 
-static double findEnergyPlusPowerTotal(const QString& str){
+static double findEnergyPlusPowerTotalkWh(const QString& str){
     const QString key1 = "<b>Site and Source Energy</b><br><br>";
     const QString key2 = "<td align=\"right\">Total Source Energy</td>";
-    const QString end1 = "</td>";
+    const QString tdend = "</td>";
 
     //qDebug() << "==============\n" << str;
     //qDebug() << "++++++++++++++\n" << key1;
@@ -1382,15 +1382,19 @@ static double findEnergyPlusPowerTotal(const QString& str){
     if(idx<0)
         return 0;
 
-    int end = str.indexOf(end1, idx+key2.size());
-    if(end<0)
+    int col2Begin = str.indexOf(tdend, idx+key2.size());
+    if(col2Begin<0)
         return 0;
 
-    QStringRef sub(&str, idx, end-idx);
-    return getDouble(sub.toString());
+    int col2End = str.indexOf(tdend, col2Begin+tdend.size());
+    if(col2End<0)
+        return 0;
+
+    QStringRef sub(&str, col2Begin, col2End-col2Begin);
+    return getDouble(sub.toString())/3.6f;
 }
 
-static double findOpenStudioPowerTotal(const QString& str){
+static double findOpenStudioPowerTotalDiv12(const QString& str){
     const QString key0 = "\"Electricity Consumption\":{";
 
     QStringList sls;
@@ -1432,7 +1436,7 @@ static double findOpenStudioPowerTotal(const QString& str){
             //qDebug() << "CURRENT OUT :" << out;
         }
     }
-    return out;
+    return out/12.0f;
 }
 
 void RunView::addPVToFile(const QString &fileName, int mode)
@@ -1458,7 +1462,7 @@ void RunView::addPVToFile(const QString &fileName, int mode)
     switch (mode) {
     case PVReportMode_OPENSTUDIO:
     {
-        double val = findOpenStudioPowerTotal(text);
+        double val = findOpenStudioPowerTotalDiv12(text);
         //PV
         QString table = QString("<h4>Photovoltaic(watt)</h4>\n"
                                 "<table id=\"%1\" class=\"table table-striped table-bordered table-condensed\">\n"
@@ -1506,11 +1510,11 @@ void RunView::addPVToFile(const QString &fileName, int mode)
                                 "			<td>%2</td>\n"
                                 "		</tr>\n"
                                 "		<tr>\n"
-                                "			<td>Standard</td>\n"
+                                "			<td>Standard(kWh)</td>\n"
                                 "			<td>%3</td>\n"
                                 "		</tr>\n"
                                 "		<tr>\n"
-                                "			<td>Result</td>\n"
+                                "			<td>Result(kWh)</td>\n"
                                 "			<td>%4</td>\n"
                                 "		</tr>\n"
                                 "		<tr>\n"
@@ -1531,7 +1535,7 @@ void RunView::addPVToFile(const QString &fileName, int mode)
         break;
     case PVReportMode_ENERGYPLUS:
     {
-        double val = findEnergyPlusPowerTotal(text);
+        double val = findEnergyPlusPowerTotalkWh(text);
         if(text.indexOf("<meta charset=\"utf-8\">")<0){
             text.replace("<head>", "<head>\n<meta charset=\"utf-8\">");
         }
@@ -1568,8 +1572,8 @@ void RunView::addPVToFile(const QString &fileName, int mode)
                                 "  <tr>\n"
                                 "    <td align=\"center\"></td>\n"
                                 "    <td align=\"center\">Type</td>\n"
-                                "    <td align=\"center\">Standard</td>\n"
-                                "    <td align=\"center\">Result</td>\n"
+                                "    <td align=\"center\">Standard[kWh]</td>\n"
+                                "    <td align=\"center\">Result[kWh]</td>\n"
                                 "    <td align=\"center\">Status</td>\n"
                                 "  <tr>\n"
                                 "    <td align=\"right\">Benchmark</td>\n"
