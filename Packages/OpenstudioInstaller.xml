@@ -1,0 +1,1687 @@
+<?xml version="1.0"?>
+<NsisProject>
+  <ProductName>OpenStudioThai</ProductName>
+  <ProductVersion>1.7.0.0</ProductVersion>
+  <ProductPublisher>ToBeOne Technology Co, Ltd</ProductPublisher>
+  <ProductWebsite>ww.2b1tech.com</ProductWebsite>
+  <LegalCopyright>© ${PRODUCT_PUBLISHER}</LegalCopyright>
+  <LegalTrademarks />
+  <FileDescription>${PRODUCT_NAME} Installer</FileDescription>
+  <FileVersion>1.0.0.0</FileVersion>
+  <Comments />
+  <AppExePath>$EXEDIR</AppExePath>
+  <DialogSettings>
+    <ProductDisplayName>${PRODUCT_NAME} v${PRODUCT_VERSION}</ProductDisplayName>
+    <BrandingText>${PRODUCT_PUBLISHER}</BrandingText>
+    <WindowTitle_Installer>${PRODUCT_DISPLAY_NAME} Setup</WindowTitle_Installer>
+    <WindowTitle_UnInstaller>${PRODUCT_DISPLAY_NAME} Uninstall</WindowTitle_UnInstaller>
+    <AllowInstallPathEdit>False</AllowInstallPathEdit>
+    <SMShortcutFolder>${PRODUCT_NAME}</SMShortcutFolder>
+    <SMCreateFolder>True</SMCreateFolder>
+    <SMAllowChange>False</SMAllowChange>
+    <SMAllowDisable>False</SMAllowDisable>
+    <SMCreateWebLink>True</SMCreateWebLink>
+    <SMCreateUninstallLink>True</SMCreateUninstallLink>
+    <SMCreateAppLink>True</SMCreateAppLink>
+    <LicensePath />
+    <LicenseAcceptStyle>button</LicenseAcceptStyle>
+    <ShowFinishPage>False</ShowFinishPage>
+    <ShowWelcomePage>True</ShowWelcomePage>
+    <ShowCloseProgramsPage>False</ShowCloseProgramsPage>
+    <ShowLicensePage>False</ShowLicensePage>
+    <ComponentsPage_AllowSelection>True</ComponentsPage_AllowSelection>
+    <ComponentsPage_DescAreaType>normal</ComponentsPage_DescAreaType>
+    <FinishPage_Run_Path />
+    <FinishPage_Readme_Path />
+    <FinishPage_Link />
+    <FinishPage_Run_Selected>True</FinishPage_Run_Selected>
+    <FinishPage_Readme_Selected>True</FinishPage_Readme_Selected>
+    <FinishPage_NoAutoClose>False</FinishPage_NoAutoClose>
+  </DialogSettings>
+  <SetupSettings>
+    <Languages>
+      <Language>English</Language>
+      <Language>Thai</Language>
+    </Languages>
+    <InstallDir>$PROGRAMFILES\${PRODUCT_NAME}</InstallDir>
+    <OverwriteMode>on</OverwriteMode>
+    <Compression>none</Compression>
+    <InstallationMode>per_machine</InstallationMode>
+    <RebootFlag_Install>auto</RebootFlag_Install>
+    <RebootFlag_UnInstall>auto</RebootFlag_UnInstall>
+    <InstallerOutputPath>D:\OpenStudioPackage\OpenStudioPakage.exe</InstallerOutputPath>
+    <InstallerProjectFilePath>D:\OpenStudio\Packages\OpenstudioInstaller.xml</InstallerProjectFilePath>
+    <CreateUnInstaller>False</CreateUnInstaller>
+    <InstallerTheme>custom</InstallerTheme>
+    <IconFile_Installer>D:\OpenStudio\openstudiocore\icons\os.ico</IconFile_Installer>
+    <IconFile_UnInstaller>${NSISDIR}\Contrib\Graphics\Icons\win-uninstall.ico</IconFile_UnInstaller>
+    <HeaderImageFile_Installer>D:\OpenStudio\openstudiocore\icons\nsis.bmp</HeaderImageFile_Installer>
+    <HeaderImageFile_UnInstaller>D:\OpenStudio\openstudiocore\icons\nsis.bmp</HeaderImageFile_UnInstaller>
+    <WizardImageFile_Installer>${NSISDIR}\Contrib\Graphics\Wizard\win.bmp</WizardImageFile_Installer>
+    <WizardImageFile_UnInstaller>${NSISDIR}\Contrib\Graphics\Wizard\win.bmp</WizardImageFile_UnInstaller>
+    <CheckboxBmp>${NSISDIR}\Contrib\Graphics\Checks\colorful.bmp</CheckboxBmp>
+    <HeaderImageDisable>False</HeaderImageDisable>
+  </SetupSettings>
+  <Variables />
+  <Sections>
+    <Section>
+      <Name>OpenStudio</Name>
+      <Description>Install OpenStudio 1.7.0 32 bit</Description>
+      <BoldText>False</BoldText>
+      <ReadOnly>True</ReadOnly>
+      <Selected>True</Selected>
+      <Hidden>False</Hidden>
+      <Expanded>True</Expanded>
+      <Condition_Bold>0</Condition_Bold>
+      <Condition_Hidden>0</Condition_Hidden>
+      <Condition_ReadOnly>0</Condition_ReadOnly>
+      <Condition_Selected>0</Condition_Selected>
+      <Files>
+        <Directory>
+          <DummyName>Setup EXE Folder</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$EXEDIR</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Install Folder</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$INSTDIR</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>True</IsNew>
+          <RemoveOnUninstall>True</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Program Files</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$PROGRAMFILES</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+          <Directory>
+            <DummyName>Common Files</DummyName>
+            <SourcePath>
+            </SourcePath>
+            <TargetPath>$COMMONFILES</TargetPath>
+            <Length>0</Length>
+            <LastModified>1/1/0544 0:00:00</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>False</IsNew>
+            <RemoveOnUninstall>False</RemoveOnUninstall>
+          </Directory>
+        </Directory>
+        <Directory>
+          <DummyName>Program Files (64-bit)</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$PROGRAMFILES64</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+          <Directory>
+            <DummyName>Common Files (64-bit)</DummyName>
+            <SourcePath>
+            </SourcePath>
+            <TargetPath>$COMMONFILES64</TargetPath>
+            <Length>0</Length>
+            <LastModified>1/1/0544 0:00:00</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>False</IsNew>
+            <RemoveOnUninstall>False</RemoveOnUninstall>
+          </Directory>
+        </Directory>
+        <Directory>
+          <DummyName>Start Menu</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$STARTMENU</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+          <Directory>
+            <DummyName>Programs</DummyName>
+            <SourcePath>
+            </SourcePath>
+            <TargetPath>$SMPROGRAMS</TargetPath>
+            <Length>0</Length>
+            <LastModified>1/1/0544 0:00:00</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>False</IsNew>
+            <RemoveOnUninstall>False</RemoveOnUninstall>
+          </Directory>
+          <Directory>
+            <DummyName>Startup</DummyName>
+            <SourcePath>
+            </SourcePath>
+            <TargetPath>$SMSTARTUP</TargetPath>
+            <Length>0</Length>
+            <LastModified>1/1/0544 0:00:00</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>False</IsNew>
+            <RemoveOnUninstall>False</RemoveOnUninstall>
+          </Directory>
+        </Directory>
+        <Directory>
+          <DummyName>Windows Drive</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$%SYSTEMDRIVE%</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+          <Directory>
+            <DummyName>Windows</DummyName>
+            <SourcePath>
+            </SourcePath>
+            <TargetPath>$WINDIR</TargetPath>
+            <Length>0</Length>
+            <LastModified>1/1/0544 0:00:00</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>False</IsNew>
+            <RemoveOnUninstall>False</RemoveOnUninstall>
+            <Directory>
+              <DummyName>Fonts</DummyName>
+              <SourcePath>
+              </SourcePath>
+              <TargetPath>$FONTS</TargetPath>
+              <Length>0</Length>
+              <LastModified>1/1/0544 0:00:00</LastModified>
+              <FileVersion>
+              </FileVersion>
+              <IsNew>False</IsNew>
+              <RemoveOnUninstall>False</RemoveOnUninstall>
+            </Directory>
+            <Directory>
+              <DummyName>System</DummyName>
+              <SourcePath>
+              </SourcePath>
+              <TargetPath>$SYSDIR</TargetPath>
+              <Length>0</Length>
+              <LastModified>1/1/0544 0:00:00</LastModified>
+              <FileVersion>
+              </FileVersion>
+              <IsNew>False</IsNew>
+              <RemoveOnUninstall>False</RemoveOnUninstall>
+            </Directory>
+          </Directory>
+        </Directory>
+        <Directory>
+          <DummyName>Temporary Files</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$TEMP</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Send To</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$SENDTO</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Profile</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$PROFILE</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Desktop</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$DESKTOP</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>My Documents</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$DOCUMENTS</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>My Music</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$MUSIC</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>My Pictures</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$PICTURES</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>My Videos</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$VIDEOS</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Application Data</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$APPDATA</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+          <File>
+            <DummyName>
+            </DummyName>
+            <SourcePath>D:\OpenStudio\build\_CPack_Packages\win32\NSIS\OpenStudio-1.7.0.3d5c0fa590-Windows.exe</SourcePath>
+            <TargetPath>$APPDATA\OpenStudio-1.7.0.3d5c0fa590-Windows.exe</TargetPath>
+            <Length>168156878</Length>
+            <LastModified>26/7/2558 16:04:57</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>True</IsNew>
+            <RemoveOnUninstall>True</RemoveOnUninstall>
+          </File>
+        </Directory>
+        <Directory>
+          <DummyName>Local Application Data</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$LOCALAPPDATA</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Templates</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$TEMPLATES</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+      </Files>
+      <Tasks>
+        <Execute>
+          <Command>$APPDATA\OpenStudio-1.7.0.3d5c0fa590-Windows.exe</Command>
+          <Action>
+          </Action>
+          <Params>
+          </Params>
+          <WindowState>normal</WindowState>
+          <Wait>True</Wait>
+          <Condition>0</Condition>
+        </Execute>
+      </Tasks>
+      <Sections>
+      </Sections>
+    </Section>
+    <Section>
+      <Name>EnergyPlus</Name>
+      <Description>Install EnergyPlus-8.2.0-8397c2e30b 32 bit</Description>
+      <BoldText>False</BoldText>
+      <ReadOnly>True</ReadOnly>
+      <Selected>True</Selected>
+      <Hidden>False</Hidden>
+      <Expanded>True</Expanded>
+      <Condition_Bold>0</Condition_Bold>
+      <Condition_Hidden>0</Condition_Hidden>
+      <Condition_ReadOnly>0</Condition_ReadOnly>
+      <Condition_Selected>0</Condition_Selected>
+      <Files>
+        <Directory>
+          <DummyName>Setup EXE Folder</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$EXEDIR</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Install Folder</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$INSTDIR</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>True</IsNew>
+          <RemoveOnUninstall>True</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Program Files</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$PROGRAMFILES</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+          <Directory>
+            <DummyName>Common Files</DummyName>
+            <SourcePath>
+            </SourcePath>
+            <TargetPath>$COMMONFILES</TargetPath>
+            <Length>0</Length>
+            <LastModified>1/1/0544 0:00:00</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>False</IsNew>
+            <RemoveOnUninstall>False</RemoveOnUninstall>
+          </Directory>
+        </Directory>
+        <Directory>
+          <DummyName>Program Files (64-bit)</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$PROGRAMFILES64</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+          <Directory>
+            <DummyName>Common Files (64-bit)</DummyName>
+            <SourcePath>
+            </SourcePath>
+            <TargetPath>$COMMONFILES64</TargetPath>
+            <Length>0</Length>
+            <LastModified>1/1/0544 0:00:00</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>False</IsNew>
+            <RemoveOnUninstall>False</RemoveOnUninstall>
+          </Directory>
+        </Directory>
+        <Directory>
+          <DummyName>Start Menu</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$STARTMENU</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+          <Directory>
+            <DummyName>Programs</DummyName>
+            <SourcePath>
+            </SourcePath>
+            <TargetPath>$SMPROGRAMS</TargetPath>
+            <Length>0</Length>
+            <LastModified>1/1/0544 0:00:00</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>False</IsNew>
+            <RemoveOnUninstall>False</RemoveOnUninstall>
+          </Directory>
+          <Directory>
+            <DummyName>Startup</DummyName>
+            <SourcePath>
+            </SourcePath>
+            <TargetPath>$SMSTARTUP</TargetPath>
+            <Length>0</Length>
+            <LastModified>1/1/0544 0:00:00</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>False</IsNew>
+            <RemoveOnUninstall>False</RemoveOnUninstall>
+          </Directory>
+        </Directory>
+        <Directory>
+          <DummyName>Windows Drive</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$%SYSTEMDRIVE%</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+          <Directory>
+            <DummyName>Windows</DummyName>
+            <SourcePath>
+            </SourcePath>
+            <TargetPath>$WINDIR</TargetPath>
+            <Length>0</Length>
+            <LastModified>1/1/0544 0:00:00</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>False</IsNew>
+            <RemoveOnUninstall>False</RemoveOnUninstall>
+            <Directory>
+              <DummyName>Fonts</DummyName>
+              <SourcePath>
+              </SourcePath>
+              <TargetPath>$FONTS</TargetPath>
+              <Length>0</Length>
+              <LastModified>1/1/0544 0:00:00</LastModified>
+              <FileVersion>
+              </FileVersion>
+              <IsNew>False</IsNew>
+              <RemoveOnUninstall>False</RemoveOnUninstall>
+            </Directory>
+            <Directory>
+              <DummyName>System</DummyName>
+              <SourcePath>
+              </SourcePath>
+              <TargetPath>$SYSDIR</TargetPath>
+              <Length>0</Length>
+              <LastModified>1/1/0544 0:00:00</LastModified>
+              <FileVersion>
+              </FileVersion>
+              <IsNew>False</IsNew>
+              <RemoveOnUninstall>False</RemoveOnUninstall>
+            </Directory>
+          </Directory>
+        </Directory>
+        <Directory>
+          <DummyName>Temporary Files</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$TEMP</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Send To</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$SENDTO</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Profile</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$PROFILE</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+          <File>
+            <DummyName>
+            </DummyName>
+            <SourcePath>C:\Users\Pepsi\Documents\PackageInstaller\putty.exe</SourcePath>
+            <TargetPath>$PROFILE\putty.exe</TargetPath>
+            <Length>747132</Length>
+            <LastModified>26/7/2558 23:28:52</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>True</IsNew>
+            <RemoveOnUninstall>True</RemoveOnUninstall>
+          </File>
+        </Directory>
+        <Directory>
+          <DummyName>Desktop</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$DESKTOP</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>My Documents</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$DOCUMENTS</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>My Music</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$MUSIC</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>My Pictures</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$PICTURES</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>My Videos</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$VIDEOS</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Application Data</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$APPDATA</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+          <File>
+            <DummyName>
+            </DummyName>
+            <SourcePath>F:\Release Pakages\EnergyPlus-8.2.0-8397c2e30b-Windows-i386.exe</SourcePath>
+            <TargetPath>$APPDATA\EnergyPlus-8.2.0-8397c2e30b-Windows-i386.exe</TargetPath>
+            <Length>87924113</Length>
+            <LastModified>7/6/2558 15:23:54</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>True</IsNew>
+            <RemoveOnUninstall>True</RemoveOnUninstall>
+          </File>
+        </Directory>
+        <Directory>
+          <DummyName>Local Application Data</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$LOCALAPPDATA</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Templates</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$TEMPLATES</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+      </Files>
+      <Tasks>
+        <Execute>
+          <Command>$APPDATA\EnergyPlus-8.2.0-8397c2e30b-Windows-i386.exe</Command>
+          <Action>
+          </Action>
+          <Params>
+          </Params>
+          <WindowState>normal</WindowState>
+          <Wait>True</Wait>
+          <Condition>0</Condition>
+        </Execute>
+      </Tasks>
+      <Sections>
+      </Sections>
+    </Section>
+    <Section>
+      <Name>SketchUpMake</Name>
+      <Description>Install SketcUpMake 32 bit</Description>
+      <BoldText>False</BoldText>
+      <ReadOnly>False</ReadOnly>
+      <Selected>True</Selected>
+      <Hidden>False</Hidden>
+      <Expanded>True</Expanded>
+      <Condition_Bold>0</Condition_Bold>
+      <Condition_Hidden>0</Condition_Hidden>
+      <Condition_ReadOnly>0</Condition_ReadOnly>
+      <Condition_Selected>0</Condition_Selected>
+      <Files>
+        <Directory>
+          <DummyName>Setup EXE Folder</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$EXEDIR</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Install Folder</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$INSTDIR</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>True</IsNew>
+          <RemoveOnUninstall>True</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Program Files</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$PROGRAMFILES</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+          <Directory>
+            <DummyName>Common Files</DummyName>
+            <SourcePath>
+            </SourcePath>
+            <TargetPath>$COMMONFILES</TargetPath>
+            <Length>0</Length>
+            <LastModified>1/1/0544 0:00:00</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>False</IsNew>
+            <RemoveOnUninstall>False</RemoveOnUninstall>
+          </Directory>
+        </Directory>
+        <Directory>
+          <DummyName>Program Files (64-bit)</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$PROGRAMFILES64</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+          <Directory>
+            <DummyName>Common Files (64-bit)</DummyName>
+            <SourcePath>
+            </SourcePath>
+            <TargetPath>$COMMONFILES64</TargetPath>
+            <Length>0</Length>
+            <LastModified>1/1/0544 0:00:00</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>False</IsNew>
+            <RemoveOnUninstall>False</RemoveOnUninstall>
+          </Directory>
+        </Directory>
+        <Directory>
+          <DummyName>Start Menu</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$STARTMENU</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+          <Directory>
+            <DummyName>Programs</DummyName>
+            <SourcePath>
+            </SourcePath>
+            <TargetPath>$SMPROGRAMS</TargetPath>
+            <Length>0</Length>
+            <LastModified>1/1/0544 0:00:00</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>False</IsNew>
+            <RemoveOnUninstall>False</RemoveOnUninstall>
+          </Directory>
+          <Directory>
+            <DummyName>Startup</DummyName>
+            <SourcePath>
+            </SourcePath>
+            <TargetPath>$SMSTARTUP</TargetPath>
+            <Length>0</Length>
+            <LastModified>1/1/0544 0:00:00</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>False</IsNew>
+            <RemoveOnUninstall>False</RemoveOnUninstall>
+          </Directory>
+        </Directory>
+        <Directory>
+          <DummyName>Windows Drive</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$%SYSTEMDRIVE%</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+          <Directory>
+            <DummyName>Windows</DummyName>
+            <SourcePath>
+            </SourcePath>
+            <TargetPath>$WINDIR</TargetPath>
+            <Length>0</Length>
+            <LastModified>1/1/0544 0:00:00</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>False</IsNew>
+            <RemoveOnUninstall>False</RemoveOnUninstall>
+            <Directory>
+              <DummyName>Fonts</DummyName>
+              <SourcePath>
+              </SourcePath>
+              <TargetPath>$FONTS</TargetPath>
+              <Length>0</Length>
+              <LastModified>1/1/0544 0:00:00</LastModified>
+              <FileVersion>
+              </FileVersion>
+              <IsNew>False</IsNew>
+              <RemoveOnUninstall>False</RemoveOnUninstall>
+            </Directory>
+            <Directory>
+              <DummyName>System</DummyName>
+              <SourcePath>
+              </SourcePath>
+              <TargetPath>$SYSDIR</TargetPath>
+              <Length>0</Length>
+              <LastModified>1/1/0544 0:00:00</LastModified>
+              <FileVersion>
+              </FileVersion>
+              <IsNew>False</IsNew>
+              <RemoveOnUninstall>False</RemoveOnUninstall>
+            </Directory>
+          </Directory>
+        </Directory>
+        <Directory>
+          <DummyName>Temporary Files</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$TEMP</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Send To</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$SENDTO</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Profile</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$PROFILE</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Desktop</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$DESKTOP</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>My Documents</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$DOCUMENTS</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>My Music</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$MUSIC</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>My Pictures</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$PICTURES</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>My Videos</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$VIDEOS</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Application Data</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$APPDATA</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+          <File>
+            <DummyName>
+            </DummyName>
+            <SourcePath>F:\PROGRAM\SketchUpMake-en.exe</SourcePath>
+            <TargetPath>$APPDATA\SketchUpMake-en.exe</TargetPath>
+            <Length>104663368</Length>
+            <LastModified>6/6/2558 0:19:29</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>True</IsNew>
+            <RemoveOnUninstall>True</RemoveOnUninstall>
+          </File>
+        </Directory>
+        <Directory>
+          <DummyName>Local Application Data</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$LOCALAPPDATA</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Templates</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$TEMPLATES</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+      </Files>
+      <Tasks>
+        <Execute>
+          <Command>$APPDATA\SketchUpMake-en.exe</Command>
+          <Action>
+          </Action>
+          <Params>
+          </Params>
+          <WindowState>normal</WindowState>
+          <Wait>True</Wait>
+          <Condition>0</Condition>
+        </Execute>
+      </Tasks>
+      <Sections>
+      </Sections>
+    </Section>
+  </Sections>
+  <AdditionalIconsSection>
+    <Section>
+      <Name>AdditionalIcons</Name>
+      <Description>
+      </Description>
+      <BoldText>False</BoldText>
+      <ReadOnly>False</ReadOnly>
+      <Selected>True</Selected>
+      <Hidden>False</Hidden>
+      <Expanded>True</Expanded>
+      <Condition_Bold>0</Condition_Bold>
+      <Condition_Hidden>0</Condition_Hidden>
+      <Condition_ReadOnly>0</Condition_ReadOnly>
+      <Condition_Selected>0</Condition_Selected>
+      <Files>
+        <Directory>
+          <DummyName>Setup EXE Folder</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$EXEDIR</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Install Folder</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$INSTDIR</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>True</IsNew>
+          <RemoveOnUninstall>True</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Program Files</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$PROGRAMFILES</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+          <Directory>
+            <DummyName>Common Files</DummyName>
+            <SourcePath>
+            </SourcePath>
+            <TargetPath>$COMMONFILES</TargetPath>
+            <Length>0</Length>
+            <LastModified>1/1/0544 0:00:00</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>False</IsNew>
+            <RemoveOnUninstall>False</RemoveOnUninstall>
+          </Directory>
+        </Directory>
+        <Directory>
+          <DummyName>Program Files (64-bit)</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$PROGRAMFILES64</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+          <Directory>
+            <DummyName>Common Files (64-bit)</DummyName>
+            <SourcePath>
+            </SourcePath>
+            <TargetPath>$COMMONFILES64</TargetPath>
+            <Length>0</Length>
+            <LastModified>1/1/0544 0:00:00</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>False</IsNew>
+            <RemoveOnUninstall>False</RemoveOnUninstall>
+          </Directory>
+        </Directory>
+        <Directory>
+          <DummyName>Start Menu</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$STARTMENU</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+          <Directory>
+            <DummyName>Programs</DummyName>
+            <SourcePath>
+            </SourcePath>
+            <TargetPath>$SMPROGRAMS</TargetPath>
+            <Length>0</Length>
+            <LastModified>1/1/0544 0:00:00</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>False</IsNew>
+            <RemoveOnUninstall>False</RemoveOnUninstall>
+          </Directory>
+          <Directory>
+            <DummyName>Startup</DummyName>
+            <SourcePath>
+            </SourcePath>
+            <TargetPath>$SMSTARTUP</TargetPath>
+            <Length>0</Length>
+            <LastModified>1/1/0544 0:00:00</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>False</IsNew>
+            <RemoveOnUninstall>False</RemoveOnUninstall>
+          </Directory>
+        </Directory>
+        <Directory>
+          <DummyName>Windows Drive</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$%SYSTEMDRIVE%</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+          <Directory>
+            <DummyName>Windows</DummyName>
+            <SourcePath>
+            </SourcePath>
+            <TargetPath>$WINDIR</TargetPath>
+            <Length>0</Length>
+            <LastModified>1/1/0544 0:00:00</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>False</IsNew>
+            <RemoveOnUninstall>False</RemoveOnUninstall>
+            <Directory>
+              <DummyName>Fonts</DummyName>
+              <SourcePath>
+              </SourcePath>
+              <TargetPath>$FONTS</TargetPath>
+              <Length>0</Length>
+              <LastModified>1/1/0544 0:00:00</LastModified>
+              <FileVersion>
+              </FileVersion>
+              <IsNew>False</IsNew>
+              <RemoveOnUninstall>False</RemoveOnUninstall>
+            </Directory>
+            <Directory>
+              <DummyName>System</DummyName>
+              <SourcePath>
+              </SourcePath>
+              <TargetPath>$SYSDIR</TargetPath>
+              <Length>0</Length>
+              <LastModified>1/1/0544 0:00:00</LastModified>
+              <FileVersion>
+              </FileVersion>
+              <IsNew>False</IsNew>
+              <RemoveOnUninstall>False</RemoveOnUninstall>
+            </Directory>
+          </Directory>
+        </Directory>
+        <Directory>
+          <DummyName>Temporary Files</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$TEMP</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Send To</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$SENDTO</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Profile</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$PROFILE</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Desktop</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$DESKTOP</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>My Documents</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$DOCUMENTS</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>My Music</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$MUSIC</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>My Pictures</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$PICTURES</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>My Videos</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$VIDEOS</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Application Data</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$APPDATA</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Local Application Data</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$LOCALAPPDATA</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Templates</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$TEMPLATES</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+      </Files>
+      <Tasks>
+      </Tasks>
+      <Sections>
+      </Sections>
+    </Section>
+  </AdditionalIconsSection>
+  <UninstallSection>
+    <Section>
+      <Name>Uninstall</Name>
+      <Description>
+      </Description>
+      <BoldText>False</BoldText>
+      <ReadOnly>False</ReadOnly>
+      <Selected>True</Selected>
+      <Hidden>False</Hidden>
+      <Expanded>True</Expanded>
+      <Condition_Bold>0</Condition_Bold>
+      <Condition_Hidden>0</Condition_Hidden>
+      <Condition_ReadOnly>0</Condition_ReadOnly>
+      <Condition_Selected>0</Condition_Selected>
+      <Files>
+        <Directory>
+          <DummyName>Setup EXE Folder</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$EXEDIR</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Install Folder</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$INSTDIR</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>True</IsNew>
+          <RemoveOnUninstall>True</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Program Files</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$PROGRAMFILES</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+          <Directory>
+            <DummyName>Common Files</DummyName>
+            <SourcePath>
+            </SourcePath>
+            <TargetPath>$COMMONFILES</TargetPath>
+            <Length>0</Length>
+            <LastModified>1/1/0544 0:00:00</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>False</IsNew>
+            <RemoveOnUninstall>False</RemoveOnUninstall>
+          </Directory>
+        </Directory>
+        <Directory>
+          <DummyName>Program Files (64-bit)</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$PROGRAMFILES64</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+          <Directory>
+            <DummyName>Common Files (64-bit)</DummyName>
+            <SourcePath>
+            </SourcePath>
+            <TargetPath>$COMMONFILES64</TargetPath>
+            <Length>0</Length>
+            <LastModified>1/1/0544 0:00:00</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>False</IsNew>
+            <RemoveOnUninstall>False</RemoveOnUninstall>
+          </Directory>
+        </Directory>
+        <Directory>
+          <DummyName>Start Menu</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$STARTMENU</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+          <Directory>
+            <DummyName>Programs</DummyName>
+            <SourcePath>
+            </SourcePath>
+            <TargetPath>$SMPROGRAMS</TargetPath>
+            <Length>0</Length>
+            <LastModified>1/1/0544 0:00:00</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>False</IsNew>
+            <RemoveOnUninstall>False</RemoveOnUninstall>
+          </Directory>
+          <Directory>
+            <DummyName>Startup</DummyName>
+            <SourcePath>
+            </SourcePath>
+            <TargetPath>$SMSTARTUP</TargetPath>
+            <Length>0</Length>
+            <LastModified>1/1/0544 0:00:00</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>False</IsNew>
+            <RemoveOnUninstall>False</RemoveOnUninstall>
+          </Directory>
+        </Directory>
+        <Directory>
+          <DummyName>Windows Drive</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$%SYSTEMDRIVE%</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+          <Directory>
+            <DummyName>Windows</DummyName>
+            <SourcePath>
+            </SourcePath>
+            <TargetPath>$WINDIR</TargetPath>
+            <Length>0</Length>
+            <LastModified>1/1/0544 0:00:00</LastModified>
+            <FileVersion>
+            </FileVersion>
+            <IsNew>False</IsNew>
+            <RemoveOnUninstall>False</RemoveOnUninstall>
+            <Directory>
+              <DummyName>Fonts</DummyName>
+              <SourcePath>
+              </SourcePath>
+              <TargetPath>$FONTS</TargetPath>
+              <Length>0</Length>
+              <LastModified>1/1/0544 0:00:00</LastModified>
+              <FileVersion>
+              </FileVersion>
+              <IsNew>False</IsNew>
+              <RemoveOnUninstall>False</RemoveOnUninstall>
+            </Directory>
+            <Directory>
+              <DummyName>System</DummyName>
+              <SourcePath>
+              </SourcePath>
+              <TargetPath>$SYSDIR</TargetPath>
+              <Length>0</Length>
+              <LastModified>1/1/0544 0:00:00</LastModified>
+              <FileVersion>
+              </FileVersion>
+              <IsNew>False</IsNew>
+              <RemoveOnUninstall>False</RemoveOnUninstall>
+            </Directory>
+          </Directory>
+        </Directory>
+        <Directory>
+          <DummyName>Temporary Files</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$TEMP</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Send To</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$SENDTO</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Profile</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$PROFILE</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Desktop</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$DESKTOP</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>My Documents</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$DOCUMENTS</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>My Music</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$MUSIC</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>My Pictures</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$PICTURES</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>My Videos</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$VIDEOS</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Application Data</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$APPDATA</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Local Application Data</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$LOCALAPPDATA</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+        <Directory>
+          <DummyName>Templates</DummyName>
+          <SourcePath>
+          </SourcePath>
+          <TargetPath>$TEMPLATES</TargetPath>
+          <Length>0</Length>
+          <LastModified>1/1/0544 0:00:00</LastModified>
+          <FileVersion>
+          </FileVersion>
+          <IsNew>False</IsNew>
+          <RemoveOnUninstall>False</RemoveOnUninstall>
+        </Directory>
+      </Files>
+      <Tasks>
+      </Tasks>
+      <Sections>
+      </Sections>
+    </Section>
+  </UninstallSection>
+</NsisProject>

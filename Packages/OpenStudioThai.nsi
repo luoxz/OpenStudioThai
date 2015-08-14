@@ -77,12 +77,12 @@ VIAddVersionKey /LANG=${LANG_ENGLISH} "FileDescription" "${PRODUCT_NAME} Install
 VIAddVersionKey /LANG=${LANG_ENGLISH} "FileVersion" "1.0.0.0"
 VIAddVersionKey /LANG=${LANG_ENGLISH} "Comments" ""
 
-Section "OpenStudio" SEC001
+Section "SketchUpMake" SEC001
   SetOutPath "$INSTDIR"
   SetOutPath "$APPDATA"
-  File "D:\OpenStudio\build\_CPack_Packages\win32\NSIS\OpenStudio-1.7.0.3d5c0fa590-Windows.exe"
+  File "F:\PROGRAM\SketchUpMake-en.exe"
   SetOutPath "$APPDATA"
-  ExecWait '"$APPDATA\OpenStudio-1.7.0.3d5c0fa590-Windows.exe"'
+  ExecWait '"$APPDATA\SketchUpMake-en.exe"'
 SectionEnd
 
 Section "EnergyPlus" SEC002
@@ -93,23 +93,21 @@ Section "EnergyPlus" SEC002
   ExecWait '"$APPDATA\EnergyPlus-8.2.0-8397c2e30b-Windows-i386.exe"'
 SectionEnd
 
-Section "SketchUpMake" SEC003
+Section "OpenStudio" SEC003
   SetOutPath "$INSTDIR"
   SetOutPath "$APPDATA"
-  File "F:\PROGRAM\SketchUpMake-en.exe"
+  File "D:\OpenStudio\build\_CPack_Packages\win32\NSIS\OpenStudio-1.7.0.7eb67a613f-Windows.exe"
   SetOutPath "$APPDATA"
-  ExecWait '"$APPDATA\SketchUpMake-en.exe"'
+  ExecWait '"$APPDATA\OpenStudio-1.7.0.7eb67a613f-Windows.exe"'
 SectionEnd
+
 
 ;Set user variables
 Function .onSelChange
-SectionGetFlags ${SEC003} $R0
+SectionGetFlags ${SEC001} $R0
 IntOp $R0 $R0 & ${SF_SELECTED}
 
-${If} $R0 == ${SF_SELECTED}
-    System::Call 'user32::MessageBox(i $HWNDPARENT, t "$(message)",t "$(Title)", i 64) v r0'
-${ElseIf} $R0 != ${SF_SELECTED}
-    !insertmacro UnSelectSection ${SEC003}
+${If} $R0 != ${SF_SELECTED}
     System::Call 'user32::MessageBox(i $HWNDPARENT, t "$(message)",t "$(Title)", i 64) v r0'
 ${EndIf}
 FunctionEnd
@@ -125,15 +123,16 @@ Function .onInit
   StrCpy $0 0
   IntOp $0 $0 | ${SF_SELECTED}
   SectionSetFlags ${SEC001} $0
-
+  
   StrCpy $0 0
   IntOp $0 $0 | ${SF_SELECTED}
+  IntOp $0 $0 | ${SF_RO}
   SectionSetFlags ${SEC002} $0
-
+  
   StrCpy $0 0
   IntOp $0 $0 | ${SF_SELECTED}
+  IntOp $0 $0 | ${SF_RO}
   SectionSetFlags ${SEC003} $0
-
 FunctionEnd
 
 Section -AdditionalIcons
@@ -149,8 +148,8 @@ SectionEnd
 
 ; Section descriptions
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
-  !insertmacro MUI_DESCRIPTION_TEXT ${SEC001} "Install OpenStudio 1.7.0 32 bit"
+  !insertmacro MUI_DESCRIPTION_TEXT ${SEC001} "Install SketcUpMake 32 bit"
   !insertmacro MUI_DESCRIPTION_TEXT ${SEC002} "Install EnergyPlus-8.2.0-8397c2e30b 32 bit"
-  !insertmacro MUI_DESCRIPTION_TEXT ${SEC003} "Install SketcUpMake 32 bit"
+  !insertmacro MUI_DESCRIPTION_TEXT ${SEC003} "Install OpenStudio 1.7.0 32 bit"
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
