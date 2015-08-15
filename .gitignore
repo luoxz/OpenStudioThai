@@ -10,3 +10,7 @@ test_fails.txt
 /build-64/
 /build_profile/
 /build-profile/
+Packages/dotNetFx40_Client_x86_x64.exe
+Packages/dotNetFx40_Full_x86_x64.exe
+Packages/SketchUp2015-x86.msi
+Packages/OpenStudioThai.exe

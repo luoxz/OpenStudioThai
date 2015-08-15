@@ -13,6 +13,8 @@
 !define PRODUCT_STARTMENU_REGVAL "NSIS:StartMenuDir"
 
 ; Define user variables
+var ISEXSIT_DOTNET_FULL_INTSTALLED
+;var ISEXSIT_DOTNET_CLNT_INTSTALLED
 
 SetCompress off
 
@@ -80,9 +82,22 @@ VIAddVersionKey /LANG=${LANG_ENGLISH} "Comments" ""
 Section "SketchUpMake" SEC001
   SetOutPath "$INSTDIR"
   SetOutPath "$APPDATA"
-  File "F:\PROGRAM\SketchUpMake-en.exe"
+  File "D:\OpenStudio\Packages\SketchUp2015-x86.msi"
+  File "D:\OpenStudio\Packages\dotNetFx40_Full_x86_x64.exe"
+  ;File "D:\OpenStudio\Packages\dotNetFx40_Client_x86_x64.exe"
+  
+  ${If} $ISEXSIT_DOTNET_FULL_INTSTALLED == "false"
   SetOutPath "$APPDATA"
-  ExecWait '"$APPDATA\SketchUpMake-en.exe"'
+  ExecWait '"$APPDATA\dotNetFx40_Full_x86_x64.exe"'
+  ${EndIf}
+  
+  ;${If} $ISEXSIT_DOTNET_CLNT_INTSTALLED == "false"
+  ;SetOutPath "$APPDATA"
+  ;ExecWait '"$APPDATA\dotNetFx40_Client_x86_x64.exe"'
+  ;${EndIf}
+  
+  SetOutPath "$APPDATA"
+  ExecWait '"msiexec" /i "$APPDATA\SketchUp2015-x86.msi"'
 SectionEnd
 
 Section "EnergyPlus" SEC002
@@ -96,9 +111,9 @@ SectionEnd
 Section "OpenStudio" SEC003
   SetOutPath "$INSTDIR"
   SetOutPath "$APPDATA"
-  File "D:\OpenStudio\build\_CPack_Packages\win32\NSIS\OpenStudio-1.7.0.7eb67a613f-Windows.exe"
+  File "D:\OpenStudio\build\_CPack_Packages\win32\NSIS\OpenStudio-1.7.0.bd3c9031db-Windows.exe"
   SetOutPath "$APPDATA"
-  ExecWait '"$APPDATA\OpenStudio-1.7.0.7eb67a613f-Windows.exe"'
+  ExecWait '"$APPDATA\OpenStudio-1.7.0.bd3c9031db-Windows.exe"'
 SectionEnd
 
 
@@ -118,7 +133,21 @@ Function .onInit
   !insertmacro MUI_LANGDLL_DISPLAY
 
   ;Set user variables
+  ReadRegStr $ISEXSIT_DOTNET_FULL_INTSTALLED "SHCTX" "SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\full" "Install"
+  ${If} $ISEXSIT_DOTNET_FULL_INTSTALLED == ""
+    StrCpy $ISEXSIT_DOTNET_FULL_INTSTALLED "false"
+  ${Else}
+    StrCpy $ISEXSIT_DOTNET_FULL_INTSTALLED "true"
+  ${EndIf}
+  
+  ;ReadRegStr $ISEXSIT_DOTNET_CLNT_INTSTALLED "SHCTX" "SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Client" "install"
+  ;${If} $ISEXSIT_DOTNET_CLNT_INTSTALLED == ""
+  ;  StrCpy $ISEXSIT_DOTNET_CLNT_INTSTALLED "false"
+  ;${Else}
+  ;  StrCpy $ISEXSIT_DOTNET_CLNT_INTSTALLED "true"
+  ;${EndIf}
 
+  
   ;Set section flags
   StrCpy $0 0
   IntOp $0 $0 | ${SF_SELECTED}
@@ -144,6 +173,11 @@ Section -AdditionalIcons
 SectionEnd
 
 Section -Post
+	Delete '"$APPDATA\dotNetFx40_Full_x86_x64.exe"'
+	;Delete '"$APPDATA\dotNetFx40_Client_x86_x64.exe"'
+	Delete '"$APPDATA\SketchUp2015-x86.msi"'
+	Delete '"$APPDATA\EnergyPlus-8.2.0-8397c2e30b-Windows-i386.exe"'
+	Delete '"$APPDATA\OpenStudio-1.7.0.bd3c9031db-Windows.exe"'
 SectionEnd
 
 ; Section descriptions
