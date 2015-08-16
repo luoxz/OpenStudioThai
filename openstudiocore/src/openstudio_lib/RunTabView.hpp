@@ -176,6 +176,7 @@ namespace openstudio {
       openstudio::path m_tempFolder;
       QString becoutputPath;
       QProcess *becProcess;
+      double buildingArea;
   
       bool m_canceling;
       bool m_statsConnected;

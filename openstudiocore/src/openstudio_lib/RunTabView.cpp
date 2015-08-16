@@ -38,7 +38,7 @@
 #include "../model/ThermalZone_Impl.hpp"
 #include "../model/UtilityBill.hpp"
 #include "../model/UtilityBill_Impl.hpp"
-
+#include "../model/Building.hpp"
 #include "../runmanager/lib/JobStatusWidget.hpp"
 #include "../runmanager/lib/RubyJobUtils.hpp"
 #include "../runmanager/lib/RunManager.hpp"
@@ -1394,7 +1394,7 @@ static double findEnergyPlusPowerTotalkWh(const QString& str){
     return getDouble(sub.toString())/3.6f;
 }
 
-static double findOpenStudioPowerTotalDiv12(const QString& str){
+static double findOpenStudioPowerTotal(const QString& str){
     const QString key0 = "\"Electricity Consumption\":{";
 
     QStringList sls;
@@ -1436,7 +1436,7 @@ static double findOpenStudioPowerTotalDiv12(const QString& str){
             //qDebug() << "CURRENT OUT :" << out;
         }
     }
-    return out/12.0f;
+    return out;
 }
 
 void RunView::addPVToFile(const QString &fileName, int mode)
@@ -1462,7 +1462,10 @@ void RunView::addPVToFile(const QString &fileName, int mode)
     switch (mode) {
     case PVReportMode_OPENSTUDIO:
     {
-        double val = findOpenStudioPowerTotalDiv12(text);
+        double val = findOpenStudioPowerTotal(text);
+        m_outputWindow->appendPlainText(QString("Power Total:%1, buildingArea:%2").arg(val).arg(buildingArea));
+        val = val/buildingArea;
+        m_outputWindow->appendPlainText(QString("Power Total/buildingArea=%1").arg(val));
         //PV
         QString table = QString("<h4>Photovoltaic(watt)</h4>\n"
                                 "<table id=\"%1\" class=\"table table-striped table-bordered table-condensed\">\n"
@@ -1765,7 +1768,7 @@ openstudio::path resourcesPath()
 void RunView::playButtonClicked(bool t_checked)
 {
   LOG(Debug, "playButtonClicked " << t_checked);
-
+  
   std::shared_ptr<OSDocument> osdocument = OSAppBase::instance()->currentDocument();
 
   if(osdocument->modified())
@@ -1776,8 +1779,11 @@ void RunView::playButtonClicked(bool t_checked)
       return;
     }
   }
-
-  lastPV = getPV(&osdocument->model());
+  buildingArea = 0.000001;
+  if(boost::optional<openstudio::model::Building> building = osdocument->model().building()){
+      openstudio::model::Building & bd = building.get();
+      buildingArea = bd.floorArea();
+  }
 
   if(m_becButton->isChecked()){
 
