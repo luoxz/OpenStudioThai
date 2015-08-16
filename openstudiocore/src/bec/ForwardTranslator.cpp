@@ -111,6 +111,9 @@
 #include "../model/RefrigerationCase.hpp"
 #include "../model/RefrigerationCase_Impl.hpp"
 
+#include "../model/FanConstantVolume.hpp"
+#include "../model/FanConstantVolume_Impl.hpp"
+
 
 
 #include "../utilities/geometry/Transformation.hpp"
@@ -711,7 +714,7 @@ namespace bec {
               createTagWithText(PackagedAirCooled, "PackagedAirCooledCoolingCapacityUnit", "TR");
               //WARNING: NOTING
               createTagWithText(PackagedAirCooled, "PackagedAirCooledPower"
-                                , "0");
+                                , vrf.evaporativeCondenserPumpRatedPowerConsumption());
               createTagWithText(PackagedAirCooled, "PackagedAirCooledPowerUnit","kW");
               createTagWithText(PackagedAirCooled, "PackagedAirCooledDescription", "...");
               break;
@@ -719,68 +722,89 @@ namespace bec {
           case openstudio::IddObjectType::OS_Coil_Cooling_DX_SingleSpeed :
           {
               model::CoilCoolingDXSingleSpeed coil = hvac.cast<model::CoilCoolingDXSingleSpeed>();
-              createTagWithText(SplitTypeSystem, "CoilCoolingDXSingleSpeed");
+              QDomElement SplitType = createTagWithText(SplitTypeSystem, "SplitType");
+              //////////////////////////////////////////////////
+              std::string name = coil.name().get();
+              boost::optional<double> cop = coil.ratedCOP();
+              boost::optional<double> coolingcap = coil.ratedTotalCoolingCapacity();
+              boost::optional<double> power = coil.evaporativeCondenserPumpRatedPowerConsumption();
+              boost::optional<double> power2 = coil.ratedEvaporatorFanPowerPerVolumeFlowRate();
+
+                createTagWithText(SplitType, "SplitTypeName", name.c_str());
+                createTagWithText(SplitType, "SplitTypeCoolingCapacity"
+                                  , QString::number(coolingcap.get()));
+                createTagWithText(SplitType, "SplitTypeCoolingCapacityUnit"
+                                  , "TR");
+                createTagWithText(SplitType, "SplitTypePower"
+                                  , QString::number(power.get()/1000));
+                createTagWithText(SplitType, "SplitTypePower2"
+                                  , QString::number(power2.get()));
+                createTagWithText(SplitType, "ratedCOP"
+                                  , QString::number(cop.get()));
+                createTagWithText(SplitType, "SplitTypePowerUnit", "kW");
+                createTagWithText(SplitType, "SplitTypeDescription", "?");
+                //createTagWithText(SplitType, "SplitTypeCOP", cop.get());
+                //createTagWithText(SplitType, "SplitTypekWth");
+
+              if(coil.isRatedTotalCoolingCapacityAutosized()){
+                createTagWithText(SplitType, "AUTOSIZE", "true");
+              }else{
+                createTagWithText(SplitType, "AUTOSIZE", "false");
+              }
+
               break;
           }
+          //WARNING : NOT IN EXAMPLE
           case openstudio::IddObjectType::OS_Coil_Cooling_DX_VariableRefrigerantFlow :
           {
+              QDomElement unknow = createTagWithText(CentralACSystem, "unknow");
+              createTagWithText(unknow, "name", hvac.name().get().c_str());
+              createTagWithText(unknow, "iddname", hvac.iddObject().name().c_str());
               model::CoilCoolingDXVariableRefrigerantFlow coil = hvac.cast<model::CoilCoolingDXVariableRefrigerantFlow>();
-              createTagWithText(SplitTypeSystem, "CoilCoolingDXVariableRefrigerantFlow");
+              createTagWithText(unknow, "CoilCoolingDXVariableRefrigerantFlow");
               break;
           }
+          //WARNING : NOT IN EXAMPLE
           case openstudio::IddObjectType::OS_Coil_Cooling_WaterToAirHeatPump_EquationFit :
           {
+              QDomElement unknow = createTagWithText(CentralACSystem, "unknow");
+              createTagWithText(unknow, "name", hvac.name().get().c_str());
+              createTagWithText(unknow, "iddname", hvac.iddObject().name().c_str());
               model::CoilCoolingWaterToAirHeatPumpEquationFit coil = hvac.cast<model::CoilCoolingWaterToAirHeatPumpEquationFit>();
-              createTagWithText(SplitTypeSystem, "CoilCoolingWaterToAirHeatPumpEquationFit");
+              createTagWithText(unknow, "CoilCoolingWaterToAirHeatPumpEquationFit");
               break;
           }
+          //WARNING : NOT IN EXAMPLE
           case openstudio::IddObjectType::OS_Refrigeration_Case :
           {
+              QDomElement unknow = createTagWithText(CentralACSystem, "unknow");
+              createTagWithText(unknow, "name", hvac.name().get().c_str());
+              createTagWithText(unknow, "iddname", hvac.iddObject().name().c_str());
               model::RefrigerationCase refrigerationCase = hvac.cast<model::RefrigerationCase>();
-              createTagWithText(SplitTypeSystem, "RefrigerationCase");
+              createTagWithText(unknow, "RefrigerationCase");
               break;
+          }
+          case openstudio::IddObjectType::OS_Fan_ConstantVolume :
+          {
+            //model::FanConstantVolume fan = modelObject.cast<model::FanConstantVolume>();
+            QDomElement unknow = createTagWithText(CentralACSystem, "unknow");
+            createTagWithText(unknow, "name", hvac.name().get().c_str());
+            createTagWithText(unknow, "iddname", hvac.iddObject().name().c_str());
+
+            //QDomElement SplitType = createTagWithText(SplitTypeSystem, "SplitType");
+            //////////////////////////////////////////////////
+            //std::string name = fan.name().get();
+            break;
           }
           default:
           {
-              createTagWithText(CentralACSystem, "unknow", hvac.name().get().c_str());
+              QDomElement unknow = createTagWithText(CentralACSystem, "unknow");
+              createTagWithText(unknow, "name", hvac.name().get().c_str());
+              createTagWithText(unknow, "iddname", hvac.iddObject().name().c_str());
               break;
           }
           }
-
-          //createTagWithText(tmp, "IDDOENUM"
-          //                  , hvac.iddObject().enumName().c_str());
-
-
-//          if( boost::optional<model::Node> node = hvac.optionalCast<model::Node>() )
-//          {
-//            added = hvacComponent->addToNode(node.get());
-//          }
-//          else if( boost::optional<model::Splitter> splitter = hvac.optionalCast<model::Splitter>() )
-//          {
-//            if( boost::optional<model::PlantLoop> plant = splitter->plantLoop() )
-//            {
-//              if( plant->supplyComponent(splitter->handle()) )
-//              {
-//                added = plant->addSupplyBranchForComponent(hvacComponent.get());
-//              }
-//              else if( plant->demandComponent(splitter->handle()) )
-//              {
-//                added = plant->addDemandBranchForComponent(hvacComponent.get());
-//              }
-//            }
-//            else if( boost::optional<model::AirLoopHVAC> airLoop = splitter->airLoopHVAC() )
-//            {
-//              if( boost::optional<model::ThermalZone> zone = object->optionalCast<model::ThermalZone>() )
-//              {
-//                added = airLoop->addBranchForZone(zone.get());
-//              }
-//            }
-//          }
-
-
-
       }
-
   }
 
   void ForwardTranslator::doBuildingType(QDomElement &becInput, const QString& typeName)
