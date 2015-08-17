@@ -2,7 +2,7 @@
 
 #define OPENSTUDIO_ABOUTBOX \
 "<h2>OpenStudio Thai Edition</h2> \
-<p>Version: ${CMAKE_VERSION_MAJOR}.${CMAKE_VERSION_MINOR}.${CMAKE_VERSION_PATCH}-TH Beta2</p> \
+<p>Version: ${CMAKE_VERSION_MAJOR}.${CMAKE_VERSION_MINOR}.${CMAKE_VERSION_PATCH}-TH Release</p> \
 <p>Build Number: ${CMAKE_VERSION_BUILD}</p> \
 <p>Compiler: ${ABOUT_COMPILER}</p> \
 <p>Copyright &copy; 2015 National Renewable Energy Laboratory</p> \
