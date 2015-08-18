@@ -147,7 +147,6 @@ namespace bec {
     StringStreamLogSink m_logSink;
     ProgressBar* m_progressBar;
     QDomDocument* _doc;
-
     REGISTER_LOGGER("openstudio.bec.ForwardTranslator");
   };
 
