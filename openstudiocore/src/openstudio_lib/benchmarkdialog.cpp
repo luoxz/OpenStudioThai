@@ -193,7 +193,7 @@ QString BenchmarkDialog::hashOfUsernamePassword(const QString &username, const Q
     QCryptographicHash hasher(QCryptographicHash::Md5);
     hasher.addData(string.toStdString().c_str());
     QByteArray res(hasher.result());
-    return res.toStdString().c_str();
+    return res;
 }
 
 bool BenchmarkDialog::isCorrectPass(const QString &pass)
