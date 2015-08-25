@@ -481,7 +481,7 @@ void ForwardTranslator::doComponentOfSection(openstudio::model::Surface& surface
                         model::SimpleGlazing glass = layers[0].cast<model::SimpleGlazing>();
 
                         QDomElement TransparentList = createTagWithText(transparentComponentList, "TransparentList");
-                        createTagWithText(TransparentList, "TransparentComponentListName", name.c_str());
+                        createTagWithText(TransparentList, "TransparentComponentListName", glass.name().get().c_str());
                         createTagWithText(TransparentList, "TransparentComponentListType", stype.c_str());
                         createTagWithText(TransparentList, "TransparentComponentListSHGC", QString::number(glass.solarHeatGainCoefficient()));
                         createTagWithText(TransparentList, "TransparentComponentListTransmittance", QString::number(glass.visibleTransmittance().get()));
@@ -540,7 +540,7 @@ void ForwardTranslator::doComponentOfSection(openstudio::model::Surface& surface
                             model::SimpleGlazing glass = layers[0].cast<model::SimpleGlazing>();
 
                             QDomElement TransparentList = createTagWithText(transparentComponentList, "TransparentList");
-                            createTagWithText(TransparentList, "TransparentComponentListName", name.c_str());
+                            createTagWithText(TransparentList, "TransparentComponentListName", glass.name().get().c_str());
                             createTagWithText(TransparentList, "TransparentComponentListType", stype.c_str());
                             createTagWithText(TransparentList, "TransparentComponentListSHGC", QString::number(glass.solarHeatGainCoefficient()));
                             createTagWithText(TransparentList, "TransparentComponentListTransmittance", QString::number(glass.visibleTransmittance().get()));
@@ -615,7 +615,23 @@ void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &
 
                     QDomElement SectionD = createTagWithText(SectionDetail,"SectionD");
                     createTagWithText(SectionD, "SectionDetailSectionListName", surface.name().get().c_str());
-                    createTagWithText(SectionD, "SectionDetailComponentName", surface.construction().get().name().get().c_str());
+
+                    QString componentName = surface.construction().get().name().get().c_str();
+                    boost::optional<model::ConstructionBase> scon = surface.construction();
+                    if (scon){
+                        boost::optional<model::Construction> construction = scon->optionalCast<model::Construction>();
+                        if (construction){
+                            std::vector<model::Material> layers = construction->layers();
+                            if (!layers.empty()){
+                                if (layers[0].optionalCast<model::SimpleGlazing>()){
+                                    model::SimpleGlazing glass = layers[0].cast<model::SimpleGlazing>();
+                                    componentName = glass.name().get().c_str();
+                                }
+                            }
+                        }
+                    }
+
+                    createTagWithText(SectionD, "SectionDetailComponentName", componentName);
                     createTagWithText(SectionD, "SectionDetailArea", QString::number(surface.netArea()));
                     createTagWithText(SectionD, "SectionDetailAreaUnit", "m^2");
 
@@ -636,7 +652,23 @@ void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &
                     for (openstudio::model::SubSurface& sub : subs){
                         QDomElement SectionD = createTagWithText(SectionDetail,"SectionD");
                         createTagWithText(SectionD, "SectionDetailSectionListName", surface.name().get().c_str());
-                        createTagWithText(SectionD, "SectionDetailComponentName", sub.construction().get().name().get().c_str());
+
+                        QString componentName = sub.construction().get().name().get().c_str();
+                        boost::optional<model::ConstructionBase> scon = sub.construction();
+                        if (scon){
+                            boost::optional<model::Construction> construction = scon->optionalCast<model::Construction>();
+                            if (construction){
+                                std::vector<model::Material> layers = construction->layers();
+                                if (!layers.empty()){
+                                    if (layers[0].optionalCast<model::SimpleGlazing>()){
+                                        model::SimpleGlazing glass = layers[0].cast<model::SimpleGlazing>();
+                                        componentName = glass.name().get().c_str();
+                                    }
+                                }
+                            }
+                        }
+
+                        createTagWithText(SectionD, "SectionDetailComponentName", componentName);
                         createTagWithText(SectionD, "SectionDetailArea", QString::number(sub.netArea()));
                         createTagWithText(SectionD, "SectionDetailAreaUnit", "m^2");
                     }

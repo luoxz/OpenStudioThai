@@ -211,35 +211,67 @@ void doTable(const QString &title, QDomNode& root, QFile& file, int level){
 
     while(!node.isNull()) {
         elm = node.toElement();
-        fe = elm.firstChildElement();
-        QDomElement fenx = elm.nextSibling().firstChildElement();
+//        if (elm.tagName() == "WallOTTVBySection"){
+//            if(elm.firstChildElement().isNull()){
+//                int ihn = fmin(level+1, 3);
+//                QString out = hn(ihn, insertSpaceInTag(elm.tagName()));
+//                file.write(out.toStdString().c_str());
+//                escapeTitle = elm.tagName();
+//            }
+//            else{
+//                int mylevel=0;
+//                QString table = doHorizontalTable(elm, elm.firstChild(), mylevel);
+//                file.write(table.toStdString().c_str());
+//                escapeTitle = title;
+//            }
+//		}
+//        else if (elm.tagName() == "OpaqueComponentWall"){
+//            if(elm.firstChildElement().isNull()){
+//                int ihn = fmin(level+1, 3);
+//                QString out = hn(ihn, insertSpaceInTag(elm.tagName()));
+//                file.write(out.toStdString().c_str());
+//                escapeTitle = elm.tagName();
+//            }
+//            else{
+//                int mylevel=0;
+//                QString table = doHorizontalTable(root, node, mylevel);
+//                file.write(table.toStdString().c_str());
+//                escapeTitle = title;
+//            }
+//		}
+//        else
+        { //AUTOMATIC GENERATE TABLE IN OTHER IS HARDCODE.
+            fe = elm.firstChildElement();
+            QDomElement fenx = elm.nextSibling().firstChildElement();
 
-        if(fe.isNull()){
-            if(level == 0){
-                QString table = Bold(insertSpaceInTag(elm.tagName()));
-                table +=    "<table border=\"1\" cellpadding=\"4\" cellspacing=\"0\">"
-                            "<tbody>"
-                            "<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>"
-                            "<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>"
-                            "</tbody>"
-                            "</table>";
-                file.write(table.toStdString().c_str());
-            }
-            else if(!fenx.isNull()){
-                QString table = Bold(insertSpaceInTag(elm.tagName()));
-                file.write(table.toStdString().c_str());
+            if(fe.isNull()){
+                if(level == 0){
+                    QString table = Bold(insertSpaceInTag(elm.tagName()));
+                    table +=    "<table border=\"1\" cellpadding=\"4\" cellspacing=\"0\">"
+                                "<tbody>"
+                                "<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>"
+                                "<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>"
+                                "</tbody>"
+                                "</table>";
+                    file.write(table.toStdString().c_str());
+                }
+                else if(fenx.tagName() != fe.tagName() && fe.tagName().isNull()){
+                    QString table = Bold(insertSpaceInTag(elm.tagName()));
+                    file.write(table.toStdString().c_str());
+                    escapeTitle = title;
+                }
+                else{
+                    int mylevel=0;
+                    QString table = doHorizontalTable(root, node, mylevel);
+                    //qDebug() << "mylevel:" << mylevel;
+                    file.write(table.toStdString().c_str());
+                    escapeTitle = title;
+                    return;
+                }
             }
             else{
-                int mylevel=0;
-                QString table = doHorizontalTable(root, node, mylevel);
-                //qDebug() << "mylevel:" << mylevel;
-                file.write(table.toStdString().c_str());
-                escapeTitle = title;
-                return;
+                doTable(elm.tagName(), elm, file, level+1);
             }
-        }
-        else{
-            doTable(elm.tagName(), elm, file, level+1);
         }
         if(!node.isNull())
             node = node.nextSibling();
@@ -271,7 +303,7 @@ static bool doBecReport(const QString &path, QString& outpath, QString &err){
     {
         file.write("<!DOCTYPE html>\n"
                    "<meta charset=\"UTF-8\">"
-                   "<html>\n"
+				   "<html>\n"
                    "<head>\n"
                    "<title>BEC Report</title>\n"
                    "</head>\n"
