@@ -212,6 +212,8 @@ void doTable(const QString &title, QDomNode& root, QFile& file, int level){
     while(!node.isNull()) {
         elm = node.toElement();
         fe = elm.firstChildElement();
+        QDomElement fenx = elm.nextSibling().firstChildElement();
+
         if(fe.isNull()){
             if(level == 0){
                 QString table = Bold(insertSpaceInTag(elm.tagName()));
@@ -222,7 +224,12 @@ void doTable(const QString &title, QDomNode& root, QFile& file, int level){
                             "</tbody>"
                             "</table>";
                 file.write(table.toStdString().c_str());
-            }else{
+            }
+            else if(!fenx.isNull()){
+                QString table = Bold(insertSpaceInTag(elm.tagName()));
+                file.write(table.toStdString().c_str());
+            }
+            else{
                 int mylevel=0;
                 QString table = doHorizontalTable(root, node, mylevel);
                 //qDebug() << "mylevel:" << mylevel;
@@ -547,7 +554,6 @@ bool RunView::doBecInput(const QString &path, const model::Model &model, QString
   std::vector<LogMessage> translatorErrors = trans.errors();
   //std::vector<LogMessage> translatorWarnings = trans.warnings();
 
-  QString log;
   for( std::vector<LogMessage>::iterator it = translatorErrors.begin();
         it < translatorErrors.end();
         ++it )
