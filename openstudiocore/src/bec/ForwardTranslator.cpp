@@ -218,6 +218,7 @@ bool ForwardTranslator::modelTobec(const openstudio::model::Model& model
         QFile file(toQString(path));
         if (file.open(QFile::WriteOnly)){
             QTextStream textStream(&file);
+            textStream.setCodec("UTF-8");
             textStream << doc->toString(2);
             file.close();
             return true;
@@ -266,7 +267,7 @@ QDomElement ForwardTranslator::createTagWithText(QDomElement &parent, const QStr
 {
     QDomElement elm = _doc->createElement(tag);
     if(!text.isEmpty())
-        elm.appendChild(_doc->createTextNode(text.toStdString().c_str()));
+        elm.appendChild(_doc->createTextNode(text.toUtf8()));
 
     parent.appendChild(elm);
     return elm;
@@ -274,16 +275,16 @@ QDomElement ForwardTranslator::createTagWithText(QDomElement &parent, const QStr
 
 void ForwardTranslator::doEnvelope(const model::Model &model, QDomElement &parent)
 {
-    QDomElement material = _doc->createElement("Material");
-    parent.appendChild(material);
+    QDomElement Envelope = createTagWithText(parent, "Envelope");
 
-    doMaterial(model, material);
+
+    doMaterial(model, Envelope);
 
     //TODO:IMPLEMENT ComponentOfSection
-    doComponentLoop(model, parent);
+    doComponentLoop(model, Envelope);
 
-    //TODO:IMPLEMENT SectionOfWall
-    doSectionOfWall(model, parent);
+    //TODO:IMPLEMENT SectionOfWall and Wall
+    doSectionOfWall(model, Envelope);
 
     //TODO:IMPLEMENT Wall
     //doWall(model, parent);
@@ -291,9 +292,10 @@ void ForwardTranslator::doEnvelope(const model::Model &model, QDomElement &paren
 
 void ForwardTranslator::doMaterial(const model::Model &model, QDomElement &parent)
 {
-    QDomElement OpaqueMaterial = createTagWithText(parent, "OpaqueMaterial");
-    QDomElement TransparentMaterial = createTagWithText(parent, "TransparentMaterial");
-    QDomElement AirGapMaterial = createTagWithText(parent, "AirGapMaterial");
+    QDomElement Material = createTagWithText(parent, "Material");
+    QDomElement OpaqueMaterial = createTagWithText(Material, "OpaqueMaterial");
+    QDomElement TransparentMaterial = createTagWithText(Material, "TransparentMaterial");
+    QDomElement AirGapMaterial = createTagWithText(Material, "AirGapMaterial");
 
     QDomElement UNKNOW_MATERIAL;
 
@@ -346,7 +348,7 @@ void ForwardTranslator::doMaterial(const model::Model &model, QDomElement &paren
         }
         else{
             if(UNKNOW_MATERIAL.isNull()){
-                UNKNOW_MATERIAL = createTagWithText(parent, "UNKNOW_MATERIALS");
+                UNKNOW_MATERIAL = createTagWithText(Material, "UNKNOW_MATERIALS");
             }
             QDomElement UNKNOW = createTagWithText(UNKNOW_MATERIAL, "UNKNOW");
             createTagWithText(UNKNOW, "NAME", material.name().get().c_str());
@@ -642,11 +644,6 @@ void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &
             }
         }
     }
-}
-
-void ForwardTranslator::doWall(const model::Model &model, QDomElement &parent)
-{
-    QDomElement wall = _doc->createElement("Wall");
 }
 
 void ForwardTranslator::doModelLoop(const model::Model &model, QDomElement &becInput)
