@@ -1199,7 +1199,7 @@ void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElemen
                     //createTagWithText(buildingZoneWall, "BuildingZoneWallWallName", surface.surfaceType().c_str());
                     createTagWithText(buildingZoneWall, "BuildingZoneWallWallName", surface.name().get().c_str());
                     //TODO:LINK TO MATERIAL.
-                    createTagWithText(buildingZoneWall, "BuildingZoneWallSectionName", surface.construction().get().name().get().c_str());
+                    createTagWithText(buildingZoneWall, "BuildingZoneWallSectionName", surface.name().get().c_str());
 
                     openstudio::model::SubSurfaceVector subs = surface.subSurfaces();
 
