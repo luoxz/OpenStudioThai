@@ -325,7 +325,8 @@ void ForwardTranslator::doMaterial(const model::Model &model, QDomElement &paren
             model::SimpleGlazing glass = material.cast<model::SimpleGlazing>();
             QDomElement TranMat = createTagWithText(TransparentMaterial, "TranMat");
             createTagWithText(TranMat, "TransparentMaterialName", glass.name().get().c_str());
-            createTagWithText(TranMat, "TransparentMaterialThickness", QString::number(glass.thickness()));
+            double thickness = qMax(0.012, glass.thickness());
+            createTagWithText(TranMat, "TransparentMaterialThickness", QString::number(thickness));
             createTagWithText(TranMat, "TransparentMaterialThicknessUnit", "m");
             createTagWithText(TranMat, "TransparentMaterialVisibleRayReflectance", "");//WARNING: NOTING
             createTagWithText(TranMat, "TransparentMaterialVisibleRayTransmittance", QString::number(glass.visibleTransmittance().get()));
@@ -605,12 +606,19 @@ void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &
         for (openstudio::model::Space& space : spaces){
 
             openstudio::model::SurfaceVector surfaces = space.surfaces();
-            for (openstudio::model::Surface& surface : surfaces){
-                if(surface.surfaceType() == "Wall"){
+            for (model::Surface& surface : surfaces){
+                if(surface.surfaceType() == "Wall" || surface.surfaceType() == "RoofCeiling"){
+
+                    QString surfaceType;
+                    if(surface.surfaceType() == "RoofCeiling"){
+                        surfaceType = "Roof";
+                    }
+                    else
+                        surfaceType = "Wall";
 
                     QDomElement SectionL = createTagWithText(SectionList,"SectionL");
                     createTagWithText(SectionL, "SectionListName", surface.name().get().c_str());
-                    createTagWithText(SectionL, "SectionListType", surface.surfaceType().c_str());
+                    createTagWithText(SectionL, "SectionListType", surfaceType);
                     createTagWithText(SectionL, "SectionListDescription", "???");
 
                     QDomElement SectionD = createTagWithText(SectionDetail,"SectionD");
@@ -637,7 +645,7 @@ void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &
 
                     QDomElement WallL = createTagWithText(WallList,"WallL");
                     createTagWithText(WallL, "WallListName", surface.name().get().c_str());
-                    createTagWithText(WallL, "WallListType", "Wall");
+                    createTagWithText(WallL, "WallListType", surfaceType);
                     createTagWithText(WallL, "WallListPlanAzimuth", QString::number(rtod(surface.azimuth())));
                     createTagWithText(WallL, "WallListInclination", QString::number(rtod(surface.tilt())));
                     createTagWithText(WallL, "WallListDescription", "???");
@@ -672,6 +680,11 @@ void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &
                         createTagWithText(SectionD, "SectionDetailArea", QString::number(sub.netArea()));
                         createTagWithText(SectionD, "SectionDetailAreaUnit", "m^2");
                     }
+                }
+                else{
+                    QDomElement SectionUNKNOW = createTagWithText(SectionList,"SectionUNKNOW");
+                    createTagWithText(SectionUNKNOW,"SectionUNKNOW_TYPE", surface.surfaceType().c_str());
+                    createTagWithText(SectionUNKNOW,"SectionUNKNOW_NAME", surface.name().get().c_str());
                 }
             }
         }
@@ -1144,7 +1157,7 @@ void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElemen
     for (const openstudio::model::BuildingStory& buildingStory : stories) {
 
         std::vector<openstudio::model::Space> spaces = buildingStory.spaces();
-        for (openstudio::model::Space& space : spaces){
+        for (model::Space& space : spaces){
 
             QDomElement buildingZoneL = _doc->createElement("BuildingZoneL");
             buildingZoneList.appendChild(buildingZoneL);
@@ -1152,6 +1165,20 @@ void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElemen
             //createTagWithText(buildingZoneL, "BuildingZoneListTYPE", surface.surfaceType().c_str());
             //createTagWithText(buildingZoneL, "BuildingZoneListIsGround", QString::number(surface.isGroundSurface()));
             std::string zonelistName = space.name().get();
+
+            std::vector<model::Lights> lights = space.spaceType().get().lights();
+            for (const model::Lights& light : lights){
+                if(light.lightingLevel()){
+                    QDomElement BuildingZoneLighting = createTagWithText(BuildingZoneLightingEQ, "BuildingZoneLighting");
+                    createTagWithText(BuildingZoneLighting, "BuildingZoneLightingListName"
+                                      , zonelistName.c_str());
+                    createTagWithText(BuildingZoneLighting, "BuildingZoneLightingName"
+                                      , light.lightsDefinition().name().get().c_str());
+                    createTagWithText(BuildingZoneLighting, "BuildingZoneLightingQuantity"
+                                      , QString::number(light.quantity()));
+                    createTagWithText(BuildingZoneLighting, "BuildingZoneLightingDaylighted", "0");
+                }
+            }
 
             if(boost::optional<model::ThermalZone> thermal = space.thermalZone()){
 
@@ -1224,7 +1251,7 @@ void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElemen
                 if(surface.surfaceType() == "Floor"){
                     floorArea+= surface.netArea();
                 }
-                else if(surface.surfaceType() == "Wall"){
+                else if(surface.surfaceType() == "Wall" || surface.surfaceType() == "RoofCeiling"){
                     //buildingZoneExteriorWall
                     QDomElement buildingZoneWall = createTagWithText(buildingZoneExteriorWall, "BuildingZoneWall");
                     createTagWithText(buildingZoneWall, "BuildingZoneWallListName", zonelistName.c_str());
