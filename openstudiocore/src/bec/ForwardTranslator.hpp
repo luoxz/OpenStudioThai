@@ -99,7 +99,6 @@ namespace bec {
             void doTransparentComponentList(const model::Model &model, QDomElement &parent);
 
         void doSectionOfWall(const openstudio::model::Model& model, QDomElement& Envelope);
-        void doWall(const openstudio::model::Model& model, QDomElement& parent);
 
     void doModelLoop(const openstudio::model::Model& model, QDomElement& becInput);
 
@@ -147,7 +146,6 @@ namespace bec {
     StringStreamLogSink m_logSink;
     ProgressBar* m_progressBar;
     QDomDocument* _doc;
-
     REGISTER_LOGGER("openstudio.bec.ForwardTranslator");
   };
 

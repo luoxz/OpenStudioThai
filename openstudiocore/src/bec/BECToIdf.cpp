@@ -31,6 +31,7 @@
 
 #include <string>
 #include <iostream>
+#include <QApplication>
 
 int BECToIdf(int argc, char *argv[]){
     std::string inputPathString;
@@ -110,19 +111,24 @@ int OSMToBEC(int argc, char *argv[]){
         openstudio::osversion::VersionTranslator versionTranslator;
         boost::optional<openstudio::model::Model> model = openstudio::modelFromOSM(inputPath, versionTranslator);
         if( model ){
-            openstudio::path becPath = inputPath.replace_extension(openstudio::toPath(".bec.xml").string());
+            openstudio::path becPath = inputPath.replace_extension(openstudio::toPath(".100.bec.xml").string());
             openstudio::bec::ForwardTranslator becForwardTranslator;
             becForwardTranslator.modelTobec(*model, becPath);
+			std::cout << "OUTPUT:" << becPath.string() << std::endl;
             return 0;
         }else{
-            std::cout << "Failed to load model";
+			std::cout << "Failed to load model" << std::endl;
             return 1;
         }
     }
+	else{
+		std::cout << "NO INPUT PATH." << std::endl;
+	}
     return 1;
 }
 
 int main(int argc, char *argv[])
 {
+	QApplication app(argc, argv);
     return OSMToBEC(argc, argv);
 }
