@@ -91,6 +91,28 @@ enum PVReportMode { PVReportMode_OPENSTUDIO, PVReportMode_BEC, PVReportMode_ENER
 #include <QDesktopServices>
 #include <QInputDialog>
 
+static QString doubleToMoney(double val){
+    QString sValue = QString("%L1").arg(val ,12,'d',2);
+    while(sValue.endsWith('0'))
+        sValue.remove(sValue.length()-1, 1);
+
+    if(sValue.endsWith('.'))
+        sValue.append('0');
+
+    return sValue;
+}
+
+static QString stringToMoney(const QString& val){
+    bool isOK;
+    double dval = val.toDouble(&isOK);
+    if(isOK){
+        return doubleToMoney(dval);
+    }
+    else{
+        return val;
+    }
+}
+
 QString insertSpaceInTag(const QString& tagName){
     QChar ch0 = 'A';
     QString out;
@@ -143,7 +165,7 @@ QString doHorizontalTable(QDomNode& root, QDomNode &node, int& level){
     while(!node.isNull()) {
         QDomElement e = node.toElement();
         row1 += QString("<td align=\"left\">%1</td>").arg(insertSpaceInTag(e.tagName()));
-        row2 += QString("<td align=\"right\">%1</td>").arg(e.text());
+        row2 += QString("<td align=\"right\">%1</td>").arg(stringToMoney(e.text()));
         node = node.nextSibling();
     }
     row1 += "</tr>\n";
@@ -165,7 +187,7 @@ QString doHorizontalTable(QDomNode& root, QDomNode &node, int& level){
             while(!node.isNull()) {
                 QDomElement e = node.toElement();
                 if(!e.text().isEmpty()){
-                    rown += QString("<td align=\"right\">%1</td>").arg(e.text());
+                    rown += QString("<td align=\"right\">%1</td>").arg(stringToMoney(e.text()));
                 }
                 node = node.nextSibling();
             }
@@ -211,35 +233,6 @@ void doTable(const QString &title, QDomNode& root, QFile& file, int level){
 
     while(!node.isNull()) {
         elm = node.toElement();
-//        if (elm.tagName() == "WallOTTVBySection"){
-//            if(elm.firstChildElement().isNull()){
-//                int ihn = fmin(level+1, 3);
-//                QString out = hn(ihn, insertSpaceInTag(elm.tagName()));
-//                file.write(out.toStdString().c_str());
-//                escapeTitle = elm.tagName();
-//            }
-//            else{
-//                int mylevel=0;
-//                QString table = doHorizontalTable(elm, elm.firstChild(), mylevel);
-//                file.write(table.toStdString().c_str());
-//                escapeTitle = title;
-//            }
-//		}
-//        else if (elm.tagName() == "OpaqueComponentWall"){
-//            if(elm.firstChildElement().isNull()){
-//                int ihn = fmin(level+1, 3);
-//                QString out = hn(ihn, insertSpaceInTag(elm.tagName()));
-//                file.write(out.toStdString().c_str());
-//                escapeTitle = elm.tagName();
-//            }
-//            else{
-//                int mylevel=0;
-//                QString table = doHorizontalTable(root, node, mylevel);
-//                file.write(table.toStdString().c_str());
-//                escapeTitle = title;
-//            }
-//		}
-//        else
         { //AUTOMATIC GENERATE TABLE IN OTHER IS HARDCODE.
             fe = elm.firstChildElement();
             QDomElement fenx = elm.nextSibling().firstChildElement();
@@ -263,7 +256,6 @@ void doTable(const QString &title, QDomNode& root, QFile& file, int level){
                 else{
                     int mylevel=0;
                     QString table = doHorizontalTable(root, node, mylevel);
-                    //qDebug() << "mylevel:" << mylevel;
                     file.write(table.toStdString().c_str());
                     escapeTitle = title;
                     return;
@@ -612,17 +604,6 @@ double RunView::getPV(openstudio::model::Model* model)
         res += pv.calculatePV();
     }
     return res;
-}
-
-static QString doubleToMoney(double val){
-    QString sValue = QString("%L1").arg(val ,12,'d',2);
-    while(sValue.endsWith('0'))
-        sValue.remove(sValue.length()-1, 1);
-
-    if(sValue.endsWith('.'))
-        sValue.append('0');
-
-    return sValue;
 }
 
 static double sumArrayStringOfDouble(const QString& arrayStr, int begin){
