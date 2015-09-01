@@ -138,7 +138,10 @@ BenchmarkDialog::BenchmarkDialog(const QString &defaultConfigPath, QWidget *pare
     qDebug() << "organizationName:" << organizationName;
     qDebug() << "applicationName:" << applicationName;
 
-    QSettings settingsReg(organizationName, applicationName);
+    QSettings settingsReg(QSettings::SystemScope
+                          , organizationName
+                          , applicationName);
+
     QSettings settingsINI( defaultConfigPath, QSettings::IniFormat );
     QSettings *ptSetting = NULL;
     bool unknowRegister = false;
@@ -200,7 +203,11 @@ bool BenchmarkDialog::isCorrectPass(const QString &pass)
 {
     QString organizationName = QCoreApplication::organizationName();
     QString applicationName = QCoreApplication::applicationName();
-    QSettings settingsReg(organizationName, applicationName);
+
+    QSettings settingsReg(QSettings::SystemScope
+                          , organizationName
+                          , applicationName);
+
     QString hs = settingsReg.value(BASEKEY).toString();
     QString userInput = hashOfUsernamePassword("admin", pass);
     return userInput==hs;
@@ -238,7 +245,8 @@ void BenchmarkDialog::eventImport()
     if(!fileName.isEmpty()){
         QSettings settingsINI( fileName, QSettings::IniFormat );
 
-        QSettings settingsReg(QCoreApplication::organizationName()
+        QSettings settingsReg(QSettings::SystemScope
+                              , QCoreApplication::organizationName()
                               , QCoreApplication::applicationName());
 
         for (int idx = 0; idx < values.size(); ++idx) {
@@ -284,7 +292,9 @@ void BenchmarkDialog::eventAccept()
 
     QString organizationName = QCoreApplication::organizationName();
     QString applicationName = QCoreApplication::applicationName();
-    QSettings settingsReg(organizationName, applicationName);
+    QSettings settingsReg(QSettings::SystemScope
+                          , organizationName
+                          , applicationName);
 
     QList<BenchmarkValue*>::iterator it = values.begin();
     while (it!=values.end()) {
