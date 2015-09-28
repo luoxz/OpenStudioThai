@@ -64,7 +64,7 @@ PhotovoltaicInspectorView::PhotovoltaicInspectorView(bool isIP, const openstudio
   connect(this, &PhotovoltaicInspectorView::toggleUnitsClicked, m_surfaceAreaEdit, &OSQuantityEdit::onUnitSystemChange);
   mainGridLayout->addWidget(m_surfaceAreaEdit, 3, 0);
 
-  label = new QLabel("PV type: ");
+  label = new QLabel("PV Type: ");
   label->setObjectName("H2");
   mainGridLayout->addWidget(label, 2, 1);
 
@@ -83,7 +83,7 @@ PhotovoltaicInspectorView::PhotovoltaicInspectorView(bool isIP, const openstudio
   connect(this, &PhotovoltaicInspectorView::toggleUnitsClicked, m_systemEfficiencyEdit, &OSQuantityEdit::onUnitSystemChange);
   mainGridLayout->addWidget(m_systemEfficiencyEdit, 3, 2);
 
-  label = new QLabel("Faction Acive: ");
+  label = new QLabel("Active Cell Area Faction: ");
   label->setObjectName("H2");
   mainGridLayout->addWidget(label, 4, 0);
 
@@ -91,7 +91,7 @@ PhotovoltaicInspectorView::PhotovoltaicInspectorView(bool isIP, const openstudio
   connect(this, &PhotovoltaicInspectorView::toggleUnitsClicked, m_factionActiveEdit, &OSQuantityEdit::onUnitSystemChange);
   mainGridLayout->addWidget(m_factionActiveEdit, 5, 0);
 
-  label = new QLabel("Invert coefficiency: ");
+  label = new QLabel("Inverter Efficiency: ");
   label->setObjectName("H2");
   mainGridLayout->addWidget(label, 6, 0);
 
@@ -99,7 +99,7 @@ PhotovoltaicInspectorView::PhotovoltaicInspectorView(bool isIP, const openstudio
   connect(this, &PhotovoltaicInspectorView::toggleUnitsClicked, m_inverterEfficiencyEdit, &OSQuantityEdit::onUnitSystemChange);
   mainGridLayout->addWidget(m_inverterEfficiencyEdit, 7, 0);
 
-  label = new QLabel("Azimuth angle: ");
+  label = new QLabel("Azimuth Angle: ");
   label->setObjectName("H2");
   mainGridLayout->addWidget(label, 8, 0);
 
@@ -107,7 +107,7 @@ PhotovoltaicInspectorView::PhotovoltaicInspectorView(bool isIP, const openstudio
   connect(this, &PhotovoltaicInspectorView::toggleUnitsClicked, m_azimuthAngleEdit, &OSQuantityEdit::onUnitSystemChange);
   mainGridLayout->addWidget(m_azimuthAngleEdit, 9, 0);
 
-  label = new QLabel("Inclination angle: ");
+  label = new QLabel("Inclination Angle: ");
   label->setObjectName("H2");
   mainGridLayout->addWidget(label, 8, 1);
 
@@ -115,7 +115,7 @@ PhotovoltaicInspectorView::PhotovoltaicInspectorView(bool isIP, const openstudio
   connect(this, &PhotovoltaicInspectorView::toggleUnitsClicked, m_inclinationAngleEdit, &OSQuantityEdit::onUnitSystemChange);
   mainGridLayout->addWidget(m_inclinationAngleEdit, 9, 1);
 
-  label = new QLabel("GT : ");
+  label = new QLabel("Solar Irradiation : ");
   label->setObjectName("H2");
   mainGridLayout->addWidget(label, 10, 0);
 

@@ -65,8 +65,8 @@ RenewableEnergyView::RenewableEnergyView(bool isIP, const openstudio::model::Mod
 std::vector<std::pair<IddObjectType, std::string> > RenewableEnergyView::modelObjectTypesAndNames()
 {
   std::vector<std::pair<IddObjectType, std::string> > result;
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_Exterior_PV_Thermal, "Photovoltaic Thermal Definitions"));
-  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_Exterior_PV, "Photovoltaic Definitions"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_Exterior_PV_Thermal, "Solar Thermal Definitions"));
+  result.push_back(std::make_pair<IddObjectType, std::string>(IddObjectType::OS_Exterior_PV, "Photovoltaic Rooftop Definitions"));
 
   return result;
 }

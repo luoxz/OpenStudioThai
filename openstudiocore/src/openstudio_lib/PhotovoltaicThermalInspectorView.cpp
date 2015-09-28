@@ -72,7 +72,7 @@ PhotovoltaicThermalInspectorView::PhotovoltaicThermalInspectorView(bool isIP, co
   connect(this, &PhotovoltaicThermalInspectorView::toggleUnitsClicked, m_systemEfficiencyEdit, &OSQuantityEdit::onUnitSystemChange);
   mainGridLayout->addWidget(m_systemEfficiencyEdit, 3, 1);
 
-  label = new QLabel("Faction Acive: ");
+  label = new QLabel("Collector Active Area Faction: ");
   label->setObjectName("H2");
   mainGridLayout->addWidget(label, 2, 2);
 
@@ -80,7 +80,7 @@ PhotovoltaicThermalInspectorView::PhotovoltaicThermalInspectorView(bool isIP, co
   connect(this, &PhotovoltaicThermalInspectorView::toggleUnitsClicked, m_factionActiveEdit, &OSQuantityEdit::onUnitSystemChange);
   mainGridLayout->addWidget(m_factionActiveEdit, 3, 2);
 
-  label = new QLabel("Collector coefficiency: ");
+  label = new QLabel("Collector Efficiency: ");
   label->setObjectName("H2");
   mainGridLayout->addWidget(label, 4, 0);
 
@@ -88,7 +88,7 @@ PhotovoltaicThermalInspectorView::PhotovoltaicThermalInspectorView(bool isIP, co
   connect(this, &PhotovoltaicThermalInspectorView::toggleUnitsClicked, m_collectorEfficiencyEdit, &OSQuantityEdit::onUnitSystemChange);
   mainGridLayout->addWidget(m_collectorEfficiencyEdit, 5, 0);
 
-  label = new QLabel("Boiler coefficiency: ");
+  label = new QLabel("Boiler Efficiency: ");
   label->setObjectName("H2");
   mainGridLayout->addWidget(label, 4, 1);
 
@@ -96,7 +96,7 @@ PhotovoltaicThermalInspectorView::PhotovoltaicThermalInspectorView(bool isIP, co
   connect(this, &PhotovoltaicThermalInspectorView::toggleUnitsClicked, m_boilerEfficiencyEdit, &OSQuantityEdit::onUnitSystemChange);
   mainGridLayout->addWidget(m_boilerEfficiencyEdit, 5, 1);
 
-  label = new QLabel("Azimuth angle: ");
+  label = new QLabel("Azimuth Engle: ");
   label->setObjectName("H2");
   mainGridLayout->addWidget(label, 6, 0);
 
@@ -104,7 +104,7 @@ PhotovoltaicThermalInspectorView::PhotovoltaicThermalInspectorView(bool isIP, co
   connect(this, &PhotovoltaicThermalInspectorView::toggleUnitsClicked, m_azimuthAngleEdit, &OSQuantityEdit::onUnitSystemChange);
   mainGridLayout->addWidget(m_azimuthAngleEdit, 7, 0);
 
-  label = new QLabel("Inclination angle: ");
+  label = new QLabel("Inclination Angle: ");
   label->setObjectName("H2");
   mainGridLayout->addWidget(label, 6, 1);
 
@@ -112,7 +112,7 @@ PhotovoltaicThermalInspectorView::PhotovoltaicThermalInspectorView(bool isIP, co
   connect(this, &PhotovoltaicThermalInspectorView::toggleUnitsClicked, m_inclinationAngleEdit, &OSQuantityEdit::onUnitSystemChange);
   mainGridLayout->addWidget(m_inclinationAngleEdit, 7, 1);
 
-  label = new QLabel("GT : ");
+  label = new QLabel("Solar Irradiation : ");
   label->setObjectName("H2");
   mainGridLayout->addWidget(label, 8, 0);
 
