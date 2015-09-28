@@ -218,7 +218,10 @@ void BenchmarkDialog::setNewPassword(const QString &pass)
     QString organizationName = QCoreApplication::organizationName();
     QString applicationName = QCoreApplication::applicationName();
 
-    QSettings settingsReg(organizationName, applicationName);
+    QSettings settingsReg(QSettings::SystemScope
+                          , organizationName
+                          , applicationName);
+
     settingsReg.setValue(BASEKEY, hashOfUsernamePassword(ADMIN, pass));
 }
 
