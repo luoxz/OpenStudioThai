@@ -268,6 +268,11 @@ QString doHorizontalTable(QDomNode& root, QDomNode &node, int& level){
         if(re.tagName() == enext.tagName()){
             level++;
             node = tmproot.firstChild();
+
+            //If not child disable show it.
+            if(node.isNull())
+                return QString();
+
             QString rown="<tr>";
             while(!node.isNull()) {
                 QDomElement e = node.toElement();
@@ -291,6 +296,15 @@ QString doHorizontalTable(QDomNode& root, QDomNode &node, int& level){
 }
 
 QString escapeTitle;
+
+static QMap<QString, int> getTableNamesValues() {
+    QMap<QString, int>map;
+    map.insert("LightingSystemFloor", 1);
+    map.insert("LightingSystemZone", 1);
+    return map;
+}
+
+static const QMap<QString, int> tableNames = getTableNamesValues();
 
 void doTable(const QString &title, QDomNode& root, QFile& file, int level){
 
@@ -320,7 +334,15 @@ void doTable(const QString &title, QDomNode& root, QFile& file, int level){
         elm = node.toElement();
         fe = elm.firstChildElement();
         if(fe.isNull()){
-            if(level == 0){
+            if(tableNames.contains(elm.tagName())){
+                int mylevel=0;
+                QString table = doHorizontalTable(root, node, mylevel);
+                //qDebug() << "mylevel:" << mylevel;
+                file.write(table.toStdString().c_str());
+                escapeTitle = title;
+                return;
+            }
+            else if(level == 0){
                 QString table = Bold(insertSpaceInTag(elm.tagName()));
                 table +=    "<table border=\"1\" cellpadding=\"4\" cellspacing=\"0\">"
                             "<tbody>"

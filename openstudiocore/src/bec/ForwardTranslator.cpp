@@ -186,28 +186,30 @@ ForwardTranslator::~ForwardTranslator()
 
 bool ForwardTranslator::modelTobec(const openstudio::model::Model& model
                                    , const openstudio::path& path
-                                   , ProgressBar* progressBar)
+                                   , ProgressBar* progressBar
+                                   , std::string *bvName)
 {
     QInputDialog inputBuildingType;
     inputBuildingType.setOption(QInputDialog::UseListViewForComboBoxItems);
     inputBuildingType.setWindowTitle("What is building type.");
     inputBuildingType.setLabelText("Selection:");
     QStringList types;
-    types <<"Office building"
-         <<"Department store"
+        types <<"Office building"
+        <<"Department store"
+        <<"Community building"
+        <<"Hotel"
+        <<"Condominium"
+        <<"Medical Center"
         <<"Educational Institution"
-       <<"Hotel"
-      <<"Condominium"
-     <<"Medical Center"
-    <<"Theater"
-    <<"Community building"
-    <<"Service Facility";
+        <<"Service Facility"
+        <<"Theater";
 
     inputBuildingType.setComboBoxItems(types);
 
     int ret = inputBuildingType.exec();
 
     if (ret == QDialog::Accepted){
+        (*bvName) = inputBuildingType.textValue().toStdString();
         m_progressBar = progressBar;
         m_logSink.setThreadId(QThread::currentThread());
         m_logSink.resetStringStream();

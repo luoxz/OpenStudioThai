@@ -139,16 +139,13 @@ namespace openstudio {
       void updateRunManagerStats(openstudio::runmanager::RunManager t_runManager);
       bool doBecInput(const QString &path, const model::Model& model, QString& outpath, QString &err);
       double getPV(model::Model *model);
-      void addPVToFile(const QString& fileName
+      void addPVAndBenchmarkToFile(const QString& fileName
                        , int mode
                        );
       void updatePVInfile();
 
       void callRealBEC(const QString& outpath);
 
-      double lastPV;
-      QString bvName;
-      double bvVal;
       //openstudio::path loadRmdbPath() const;
       //openstudio::path simulationDir() const;
       //openstudio::path modelPath() const;
