@@ -70,6 +70,37 @@ double BenchmarkDialog::getValueByName(const QString &name)
     return 0.0;
 }
 
+void BenchmarkDialog::resetToDefault()
+{
+    qDebug() << __FUNCTION__;
+    QMessageBox msgBox;
+    msgBox.setText("Reset to default value.");
+    msgBox.setInformativeText("Do you want to reset to default?");
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Cancel);
+    int ret = msgBox.exec();
+
+    if(ret == QMessageBox::Yes){
+        QString organizationName = QCoreApplication::organizationName();
+        QString applicationName = QCoreApplication::applicationName();
+        QSettings settingsReg(QSettings::SystemScope
+                              , organizationName
+                              , applicationName);
+
+        for (int idx = 0; idx < values.size(); ++idx) {
+            BenchmarkValue* bv = values.at(idx);
+            bv->deleteLater();
+            settingsReg.remove(bv->key());
+        }
+
+        values.clear();
+
+        QSettings settingsINI( _defaultConfigPath, QSettings::IniFormat );
+        setNewPassword(ADMIN);
+        setupBenchmarkValues(settingsINI, &settingsReg);
+    }
+}
+
 BenchmarkDialog::BenchmarkDialog(const QString &defaultConfigPath, QWidget *parent)
     : QDialog(parent, Qt::Dialog)
 {
@@ -89,6 +120,13 @@ BenchmarkDialog::BenchmarkDialog(const QString &defaultConfigPath, QWidget *pare
     buttonsLayout->setContentsMargins(0, 0, 0, 0);
     horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
     buttonsLayout->addItem(horizontalSpacer);
+
+    btReset = new QPushButton(widget);
+    btReset->setObjectName(QStringLiteral("btReset"));
+    btReset->setText("Reset");
+    btReset->hide();
+    connect(btReset, SIGNAL(clicked()), this, SLOT(eventReset()));
+    buttonsLayout->addWidget(btReset);
 
     btExport = new QPushButton(widget);
     btExport->setObjectName(QStringLiteral("btExport"));
@@ -141,8 +179,8 @@ BenchmarkDialog::BenchmarkDialog(const QString &defaultConfigPath, QWidget *pare
     QSettings settingsReg(QSettings::SystemScope
                           , organizationName
                           , applicationName);
-
-    QSettings settingsINI( defaultConfigPath, QSettings::IniFormat );
+    _defaultConfigPath = defaultConfigPath;
+    QSettings settingsINI( _defaultConfigPath, QSettings::IniFormat );
     QSettings *ptSetting = NULL;
     bool unknowRegister = false;
     if(settingsReg.contains(QString(BASEKEY))){
@@ -277,6 +315,7 @@ void BenchmarkDialog::eventEdit()
         setEditable(true);
         btAccept->show();
         btChangPassword->show();
+        btReset->show();
         btExport->show();
         btImport->show();
         btEdit->hide();
@@ -313,6 +352,7 @@ void BenchmarkDialog::eventAccept()
     btChangPassword->hide();
     btExport->hide();
     btImport->hide();
+    btReset->hide();
 }
 
 void BenchmarkDialog::eventClose()
@@ -348,8 +388,12 @@ void BenchmarkDialog::eventChangePassword()
                 }
             }
         }
-
     }
+}
+
+void BenchmarkDialog::eventReset()
+{
+    resetToDefault();
 }
 
 BenchmarkValue::BenchmarkValue(const QString &key, const QString& name, double value, QWidget *parent)

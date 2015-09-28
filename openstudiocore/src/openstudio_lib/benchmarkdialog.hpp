@@ -50,6 +50,7 @@ public:
     size_t valuesCount() const;
     BenchmarkValue* valueAt(size_t idx) const;
     double getValueByName(const QString &name);
+    void resetToDefault();
 signals:
 
 public slots:
@@ -59,8 +60,10 @@ public slots:
     void eventAccept();
     void eventClose();
     void eventChangePassword();
+    void eventReset();
 private:
     QList<BenchmarkValue*> values;
+    QPushButton *btReset;
     QPushButton *btExport;
     QPushButton *btImport;
     QPushButton *btChangPassword;
@@ -68,6 +71,7 @@ private:
     QPushButton *btAccept;
     QPushButton *btClose;
     QVBoxLayout *vlayout;
+    QString _defaultConfigPath;
 };
 
 #endif // BENCHMARKDIALOG_H

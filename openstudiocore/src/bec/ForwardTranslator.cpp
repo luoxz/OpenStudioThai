@@ -193,15 +193,15 @@ bool ForwardTranslator::modelTobec(const openstudio::model::Model& model
     inputBuildingType.setWindowTitle("What is building type.");
     inputBuildingType.setLabelText("Selection:");
     QStringList types;
-    types <<"Office building"
-         <<"Department store"
+        types <<"Office building"
+        <<"Department store"
+        <<"Community building"
+        <<"Hotel"
+        <<"Condominium"
+        <<"Medical Center"
         <<"Educational Institution"
-       <<"Hotel"
-      <<"Condominium"
-     <<"Medical Center"
-    <<"Theater"
-    <<"Community building"
-    <<"Service Facility";
+        <<"Service Facility"
+        <<"Theater";
 
     inputBuildingType.setComboBoxItems(types);
 
