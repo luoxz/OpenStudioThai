@@ -183,7 +183,7 @@ QString doHorizontalTable(QDomNode& root, QDomNode &node, int& level){
                 WholeNetEnergyConsumptionPerArea = 0;
             }
         }
-        row1 += QString("<td align=\"left\" valign=\"top\">%1</td>").arg(insertSpaceInTag(e.tagName()));
+        row1 += QString("<td align=\"right\" valign=\"top\"><b>%1</b></td>").arg(insertSpaceInTag(e.tagName()));
         row2 += QString("<td align=\"right\" valign=\"top\">%1</td>").arg(stringToMoney(e.text()));
         node = node.nextSibling();
     }
