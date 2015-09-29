@@ -178,12 +178,12 @@ QString doHorizontalTable(QDomNode& root, QDomNode &node, int& level){
         QDomElement e = node.toElement();
         if(e.tagName() == "WholeNetEnergyConsumptionPerArea"){
             bool isOK;
-            WholeNetEnergyConsumptionPerArea = e.tagName().toDouble(&isOK);
+            WholeNetEnergyConsumptionPerArea = e.text().toDouble(&isOK);
             if(!isOK){
                 WholeNetEnergyConsumptionPerArea = 0;
             }
         }
-        row1 += QString("<td align=\"left\" valign=\"top\">%1</td>").arg(insertSpaceInTag(e.tagName()));
+        row1 += QString("<td align=\"right\" valign=\"top\"><b>%1</b></td>").arg(insertSpaceInTag(e.tagName()));
         row2 += QString("<td align=\"right\" valign=\"top\">%1</td>").arg(stringToMoney(e.text()));
         node = node.nextSibling();
     }
