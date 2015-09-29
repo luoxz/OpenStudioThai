@@ -178,7 +178,7 @@ QString doHorizontalTable(QDomNode& root, QDomNode &node, int& level){
         QDomElement e = node.toElement();
         if(e.tagName() == "WholeNetEnergyConsumptionPerArea"){
             bool isOK;
-            WholeNetEnergyConsumptionPerArea = e.tagName().toDouble(&isOK);
+            WholeNetEnergyConsumptionPerArea = e.text().toDouble(&isOK);
             if(!isOK){
                 WholeNetEnergyConsumptionPerArea = 0;
             }
