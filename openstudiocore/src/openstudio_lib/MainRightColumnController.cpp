@@ -608,8 +608,8 @@ void MainRightColumnController::configureForRenewableEnergySubTab(int subTabID)
 	myModelList->setItemsType(OSItemType::LibraryItem);
 	myModelList->setShowFilterLayout(true);
 
-	myModelList->addModelObjectType(IddObjectType::OS_Exterior_PV, "Photovoltaic");
-	myModelList->addModelObjectType(IddObjectType::OS_Exterior_PV_Thermal, "PhotovoltaicThermal");
+	myModelList->addModelObjectType(IddObjectType::OS_Exterior_PV, "Photovoltaic Rooftop");
+	myModelList->addModelObjectType(IddObjectType::OS_Exterior_PV_Thermal, "Solar Thermal");
 	setMyModelView(myModelList);
 
 	// my library
@@ -620,8 +620,8 @@ void MainRightColumnController::configureForRenewableEnergySubTab(int subTabID)
 	myLibraryList->setItemsType(OSItemType::LibraryItem);
 	myLibraryList->setShowFilterLayout(true);
 
-	myLibraryList->addModelObjectType(IddObjectType::OS_Exterior_PV, "Photovoltaic");
-	myLibraryList->addModelObjectType(IddObjectType::OS_Exterior_PV_Thermal, "PhotovoltaicThermal");
+	myLibraryList->addModelObjectType(IddObjectType::OS_Exterior_PV, "Photovoltaic Rooftop");
+	myLibraryList->addModelObjectType(IddObjectType::OS_Exterior_PV_Thermal, "Solar Thermal");
 
 	setLibraryView(myLibraryList);
 
