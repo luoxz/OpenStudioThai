@@ -1167,6 +1167,8 @@ void RunView::playButtonClicked(bool t_checked)
       buildingArea = bd.floorArea();
   }
 
+  lastPV = getPV(&osdocument->model());
+
   if(m_becButton->isChecked()){
 
       QString outpath = (m_tempFolder/"resources").string().c_str();
