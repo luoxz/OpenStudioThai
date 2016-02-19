@@ -733,6 +733,7 @@ void ForwardTranslator::doLightingSystem(const model::Space &space, QDomElement 
 {
     if(true){
         std::vector<model::Lights> lights = space.spaceType().get().lights();
+		createTagWithText(LightingSystem, "LightingCount", QString::number(lights.size()));
         for (const model::Lights& light : lights){
             if(light.lightingLevel()){
                 QDomElement Lighting = createTagWithText(LightingSystem, "Lighting");
@@ -740,6 +741,21 @@ void ForwardTranslator::doLightingSystem(const model::Space &space, QDomElement 
                                   , light.lightsDefinition().name().get().c_str());
                 createTagWithText(Lighting, "LightingSystemPower", QString::number(light.lightingLevel().get()));
                 createTagWithText(Lighting, "LightingSystemPowerUnit", "watt");
+                createTagWithText(Lighting, "LightingSystemDescription", "???");
+            }
+            else if(light.powerPerFloorArea()){
+                QDomElement Lighting = createTagWithText(LightingSystem, "Lighting");
+                createTagWithText(Lighting, "LightingSystemName"
+                                  , light.lightsDefinition().name().get().c_str());
+                createTagWithText(Lighting, "LightingSystemPower", QString::number(light.powerPerFloorArea().get()));
+                createTagWithText(Lighting, "LightingSystemPowerUnit", "W/m2");
+                createTagWithText(Lighting, "LightingSystemDescription", "???");
+            }else if(light.powerPerPerson()){
+                QDomElement Lighting = createTagWithText(LightingSystem, "Lighting");
+                createTagWithText(Lighting, "LightingSystemName"
+                                  , light.lightsDefinition().name().get().c_str());
+                createTagWithText(Lighting, "LightingSystemPower", QString::number(light.powerPerPerson().get()));
+                createTagWithText(Lighting, "LightingSystemPowerUnit", "W/person");
                 createTagWithText(Lighting, "LightingSystemDescription", "???");
             }
         }
