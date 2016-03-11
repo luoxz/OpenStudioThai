@@ -1109,7 +1109,7 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
                 createTagWithText(CentralACD, "CentralACDetailEQType", "Air Cooled Water Chiller");
                 createTagWithText(CentralACD, "CentralACDetailChillerType", "None");
                 createTagWithText(CentralACD, "CentralACDetailQuantity", "1");
-                createTagWithText(CentralACD, "CentralACDetailCoolingCapacity", QString::number(chiller.referenceCapacity().get_value_or(0.0f)));
+                createTagWithText(CentralACD, "CentralACDetailCoolingCapacity", QString::number(cop));
                 createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "kW");
                 createTagWithText(CentralACD, "CentralACDetailPower"
                                   , QString::number(refcap/cop));
@@ -1274,16 +1274,14 @@ void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElemen
 
             if(lights.size()>0){
                 for (const model::Lights& light : lights){
-                    if(light.lightingLevel()){
-                        QDomElement BuildingZoneLighting = createTagWithText(BuildingZoneLightingEQ, "BuildingZoneLighting");
-                        createTagWithText(BuildingZoneLighting, "BuildingZoneLightingListName"
-                                          , zonelistName.c_str());
-                        createTagWithText(BuildingZoneLighting, "BuildingZoneLightingName"
-                                          , light.lightsDefinition().name().get().c_str());
-                        createTagWithText(BuildingZoneLighting, "BuildingZoneLightingQuantity"
-                                          , QString::number(light.quantity()));
-                        createTagWithText(BuildingZoneLighting, "BuildingZoneLightingDaylighted", "0");
-                    }
+                    QDomElement BuildingZoneLighting = createTagWithText(BuildingZoneLightingEQ, "BuildingZoneLighting");
+                    createTagWithText(BuildingZoneLighting, "BuildingZoneLightingListName"
+                                      , zonelistName.c_str());
+                    createTagWithText(BuildingZoneLighting, "BuildingZoneLightingName"
+                                      , light.lightsDefinition().name().get().c_str());
+                    createTagWithText(BuildingZoneLighting, "BuildingZoneLightingQuantity"
+                                      , QString::number(light.quantity()));
+                    createTagWithText(BuildingZoneLighting, "BuildingZoneLightingDaylighted", "0");
                 }
             }
 
@@ -1334,6 +1332,7 @@ void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElemen
                             }
                             else
                             {
+                                /*
                                 QDomElement BuildingZoneCentralAC
                                         = createTagWithText(BuildingZoneCentralACEQ, "BuildingZoneCentralAC_UNUSE");
                                 createTagWithText(BuildingZoneCentralAC, "BuildingZoneCentralACListName", space.name().get().c_str());
@@ -1341,6 +1340,7 @@ void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElemen
                                 createTagWithText(BuildingZoneCentralAC, "BuildingZoneCentralACEQName", hvac.name().get().c_str());
                                 createTagWithText(BuildingZoneCentralAC, "BuildingZoneDXACQuantity", QString::number(thermal.get().multiplier()));
                                 createTagWithText(BuildingZoneCentralAC, "iddObject", hvac.iddObject().name().c_str());
+                                */
                             }
                         }
                     }
