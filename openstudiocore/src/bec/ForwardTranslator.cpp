@@ -1319,7 +1319,7 @@ void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElemen
                                 createTagWithText(BuildingZoneCentralAC, "BuildingZoneCentralACListName", space.name().get().c_str());
                                 createTagWithText(BuildingZoneCentralAC, "BuildingZoneCentralACSystemName", zoneName);
                                 createTagWithText(BuildingZoneCentralAC, "BuildingZoneCentralACEQName", hvac.name().get().c_str());
-                                createTagWithText(BuildingZoneCentralAC, "BuildingZoneDXACQuantity", QString::number(thermal.get().multiplier()));
+                                createTagWithText(BuildingZoneCentralAC, "BuildingZoneCentralACQuantity", QString::number(thermal.get().multiplier()));
                             }
                             else if(hvac.iddObject().type().value() == openstudio::IddObjectType::OS_Coil_Cooling_DX_TwoSpeed)
                             {
@@ -1328,7 +1328,7 @@ void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElemen
                                 createTagWithText(BuildingZoneCentralAC, "BuildingZoneCentralACListName", space.name().get().c_str());
                                 createTagWithText(BuildingZoneCentralAC, "BuildingZoneCentralACSystemName", zoneName);
                                 createTagWithText(BuildingZoneCentralAC, "BuildingZoneCentralACEQName", hvac.name().get().c_str());
-                                createTagWithText(BuildingZoneCentralAC, "BuildingZoneDXACQuantity", QString::number(thermal.get().multiplier()));
+                                createTagWithText(BuildingZoneCentralAC, "BuildingZoneCentralACQuantity", QString::number(thermal.get().multiplier()));
                             }
                             else
                             {
@@ -1338,7 +1338,7 @@ void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElemen
                                 createTagWithText(BuildingZoneCentralAC, "BuildingZoneCentralACListName", space.name().get().c_str());
                                 createTagWithText(BuildingZoneCentralAC, "BuildingZoneCentralACSystemName", zoneName);
                                 createTagWithText(BuildingZoneCentralAC, "BuildingZoneCentralACEQName", hvac.name().get().c_str());
-                                createTagWithText(BuildingZoneCentralAC, "BuildingZoneDXACQuantity", QString::number(thermal.get().multiplier()));
+                                createTagWithText(BuildingZoneCentralAC, "BuildingZoneCentralACQuantity", QString::number(thermal.get().multiplier()));
                                 createTagWithText(BuildingZoneCentralAC, "iddObject", hvac.iddObject().name().c_str());
                                 */
                             }
