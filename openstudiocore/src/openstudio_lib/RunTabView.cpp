@@ -331,13 +331,108 @@ static bool doBecReport(const QString &path, QString& outpath, QString &err){
     QFile file(output);
     if (file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
-        file.write("<!DOCTYPE html>\n"
-                   "<meta charset=\"UTF-8\">"
-				   "<html>\n"
-                   "<head>\n"
-                   "<title>BEC Report</title>\n"
-                   "</head>\n"
-                   "<body>\n");
+        file.write(
+"<meta charset=\"UTF-8\">"
+"<html>\n"
+"<head>\n"
+"<title>BEC Report</title>\n"
+"</head>\n"
+"<body>\n"
+"<style>\n\
+table a:link{ \n\
+color:#666; \n\
+font-weight:bold; \n\
+text-decoration:none; \n\
+}\n\
+table a:visited{ \n\
+color:#999999; \n\
+font-weight:bold; \n\
+text-decoration:none; \n\
+}\n\
+table a:active, \n\
+table a:hover{ \n\
+color:#bd5a35; \n\
+text-decoration:underline; \n\
+}\n\
+table{ \n\
+font-family:Arial, Helvetica, sans-serif; \n\
+color:#666; \n\
+font-size:12px; \n\
+text-shadow:1px 1px 0px #fff; \n\
+background:#eaebec; \n\
+margin:20px; \n\
+border:#ccc 1px solid; \n\
+-moz-border-radius:3px; \n\
+-webkit-border-radius:3px; \n\
+border-radius:3px; \n\
+-moz-box-shadow:0 1px 2px #d1d1d1; \n\
+-webkit-box-shadow:0 1px 2px #d1d1d1; \n\
+box-shadow:0 1px 2px #d1d1d1; \n\
+}\n\
+table th{ \n\
+padding:21px 25px 22px 25px; \n\
+border-top:1px solid #fafafa; \n\
+border-bottom:1px solid #e0e0e0; \n\
+background:#ededed; \n\
+background:-webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb)); \n\
+background:-moz-linear-gradient(top, #ededed, #ebebeb); \n\
+}\n\
+table th:first-child{ \n\
+text-align:left; \n\
+padding-left:20px; \n\
+}\n\
+table tr:first-child th:first-child{ \n\
+-moz-border-radius-topleft:3px; \n\
+-webkit-border-top-left-radius:3px; \n\
+border-top-left-radius:3px; \n\
+}\n\
+table tr:first-child th:last-child{ \n\
+-moz-border-radius-topright:3px; \n\
+-webkit-border-top-right-radius:3px; \n\
+border-top-right-radius:3px; \n\
+}\n\
+table tr{ \n\
+text-align:center; \n\
+padding-left:20px; \n\
+}\n\
+table td:first-child{ \n\
+text-align:left; \n\
+padding-left:20px; \n\
+border-left:0; \n\
+}\n\
+table td{ \n\
+padding:18px; \n\
+border-top:1px solid #ffffff; \n\
+border-bottom:1px solid #e0e0e0; \n\
+border-left:1px solid #e0e0e0; \n\
+background:#fafafa; \n\
+background:-webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa)); \n\
+background:-moz-linear-gradient(top, #fbfbfb, #fafafa); \n\
+}\n\
+table tr.even td{ \n\
+background:#f6f6f6; \n\
+background:-webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6)); \n\
+background:-moz-linear-gradient(top, #f8f8f8, #f6f6f6); \n\
+}\n\
+table tr:last-child td{ \n\
+border-bottom:0; \n\
+}\n\
+table tr:last-child td:first-child{ \n\
+-moz-border-radius-bottomleft:3px; \n\
+-webkit-border-bottom-left-radius:3px; \n\
+border-bottom-left-radius:3px; \n\
+}\n\
+table tr:last-child td:last-child{ \n\
+-moz-border-radius-bottomright:3px; \n\
+-webkit-border-bottom-right-radius:3px; \n\
+border-bottom-right-radius:3px; \n\
+}\n\
+table tr:hover td{ \n\
+background:#f2f2f2; \n\
+background:-webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0)); \n\
+background:-moz-linear-gradient(top, #f2f2f2, #f0f0f0); \n\
+}\n\
+</style>\n");
 
     }
     else{
