@@ -209,7 +209,10 @@ bool ForwardTranslator::modelTobec(const openstudio::model::Model& model
     int ret = inputBuildingType.exec();
 
     if (ret == QDialog::Accepted){
-        (*bvName) = inputBuildingType.textValue().toStdString();
+
+		if (bvName)
+			(*bvName) = inputBuildingType.textValue().toStdString();
+
         m_progressBar = progressBar;
         m_logSink.setThreadId(QThread::currentThread());
         m_logSink.resetStringStream();
