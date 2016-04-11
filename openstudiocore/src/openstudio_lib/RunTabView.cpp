@@ -153,6 +153,10 @@ QString Bold(const QString& text){
     return QString("<b>%1%2").arg(text).arg("</b>");
 }
 
+QString ParagraphBold(const QString& text){
+    return QString("<p><b>%1%2").arg(text).arg("</b></p>");
+}
+
 QString PTag(const QString& text){
     return QString("<p>%1</p>").arg(text);
 }
@@ -238,6 +242,9 @@ static const QMap<QString, int> tableNames = getTableNamesValues();
 
 void doTable(const QString &title, QDomNode& root, QFile& file, int level){
 
+    QHash<QString, bool> h1;
+    h1["WholeBuildingEnergy"] = true;
+
     //if(level == 7)return;
     QDomNode node = root.firstChild();
     QDomElement elm = node.toElement();
@@ -257,7 +264,7 @@ void doTable(const QString &title, QDomNode& root, QFile& file, int level){
     }
 
     if(fe.isNull()){
-        QString out = Bold(insertSpaceInTag(title))+"<br>";
+        QString out = ParagraphBold(insertSpaceInTag(title));
         file.write(out.toStdString().c_str());
     }
     else{
@@ -276,7 +283,7 @@ void doTable(const QString &title, QDomNode& root, QFile& file, int level){
 
             if(fe.isNull()){
                 if(level == 0){
-                    QString table = Bold(insertSpaceInTag(elm.tagName()));
+                    QString table = ParagraphBold(insertSpaceInTag(elm.tagName()));
                     table +=    "<table border=\"1\" cellpadding=\"4\" cellspacing=\"0\">"
                                 "<tbody>"
                                 "<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>"
@@ -286,7 +293,7 @@ void doTable(const QString &title, QDomNode& root, QFile& file, int level){
                     file.write(table.toStdString().c_str());
                 }
                 else if(fenx.tagName() != fe.tagName() && fe.tagName().isNull()){
-                    QString table = Bold(insertSpaceInTag(elm.tagName()));
+                    QString table = ParagraphBold(insertSpaceInTag(elm.tagName()));
                     file.write(table.toStdString().c_str());
                     escapeTitle = title;
                 }
@@ -339,98 +346,57 @@ static bool doBecReport(const QString &path, QString& outpath, QString &err){
 "</head>\n"
 "<body>\n"
 "<style>\n\
-table a:link{ \n\
-color:#666; \n\
-font-weight:bold; \n\
-text-decoration:none; \n\
+table {\n\
+border-width: 1px;\n\
+border-spacing: 0px;\n\
+border-style: solid;\n\
+border-color: green;\n\
+border-collapse: separate;\n\
+background-color: white;\n\
 }\n\
-table a:visited{ \n\
-color:#999999; \n\
-font-weight:bold; \n\
-text-decoration:none; \n\
+h1 {\n\
+background-color: #22ffff;\n\
 }\n\
-table a:active, \n\
-table a:hover{ \n\
-color:#bd5a35; \n\
-text-decoration:underline; \n\
+h2 {\n\
+background-color: #33ffff;\n\
 }\n\
-table{ \n\
-font-family:Arial, Helvetica, sans-serif; \n\
-color:#666; \n\
-font-size:12px; \n\
-text-shadow:1px 1px 0px #fff; \n\
-background:#eaebec; \n\
-margin:20px; \n\
-border:#ccc 1px solid; \n\
--moz-border-radius:3px; \n\
--webkit-border-radius:3px; \n\
-border-radius:3px; \n\
--moz-box-shadow:0 1px 2px #d1d1d1; \n\
--webkit-box-shadow:0 1px 2px #d1d1d1; \n\
-box-shadow:0 1px 2px #d1d1d1; \n\
+h3 {\n\
+background-color: #55ffff;\n\
 }\n\
-table th{ \n\
-padding:21px 25px 22px 25px; \n\
-border-top:1px solid #fafafa; \n\
-border-bottom:1px solid #e0e0e0; \n\
-background:#ededed; \n\
-background:-webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb)); \n\
-background:-moz-linear-gradient(top, #ededed, #ebebeb); \n\
+h4 {\n\
+background-color: #77ffff;\n\
 }\n\
-table th:first-child{ \n\
-text-align:left; \n\
-padding-left:20px; \n\
+p {\n\
+background-color: #99ffff;\n\
 }\n\
-table tr:first-child th:first-child{ \n\
--moz-border-radius-topleft:3px; \n\
--webkit-border-top-left-radius:3px; \n\
-border-top-left-radius:3px; \n\
+table th {\n\
+border-width: 1px;\n\
+padding: 1px;\n\
+border-style: solid;\n\
+border-color: green;\n\
+background-color: white;\n\
+-moz-border-radius: ;\n\
 }\n\
-table tr:first-child th:last-child{ \n\
--moz-border-radius-topright:3px; \n\
--webkit-border-top-right-radius:3px; \n\
-border-top-right-radius:3px; \n\
+\n\
+table tr:first-child td {\n\
+background-color: #ffcc97;\n\
+text-align: center;\n\
 }\n\
-table tr{ \n\
-text-align:center; \n\
-padding-left:20px; \n\
+\n\
+table td {\n\
+border-width: 1px;\n\
+padding: 1px;\n\
+border-style: solid;\n\
+border-color: green;\n\
+-moz-border-radius: ;\n\
 }\n\
-table td:first-child{ \n\
-text-align:left; \n\
-padding-left:20px; \n\
-border-left:0; \n\
+\n\
+table tr:nth-child(even){\n\
+background-color: #91ff91;\n\
 }\n\
-table td{ \n\
-padding:18px; \n\
-border-top:1px solid #ffffff; \n\
-border-bottom:1px solid #e0e0e0; \n\
-border-left:1px solid #e0e0e0; \n\
-background:#fafafa; \n\
-background:-webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa)); \n\
-background:-moz-linear-gradient(top, #fbfbfb, #fafafa); \n\
-}\n\
-table tr.even td{ \n\
-background:#f6f6f6; \n\
-background:-webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6)); \n\
-background:-moz-linear-gradient(top, #f8f8f8, #f6f6f6); \n\
-}\n\
-table tr:last-child td{ \n\
-border-bottom:0; \n\
-}\n\
-table tr:last-child td:first-child{ \n\
--moz-border-radius-bottomleft:3px; \n\
--webkit-border-bottom-left-radius:3px; \n\
-border-bottom-left-radius:3px; \n\
-}\n\
-table tr:last-child td:last-child{ \n\
--moz-border-radius-bottomright:3px; \n\
--webkit-border-bottom-right-radius:3px; \n\
-border-bottom-right-radius:3px; \n\
-}\n\
-table tr:hover td{ \n\
-background:#f2f2f2; \n\
-background:-webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0)); \n\
-background:-moz-linear-gradient(top, #f2f2f2, #f0f0f0); \n\
+\n\
+table tr:hover {\n\
+background-color: #ffff99;\n\
 }\n\
 </style>\n");
 
@@ -459,7 +425,7 @@ background:-moz-linear-gradient(top, #f2f2f2, #f0f0f0); \n\
         pass = "Passed";
     }
 
-    QString bvTable = QString("<b>Benchmark</b><br><br>\n"
+    QString bvTable = QString("<p><b>Benchmark</b></p>\n"
                             "<table id=\"%1\" border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n"
                             "  <tbody>\n"
                             "  <tr>\n"
@@ -914,6 +880,50 @@ void RunView::addPVAndBenchmarkToFile(const QString &fileName, int mode)
     }
     fileData = file.readAll();
     QString text(fileData);
+
+    text.replace(QRegularExpression("body\\s+{\\s+font: 10px sans-serif;\\s+min-width: 1280px;\\s+}"), "");
+    text.replace(QRegularExpression("table\\s+{\\s+max-width:800px;\\s+}"), "\n\
+                            table {\n\
+                            border-width: 1px;\n\
+                            border-spacing: 0px;\n\
+                            border-style: solid;\n\
+                            border-color: green;\n\
+                            border-collapse: separate;\n\
+                            background-color: white;\n\
+                            }\n\
+                            table th {\n\
+                            border-width: 1px;\n\
+                            padding: 1px;\n\
+                            border-style: solid;\n\
+                            border-color: green;\n\
+                            background-color: white;\n\
+                            -moz-border-radius: ;\n\
+                            }\n\
+                            \n\
+                            table th {\n\
+                            background-color: #ffcc97;\n\
+                            text-align: center;\n\
+                            }\n\
+                            \n\
+                            table td {\n\
+                            border-width: 1px;\n\
+                            padding: 1px;\n\
+                            border-style: solid;\n\
+                            border-color: green;\n\
+                            -moz-border-radius: ;\n\
+                            }\n\
+                            \n\
+                            table tr:nth-child(even){\n\
+                            background-color: #91ff91;\n\
+                            }\n\
+                            \n\
+                            table tr:hover {\n\
+                            background-color: #ffff99;\n\
+                            }\n\
+                            ");
+
+    text.replace("table table-striped table-bordered table-condensed", "");
+
     bool firstPV = text.lastIndexOf(pvid)<0;
 
     switch (mode) {
@@ -925,7 +935,7 @@ void RunView::addPVAndBenchmarkToFile(const QString &fileName, int mode)
         m_outputWindow->appendPlainText(QString("Power Total/buildingArea=%1").arg(val));
         //PV
         QString table = QString("<h4>Photovoltaic(watt)</h4>\n"
-                                "<table id=\"%1\" class=\"table table-striped table-bordered table-condensed\">\n"
+                                "<table id=\"%1\">\n"
                                 "	<thead>\n"
                                 "		<tr>\n"
                                 "			<th>&nbsp;</th>\n"
@@ -949,7 +959,6 @@ void RunView::addPVAndBenchmarkToFile(const QString &fileName, int mode)
             text.replace(start, count+1, table);
             text.append("\n</html>\n");
         }
-
         ///////////////////////////////
         //BENCHMARK
         QString pass = "Failed";
@@ -963,7 +972,7 @@ void RunView::addPVAndBenchmarkToFile(const QString &fileName, int mode)
         QString savePath = osdocument->savePath();
         QFileInfo savePathFile(savePath);
         table = QString("<h4>Benchmark</h4>\n"
-                                "<table id=\"%1\" class=\"table table-striped table-bordered table-condensed\">\n"
+                                "<table id=\"%1\">\n"
                                 "	<thead>\n"
                                 "		<tr>\n"
                                 "			<th></th>\n"

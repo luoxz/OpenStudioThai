@@ -39,6 +39,10 @@
 #include <QString>
 #include <QRegExp>
 #include <QFileDialog>
+#include <QDesktopServices>
+#include <QPrinter>
+#include <QPrintDialog>
+#include <QDebug>
 
 #include "../runmanager/lib/FileInfo.hpp"
 #include "../runmanager/lib/JobStatusWidget.hpp"
@@ -88,6 +92,7 @@ ResultsView::ResultsView(QWidget *t_parent)
   : QWidget(t_parent),
     m_isIP(true),
     m_compareBtn(new QPushButton("Compare other result.")),
+    m_printBtn(new QPushButton("Open in Browser")),
     m_openResultsViewerBtn(new QPushButton("Open ResultsViewer\nfor Detailed Reports"))
 {
 
@@ -95,6 +100,7 @@ ResultsView::ResultsView(QWidget *t_parent)
   setLayout(mainLayout);
 
   connect(m_openResultsViewerBtn, &QPushButton::clicked, this, &ResultsView::openResultsViewerClicked);
+  connect(m_printBtn, &QPushButton::clicked, this, &ResultsView::doPrint);
   connect(m_compareBtn, &QPushButton::clicked, this, &ResultsView::compareResultsClicked);
   QHBoxLayout * hLayout = new QHBoxLayout(this);
   mainLayout->addLayout(hLayout);
@@ -110,6 +116,7 @@ ResultsView::ResultsView(QWidget *t_parent)
 
   hLayout->addStretch();
   hLayout->addWidget(m_compareBtn, 0, Qt::AlignCenter);
+  hLayout->addWidget(m_printBtn, 0, Qt::AlignCenter);
   hLayout->addWidget(m_openResultsViewerBtn, 0, Qt::AlignVCenter);
 
   m_view = new ResultsWebView(this);
@@ -207,6 +214,14 @@ void ResultsView::compareResultsClicked()
     if (!QProcess::startDetached(openstudio::toQString(reportcompare), args))
     {
         QMessageBox::critical(this, "Unable to launch ReportCompare", "ReportCompare was not found in the expected location:\n" + openstudio::toQString(reportcompare));
+    }
+}
+
+void ResultsView::doPrint()
+{
+    if(!m_comboBox->currentData().toString().isEmpty()){
+        QString fn = m_comboBox->currentData().toString();
+        QDesktopServices::openUrl(QUrl(fn));
     }
 }
 
