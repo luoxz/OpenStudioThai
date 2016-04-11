@@ -716,12 +716,13 @@ void ForwardTranslator::doModelLoop(const model::Model &model, QDomElement &becI
 
     std::vector<openstudio::model::BuildingStory> stories = model.getConcreteModelObjects<openstudio::model::BuildingStory>();
 
+    QHash<QString, bool> checkDup;
     for (const openstudio::model::BuildingStory& buildingStory : stories) {
 
         std::vector<openstudio::model::Space> spaces = buildingStory.spaces();
         for (openstudio::model::Space& space : spaces){
 
-            doLightingSystem(space, LightingSystem);
+            doLightingSystem(space, LightingSystem, checkDup);
 
             openstudio::model::SurfaceVector surfaces = space.surfaces();
             for (openstudio::model::Surface& surface : surfaces){
@@ -732,12 +733,19 @@ void ForwardTranslator::doModelLoop(const model::Model &model, QDomElement &becI
 
 }
 
-void ForwardTranslator::doLightingSystem(const model::Space &space, QDomElement &LightingSystem)
+void ForwardTranslator::doLightingSystem(const model::Space &space, QDomElement &LightingSystem, QHash<QString, bool>& checkDup)
 {
     if(true){
         std::vector<model::Lights> lights = space.spaceType().get().lights();
-		createTagWithText(LightingSystem, "LightingCount", QString::number(lights.size()));
+        createTagWithText(LightingSystem, "LightingCount", QString::number(lights.size()));
         for (const model::Lights& light : lights){
+            QString name = light.lightsDefinition().name().get().c_str();
+            if(checkDup.contains(name)){
+                continue;
+            }
+            else{
+                checkDup.insert(name, true);
+            }
             if(light.lightingLevel()){
                 QDomElement Lighting = createTagWithText(LightingSystem, "Lighting");
                 createTagWithText(Lighting, "LightingSystemName"
