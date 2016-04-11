@@ -881,54 +881,50 @@ void RunView::addPVAndBenchmarkToFile(const QString &fileName, int mode)
     fileData = file.readAll();
     QString text(fileData);
 
-    text.replace(QRegularExpression("body\\s+{\\s+font: 10px sans-serif;\\s+min-width: 1280px;\\s+}"), "");
-    text.replace(QRegularExpression("table\\s+{\\s+max-width:800px;\\s+}"), "\n\
-                            table {\n\
-                            border-width: 1px;\n\
-                            border-spacing: 0px;\n\
-                            border-style: solid;\n\
-                            border-color: green;\n\
-                            border-collapse: separate;\n\
-                            background-color: white;\n\
-                            }\n\
-                            table th {\n\
-                            border-width: 1px;\n\
-                            padding: 1px;\n\
-                            border-style: solid;\n\
-                            border-color: green;\n\
-                            background-color: white;\n\
-                            -moz-border-radius: ;\n\
-                            }\n\
-                            \n\
-                            table th {\n\
-                            background-color: #ffcc97;\n\
-                            text-align: center;\n\
-                            }\n\
-                            \n\
-                            table td {\n\
-                            border-width: 1px;\n\
-                            padding: 1px;\n\
-                            border-style: solid;\n\
-                            border-color: green;\n\
-                            -moz-border-radius: ;\n\
-                            }\n\
-                            \n\
-                            table tr:nth-child(even){\n\
-                            background-color: #91ff91;\n\
-                            }\n\
-                            \n\
-                            table tr:hover {\n\
-                            background-color: #ffff99;\n\
-                            }\n\
-                            ");
-
-    text.replace("table table-striped table-bordered table-condensed", "");
-
     bool firstPV = text.lastIndexOf(pvid)<0;
 
     switch (mode) {
     case PVReportMode_OPENSTUDIO:
     {
+        const QString css_style = "\n\
+table {\n\
+border-width: 1px;\n\
+border-spacing: 0px;\n\
+border-style: solid;\n\
+border-color: green;\n\
+border-collapse: separate;\n\
+background-color: white;\n\
+}\n\
+table th {\n\
+border-width: 1px;\n\
+padding: 1px;\n\
+border-style: solid;\n\
+border-color: green;\n\
+background-color: white;\n\
+-moz-border-radius: ;\n\
+}\n\
+\n\
+table th {\n\
+background-color: #ffcc97;\n\
+text-align: center;\n\
+}\n\
+\n\
+table td {\n\
+border-width: 1px;\n\
+padding: 1px;\n\
+border-style: solid;\n\
+border-color: green;\n\
+-moz-border-radius: ;\n\
+}\n\
+\n\
+table tr:nth-child(even){\n\
+background-color: #91ff91;\n\
+}\n\
+\n\
+table tr:hover {\n\
+background-color: #ffff99;\n\
+}\n\
+";
         double val = findOpenStudioPowerTotal(text);
         m_outputWindow->appendPlainText(QString("Power Total:%1, buildingArea:%2").arg(val).arg(buildingArea));
         val = val/buildingArea;
@@ -951,6 +947,9 @@ void RunView::addPVAndBenchmarkToFile(const QString &fileName, int mode)
                                 "</table>\n"
                                 "</body>").arg(pvid).arg(QString::number(pv, 'f', 2));
         if(firstPV){
+            text.replace(QRegularExpression("body\\s+{\\s+font: 10px sans-serif;\\s+min-width: 1280px;\\s+}"), "");
+            text.replace(QRegularExpression("table\\s+{\\s+max-width:800px;\\s+}"), css_style);
+            text.replace("table table-striped table-bordered table-condensed", "");
             text.replace("</body>", table);
         }
         else{
@@ -1011,6 +1010,48 @@ void RunView::addPVAndBenchmarkToFile(const QString &fileName, int mode)
         break;
     case PVReportMode_ENERGYPLUS:
     {
+        const QString css_style = "\n\
+table {\n\
+border-width: 1px;\n\
+border-spacing: 0px;\n\
+border-style: solid;\n\
+border-color: green;\n\
+border-collapse: separate;\n\
+background-color: white;\n\
+}\n\
+table th {\n\
+border-width: 1px;\n\
+padding: 1px;\n\
+border-style: solid;\n\
+border-color: green;\n\
+background-color: white;\n\
+-moz-border-radius: ;\n\
+}\n\
+\n\
+table th {\n\
+background-color: #ffcc97;\n\
+text-align: center;\n\
+}\n\
+table tr:first-child td {\n\
+background-color: #ffcc97;\n\
+text-align: center;\n\
+}\n\
+table td {\n\
+border-width: 1px;\n\
+padding: 1px;\n\
+border-style: solid;\n\
+border-color: green;\n\
+-moz-border-radius: ;\n\
+}\n\
+\n\
+table tr:nth-child(even){\n\
+background-color: #91ff91;\n\
+}\n\
+\n\
+table tr:hover {\n\
+background-color: #ffff99;\n\
+}\n\
+";
         double val = findEnergyPlusPowerTotalkWh(text);
         if(text.indexOf("<meta charset=\"utf-8\">")<0){
             text.replace("<head>", "<head>\n<meta charset=\"utf-8\">");
@@ -1026,6 +1067,7 @@ void RunView::addPVAndBenchmarkToFile(const QString &fileName, int mode)
                                 "</tbody></table><br><br>\n</body>").arg(pvid).arg(QString::number(pv, 'f', 2));
 
         if(firstPV){
+            text.replace("<html>", QString("<html><style type=\"text/css\">")+css_style+"</style>");
             text.replace("</body>", table);
         }
         else{
