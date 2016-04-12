@@ -449,6 +449,21 @@ background-color: #ffff99;\n\
             .arg(pass);
 
     file.write(bvTable.toUtf8());
+
+    QDate date = QDateTime::currentDateTime().date();
+    int cryear, month, day;
+    date.getDate(&cryear, &month, &day);
+    cryear += 543;
+    QLocale locale  = QLocale(QLocale::Thai, QLocale::Thailand); // set the locale you want here
+    QString thaidate = locale.toString(date, "d MMMM");
+
+    QString sign = QString("<br><div style=\"text-align: center;padding-bottom: 50px;padding-right: 50px;float: right;\"><br>\n"
+                         "----- ----- ----- ----- ----- ----- ----- ----- -----<br><br>\n"
+                         "(..... ..... ..... ..... ..... ..... ..... ..... ..... ..... .....)<br>\n"
+                         "ผู้รับรองการประเมิน<br>\n"
+                         "%1 %2\n"
+                         "</div>\n").arg(thaidate).arg(cryear);
+    file.write(sign.toUtf8());
     file.write("</body>\n"
                "</html>\n");
 
