@@ -107,7 +107,7 @@ namespace bec {
 
     void doLightingSystem(const openstudio::model::Space& space, QDomElement& LightingSystem, QHash<QString, bool> &checkDup);
     void doHotWaterSystem(const model::Model &model, QDomElement& hotWaterSystem);
-    void doOtherEquipment(const openstudio::model::Space& space, QDomElement& OtherEquipment);
+    void doOtherEquipment(const openstudio::model::Space& space, QDomElement& OtherEquipment, QHash<QString, bool>& checkDup);
     void doACSystem(const model::Model &model, QDomElement& ACSystem);
     void doPV(const model::Model &model, QDomElement& becInput);
 

@@ -717,13 +717,15 @@ void ForwardTranslator::doModelLoop(const model::Model &model, QDomElement &becI
 
     std::vector<openstudio::model::BuildingStory> stories = model.getConcreteModelObjects<openstudio::model::BuildingStory>();
 
-    QHash<QString, bool> checkDup;
+    QHash<QString, bool> light_checkDup;
+    QHash<QString, bool> oeq_checkDup;
     for (const openstudio::model::BuildingStory& buildingStory : stories) {
 
         std::vector<openstudio::model::Space> spaces = buildingStory.spaces();
         for (openstudio::model::Space& space : spaces){
 
-            doLightingSystem(space, LightingSystem, checkDup);
+            doLightingSystem(space, LightingSystem, light_checkDup);
+            doOtherEquipment(space, OtherEquipment, oeq_checkDup);
 
             openstudio::model::SurfaceVector surfaces = space.surfaces();
             for (openstudio::model::Surface& surface : surfaces){
@@ -774,22 +776,64 @@ void ForwardTranslator::doLightingSystem(const model::Space &space, QDomElement 
     }
 }
 
-void ForwardTranslator::doOtherEquipment(const model::Space &space, QDomElement &OtherEquipment)
+void ForwardTranslator::doOtherEquipment(const model::Space &space, QDomElement &OtherEquipment, QHash<QString, bool>& checkDup)
 {
     if(true){
-        std::vector<model::OtherEquipment> others = space.spaceType().get().otherEquipment();
-        for (const model::OtherEquipment& other : others){
+        std::vector<model::ElectricEquipment> others = space.spaceType().get().electricEquipment();
+        for (const model::ElectricEquipment& other : others){
+            QString name = other.electricEquipmentDefinition().name().get().c_str();
+
+            if(checkDup.contains(name)){
+                continue;
+            }
+            else{
+                checkDup.insert(name, true);
+            }
+
+            QString unit = "W";
             QDomElement OtherEQ = createTagWithText(OtherEquipment, "OtherEQ");
             createTagWithText(OtherEQ, "OtherEQName"
-                              , other.otherEquipmentDefinition().name().get().c_str());
+                              , name);
+            if(other.electricEquipmentDefinition().designLevel()){
+                createTagWithText(OtherEQ, "OtherEQPower", QString::number(other.electricEquipmentDefinition().designLevel().get()));
+                unit = "watt";
+            }else if(other.electricEquipmentDefinition().wattsperPerson()){
+                createTagWithText(OtherEQ, "OtherEQPower", QString::number(other.electricEquipmentDefinition().wattsperPerson().get()));
+                unit = "W/person";
+            }else if(other.electricEquipmentDefinition().wattsperSpaceFloorArea()){
+                createTagWithText(OtherEQ, "OtherEQPower", QString::number(other.electricEquipmentDefinition().wattsperSpaceFloorArea().get()));
+                unit = "W/m2";
+            }
+            createTagWithText(OtherEQ, "OtherEQPowerUnit", unit);
+            createTagWithText(OtherEQ, "OtherEQDescription", "???");
+        }
+
+        std::vector<model::OtherEquipment> electris = space.spaceType().get().otherEquipment();
+        for (const model::OtherEquipment& other : electris){
+            QString name = other.otherEquipmentDefinition().name().get().c_str();
+
+            if(checkDup.contains(name)){
+                continue;
+            }
+            else{
+                checkDup.insert(name, true);
+            }
+
+            QString unit;
+            QDomElement OtherEQ = createTagWithText(OtherEquipment, "OtherEQ");
+            createTagWithText(OtherEQ, "OtherEQName"
+                              , name);
             if(other.otherEquipmentDefinition().designLevel()){
                 createTagWithText(OtherEQ, "OtherEQPower", QString::number(other.otherEquipmentDefinition().designLevel().get()));
+                unit = "watt";
             }else if(other.otherEquipmentDefinition().wattsperPerson()){
                 createTagWithText(OtherEQ, "OtherEQPower", QString::number(other.otherEquipmentDefinition().wattsperPerson().get()));
+                unit = "W/person";
             }else if(other.otherEquipmentDefinition().wattsperSpaceFloorArea()){
                 createTagWithText(OtherEQ, "OtherEQPower", QString::number(other.otherEquipmentDefinition().wattsperSpaceFloorArea().get()));
+                unit = "W/m2";
             }
-            createTagWithText(OtherEQ, "OtherEQPowerUnit", "watt");
+            createTagWithText(OtherEQ, "OtherEQPowerUnit", unit);
             createTagWithText(OtherEQ, "OtherEQDescription", "???");
         }
     }
@@ -1296,6 +1340,28 @@ void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElemen
                                       , QString::number(light.quantity()));
                     createTagWithText(BuildingZoneLighting, "BuildingZoneLightingDaylighted", "0");
                 }
+            }
+
+            std::vector<model::OtherEquipment> others = space.spaceType().get().otherEquipment();
+            for (const model::OtherEquipment& other : others){
+                QDomElement BuildingZoneOtherEQ = createTagWithText(BuildingZoneOtherEquipment, "BuildingZoneOtherEQ");
+                createTagWithText(BuildingZoneOtherEQ, "BuildingZoneOtherEQListName"
+                                  , zonelistName.c_str());
+                createTagWithText(BuildingZoneOtherEQ, "BuildingZoneOtherEQName"
+                                  , other.otherEquipmentDefinition().name().get().c_str());
+                createTagWithText(BuildingZoneOtherEQ, "BuildingZoneOtherEQQuantity"
+                                  , QString::number(other.quantity()));
+            }
+
+            std::vector<model::ElectricEquipment> elects = space.spaceType().get().electricEquipment();
+            for (const model::ElectricEquipment& other : elects){
+                QDomElement BuildingZoneOtherEQ = createTagWithText(BuildingZoneOtherEquipment, "BuildingZoneOtherEQ");
+                createTagWithText(BuildingZoneOtherEQ, "BuildingZoneOtherEQListName"
+                                  , zonelistName.c_str());
+                createTagWithText(BuildingZoneOtherEQ, "BuildingZoneOtherEQName"
+                                  , other.electricEquipmentDefinition().name().get().c_str());
+                createTagWithText(BuildingZoneOtherEQ, "BuildingZoneOtherEQQuantity"
+                                  , QString::number(other.quantity()));
             }
 
             if(boost::optional<model::ThermalZone> thermal = space.thermalZone()){
