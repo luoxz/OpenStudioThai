@@ -616,6 +616,11 @@ void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &
             for (model::Surface& surface : surfaces){
                 if(surface.surfaceType() == "Wall" || surface.surfaceType() == "RoofCeiling"){
 
+                    QString boundCon = surface.outsideBoundaryCondition().c_str();
+                    if(boundCon!="Outdoors"){
+                        continue;
+                    }
+
                     QString surfaceType;
                     if(surface.surfaceType() == "RoofCeiling"){
                         surfaceType = "Roof";
@@ -626,7 +631,7 @@ void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &
                     QDomElement SectionL = createTagWithText(SectionList,"SectionL");
                     createTagWithText(SectionL, "SectionListName", surface.name().get().c_str());
                     createTagWithText(SectionL, "SectionListType", surfaceType);
-                    createTagWithText(SectionL, "SectionListDescription", "???");
+                    createTagWithText(SectionL, "SectionListDescription", boundCon);
 
                     QDomElement SectionD = createTagWithText(SectionDetail,"SectionD");
                     createTagWithText(SectionD, "SectionDetailSectionListName", surface.name().get().c_str());
