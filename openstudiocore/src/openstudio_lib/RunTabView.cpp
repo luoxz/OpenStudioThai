@@ -240,6 +240,292 @@ static QMap<QString, int> getTableNamesValues() {
 
 static const QMap<QString, int> tableNames = getTableNamesValues();
 
+QDomElement findElementOnPath(QDomNode& root, const QStringList& paths){
+    QDomElement targetNode;
+    for (int i = 0; i < paths.size(); ++i) {
+        if(i==0){
+            targetNode = root.firstChildElement(paths.at(0));
+        }
+        else{
+            targetNode = targetNode.firstChildElement(paths.at(i));
+        }
+
+        if(targetNode.isNull())
+            break;
+    }
+    return targetNode;
+}
+
+class IDoTable
+{
+public:
+    virtual QString process(QDomNode& root, const QStringList& fullpaths)=0;
+};
+
+class doTableArrayOnPath : public IDoTable
+{
+public:
+    doTableArrayOnPath() {}
+    QString process(QDomNode& root, const QStringList& fullpaths){
+
+        QString arrayTags = fullpaths.at(fullpaths.size()-1);
+
+        QStringList paths;
+        for (int idx = 0; idx < fullpaths.size()-1; ++idx) {
+            paths.append(fullpaths.at(idx));
+        }
+        QDomElement targetNode = findElementOnPath(root, paths);
+        QString out;
+        if(targetNode.isNull()){
+            out = "<table border=\"1\" cellpadding=\"4\" cellspacing=\"0\">"
+                            "<tbody>"
+                            "<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>"
+                            "<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>"
+                            "</tbody>"
+                            "</table>";
+        }else{
+            QString rowData;
+            QString headerData;
+            QDomNodeList rawNodes = targetNode.childNodes();
+            if(rawNodes.size()>0){
+                for (int rit = 0; rit < rawNodes.size(); ++rit) {
+                    QDomNode nd = rawNodes.at(rit);
+                    QDomElement erow = nd.toElement();
+
+                    if(erow.tagName()!=arrayTags)
+                        continue;
+
+                    rowData.append("<tr>");
+                    QDomNodeList colNodes = erow.childNodes();
+                    for (int cit = 0; cit < colNodes.size(); ++cit) {
+
+                        QDomNode nd = colNodes.at(cit);
+                        QDomElement ecol = nd.toElement();
+
+                        if(ecol.tagName().endsWith("Unit"))
+                            continue;
+
+                        if(rit==0){
+                            QString header = insertSpaceInTag(ecol.tagName());
+                            QDomElement ecolnext = nd.toElement().nextSiblingElement();
+                            if(ecolnext.tagName().endsWith("Unit")){
+                                headerData.append(QString("<td>%1(%2)</td>\n").arg(header).arg(ecolnext.text()));
+                            }else{
+                                headerData.append(QString("<td>%1</td>\n").arg(header));
+                            }
+                        }
+                        rowData.append(QString("<td>%1</td>\n").arg(stringToMoney(ecol.text())));
+                    }
+                    rowData.append("</tr>\n");
+                }
+
+                if(rowData.isEmpty()&&headerData.isEmpty()){
+                    out = "<table border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n"
+                                    "<tbody>\n"
+                                    "<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>\n"
+                                    "<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>\n"
+                                    "</tbody>\n"
+                                    "</table>\n";
+                }else{
+                    out = QString("<table border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n"
+                          "<tbody>\n"
+                          "%1\n"
+                          "%2\n"
+                          "</tbody>\n"
+                          "</table>\n").arg(headerData).arg(rowData);
+                }
+                return out;
+            }else{
+                out = "<table border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n"
+                                "<tbody>\n"
+                                "<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>\n"
+                                "<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>\n"
+                                "</tbody>\n"
+                                "</table>\n";
+                return out;
+            }
+        }
+        return out;
+    }
+};
+
+class doVTableOnPath : public IDoTable
+{
+public:
+    doVTableOnPath() {}
+    QString process(QDomNode& root, const QStringList& paths){
+        QDomElement targetNode = findElementOnPath(root, paths);
+        QString out;
+        if(targetNode.isNull()){
+            out = "<table border=\"1\" cellpadding=\"4\" cellspacing=\"0\">"
+                            "<tbody>"
+                            "<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>"
+                            "<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>"
+                            "</tbody>"
+                            "</table>";
+        }else{
+            out += "<table border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n<tbody>\n";
+            QDomNodeList nodes = targetNode.childNodes();
+            if(nodes.size()>0){
+                for (int idx = 0; idx < nodes.size(); ++idx) {
+                    QDomNode nd = nodes.at(idx);
+                    QDomElement element = nd.toElement();
+
+                    if(element.tagName().endsWith("Unit"))
+                        continue;
+
+                    QString header = insertSpaceInTag(element.tagName());
+
+                    QDomElement ecolnext = element.nextSiblingElement();
+                    if(ecolnext.tagName().endsWith("Unit")){
+                        out.append(QString("<tr>\n<td>%1(%2)</td><td>%3</td>\n</tr>\n")
+                                   .arg(header)
+                                   .arg(ecolnext.text())
+                                   .arg(stringToMoney(element.text())));
+                    }else{
+                        out.append(QString("<tr>\n<td>%1</td><td>%2</td>\n</tr>\n")
+                                   .arg(header)
+                                   .arg(stringToMoney(element.text())));
+                    }
+                }
+            }else{
+                out += "<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>\n";
+                out += "<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>\n";
+            }
+            out += "</tbody>\n</table>\n";
+        }
+        return out;
+    }
+};
+
+class doTableOnPath : public IDoTable
+{
+public:
+    doTableOnPath() {}
+    QString process(QDomNode& root, const QStringList& paths){
+        QDomElement targetNode = findElementOnPath(root, paths);
+        QString out;
+        if(targetNode.isNull()){
+            out = "<table border=\"1\" cellpadding=\"4\" cellspacing=\"0\">"
+                            "<tbody>"
+                            "<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>"
+                            "<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>"
+                            "</tbody>"
+                            "</table>";
+        }else{
+            QString row2;
+            out += "<table border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n<tbody>\n";
+            QDomNodeList nodes = targetNode.childNodes();
+            if(nodes.size()>0){
+                out.append("<tr>");
+                row2.append("<tr>");
+                for (int idx = 0; idx < nodes.size(); ++idx) {
+                    QDomNode nd = nodes.at(idx);
+                    QDomElement element = nd.toElement();
+
+                    if(element.tagName().endsWith("Unit"))
+                        continue;
+
+                    QString header = insertSpaceInTag(element.tagName());
+                    QDomElement ecolnext = element.nextSiblingElement();
+                    if(ecolnext.tagName().endsWith("Unit")){
+                        out.append(QString("<td>%1(%2)</td>\n").arg(header).arg(ecolnext.text()));
+                    }else{
+                        out.append(QString("<td>%1</td>\n").arg(header));
+                    }
+
+                    row2.append(QString("<td>%1</td>\n").arg(stringToMoney(element.text())));
+                }
+                row2.append("</tr>\n");
+                out.append("</tr>\n");
+                out.append(row2);
+            }else{
+                out += "<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>\n";
+                out += "<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>\n";
+            }
+            out += "</tbody>\n</table>\n";
+        }
+        return out;
+    }
+};
+
+class TableDataList
+{
+public:
+    enum TABLETYPE { TABLE=0, VTABLE, ARRAYTABLE };
+    TableDataList(QDomNode root) {
+        this->root = root;
+        tableProcesser.insert(TABLE, new doTableOnPath());
+        tableProcesser.insert(VTABLE, new doVTableOnPath());
+        tableProcesser.insert(ARRAYTABLE, new doTableArrayOnPath());
+    }
+
+    ~TableDataList(){
+        QHash<TABLETYPE, IDoTable*>::iterator it = tableProcesser.begin();
+        while (it!=tableProcesser.end()) {
+            delete it.value();
+            it++;
+        }
+        tableProcesser.clear();
+    }
+
+    void append(const QStringList& path, const QString& title, TABLETYPE type){
+        sls.append(path);
+        titles.append(title);
+        tableTypes.append(type);
+    }
+
+    QString toString(){
+        QString out;
+        for (int idx = 0; idx < sls.size(); ++idx) {
+            QStringList path = sls.at(idx);
+            QString title = titles.at(idx);
+            out += ParagraphBold(title);
+            TABLETYPE type = tableTypes.at(idx);
+            if(tableTypes.contains(type)){
+                out.append(tableProcesser[type]->process(root, path));
+            }
+        }
+        return out;
+    }
+
+    void clean(){
+        sls.clear();
+        titles.clear();
+        tableTypes.clear();
+    }
+
+private:
+    QList<QStringList> sls;
+    QList<QString> titles;
+    QList<TABLETYPE> tableTypes;
+    QHash<TABLETYPE, IDoTable*> tableProcesser;
+    QDomNode root;
+};
+
+static QString doTableV2(QDomNode& root){
+    TableDataList tables(root);
+    tables.append(QStringList()<<"BuildingInfo", "Building Info", TableDataList::TABLE);
+    tables.append(QStringList()<<"EnvelopeSystem"<<"BuildingOTTVReport", insertSpaceInTag("BuildingOTTVReport"), TableDataList::TABLE);
+    //tables.append(QStringList()<<"EnvelopeSystem"<<"BuildingOTTVReport", "Building Info V", TableDataList::TABLE);
+    tables.append(QStringList()<<"EnvelopeSystem" << "BuildingOTTVwall" << "TotalWallOTTVReport", insertSpaceInTag("TotalWallOTTVReport"), TableDataList::ARRAYTABLE);
+    tables.append(QStringList()<<"EnvelopeSystem" << "BuildingOTTVwall" << "WallOTTVBySection" << "WallOTTVSection", insertSpaceInTag("WallOTTVSection"), TableDataList::ARRAYTABLE);
+    tables.append(QStringList()<<"EnvelopeSystem" << "BuildingOTTVwall" << "OpaqueComponentWall" << "OpaqueComponentByWall", insertSpaceInTag("OpaqueComponentByWall"), TableDataList::ARRAYTABLE);
+    tables.append(QStringList()<<"EnvelopeSystem" << "BuildingOTTVwall" << "TransparentComponentWall" << "TransparentComponentByWall", insertSpaceInTag("TransparentComponentByWall"), TableDataList::ARRAYTABLE);
+    tables.append(QStringList()<<"EnvelopeSystem" << "BuildingOTTVwall" << "ComponentAreaWall" << "ComponentAreaPerWall", insertSpaceInTag("ComponentAreaPerWall"), TableDataList::ARRAYTABLE);
+    tables.append(QStringList()<<"LightingSystem" << "LightingSystemPerformance", insertSpaceInTag("LightingSystemPerformance"), TableDataList::TABLE);
+    tables.append(QStringList()<<"LightingSystem" << "LightingSystemFloor" << "LightingSystemByFloor", insertSpaceInTag("LightingSystemByFloor"), TableDataList::ARRAYTABLE);
+    tables.append(QStringList()<<"LightingSystem" << "LightingSystemZone" << "LightingSystemByZone", insertSpaceInTag("LightingSystemByZone"), TableDataList::ARRAYTABLE);
+    tables.append(QStringList()<<"CentralACSystem" << "WaterChillerReport", insertSpaceInTag("WaterChillerReport"), TableDataList::ARRAYTABLE);
+    tables.append(QStringList()<<"CentralACSystem" << "CentralACOtherEQReport", insertSpaceInTag("CentralACOtherEQReport"), TableDataList::ARRAYTABLE);
+    tables.append(QStringList()<<"CentralACSystem" << "CentralACEQList", insertSpaceInTag("CentralACEQList"), TableDataList::ARRAYTABLE);
+    tables.append(QStringList()<<"PVSystem" << "PVSys", insertSpaceInTag("PVSystem"), TableDataList::ARRAYTABLE);
+    tables.append(QStringList()<<"WholeBuildingEnergy"<<"WholeBuildingEnergyReport", insertSpaceInTag("WholeBuildingEnergyReport"), TableDataList::TABLE);
+    tables.append(QStringList()<<"WholeBuildingEnergy" << "WholeBuildingEnergyReportFloor" << "WholeBuildingEnergyReportByFloor", insertSpaceInTag("WholeBuildingEnergyReportByFloor"), TableDataList::ARRAYTABLE);
+    tables.append(QStringList()<<"WholeBuildingEnergy" << "WholeBuildingEnergyReportZone" << "WholeBuildingEnergyReportByZone", insertSpaceInTag("WholeBuildingEnergyReportByZone"), TableDataList::ARRAYTABLE);
+    return tables.toString();
+}
+
 void doTable(const QString &title, QDomNode& root, QFile& file, int level){
 
     QHash<QString, bool> h1;
@@ -417,7 +703,9 @@ background-color: #ffff99;\n\
     xmlfile.close();
 
     QDomElement docElem = doc.documentElement();
-    doTable(docElem.tagName(), docElem, file, 0);
+    //doTable(docElem.tagName(), docElem, file, 0);
+    QString tables = doTableV2(docElem);
+    file.write(tables.toUtf8());
 
     //BENCHMARK
     QString pass = "Failed";
