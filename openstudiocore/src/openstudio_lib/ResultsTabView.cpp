@@ -92,7 +92,7 @@ ResultsView::ResultsView(QWidget *t_parent)
   : QWidget(t_parent),
     m_isIP(true),
     m_compareBtn(new QPushButton("Compare other result.")),
-    m_printBtn(new QPushButton("Open in Browser")),
+    m_printBtn(new QPushButton("Print Via Browser")),
     m_openResultsViewerBtn(new QPushButton("Open ResultsViewer\nfor Detailed Reports"))
 {
 

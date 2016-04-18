@@ -475,15 +475,13 @@ void ForwardTranslator::doComponentOfSection(openstudio::model::Surface& surface
                         createTagWithText(OpaqueList, "OpaqueComponentListName", name.c_str());
                         createTagWithText(OpaqueList, "OpaqueComponentListType", stype.c_str());
 
-                        QString colorName = "White";
-                        if(construction->renderingColor()){
-                            QColor color;
-                            color.setRed(construction->renderingColor()->renderingRedValue());
-                            color.setGreen(construction->renderingColor()->renderingGreenValue());
-                            color.setBlue(construction->renderingColor()->renderingBlueValue());
-                            color.setAlpha(construction->renderingColor()->renderingAlphaValue());
-                            colorName = color.name();
+                        QString colorName = outerMaterial.roughness().c_str();
+                        if(colorName.indexOf("Rough")>0){
+                            colorName.replace("Rough", " Rough");
+                        }else if(colorName.indexOf("Smooth")>0){
+                            colorName.replace("Smooth", " Smooth");
                         }
+
                         createTagWithText(OpaqueList, "OpaqueComponentListOuterSurfaceColor", colorName);
                         createTagWithText(OpaqueList, "OpaqueComponentListInnerSurfaceType", "UNKNOW");
                         createTagWithText(OpaqueList, "OpaqueComponentListDescription", "???");
@@ -535,15 +533,13 @@ void ForwardTranslator::doComponentOfSection(openstudio::model::Surface& surface
                             createTagWithText(OpaqueList, "OpaqueComponentListName", name.c_str());
                             createTagWithText(OpaqueList, "OpaqueComponentListType", stype.c_str());
 
-                            QString colorName = "White";
-                            if(construction->renderingColor()){
-                                QColor color;
-                                color.setRed(construction->renderingColor()->renderingRedValue());
-                                color.setGreen(construction->renderingColor()->renderingGreenValue());
-                                color.setBlue(construction->renderingColor()->renderingBlueValue());
-                                color.setAlpha(construction->renderingColor()->renderingAlphaValue());
-                                colorName = color.name();
+                            QString colorName = outerMaterial.roughness().c_str();
+                            if(colorName.indexOf("Rough")>0){
+                                colorName.replace("Rough", " Rough");
+                            }else if(colorName.indexOf("Smooth")>0){
+                                colorName.replace("Smooth", " Smooth");
                             }
+
                             createTagWithText(OpaqueList, "OpaqueComponentListOuterSurfaceColor", colorName);
                             createTagWithText(OpaqueList, "OpaqueComponentListInnerSurfaceType", "UNKNOW");
                             createTagWithText(OpaqueList, "OpaqueComponentListDescription", "???");
@@ -899,7 +895,7 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
                     QDomElement SplitType = createTagWithText(SplitTypeSystem, "SplitType");
                     //////////////////////////////////////////////////
                     std::string name = coil.name().get();
-                    boost::optional<double> cop = coil.ratedCOP();
+                    //boost::optional<double> cop = coil.ratedCOP();ไม่ต้องส่งไปแล้ว
                     boost::optional<double> coolingcap = coil.ratedTotalCoolingCapacity();
                     //boost::optional<double> power2 = coil.evaporativeCondenserPumpRatedPowerConsumption();
                     boost::optional<double> power = coil.ratedEvaporatorFanPowerPerVolumeFlowRate();
@@ -908,14 +904,15 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
                     createTagWithText(SplitType, "SplitTypeCoolingCapacity"
                                       , QString::number(coolingcap.get_value_or(0.0f)));
                     createTagWithText(SplitType, "SplitTypeCoolingCapacityUnit"
-                                      , "TR");
+                                      , "W");
                     createTagWithText(SplitType, "SplitTypePower"
                                       , QString::number(power.get_value_or(0.0f)/1000));
                     //createTagWithText(SplitType, "SplitTypePower2"
                     //                  , QString::number(power2.get_value_or(0.0f)));
-                    createTagWithText(SplitType, "SplitTypePowerUnit", "kW");
+                    createTagWithText(SplitType, "SplitTypePowerUnit", "W");
                     createTagWithText(SplitType, "SplitTypeDescription", "?");
-                    createTagWithText(SplitType, "SplitTypeCOP", QString::number(cop.get_value_or(0.0f)));
+                    //TODO: CHANGE TO REAL COP
+                    createTagWithText(SplitType, "SplitTypeCOP", QString::number(power.get_value_or(0.0f)));
                     createTagWithText(SplitType, "SplitTypekWth", "0");
 
                     if(coil.isRatedTotalCoolingCapacityAutosized()){
@@ -939,7 +936,7 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
                     createTagWithText(SplitType, "SplitTypeCoolingCapacity"
                                       , QString::number(coolingcap.get_value_or(0.0f)));
                     createTagWithText(SplitType, "SplitTypeCoolingCapacityUnit"
-                                      , "TR");
+                                      , "W");
                     createTagWithText(SplitType, "SplitTypePower"
                                       , QString::number(power.get_value_or(0.0f)/1000));
                     createTagWithText(SplitType, "SplitTypePowerUnit", "kW");
