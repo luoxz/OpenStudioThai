@@ -267,7 +267,7 @@ class doTableArrayOnPath : public IDoTable
 public:
     doTableArrayOnPath() {}
     QString process(QDomNode& root, const QStringList& fullpaths){
-
+        bool initHeader = false;
         QString arrayTags = fullpaths.at(fullpaths.size()-1);
 
         QStringList paths;
@@ -305,9 +305,9 @@ public:
                         if(ecol.tagName().endsWith("Unit"))
                             continue;
 
-                        if(rit==0){
+                        if(!initHeader){
                             QString header = insertSpaceInTag(ecol.tagName());
-                            QDomElement ecolnext = nd.toElement().nextSiblingElement();
+                            QDomElement ecolnext = ecol.nextSiblingElement();
                             if(ecolnext.tagName().endsWith("Unit")){
                                 headerData.append(QString("<td>%1(%2)</td>\n").arg(header).arg(ecolnext.text()));
                             }else{
@@ -316,6 +316,7 @@ public:
                         }
                         rowData.append(QString("<td>%1</td>\n").arg(stringToMoney(ecol.text())));
                     }
+                    initHeader = true;
                     rowData.append("</tr>\n");
                 }
 
