@@ -642,31 +642,31 @@ border-collapse: separate;\n\
 background-color: white;\n\
 }\n\
 h1 {\n\
-background-color: #22ffff;\n\
+background-color: #fbd4b3;\n\
 }\n\
 h2 {\n\
-background-color: #33ffff;\n\
+background-color: #fbd4b3;\n\
 }\n\
 h3 {\n\
-background-color: #55ffff;\n\
+background-color: #fbd4b3;\n\
 }\n\
 h4 {\n\
-background-color: #77ffff;\n\
+background-color: #fbd4b3;\n\
 }\n\
 p {\n\
-background-color: #99ffff;\n\
+background-color: #fbd4b3;\n\
 }\n\
 table th {\n\
 border-width: 1px;\n\
 padding: 1px;\n\
 border-style: solid;\n\
-border-color: green;\n\
+border-color: black;\n\
 background-color: white;\n\
 -moz-border-radius: ;\n\
 }\n\
 \n\
 table tr:first-child td {\n\
-background-color: #ffcc97;\n\
+background-color: #b8dce8;\n\
 text-align: center;\n\
 }\n\
 \n\
@@ -674,12 +674,12 @@ table td {\n\
 border-width: 1px;\n\
 padding: 1px;\n\
 border-style: solid;\n\
-border-color: green;\n\
+border-color: black;\n\
 -moz-border-radius: ;\n\
 }\n\
 \n\
 table tr:nth-child(even){\n\
-background-color: #91ff91;\n\
+background-color: #ddd8c4;\n\
 }\n\
 \n\
 table tr:hover {\n\
@@ -1199,6 +1199,14 @@ border-color: green;\n\
 border-collapse: separate;\n\
 background-color: white;\n\
 }\n\
+table tr:first-child td {\n\
+background-color: #b8dce8;\n\
+text-align: center;\n\
+}\n\
+table tr:last-child td {\n\
+background-color: #91cf50;\n\
+text-align: center;\n\
+}\n\
 table th {\n\
 border-width: 1px;\n\
 padding: 1px;\n\
@@ -1217,12 +1225,12 @@ table td {\n\
 border-width: 1px;\n\
 padding: 1px;\n\
 border-style: solid;\n\
-border-color: green;\n\
+border-color: black;\n\
 -moz-border-radius: ;\n\
 }\n\
 \n\
 table tr:nth-child(even){\n\
-background-color: #91ff91;\n\
+background-color: #ddd8c4;\n\
 }\n\
 \n\
 table tr:hover {\n\
@@ -1319,7 +1327,7 @@ table {\n\
 border-width: 1px;\n\
 border-spacing: 0px;\n\
 border-style: solid;\n\
-border-color: green;\n\
+border-color: black;\n\
 border-collapse: separate;\n\
 background-color: white;\n\
 }\n\
@@ -1327,7 +1335,7 @@ table th {\n\
 border-width: 1px;\n\
 padding: 1px;\n\
 border-style: solid;\n\
-border-color: green;\n\
+border-color: black;\n\
 background-color: white;\n\
 -moz-border-radius: ;\n\
 }\n\
@@ -1337,19 +1345,19 @@ background-color: #ffcc97;\n\
 text-align: center;\n\
 }\n\
 table tr:first-child td {\n\
-background-color: #ffcc97;\n\
+background-color: #b8dce8;\n\
 text-align: center;\n\
 }\n\
 table td {\n\
 border-width: 1px;\n\
 padding: 1px;\n\
 border-style: solid;\n\
-border-color: green;\n\
+border-color: black;\n\
 -moz-border-radius: ;\n\
 }\n\
 \n\
 table tr:nth-child(even){\n\
-background-color: #91ff91;\n\
+background-color: #ddd8c4;\n\
 }\n\
 \n\
 table tr:hover {\n\

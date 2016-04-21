@@ -482,7 +482,9 @@ void ForwardTranslator::doComponentOfSection(openstudio::model::Surface& surface
                             colorName.replace("Smooth", " Smooth");
                         }
 
-                        createTagWithText(OpaqueList, "OpaqueComponentListOuterSurfaceColor", colorName);
+						double solarAbsoupTance = outerMaterial.solarAbsorptance();
+
+						createTagWithText(OpaqueList, "OpaqueComponentListOuterSurfaceColor", QString::number(solarAbsoupTance));
                         createTagWithText(OpaqueList, "OpaqueComponentListInnerSurfaceType", "UNKNOW");
                         createTagWithText(OpaqueList, "OpaqueComponentListDescription", "???");
                     }
@@ -1166,12 +1168,12 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
                 createTagWithText(CentralACD, "CentralACDetailEQType", "Air Cooled Water Chiller");
                 createTagWithText(CentralACD, "CentralACDetailChillerType", "None");
                 createTagWithText(CentralACD, "CentralACDetailQuantity", "1");
-                createTagWithText(CentralACD, "CentralACDetailCoolingCapacity", QString::number(cop));
+				createTagWithText(CentralACD, "CentralACDetailCoolingCapacity", QString::number(refcap));
                 createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "kW");
                 createTagWithText(CentralACD, "CentralACDetailPower"
                                   , QString::number(refcap/cop));
                 createTagWithText(CentralACD, "CentralACDetailPowerUnit", "kW");
-                createTagWithText(CentralACD, "CentralACDetailCOP", QString::number(0));
+				createTagWithText(CentralACD, "CentralACDetailCOP", QString::number(cop));
                 createTagWithText(CentralACD, "CentralACDetailkWth", "0");
                 createTagWithText(CentralACD, "plantLoop_name_success", hvac.name().get().c_str());
                 createTagWithText(CentralACD, "iddname", hvac.iddObject().name().c_str());
@@ -1376,6 +1378,7 @@ void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElemen
                     zoneName = planloop.get().name().get().c_str();
 
                 createTagWithText(BuildingZoneDXACUnit, "ZONE_NAME", zoneName);
+				createTagWithText(BuildingZoneDXACUnit, "SPACE_NAME", space.name().get().c_str());
 
                 if(zoneName.startsWith("Thai Split Type Air")){
                     QDomElement BuildingZoneDXAC
