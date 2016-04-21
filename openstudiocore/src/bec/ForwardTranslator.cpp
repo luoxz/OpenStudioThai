@@ -1377,7 +1377,7 @@ void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElemen
                 if(planloop)
                     zoneName = planloop.get().name().get().c_str();
 
-                createTagWithText(BuildingZoneDXACUnit, "ZONE_NAME", zoneName);
+                createTagWithText(BuildingZoneDXACUnit, "LOOP_NAME", zoneName);
 				createTagWithText(BuildingZoneDXACUnit, "SPACE_NAME", space.name().get().c_str());
 
                 if(zoneName.startsWith("Thai Split Type Air")){
