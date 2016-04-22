@@ -895,7 +895,7 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
                     double rc = coil.ratedCOP().get_value_or(0.0f);
 
                     if(rc == 0.0)
-                        rc = 0.000000001f;
+                        continue;
 
                     boost::optional<double> power = coolingcap.get_value_or(0.0f)/rc;
                     if(power)
@@ -946,24 +946,28 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
                     QDomElement SplitType = createTagWithText(SplitTypeSystem, "SplitType");
                     //////////////////////////////////////////////////
                     std::string name = coil.name().get();
-                    //boost::optional<double> cop = coil.ratedCOP();ไม่ต้องส่งไปแล้ว
-                    boost::optional<double> coolingcap = coil.ratedTotalCoolingCapacity();
+					double ratecop = coil.ratedCOP().get_value_or(1.0);
+					double coolingcap = coil.ratedTotalCoolingCapacity().get_value_or(0.0);
                     //boost::optional<double> power2 = coil.evaporativeCondenserPumpRatedPowerConsumption();
-                    boost::optional<double> power = coil.ratedEvaporatorFanPowerPerVolumeFlowRate();
+                    //boost::optional<double> power = coil.ratedEvaporatorFanPowerPerVolumeFlowRate();
+
+                    if(ratecop==0.0){
+                        continue;
+                    }
 
                     createTagWithText(SplitType, "SplitTypeName", name.c_str());
                     createTagWithText(SplitType, "SplitTypeCoolingCapacity"
-                                      , QString::number(coolingcap.get_value_or(0.0f)));
+						, QString::number(coolingcap));
                     createTagWithText(SplitType, "SplitTypeCoolingCapacityUnit"
                                       , "W");
                     createTagWithText(SplitType, "SplitTypePower"
-                                      , QString::number(power.get_value_or(0.0f)/1000));
+                                      , QString::number(coolingcap/ratecop));
                     //createTagWithText(SplitType, "SplitTypePower2"
                     //                  , QString::number(power2.get_value_or(0.0f)));
                     createTagWithText(SplitType, "SplitTypePowerUnit", "W");
                     createTagWithText(SplitType, "SplitTypeDescription", "?");
                     //TODO: CHANGE TO REAL COP
-                    createTagWithText(SplitType, "SplitTypeCOP", QString::number(power.get_value_or(0.0f)));
+					createTagWithText(SplitType, "SplitTypeCOP", QString::number(ratecop));
                     createTagWithText(SplitType, "SplitTypekWth", "0");
 
                     if(coil.isRatedTotalCoolingCapacityAutosized()){
@@ -1019,10 +1023,13 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
                     model::CoilCoolingDXSingleSpeed coil = hvac.cast<model::CoilCoolingDXSingleSpeed>();
 
                     std::string name = coil.name().get();
-                    boost::optional<double> cop = coil.ratedCOP();
-                    boost::optional<double> coolingcap = coil.ratedTotalCoolingCapacity();
+                    double cop = coil.ratedCOP().get_value_or(1.0);
+                    double coolingcap = coil.ratedTotalCoolingCapacity().get_value_or(0.0);
                     //boost::optional<double> power2 = coil.evaporativeCondenserPumpRatedPowerConsumption();
-                    boost::optional<double> power = coil.ratedEvaporatorFanPowerPerVolumeFlowRate();
+                    if(cop == 0.0){
+                        continue;
+                    }
+                    double power = coolingcap/cop;
 
                     QDomElement CentralACD = createTagWithText(CentralACDetail, "CentralACD");
                     createTagWithText(CentralACD, "CentralACDetailListName", listName);
@@ -1030,12 +1037,12 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
                     createTagWithText(CentralACD, "CentralACDetailEQType", "Air Cooled Water Chiller");
                     createTagWithText(CentralACD, "CentralACDetailChillerType", "All");
                     createTagWithText(CentralACD, "CentralACDetailQuantity", "1");
-                    createTagWithText(CentralACD, "CentralACDetailCoolingCapacity", QString::number(coolingcap.get_value_or(0.0f)));
-                    createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "kW");
-                    createTagWithText(CentralACD, "CentralACDetailPower", QString::number(power.get_value_or(0.0f)));
-                    createTagWithText(CentralACD, "CentralACDetailPowerUnit", "kW");
-                    createTagWithText(CentralACD, "CentralACDetailCOP", QString::number(cop.get_value_or(0.0f)));
-                    createTagWithText(CentralACD, "CentralACDetailkWth", QString::number(power.get_value_or(0.0f)));
+                    createTagWithText(CentralACD, "CentralACDetailCoolingCapacity", QString::number(coolingcap));
+                    createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "W");
+                    createTagWithText(CentralACD, "CentralACDetailPower", QString::number(power));
+                    createTagWithText(CentralACD, "CentralACDetailPowerUnit", "W");
+                    createTagWithText(CentralACD, "CentralACDetailCOP", QString::number(cop));
+                    createTagWithText(CentralACD, "CentralACDetailkWth", QString::number(power));
 
                     createTagWithText(CentralACD, "CentralACD_idd_name", hvac.name().get().c_str());
                     createTagWithText(CentralACD, "CentralACD_idd_iddname", hvac.iddObject().name().c_str());
