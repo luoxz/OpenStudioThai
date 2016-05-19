@@ -1175,7 +1175,18 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
                 createTagWithText(CentralACD, "CentralACDetailListName", listName);
                 createTagWithText(CentralACD, "CentralACDetailName", hvac.name().get().c_str());
                 createTagWithText(CentralACD, "CentralACDetailEQType", "Air Cooled Chiller");
-                createTagWithText(CentralACD, "CentralACDetailChillerType", "None");
+
+                QString strType;
+                if(chiller.condenserType() == "AirCooled"){
+                    strType = "Air Cooled Chiller";
+                }else if(chiller.condenserType() == "WaterCooled"){
+                    strType = "Water Cooled Chiller";
+                }else if(chiller.condenserType() == "EvaporativelyCooled"){
+                    strType = "Evaporatively Cooled Chiller";
+                }else{
+                    strType = "None";
+                }
+                createTagWithText(CentralACD, "CentralACDetailChillerType", strType);
                 createTagWithText(CentralACD, "CentralACDetailQuantity", "1");
 				createTagWithText(CentralACD, "CentralACDetailCoolingCapacity", QString::number(refcap));
                 createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "W");
