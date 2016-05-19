@@ -1072,7 +1072,7 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
                     createTagWithText(CentralACD, "CentralACDetailQuantity", "1");
                     createTagWithText(CentralACD, "CentralACDetailCoolingCapacity", QString::number(coolingcap.get_value_or(0.0f)));
 					//NOTE JUST W
-                    createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "kW");
+                    createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "W");
                     createTagWithText(CentralACD, "CentralACDetailPower", QString::number(power.get_value_or(0.0f)));
                     createTagWithText(CentralACD, "CentralACDetailPowerUnit", "kW");
                     createTagWithText(CentralACD, "CentralACDetailCOP", QString::number(cop.get_value_or(0.0f)));
@@ -1133,7 +1133,7 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
 				//NOTE JUST W
                 createTagWithText(CentralACD, "CentralACDetailCoolingCapacity"
                                   , QString::number(tower.designFanPower().get_value_or(0.0f)/0.0105));
-                createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "kW");
+                createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "W");
                 createTagWithText(CentralACD, "CentralACDetailPower"
                                   , QString::number(tower.designAirFlowRate().get_value_or(0.0f)));
                 createTagWithText(CentralACD, "CentralACDetailPowerUnit", "kW");
@@ -1153,7 +1153,7 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
                 createTagWithText(CentralACD, "CentralACDetailQuantity", "1");
                 createTagWithText(CentralACD, "CentralACDetailCoolingCapacity"
                                   , QString::number(pump.ratedPowerConsumption().get_value_or(0.0f)));
-                createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "kW");
+                createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "W");
                 createTagWithText(CentralACD, "CentralACDetailPower"
                                   , QString::number(pump.ratedPowerConsumption().get_value_or(0.0f)));
                 createTagWithText(CentralACD, "CentralACDetailPowerUnit", "kW");
@@ -1178,7 +1178,7 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
                 createTagWithText(CentralACD, "CentralACDetailChillerType", "None");
                 createTagWithText(CentralACD, "CentralACDetailQuantity", "1");
 				createTagWithText(CentralACD, "CentralACDetailCoolingCapacity", QString::number(refcap));
-                createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "kW");
+                createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "W");
                 createTagWithText(CentralACD, "CentralACDetailPower"
                                   , QString::number(refcap/cop));
                 createTagWithText(CentralACD, "CentralACDetailPowerUnit", "kW");
