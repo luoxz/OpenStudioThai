@@ -1033,7 +1033,7 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
                                                               , "PackagedAirCooled");
             createTagWithText(PackagedAirCooled, "PackagedAirCooledName", listName);
             createTagWithText(PackagedAirCooled, "PackagedAirCooledCoolingCapacity", QString::number(scapacity));
-            createTagWithText(PackagedAirCooled, "PackagedAirCooledCoolingCapacityUnit", "TR");
+            createTagWithText(PackagedAirCooled, "PackagedAirCooledCoolingCapacityUnit", "W");
             createTagWithText(PackagedAirCooled, "PackagedAirCooledPower", QString::number(spower));
             createTagWithText(PackagedAirCooled, "PackagedAirCooledPowerUnit", "kW");
             createTagWithText(PackagedAirCooled, "PackagedAirCooledDescription", "???");
