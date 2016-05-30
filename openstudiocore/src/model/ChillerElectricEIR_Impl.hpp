@@ -51,6 +51,7 @@ class MODEL_API ChillerElectricEIR_Impl : public WaterToWaterComponent_Impl
   Q_PROPERTY(boost::optional<std::string> condenserInletNodeName READ condenserInletNodeName WRITE setCondenserInletNodeName RESET resetCondenserInletNodeName);
   Q_PROPERTY(boost::optional<std::string> condenserOutletNodeName READ condenserOutletNodeName WRITE setCondenserOutletNodeName RESET resetCondenserOutletNodeName);
   Q_PROPERTY(std::string condenserType READ condenserType WRITE setCondenserType RESET resetCondenserType);
+  Q_PROPERTY(std::string compressorType READ compressorType WRITE setCompressorType RESET resetCompressorType);
   Q_PROPERTY(double condenserFanPowerRatio READ condenserFanPowerRatio WRITE setCondenserFanPowerRatio RESET resetCondenserFanPowerRatio);
   Q_PROPERTY(double compressorMotorEfficiency READ compressorMotorEfficiency WRITE setCompressorMotorEfficiency RESET resetCompressorMotorEfficiency);
   Q_PROPERTY(double leavingChilledWaterLowerTemperatureLimit READ leavingChilledWaterLowerTemperatureLimit WRITE setLeavingChilledWaterLowerTemperatureLimit RESET resetLeavingChilledWaterLowerTemperatureLimit);
@@ -156,7 +157,11 @@ class MODEL_API ChillerElectricEIR_Impl : public WaterToWaterComponent_Impl
 
   std::string condenserType() const;
 
+  std::string compressorType() const;
+
   bool isCondenserTypeDefaulted() const;
+
+  bool isCompressorTypeDefaulted() const;
 
   double condenserFanPowerRatio() const;
 
@@ -273,6 +278,10 @@ class MODEL_API ChillerElectricEIR_Impl : public WaterToWaterComponent_Impl
   bool setCondenserType(std::string condenserType);
 
   void resetCondenserType();
+
+  bool setCompressorType(std::string compressorType);
+
+  void resetCompressorType();
 
   bool setCondenserFanPowerRatio(double condenserFanPowerRatio);
 

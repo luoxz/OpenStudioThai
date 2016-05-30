@@ -10195,6 +10195,14 @@ OS:Chiller:Electric:EIR,
        \note throughout the entire simulation.
        \type object-list
        \object-list ScheduleNames
+  A15, \field Compressor Type
+       \type choice
+       \default Reciprocating
+       \key Reciprocating
+       \key Screw Driven
+       \key Scroll
+       \key Rotary
+	   \key Centrifugal
 
 OS:CoolingTower:SingleSpeed,
        \min-fields 10 

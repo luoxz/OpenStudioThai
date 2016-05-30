@@ -220,6 +220,12 @@ namespace detail {
     return getString(OS_Chiller_Electric_EIRFields::CondenserOutletNodeName,true);
   }
 
+  std::string ChillerElectricEIR_Impl::compressorType() const {
+	  boost::optional<std::string> value = getString(OS_Chiller_Electric_EIRFields::CompressorType, true);
+	  OS_ASSERT(value);
+	  return value.get();
+  }
+
   std::string ChillerElectricEIR_Impl::condenserType() const {
     boost::optional<std::string> value = getString(OS_Chiller_Electric_EIRFields::CondenserType,true);
     OS_ASSERT(value);
@@ -228,6 +234,10 @@ namespace detail {
 
   bool ChillerElectricEIR_Impl::isCondenserTypeDefaulted() const {
     return isEmpty(OS_Chiller_Electric_EIRFields::CondenserType);
+  }
+
+  bool ChillerElectricEIR_Impl::isCompressorTypeDefaulted() const {
+	  return isEmpty(OS_Chiller_Electric_EIRFields::CompressorType);
   }
 
   double ChillerElectricEIR_Impl::condenserFanPowerRatio() const {
@@ -520,11 +530,19 @@ namespace detail {
     OS_ASSERT(result);
   }
 
-
+  bool ChillerElectricEIR_Impl::setCompressorType(std::string compressorType)
+  {
+	  return setString(OS_Chiller_Electric_EIRFields::CompressorType, compressorType);
+  }
 
   bool ChillerElectricEIR_Impl::setCondenserType(std::string condenserType)
   {
     return setString(OS_Chiller_Electric_EIRFields::CondenserType, condenserType);
+  }
+
+  void ChillerElectricEIR_Impl::resetCompressorType() {
+	  bool result = setString(OS_Chiller_Electric_EIRFields::CompressorType, "");
+	  OS_ASSERT(result);
   }
 
   void ChillerElectricEIR_Impl::resetCondenserType() {
@@ -851,6 +869,11 @@ std::vector<std::string> ChillerElectricEIR::validCondenserTypeValues() {
                         OS_Chiller_Electric_EIRFields::CondenserType);
 }
 
+std::vector<std::string> ChillerElectricEIR::validCompressorTypeValues() {
+	return getIddKeyNames(IddFactory::instance().getObject(iddObjectType()).get(),
+		OS_Chiller_Electric_EIRFields::CompressorType);
+}
+
 std::vector<std::string> ChillerElectricEIR::validChillerFlowModeValues() {
   return getIddKeyNames(IddFactory::instance().getObject(iddObjectType()).get(),
                         OS_Chiller_Electric_EIRFields::ChillerFlowMode);
@@ -984,6 +1007,14 @@ std::string ChillerElectricEIR::condenserType() const {
 
 bool ChillerElectricEIR::isCondenserTypeDefaulted() const {
   return getImpl<detail::ChillerElectricEIR_Impl>()->isCondenserTypeDefaulted();
+}
+
+std::string ChillerElectricEIR::compressorType() const {
+	return getImpl<detail::ChillerElectricEIR_Impl>()->compressorType();
+}
+
+bool ChillerElectricEIR::isCompressorTypeDefaulted() const {
+	return getImpl<detail::ChillerElectricEIR_Impl>()->isCompressorTypeDefaulted();
 }
 
 double ChillerElectricEIR::condenserFanPowerRatio() const {
@@ -1190,9 +1221,18 @@ bool ChillerElectricEIR::setCondenserType(std::string condenserType) {
   return getImpl<detail::ChillerElectricEIR_Impl>()->setCondenserType(condenserType);
 }
 
+bool ChillerElectricEIR::setCompressorType(std::string compressorType) {
+	return getImpl<detail::ChillerElectricEIR_Impl>()->setCompressorType(compressorType);
+}
+
 void ChillerElectricEIR::resetCondenserType() {
   getImpl<detail::ChillerElectricEIR_Impl>()->resetCondenserType();
 }
+
+void ChillerElectricEIR::resetCompressorType() {
+	getImpl<detail::ChillerElectricEIR_Impl>()->resetCompressorType();
+}
+
 
 bool ChillerElectricEIR::setCondenserFanPowerRatio(double condenserFanPowerRatio) {
   return getImpl<detail::ChillerElectricEIR_Impl>()->setCondenserFanPowerRatio(condenserFanPowerRatio);

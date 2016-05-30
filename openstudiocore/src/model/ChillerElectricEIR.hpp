@@ -64,6 +64,8 @@ class MODEL_API ChillerElectricEIR : public WaterToWaterComponent {
 
   static std::vector<std::string> validCondenserTypeValues();
 
+  static std::vector<std::string> validCompressorTypeValues();
+
   static std::vector<std::string> validChillerFlowModeValues();
 
   /** @name Getters */
@@ -123,7 +125,11 @@ class MODEL_API ChillerElectricEIR : public WaterToWaterComponent {
 
   std::string condenserType() const;
 
+  std::string compressorType() const;
+
   bool isCondenserTypeDefaulted() const;
+
+  bool isCompressorTypeDefaulted() const;
 
   double condenserFanPowerRatio() const;
 
@@ -240,6 +246,10 @@ class MODEL_API ChillerElectricEIR : public WaterToWaterComponent {
   bool setCondenserType(std::string condenserType);
 
   void resetCondenserType();
+
+  bool setCompressorType(std::string compressorType);
+
+  void resetCompressorType();
 
   bool setCondenserFanPowerRatio(double condenserFanPowerRatio);
 
