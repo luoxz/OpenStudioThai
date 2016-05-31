@@ -934,7 +934,6 @@ void ForwardTranslator::processPlantLoop(QDomElement& CentralACList
 
             createTagWithText(CentralACD, "CentralACDetailListName", listName);
             createTagWithText(CentralACD, "CentralACDetailName", model.name().get().c_str());
-            createTagWithText(CentralACD, "CentralACDetailEQType", "Air Cooled Chiller");
 
             QString strType;
             if(chiller.condenserType() == "AirCooled"){
@@ -946,7 +945,9 @@ void ForwardTranslator::processPlantLoop(QDomElement& CentralACList
             }else{
                 strType = "None";
             }
-            createTagWithText(CentralACD, "CentralACDetailChillerType", strType);
+
+            createTagWithText(CentralACD, "CentralACDetailEQType", strType);
+            createTagWithText(CentralACD, "CentralACDetailChillerType", chiller.compressorType().c_str());
             createTagWithText(CentralACD, "CentralACDetailQuantity", "1");
             createTagWithText(CentralACD, "CentralACDetailCoolingCapacity", QString::number(refcap));
             createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "W");
