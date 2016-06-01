@@ -1223,7 +1223,8 @@ Loop addSplitTypeHVACTHAIType2(Model & model){
 	Node node1 = fan.outletModelObject()->cast<Node>();
 	setpointMSZR.addToNode(node1);
 	
-	Node oaNode = outdoorAirSystem.outdoorAirModelObject()->cast<Node>();
+	//Node oaNode = outdoorAirSystem.outdoorAirModelObject()->cast<Node>();
+	Node oaNode = outdoorAirSystem.reliefAirModelObject()->cast<Node>();
 	//oaNode = oaNode.inletModelObject()->cast<Node>();
 	//Node oaNode = outdoorAirSystem.
 
@@ -1231,7 +1232,7 @@ Loop addSplitTypeHVACTHAIType2(Model & model){
 	FanVariableVolume fan2 = FanVariableVolume(model, _alwaysOnSchedule);
 	fan2.addToNode(oaNode);
 
-	node1 = fan2.inletModelObject()->cast<Node>();
+	node1 = fan2.outletModelObject()->cast<Node>();
 
 	HeatExchangerAirToAirSensibleAndLatent heatExchange = HeatExchangerAirToAirSensibleAndLatent(model);
 	heatExchange.addToNode(node1);
@@ -1599,10 +1600,13 @@ Loop addThaizAirLoopWithERV(Model & model){
 	coilCoolingWater.addToNode(supplyOutletNode);
 	fan.addToNode(supplyOutletNode);
 
-	Node oaNode = outdoorAirSystem.outdoorAirModelObject()->cast<Node>();
-	heatExchage.addToNode(oaNode);
-	fan.addToNode(oaNode);
+	//Node oaNode = outdoorAirSystem.outdoorAirModelObject()->cast<Node>();
+	Node oaNode = outdoorAirSystem.reliefAirModelObject()->cast<Node>();
+	fan2.addToNode(oaNode);
 
+	oaNode = fan2.outletModelObject()->cast<Node>();
+	heatExchage.addToNode(oaNode);
+	
 	Node node1 = fan.outletModelObject()->cast<Node>();
 	deckTempSPM.addToNode(node1);
 
