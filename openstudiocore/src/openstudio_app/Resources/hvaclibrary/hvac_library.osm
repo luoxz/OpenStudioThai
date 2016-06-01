@@ -406,7 +406,7 @@ OS:Coil:Cooling:DX:SingleSpeed,
   2637.60,                                ! Rated Total Cooling Capacity {W}
   Autosize,                               ! Rated Sensible Heat Ratio
   3.4,                                    ! Rated COP {W/W}
-  Autosize,                               ! Rated Air Flow Rate {m3/s}
+  0.15,                               	  ! Rated Air Flow Rate {m3/s}
   773.29999999999995,                     ! Rated Evaporator Fan Power Per Volume Flow Rate {W/(m3/s)}
   ,                                       ! Air Inlet Node Name
   ,                                       ! Air Outlet Node Name
@@ -439,7 +439,7 @@ OS:Coil:Cooling:DX:SingleSpeed,
   3516.80,                                ! Rated Total Cooling Capacity {W}
   Autosize,                               ! Rated Sensible Heat Ratio
   3.4,                                    ! Rated COP {W/W}
-  Autosize,                               ! Rated Air Flow Rate {m3/s}
+  0.18,                                   ! Rated Air Flow Rate {m3/s}
   773.29999999999995,                     ! Rated Evaporator Fan Power Per Volume Flow Rate {W/(m3/s)}
   ,                                       ! Air Inlet Node Name
   ,                                       ! Air Outlet Node Name
@@ -472,7 +472,7 @@ OS:Coil:Cooling:DX:SingleSpeed,
   5275.20,                                ! Rated Total Cooling Capacity {W}
   Autosize,                               ! Rated Sensible Heat Ratio
   3.4,                                    ! Rated COP {W/W}
-  Autosize,                               ! Rated Air Flow Rate {m3/s}
+  0.29,                                   ! Rated Air Flow Rate {m3/s}
   773.29999999999995,                     ! Rated Evaporator Fan Power Per Volume Flow Rate {W/(m3/s)}
   ,                                       ! Air Inlet Node Name
   ,                                       ! Air Outlet Node Name
@@ -505,7 +505,7 @@ OS:Coil:Cooling:DX:SingleSpeed,
   7033.60,                                ! Rated Total Cooling Capacity {W}
   Autosize,                               ! Rated Sensible Heat Ratio
   3.4,                                    ! Rated COP {W/W}
-  Autosize,                               ! Rated Air Flow Rate {m3/s}
+  0.35,                                   ! Rated Air Flow Rate {m3/s}
   773.29999999999995,                     ! Rated Evaporator Fan Power Per Volume Flow Rate {W/(m3/s)}
   ,                                       ! Air Inlet Node Name
   ,                                       ! Air Outlet Node Name
@@ -538,7 +538,7 @@ OS:Coil:Cooling:DX:SingleSpeed,
   8792.00,                                ! Rated Total Cooling Capacity {W}
   Autosize,                               ! Rated Sensible Heat Ratio
   3.22,                                   ! Rated COP {W/W}
-  Autosize,                               ! Rated Air Flow Rate {m3/s}
+  0.47,                                   ! Rated Air Flow Rate {m3/s}
   773.29999999999995,                     ! Rated Evaporator Fan Power Per Volume Flow Rate {W/(m3/s)}
   ,                                       ! Air Inlet Node Name
   ,                                       ! Air Outlet Node Name
@@ -571,7 +571,7 @@ OS:Coil:Cooling:DX:SingleSpeed,
   9671.20,                                ! Rated Total Cooling Capacity {W}
   Autosize,                               ! Rated Sensible Heat Ratio
   3.22,                                   ! Rated COP {W/W}
-  Autosize,                               ! Rated Air Flow Rate {m3/s}
+  0.49,                                   ! Rated Air Flow Rate {m3/s}
   773.29999999999995,                     ! Rated Evaporator Fan Power Per Volume Flow Rate {W/(m3/s)}
   ,                                       ! Air Inlet Node Name
   ,                                       ! Air Outlet Node Name
@@ -604,7 +604,7 @@ OS:Coil:Cooling:DX:SingleSpeed,
   10550.40,                               ! Rated Total Cooling Capacity {W}
   Autosize,                               ! Rated Sensible Heat Ratio
   3.22,                                   ! Rated COP {W/W}
-  Autosize,                               ! Rated Air Flow Rate {m3/s}
+  0.54,                                   ! Rated Air Flow Rate {m3/s}
   773.29999999999995,                     ! Rated Evaporator Fan Power Per Volume Flow Rate {W/(m3/s)}
   ,                                       ! Air Inlet Node Name
   ,                                       ! Air Outlet Node Name
@@ -637,7 +637,7 @@ OS:Coil:Cooling:DX:SingleSpeed,
   1722.67,                                ! Rated Total Cooling Capacity {W}
   Autosize,                               ! Rated Sensible Heat Ratio
   3.22,                                   ! Rated COP {W/W}
-  Autosize,                               ! Rated Air Flow Rate {m3/s}
+  0.61,                                   ! Rated Air Flow Rate {m3/s}
   773.29999999999995,                     ! Rated Evaporator Fan Power Per Volume Flow Rate {W/(m3/s)}
   ,                                       ! Air Inlet Node Name
   ,                                       ! Air Outlet Node Name
@@ -670,7 +670,7 @@ OS:Coil:Cooling:DX:SingleSpeed,
   14067.20,                               ! Rated Total Cooling Capacity {W}
   Autosize,                               ! Rated Sensible Heat Ratio
   3.22,                                   ! Rated COP {W/W}
-  Autosize,                               ! Rated Air Flow Rate {m3/s}
+  0.73,                                   ! Rated Air Flow Rate {m3/s}
   773.29999999999995,                     ! Rated Evaporator Fan Power Per Volume Flow Rate {W/(m3/s)}
   ,                                       ! Air Inlet Node Name
   ,                                       ! Air Outlet Node Name
@@ -704,7 +704,7 @@ OS:Coil:Cooling:DX:SingleSpeed,
   17584.00,                               ! Rated Total Cooling Capacity {W}
   Autosize,                               ! Rated Sensible Heat Ratio
   3.22,                                   ! Rated COP {W/W}
-  Autosize,                               ! Rated Air Flow Rate {m3/s}
+  0.88,                                   ! Rated Air Flow Rate {m3/s}
   773.29999999999995,                     ! Rated Evaporator Fan Power Per Volume Flow Rate {W/(m3/s)}
   ,                                       ! Air Inlet Node Name
   ,                                       ! Air Outlet Node Name
