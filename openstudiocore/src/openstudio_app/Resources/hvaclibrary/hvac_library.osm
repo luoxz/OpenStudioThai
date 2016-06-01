@@ -1367,7 +1367,9 @@ OS:Chiller:Electric:EIR,
   1,                                      ! Sizing Factor
   0,                                      ! Basin Heater Capacity {W/K}
   10,                                     ! Basin Heater Setpoint Temperature {C}
-  ;                                       ! Basin Heater Operating Schedule Name
+  ,                                       !- Basin Heater Operating Schedule Name
+  Reciprocating;                          !- Compressor Type
+
 
 OS:Curve:Biquadratic,
   {238cb0b4-afac-4115-8524-7778555d6cfb}, ! Handle
