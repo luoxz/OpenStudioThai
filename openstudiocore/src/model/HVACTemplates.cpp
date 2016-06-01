@@ -1299,6 +1299,7 @@ Loop addCentralSystemHVACTHAI(Model & model){
 	pump2.addToNode(chilledWaterInletNode);
 
 	ChillerElectricEIR chiller(model);
+	chiller.setCompressorType("Reciprocating");
 
 	Node node = chilledWaterPlant.supplySplitter().lastOutletModelObject()->cast<Node>();
 	chiller.addToNode(node);
@@ -1376,6 +1377,7 @@ Loop addCentralSystemWithAirCooled(Model & model){
 	pump2.addToNode(chilledWaterInletNode);
 
 	ChillerElectricEIR chiller(model);
+	chiller.setCompressorType("Reciprocating");
 
 	Node node = chilledWaterPlant.supplySplitter().lastOutletModelObject()->cast<Node>();
 	chiller.addToNode(node);
@@ -1453,7 +1455,7 @@ Loop addCentralSystemWithWaterCooled(Model & model){
 	pump2.addToNode(chilledWaterInletNode);
 
 	ChillerElectricEIR chiller(model);
-
+	chiller.setCompressorType("Reciprocating");
 	Node node = chilledWaterPlant.supplySplitter().lastOutletModelObject()->cast<Node>();
 	chiller.addToNode(node);
 

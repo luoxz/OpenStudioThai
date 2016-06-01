@@ -806,6 +806,7 @@ ChillerElectricEIR::ChillerElectricEIR(const Model& model,
   setBasinHeaterSetpointTemperature(10.0);
 
   resetBasinHeaterSchedule();
+  setCompressorType("Rotary");
 }
 
 ChillerElectricEIR::ChillerElectricEIR(const Model& model)
@@ -857,6 +858,7 @@ ChillerElectricEIR::ChillerElectricEIR(const Model& model)
   setBasinHeaterCapacity(0.0);
   setBasinHeaterSetpointTemperature(10.0);
   resetBasinHeaterSchedule();
+  setCompressorType("Rotary");
 }
 
 IddObjectType ChillerElectricEIR::iddObjectType() {

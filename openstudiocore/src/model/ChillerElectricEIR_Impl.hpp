@@ -51,7 +51,6 @@ class MODEL_API ChillerElectricEIR_Impl : public WaterToWaterComponent_Impl
   Q_PROPERTY(boost::optional<std::string> condenserInletNodeName READ condenserInletNodeName WRITE setCondenserInletNodeName RESET resetCondenserInletNodeName);
   Q_PROPERTY(boost::optional<std::string> condenserOutletNodeName READ condenserOutletNodeName WRITE setCondenserOutletNodeName RESET resetCondenserOutletNodeName);
   Q_PROPERTY(std::string condenserType READ condenserType WRITE setCondenserType RESET resetCondenserType);
-  Q_PROPERTY(std::string compressorType READ compressorType WRITE setCompressorType RESET resetCompressorType);
   Q_PROPERTY(double condenserFanPowerRatio READ condenserFanPowerRatio WRITE setCondenserFanPowerRatio RESET resetCondenserFanPowerRatio);
   Q_PROPERTY(double compressorMotorEfficiency READ compressorMotorEfficiency WRITE setCompressorMotorEfficiency RESET resetCompressorMotorEfficiency);
   Q_PROPERTY(double leavingChilledWaterLowerTemperatureLimit READ leavingChilledWaterLowerTemperatureLimit WRITE setLeavingChilledWaterLowerTemperatureLimit RESET resetLeavingChilledWaterLowerTemperatureLimit);
@@ -64,7 +63,8 @@ class MODEL_API ChillerElectricEIR_Impl : public WaterToWaterComponent_Impl
   Q_PROPERTY(double basinHeaterSetpointTemperature READ basinHeaterSetpointTemperature WRITE setBasinHeaterSetpointTemperature RESET resetBasinHeaterSetpointTemperature);
 
   Q_PROPERTY(boost::optional<openstudio::model::ModelObject> basinHeaterSchedule READ basinHeaterScheduleAsModelObject WRITE setBasinHeaterScheduleAsModelObject RESET resetBasinHeaterSchedule);
- public:
+  Q_PROPERTY(std::string compressorType READ compressorType WRITE setCompressorType RESET resetCompressorType);
+public:
 
 
   ChillerElectricEIR_Impl(const IdfObject& idfObject, Model_Impl* model, bool keepHandle);
