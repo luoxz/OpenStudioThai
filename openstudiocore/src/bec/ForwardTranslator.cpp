@@ -986,7 +986,7 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
     {
         std::vector<model::ModelObject> hvacs = airLoop.supplyComponents();
         QString listName = airLoop.name().get().c_str();
-        if(listName.startsWith("Thai Packaged Air Conditioner"))
+        if(listName.indexOf("Air Conditioner")>=0)
         {
             double scapacity = 0;
             double spower = 0;
@@ -1042,9 +1042,10 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
             createTagWithText(PackagedAirCooled, "PackagedAirCooledkWth", "0");
             continue;
         }
-        else if(listName.startsWith("Thai Split Type Air"))
+        else if(listName.indexOf("Split Type Air")>=0)
         {
-            for (const model::ModelObject & hvac : hvacs){
+            for (size_t i=0; i<hvacs.size(); i++){
+                model::ModelObject & hvac = hvacs.at(i);
                 if(isSkip(hvac)){
                     continue;
                 }
@@ -1110,18 +1111,69 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
                         createTagWithText(SplitType, "SplitTypekWth", "0");
                         break;
                     }
+                    case openstudio::IddObjectType::OS_Fan_VariableVolume:
+                    {
+                        model::FanVariableVolume fanv = hvac.cast<model::FanVariableVolume>();
+                        QString name = fanv.name().get().c_str();
+                        size_t inx = i+1;
+                        double coolcap=0.0;
+                        while(inx < hvacs.size()){
+                            model::ModelObject & nextItem = hvacs.at(inx);
+                            if(isSkip(nextItem)){
+                                inx++;
+                            }else{
+                                if(nextItem.iddObject().type().value() == openstudio::IddObjectType::OS_Coil_Cooling_Water){
+                                    model::CoilCoolingWater coolw = nextItem.cast<model::CoilCoolingWater>();
+                                    name = coolw.name().get().c_str();
+                                    //name = QString("%1 And %2").arg(name).arg(coolw.name().get().c_str());
+                                    coolcap = ((1.230*coolw.designAirFlowRate().get_value_or(0.0f))
+                                                     *(coolw.designInletAirTemperature().get_value_or(0.0f)-coolw.designOutletAirTemperature().get_value_or(0.0f)))
+                                                     +(3010*coolw.designAirFlowRate().get_value_or(0.0f)
+                                                     *(coolw.designOutletAirHumidityRatio().get_value_or(0.0f)-coolw.designInletAirHumidityRatio().get_value_or(0.0f)));
+                                    i = inx;
+                                }
+                                else{
+                                    i = inx-1;
+                                }
+                                break;
+                            }
+                        }
+
+                        QDomElement SplitType = createTagWithText(SplitTypeSystem, "SplitType");
+                        //////////////////////////////////////////////////
+                        if(fanv.fanEfficiency()==0.0f){
+                            continue;
+                        }
+
+                        double maximumFlowRate = fanv.maximumFlowRate().get_value_or(1.0f);
+                        double power = (maximumFlowRate*fanv.pressureRise())/(fanv.fanEfficiency()*1000);
+
+                        createTagWithText(SplitType, "SplitTypeName", name);
+                        createTagWithText(SplitType, "SplitTypeCoolingCapacity"
+                                          , QString::number(coolcap));
+                        createTagWithText(SplitType, "SplitTypeCoolingCapacityUnit"
+                                          , "W");
+                        createTagWithText(SplitType, "SplitTypePower"
+                                          , QString::number(power));
+                        createTagWithText(SplitType, "SplitTypePowerUnit", "kW");
+                        createTagWithText(SplitType, "SplitTypeDescription", "?");
+                        createTagWithText(SplitType, "SplitTypeCOP", "0");
+                        createTagWithText(SplitType, "SplitTypekWth", "0");
+                        break;
+                    }
                 }
             }
             continue;
         }
-        else if(listName.startsWith("Thai Central System Loop"))
+        else if(listName.indexOf("Central A/C")>=0 || (listName.indexOf("Air Loop")>=0))
         {
             QDomElement CentralACL = createTagWithText(CentralACList, "CentralACL");
             createTagWithText(CentralACL, "CentralACListName", listName);
             createTagWithText(CentralACL, "CentralACListType", airLoop.iddObject().name().c_str());
 
             int size = 0;
-            for (const model::ModelObject & hvac : hvacs){
+            for(size_t i=0;i<hvacs.size();i++){
+                model::ModelObject & hvac = hvacs.at(i);
                 if(isSkip(hvac)){
                     continue;
                 }
@@ -1219,23 +1271,42 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
                     }
                     case openstudio::IddObjectType::OS_Coil_Cooling_Water:
                     {
-
                         model::CoilCoolingWater coolw = hvac.cast<model::CoilCoolingWater>();
+                        QString name = coolw.name().get().c_str();
+                        size_t inx = i+1;
+                        double power=0.0;
+                        while(inx < hvacs.size()){
+                            model::ModelObject & nextItem = hvacs.at(inx);
+                            if(isSkip(nextItem)){
+                                inx++;
+                            }else{
+                                if(nextItem.iddObject().type().value() == openstudio::IddObjectType::OS_Fan_VariableVolume){
+                                    model::FanVariableVolume fanv = nextItem.cast<model::FanVariableVolume>();
+                                    //name = QString("%1 And %2").arg(name).arg(fanv.name().get().c_str());
+                                    double maximumFlowRate = fanv.maximumFlowRate().get_value_or(1.0f);
+                                    power = (maximumFlowRate*fanv.pressureRise())/(fanv.fanEfficiency()*1000);
+                                    i = inx;
+                                }else{
+                                    i = inx-1;
+                                }
+                                break;
+                            }
+                        }
+
                         double coolcap = ((1.230*coolw.designAirFlowRate().get_value_or(0.0f))
                                          *(coolw.designInletAirTemperature().get_value_or(0.0f)-coolw.designOutletAirTemperature().get_value_or(0.0f)))
                                          +(3010*coolw.designAirFlowRate().get_value_or(0.0f)
                                          *(coolw.designOutletAirHumidityRatio().get_value_or(0.0f)-coolw.designInletAirHumidityRatio().get_value_or(0.0f)));
 
-
                         QDomElement CentralACD = createTagWithText(CentralACDetail, "CentralACD");
                         createTagWithText(CentralACD, "CentralACDetailListName", listName);
-                        createTagWithText(CentralACD, "CentralACDetailName", coolw.name().get().c_str());
+                        createTagWithText(CentralACD, "CentralACDetailName", name);
                         createTagWithText(CentralACD, "CentralACDetailEQType", "Fan Coil Unit");
                         createTagWithText(CentralACD, "CentralACDetailChillerType", "None");
                         createTagWithText(CentralACD, "CentralACDetailQuantity", "1");
                         createTagWithText(CentralACD, "CentralACDetailCoolingCapacity", QString::number(coolcap));
                         createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "W");
-                        createTagWithText(CentralACD, "CentralACDetailPower", QString::number(0.0f));
+                        createTagWithText(CentralACD, "CentralACDetailPower", QString::number(power));
                         createTagWithText(CentralACD, "CentralACDetailPowerUnit", "kW");
                         createTagWithText(CentralACD, "CentralACDetailCOP", QString::number(0.0f));
                         createTagWithText(CentralACD, "CentralACDetailkWth", QString::number(0.0f));
@@ -1469,7 +1540,7 @@ void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElemen
                     zoneName = planloop.get().name().get().c_str();
                 }
 
-                if(zoneName.startsWith("Thai Split Type Air")){
+                if(zoneName.indexOf("Split Type Air")>=0){
                     if(airloop){
                         std::vector<model::ModelObject> hvacs = airloop.get().supplyComponents();
                         for (const model::ModelObject & hvac : hvacs){
@@ -1487,7 +1558,7 @@ void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElemen
                         }
                     }
                 }
-                else if(zoneName.startsWith("Thai Central System Loop")){
+                else if(zoneName.indexOf("Central A/C")>=0 || (zoneName.indexOf("Air Loop")>=0)){
                     boost::optional<model::AirLoopHVAC> airLoop = thermal.get().airLoopHVAC();
                     if (airLoop){
                         std::vector<model::ModelObject> hvacs = airLoop.get().supplyComponents();
@@ -1528,7 +1599,7 @@ void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElemen
                         }
                     }
                 }
-                else if(zoneName.startsWith("Thai Packaged Air Conditioner"))
+                else if(zoneName.indexOf("Air Conditioner")>=0)
                 {
                     QDomElement BuildingZoneDXAC
                             = createTagWithText(BuildingZoneDXACUnit, "BuildingZoneDXAC");
@@ -1914,7 +1985,7 @@ boost::optional<QDomElement> ForwardTranslator::translateMyModel(const openstudi
             }
         }
 
-        //		  spaceElement.appendChild(loadElement);
+        //spaceElement.appendChild(loadElement);
         //spaceElement.appendChild(hvacElement);
         buildingStoryElement.appendChild(*spaceElement);
         buildingElement.appendChild(buildingStoryElement);
