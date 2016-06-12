@@ -1456,6 +1456,7 @@ Loop addCentralSystemWithWaterCooled(Model & model){
 	pump2.addToNode(chilledWaterInletNode);
 
 	ChillerElectricEIR chiller(model);
+	chiller.setCondenserType("WaterCooled");
 	chiller.setCompressorType("Reciprocating");
 	Node node = chilledWaterPlant.supplySplitter().lastOutletModelObject()->cast<Node>();
 	chiller.addToNode(node);
@@ -1517,10 +1518,10 @@ Loop addCentralSystemWithWaterCooled(Model & model){
 
 	condenserDemandOutlet.addToNode(condenserSystemDemandOutletNode);
 
-	SetpointManagerFollowOutdoorAirTemperature spm(model);
+	SetpointManagerScheduled spm = SetpointManagerScheduled(model, _deckTempSchedule);
+	//SetpointManagerFollowOutdoorAirTemperature spm(model);
 
 	spm.addToNode(condenserSystemSupplyOutletNode);
-
 
 	return airLoopHVAC;
 }
