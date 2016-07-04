@@ -54,6 +54,7 @@ namespace model {
   class Surface;
   class SubSurface;
   class PlantLoop;
+  class Loop;
 }
 
 namespace bec {
@@ -112,6 +113,7 @@ namespace bec {
     void doHotWaterSystem(const model::Model &model, QDomElement& hotWaterSystem);
     void doOtherEquipment(const openstudio::model::Space& space, QDomElement& OtherEquipment, QHash<QString, bool>& checkDup);
     void doACSystem(const model::Model &model, QDomElement& ACSystem);
+    void doAirLoop(QDomElement &CentralACList, QDomElement CentralACDetail, model::Loop* loop, const QString customListName, QHash<QString, bool> &duplicate);
     void doPV(const model::Model &model, QDomElement& becInput);
 
     void doBuildingType(QDomElement& becInput, const QString &typeName);
@@ -148,6 +150,16 @@ namespace bec {
 
     std::map<openstudio::Handle, QDomElement> m_translatedObjects;
 
+    QDomElement buildingEnvelope;
+    QDomElement buildingZoneList;
+    QDomElement buildingZoneDetail;
+    QDomElement buildingZoneExteriorWall;
+    QDomElement BuildingZoneLightingEQ;
+    QDomElement BuildingZoneDXACUnit;
+    QDomElement BuildingZoneCentralACEQ;
+    QDomElement BuildingZoneOtherEquipment;
+
+    QHash<QString, QList<QString>>  chilledEq;
     StringStreamLogSink m_logSink;
     ProgressBar* m_progressBar;
     QDomDocument* _doc;

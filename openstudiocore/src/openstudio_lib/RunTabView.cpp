@@ -515,9 +515,10 @@ static QString doTableV2(QDomNode& root){
     tables.append(QStringList()<<"EnvelopeSystem" << "BuildingOTTVwall" << "TransparentComponentWall" << "TransparentComponentByWall", insertSpaceInTag("TransparentComponentByWall"), TableDataList::ARRAYTABLE);
     tables.append(QStringList()<<"EnvelopeSystem" << "BuildingOTTVwall" << "ComponentAreaWall" << "ComponentAreaPerWall", insertSpaceInTag("ComponentAreaPerWall"), TableDataList::ARRAYTABLE);
     tables.append(QStringList()<<"LightingSystem" << "LightingSystemPerformance", insertSpaceInTag("LightingSystemPerformance"), TableDataList::TABLE);
+    tables.append(QStringList()<<"DXAirUnitSystem" << "DXAirUnit", insertSpaceInTag("DXAirUnit"), TableDataList::ARRAYTABLE);
     tables.append(QStringList()<<"LightingSystem" << "LightingSystemFloor" << "LightingSystemByFloor", insertSpaceInTag("LightingSystemByFloor"), TableDataList::ARRAYTABLE);
     tables.append(QStringList()<<"LightingSystem" << "LightingSystemZone" << "LightingSystemByZone", insertSpaceInTag("LightingSystemByZone"), TableDataList::ARRAYTABLE);
-    tables.append(QStringList()<<"CentralACSystem" << "WaterChillerReport", insertSpaceInTag("WaterChillerReport"), TableDataList::ARRAYTABLE);
+    tables.append(QStringList()<<"CentralACSystem" << "WaterChilledReport", insertSpaceInTag("WaterChillerReport"), TableDataList::ARRAYTABLE);
     tables.append(QStringList()<<"CentralACSystem" << "CentralACOtherEQReport", insertSpaceInTag("CentralACOtherEQReport"), TableDataList::ARRAYTABLE);
     tables.append(QStringList()<<"CentralACSystem" << "CentralACEQList", insertSpaceInTag("CentralACEQList"), TableDataList::ARRAYTABLE);
     tables.append(QStringList()<<"PVSystem" << "PVSys", insertSpaceInTag("PVSystem"), TableDataList::ARRAYTABLE);
@@ -714,13 +715,13 @@ background-color: #ffff99;\n\
         pass = "Passed";
     }
 
-    QString bvTable = QString("<p><b>Benchmark</b></p>\n"
+    QString bvTable = QString("<p><b>Analysis result</b></p>\n"
                             "<table id=\"%1\" border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n"
                             "  <tbody>\n"
                             "  <tr>\n"
                             "    <td align=\"center\" valign=\"top\"></td>\n"
                             "    <td align=\"center\" valign=\"top\">Type</td>\n"
-                            "    <td align=\"center\" valign=\"top\">Standard[kWh/m<sup>2</sup>]</td>\n"
+                            "    <td align=\"center\" valign=\"top\">Ref Sector/Floor Area[kWh/m2]<sup>2</sup>]</td>\n"
                             "    <td align=\"center\" valign=\"top\">Result[kWh/m<sup>2</sup>]</td>\n"
                             "    <td align=\"center\" valign=\"top\">Status</td>\n"
                             "  <tr>\n"
