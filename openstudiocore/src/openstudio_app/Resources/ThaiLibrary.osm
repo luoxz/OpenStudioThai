@@ -8,7 +8,9 @@
 !-----------------------------------------------------------------
 
 
-!- Revision			Details
+!- Revision 		Details
+!- 1.0.2-000        Changed Solar Absorptance value from 5.0 to 3.0
+                    Added Air Gap material.
 !- 1.0.1-000		Removed SplitTypes that is in the other equipment.
 !- 1.0.0-000	    Released official version.
 !- 0.0.6-000		Completed schedule ruleset.
@@ -3662,7 +3664,7 @@ OS:Material,
   400,										!- Density {kg/m3}
   1380,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -3686,7 +3688,7 @@ OS:Material,
   1700,										!- Density {kg/m3}
   1000,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -3698,7 +3700,7 @@ OS:Material,
   1722,										!- Density {kg/m3}
   1000,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -3710,7 +3712,7 @@ OS:Material,
   1708,										!- Density {kg/m3}
   1000,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -3722,7 +3724,7 @@ OS:Material,
   2000,										!- Density {kg/m3}
   1000,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -3734,7 +3736,7 @@ OS:Material,
   2000,										!- Density {kg/m3}
   1000,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -3746,7 +3748,7 @@ OS:Material,
   1800,										!- Density {kg/m3}
   1000,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -3758,7 +3760,7 @@ OS:Material,
   1700,										!- Density {kg/m3}
   1000,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -3770,7 +3772,7 @@ OS:Material,
   1700,										!- Density {kg/m3}
   1000,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -3782,7 +3784,7 @@ OS:Material,
   2055,										!- Density {kg/m3}
   1000,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -3794,7 +3796,7 @@ OS:Material,
   1800,										!- Density {kg/m3}
   1000,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -3806,7 +3808,7 @@ OS:Material,
   2000,										!- Density {kg/m3}
   1000,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -3818,7 +3820,7 @@ OS:Material,
   2000,										!- Density {kg/m3}
   1000,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -3830,7 +3832,7 @@ OS:Material,
   2100,										!- Density {kg/m3}
   800,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -3842,7 +3844,7 @@ OS:Material,
   930,										!- Density {kg/m3}
   880,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -3890,7 +3892,7 @@ OS:Material,
   1325,										!- Density {kg/m3}
   1880,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -3902,7 +3904,7 @@ OS:Material,
   1342,										!- Density {kg/m3}
   1880,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -3914,7 +3916,7 @@ OS:Material,
   1340,										!- Density {kg/m3}
   1880,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -3926,7 +3928,7 @@ OS:Material,
   1700,										!- Density {kg/m3}
   1880,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -3938,7 +3940,7 @@ OS:Material,
   1500,										!- Density {kg/m3}
   1880,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -3950,7 +3952,7 @@ OS:Material,
   1340,										!- Density {kg/m3}
   1880,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -3962,7 +3964,7 @@ OS:Material,
   1344,										!- Density {kg/m3}
   1880,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -4010,7 +4012,7 @@ OS:Material,
   1280,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -4022,7 +4024,7 @@ OS:Material,
   1120,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -4034,7 +4036,7 @@ OS:Material,
   1280,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -4046,7 +4048,7 @@ OS:Material,
   620,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -4058,7 +4060,7 @@ OS:Material,
   700,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -4070,7 +4072,7 @@ OS:Material,
   960,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -4082,7 +4084,7 @@ OS:Material,
   2400,										!- Density {kg/m3}
   920,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -4934,7 +4936,7 @@ OS:Material,
   695,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -4946,7 +4948,7 @@ OS:Material,
   624,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -4958,7 +4960,7 @@ OS:Material,
   600,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -4970,7 +4972,7 @@ OS:Material,
   500,										!- Density {kg/m3}
   1300,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -4982,7 +4984,7 @@ OS:Material,
   384,										!- Density {kg/m3}
   1300,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -4994,7 +4996,7 @@ OS:Material,
   608,										!- Density {kg/m3}
   1300,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5006,7 +5008,7 @@ OS:Material,
   392,										!- Density {kg/m3}
   1300,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5018,7 +5020,7 @@ OS:Material,
   388,										!- Density {kg/m3}
   1300,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5030,7 +5032,7 @@ OS:Material,
   529,										!- Density {kg/m3}
   1300,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5042,7 +5044,7 @@ OS:Material,
   300,										!- Density {kg/m3}
   1300,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5054,7 +5056,7 @@ OS:Material,
   377,										!- Density {kg/m3}
   1300,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5066,7 +5068,7 @@ OS:Material,
   299,										!- Density {kg/m3}
   1300,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5078,7 +5080,7 @@ OS:Material,
   272,										!- Density {kg/m3}
   1300,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5114,7 +5116,7 @@ OS:Material,
   1860,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5126,7 +5128,7 @@ OS:Material,
   1182,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5138,7 +5140,7 @@ OS:Material,
   1200,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5150,7 +5152,7 @@ OS:Material,
   1568,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5198,7 +5200,7 @@ OS:Material,
   775,										!- Density {kg/m3}
   1090,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5210,7 +5212,7 @@ OS:Material,
   885,										!- Density {kg/m3}
   1090,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5222,7 +5224,7 @@ OS:Material,
   760,										!- Density {kg/m3}
   1090,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5234,7 +5236,7 @@ OS:Material,
   725,										!- Density {kg/m3}
   1090,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5246,7 +5248,7 @@ OS:Material,
   745,										!- Density {kg/m3}
   1090,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5258,7 +5260,7 @@ OS:Material,
   684,										!- Density {kg/m3}
   1090,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5282,7 +5284,7 @@ OS:Material,
   800,										!- Density {kg/m3}
   1090,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5294,7 +5296,7 @@ OS:Material,
   880,										!- Density {kg/m3}
   1090,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5306,7 +5308,7 @@ OS:Material,
   1375,										!- Density {kg/m3}
   897,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5318,7 +5320,7 @@ OS:Material,
   720,										!- Density {kg/m3}
   1090,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5330,7 +5332,7 @@ OS:Material,
   55,										!- Density {kg/m3}
   1590,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5342,7 +5344,7 @@ OS:Material,
   20,										!- Density {kg/m3}
   1210,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5354,7 +5356,7 @@ OS:Material,
   200,										!- Density {kg/m3}
   1210,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5366,7 +5368,7 @@ OS:Material,
   9,										!- Density {kg/m3}
   1210,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5378,7 +5380,7 @@ OS:Material,
   24,										!- Density {kg/m3}
   1590,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5390,7 +5392,7 @@ OS:Material,
   40,										!- Density {kg/m3}
   1590,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5402,7 +5404,7 @@ OS:Material,
   45,										!- Density {kg/m3}
   1210,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5606,7 +5608,7 @@ OS:Material,
   69,										!- Density {kg/m3}
   960,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5690,7 +5692,7 @@ OS:Material,
   2600,										!- Density {kg/m3}
   790,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5738,7 +5740,7 @@ OS:Material,
   2700,										!- Density {kg/m3}
   800,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5750,7 +5752,7 @@ OS:Material,
   2726,										!- Density {kg/m3}
   800,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5786,7 +5788,7 @@ OS:Material,
   1760,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5798,7 +5800,7 @@ OS:Material,
   1760,										!- Density {kg/m3}
   840,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5822,7 +5824,7 @@ OS:Material,
   1700,										!- Density {kg/m3}
   790,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -5834,7 +5836,7 @@ OS:Material,
   1700,										!- Density {kg/m3}
   790,										!- Specific Heat {J/kg-K}
   0.9,										!- Thermal Absorptance
-  0.5,										!- Solar Absorptance
+  0.3,										!- Solar Absorptance
   0.5;										!- Visible Absorptance
 
 OS:Material,
@@ -17288,14 +17290,137 @@ OS:StandardsInformation:Material,
   {f35e4ce9-d5ea-4f23-b69d-7ba4ccb2817f}; !- Material Name
 
 OS:Material:AirGap,
+  {2a614ed8-fa53-404f-bed4-f1093e6c32d8}, !- Handle
+  TH : Wall Air Space Resistance 5mm Hi,  !- Name
+  0.11;                                   !- Thermal Resistance {m2-K/W}  
+
+OS:Material:AirGap,
+  {2a614ed8-fa53-404f-bed4-f1193e6c32d5}, !- Handle
+  TH : Wall Air Space Resistance 20mm Hi, !- Name
+  0.148;                                  !- Thermal Resistance {m2-K/W} 
+
+OS:Material:AirGap,
+  {2a614ed8-fa53-404f-bed4-f1293e6c32d5}, !- Handle
+  TH : Wall Air Space Resistance 100mm Hi,!- Name
+  0.16;                                   !- Thermal Resistance {m2-K/W} 
+
+OS:Material:AirGap,
+  {2a614ed8-fa53-404f-bed4-f1393e6c32d5}, !- Handle
+  TH : Wall Air Space Resistance 5mm Lo,  !- Name
+  0.25;                                   !- Thermal Resistance {m2-K/W}
+
+OS:Material:AirGap,
+  {2a614ed8-fa53-404f-bed4-f1493e6c32d5}, !- Handle
+  TH : Wall Air Space Resistance 20mm Lo, !- Name
+  0.578;                                  !- Thermal Resistance {m2-K/W}
+
+OS:Material:AirGap,
+  {2a614ed8-fa53-404f-bed4-f1593e6c32d5},   !- Handle
+  TH : Wall Air Space Resistance 100mm Lo,  !- Name
+  0.606;                                    !- Thermal Resistance {m2-K/W}
+
+OS:Material:AirGap,
+  {2a614ed8-fa53-404f-bed4-f6693e6c32d5},           !- Handle
+  TH : Roof Air Space Resistance 0 Degree 5mm Hi,   !- Name
+  0.11;                                             !- Thermal Resistance {m2-K/W}
+
+OS:Material:AirGap,
+  {2a614ed8-fa53-404f-bed4-f1793e6c32d5},           !- Handle
+  TH : Roof Air Space Resistance 0 Degree 20mm Hi,  !- Name
+  0.148;                                            !- Thermal Resistance {m2-K/W}
+
+OS:Material:AirGap,
+  {2a614ed8-fa53-404f-bed4-f1893e6c32d5},           !- Handle
+  TH : Roof Air Space Resistance 0 Degree 100mm Hi, !- Name
+  0.174;                                            !- Thermal Resistance {m2-K/W}
+
+OS:Material:AirGap,
+  {2a614ed8-fa53-404f-bed4-f1993e6c32d5},               !- Handle
+  TH : Roof Air Space Resistance 22.5 Degree 5mm Hi,    !- Name
+  0.11;                                                 !- Thermal Resistance {m2-K/W}
+
+OS:Material:AirGap,
+  {2a614ed8-fa53-404f-bed4-f2093e6c32d5},               !- Handle
+  TH : Roof Air Space Resistance 22.5 Degree 20 mm Hi,  !- Name
+  0.148;                                                !- Thermal Resistance {m2-K/W}
+
+OS:Material:AirGap,
+  {2a614ed8-fa53-404f-bed4-f3093e6c32d5},               !- Handle
+  TH : Roof Air Space Resistance 22.5 Degree 100mm Hi,  !- Name
+  0.165;                                                !- Thermal Resistance {m2-K/W}
+
+OS:Material:AirGap,
+  {2a614ed8-fa53-404f-bed4-f4093e6c32d5},               !- Handle
+  TH : Roof Air Space Resistance 45 Degree 5mm Hi,      !- Name
+  0.11;                                                 !- Thermal Resistance {m2-K/W}
+
+OS:Material:AirGap,
+  {2a614ed8-fa53-404f-bed4-f5093e6c32d5},               !- Handle
+  TH : Roof Air Space Resistance 45 Degree 20mm Hi,     !- Name
+  0.148;                                                !- Thermal Resistance {m2-K/W}
+
+OS:Material:AirGap,
+  {2a614ed8-fa53-404f-bed4-f6093e6c32d5},               !- Handle
+  TH : Roof Air Space Resistance 45 Degree 100mm Hi,    !- Name
+  0.158;                                                !- Thermal Resistance {m2-K/W}
+
+OS:Material:AirGap,
+  {2a614ed8-fa53-404f-bed4-f7093e6c32d5},               !- Handle
+  TH : Roof Air Space Resistance 0 Degree 5mm Lo,       !- Name
+  0.25;                                                 !- Thermal Resistance {m2-K/W}
+
+OS:Material:AirGap,
+  {2a614ed8-fa53-404f-bed4-f8093e6c32d5},               !- Handle
+  TH : Roof Air Space Resistance 0 Degree 20mm Lo,      !- Name
+  0.572;                                                !- Thermal Resistance {m2-K/W}
+
+OS:Material:AirGap,
+  {2a614ed8-fa53-404f-bed4-f9093e6c32d5},               !- Handle
+  TH : Roof Air Space Resistance 0 Degree 100mm Lo,     !- Name
+  1.423;                                                !- Thermal Resistance {m2-K/W}
+
+OS:Material:AirGap,
+  {2a614ed8-fa53-404f-bed4-f0093e6c32d5},               !- Handle
+  TH : Roof Air Space Resistance 22.5 Degree 5mm Lo,   !- Name
+  0.25;                                                 !- Thermal Resistance {m2-K/W}
+
+OS:Material:AirGap,
+  {2a614ed8-fa53-404f-bed4-a3093e6c32d5},               !- Handle
+  TH : Roof Air Space Resistance 22.5 Degree 20mm Lo,   !- Name
+  0.571;                                                !- Thermal Resistance {m2-K/W}
+
+OS:Material:AirGap,
+  {2a614ed8-fa53-404f-bed4-b4093e6c32d5},               !- Handle
+  TH : Roof Air Space Resistance 22.5 Degree 100mm Lo,  !- Name
+  1.095;                                                !- Thermal Resistance {m2-K/W}
+
+OS:Material:AirGap,
+  {2a614ed8-fa53-404f-bed4-c1093e6c32d5},               !- Handle
+  TH : Roof Air Space Resistance 45 Degree 5mm Lo,      !- Name
+  0.25;                                                 !- Thermal Resistance {m2-K/W}
+
+OS:Material:AirGap,
+  {2a614ed8-fa53-404f-bed4-d1093e6c32d5},               !- Handle
+  TH : Roof Air Space Resistance 45 Degree 20mm Lo,     !- Name
+  0.570;                                                !- Thermal Resistance {m2-K/W}
+
+OS:Material:AirGap,
+  {2a614ed8-fa53-404f-bed4-e1093e6c32d5},               !- Handle
+  TH : Roof Air Space Resistance 45 Degree 100mm Lo,    !- Name
+  0.768;                                                !- Thermal Resistance {m2-K/W}
+
+  
+OS:Material:AirGap,
   {2a614ed8-fa53-404f-bed4-f1093e6c32d5}, !- Handle
   F05 Ceiling air space resistance,       !- Name
   0.18;                                   !- Thermal Resistance {m2-K/W}
-
+  
 OS:StandardsInformation:Material,
   {545bf2d6-a5b7-4745-87db-374675b9adf6}, !- Handle
   {2a614ed8-fa53-404f-bed4-f1093e6c32d5}; !- Material Name
 
+
+  
 OS:Material,
   {0ed2a254-f2fa-403e-8ba1-79175fd0ed3d}, !- Handle
   M11 100mm lightweight concrete,         !- Name
