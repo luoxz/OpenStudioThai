@@ -424,6 +424,13 @@ public:
                     QDomNode nd = nodes.at(idx);
                     QDomElement element = nd.toElement();
 
+                    if(element.tagName() == "WholeNetEnergyConsumptionRefPerArea"){
+                        bool isOK = false;
+                        WholeNetEnergyConsumptionPerArea = element.text().toDouble(&isOK);
+                        if(!isOK){
+                            WholeNetEnergyConsumptionPerArea = 0;
+                        }
+                    }
                     if(element.tagName().endsWith("Unit"))
                         continue;
 
@@ -505,6 +512,7 @@ private:
 };
 
 static QString doTableV2(QDomNode& root){
+    WholeNetEnergyConsumptionPerArea = 0.0;
     TableDataList tables(root);
     tables.append(QStringList()<<"BuildingInfo", "Building Info", TableDataList::TABLE);
     tables.append(QStringList()<<"EnvelopeSystem"<<"BuildingOTTVReport", insertSpaceInTag("BuildingOTTVReport"), TableDataList::TABLE);
@@ -723,13 +731,11 @@ background-color: #ffff99;\n\
                             "    <td align=\"center\" valign=\"top\">Type</td>\n"
                             "    <td align=\"center\" valign=\"top\">Ref Sector/Floor Area[kWh/m2]<sup>2</sup>]</td>\n"
                             "    <td align=\"center\" valign=\"top\">Result[kWh/m<sup>2</sup>]</td>\n"
-                            "    <td align=\"center\" valign=\"top\">Status</td>\n"
                             "  <tr>\n"
                             "    <td align=\"right\" valign=\"top\">Benchmark</td>\n"
                             "    <td align=\"right\" valign=\"top\">%2</td>\n"
                             "    <td align=\"right\" valign=\"top\">%3</td>\n"
                             "    <td align=\"right\" valign=\"top\">%4</td>\n"
-                            "    <td align=\"right\" valign=\"top\">%5</td>\n"
                             "  </tr>\n"
                             "</tbody></table><br><br>\n</body>")
             .arg("bv_table")
