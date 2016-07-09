@@ -4,13 +4,13 @@
 !- Supported By	: To-Be-One Technology Co, Ltd.
 !- Craated Date : 22/05/2015
 !- Modified By  : Narongsak Mala (narongsak.mala@gmail.com)
-!- Modified Date : 23/4/2016
+!- Modified Date : 08/07/2016
 !-----------------------------------------------------------------
 
 
 !- Revision 		Details
 !- 1.0.2-000        Changed Solar Absorptance value from 5.0 to 3.0
-                    Added Air Gap material.
+!-                  Added Air Gap material.
 !- 1.0.1-000		Removed SplitTypes that is in the other equipment.
 !- 1.0.0-000	    Released official version.
 !- 0.0.6-000		Completed schedule ruleset.
