@@ -165,6 +165,8 @@
 #include <QInputDialog>
 #include <QDebug>
 #include <math.h>
+#include <QRegularExpression>
+#include <QRegExp>
 
 double rtod(double rad){
     return rad*180/3.141592653589793;
@@ -1080,7 +1082,18 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
                     }
                 }
             }
-            doAirLoop(CentralACList, CentralACDetail, &airLoop, parantLoopName.c_str(), duplicateEq);
+
+            const QRegExp rx("(\\d+)");
+            int pos = 0;
+            QString numstr;
+            QString tmpParantLoopName = parantLoopName.c_str();
+            rx.indexIn(tmpParantLoopName);
+            QStringList numls = rx.capturedTexts();
+            if(numls.size()>0){
+                numstr = numls.at(numls.size()-1);
+            }
+            tmpParantLoopName = QString("Central A/C ") + numstr;
+            doAirLoop(CentralACList, CentralACDetail, &airLoop, tmpParantLoopName, duplicateEq);
             continue;
         }
     }
@@ -1095,7 +1108,7 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
     }
 }
 
-void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement CentralACDetail, model::Loop* loop, const QString customListName, QHash<QString, bool>& duplicate)
+void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement CentralACDetail, model::Loop* loop, const QString loopName, QHash<QString, bool>& duplicate)
 {
     QString listName = loop->name().get().c_str();
     QString baseLoop = listName;
@@ -1114,12 +1127,6 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
     }
 
     std::vector<model::ModelObject> supplys = loop->supplyComponents();
-    if(!customListName.isEmpty()){
-        listName = customListName;
-    }
-
-    std::string strname = listName.toStdString();
-    strname += "xxx";
 
     for(size_t i=0;i<supplys.size();i++){
         model::ModelObject & hvac = supplys.at(i);
@@ -1144,6 +1151,7 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
 
                 QDomElement CentralACD = createTagWithText(CentralACDetail, "CentralACD");
                 createTagWithText(CentralACD, "CentralACDetailListName", listName);
+                createTagWithText(CentralACD, "CentralACDetailLoopName", loopName);
                 createTagWithText(CentralACD, "CentralACDetailName", name.c_str());
                 chilledEq[listName].append(name.c_str());
                 createTagWithText(CentralACD, "CentralACDetailEQType", "Fan Coil Unit");
@@ -1177,6 +1185,7 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
 
                 QDomElement CentralACD = createTagWithText(CentralACDetail, "CentralACD");
                 createTagWithText(CentralACD, "CentralACDetailListName", listName);
+                createTagWithText(CentralACD, "CentralACDetailLoopName", loopName);
                 createTagWithText(CentralACD, "CentralACDetailName", name.c_str());
                 chilledEq[listName].append(name.c_str());
 
@@ -1213,6 +1222,7 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
 
                 QDomElement CentralACD = createTagWithText(CentralACDetail, "CentralACD");
                 createTagWithText(CentralACD, "CentralACDetailListName", listName);
+                createTagWithText(CentralACD, "CentralACDetailLoopName", loopName);
                 createTagWithText(CentralACD, "CentralACDetailName", name.c_str());
                 chilledEq[listName].append(name.c_str());
 
@@ -1264,6 +1274,7 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
 
                 QDomElement CentralACD = createTagWithText(CentralACDetail, "CentralACD");
                 createTagWithText(CentralACD, "CentralACDetailListName", listName);
+                createTagWithText(CentralACD, "CentralACDetailLoopName", loopName);
                 createTagWithText(CentralACD, "CentralACDetailName", name);
                 chilledEq[listName].append(name);
 
@@ -1282,14 +1293,14 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
                 if(attLoop){
                     std::string strname = attLoop.get().name().get();
                     qDebug() << "1111111111111111 " << QString("%1:%2").arg(loop->name().get().c_str()).arg(strname.c_str()) << ":" <<__LINE__;
-                    doAirLoop(CentralACList, CentralACDetail, &attLoop.get(), listName, duplicate);
+                    doAirLoop(CentralACList, CentralACDetail, &attLoop.get(), loopName, duplicate);
                 }
 
                 boost::optional<model::AirLoopHVAC> hLoop = coolw.airLoopHVAC();
                 if(hLoop){
                     std::string strname = hLoop.get().name().get();
                     qDebug() << "22222222222222222 " << QString("%1:%2").arg(hLoop->name().get().c_str()).arg(strname.c_str()) << ":" <<__LINE__;
-                    doAirLoop(CentralACList, CentralACDetail, &hLoop.get(), listName, duplicate);
+                    doAirLoop(CentralACList, CentralACDetail, &hLoop.get(), loopName, duplicate);
                 }
 
                 break;
@@ -1299,6 +1310,7 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
                 QDomElement CentralACD = createTagWithText(CentralACDetail, "CentralACD");
                 model::PumpVariableSpeed pump = hvac.cast<model::PumpVariableSpeed>();
                 createTagWithText(CentralACD, "CentralACDetailListName", listName);
+                createTagWithText(CentralACD, "CentralACDetailLoopName", loopName);
 				QString name = hvac.name().get().c_str();
                 createTagWithText(CentralACD, "CentralACDetailName", name);
                 chilledEq[listName].append(name);
@@ -1329,6 +1341,7 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
 
 				QString name = hvac.name().get().c_str();
                 createTagWithText(CentralACD, "CentralACDetailListName", listName);
+                createTagWithText(CentralACD, "CentralACDetailLoopName", loopName);
                 createTagWithText(CentralACD, "CentralACDetailName", name);
                 chilledEq[listName].append(name);
 
@@ -1365,7 +1378,7 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
                 if(sattLoop){
                     std::string strname = sattLoop.get().name().get();
                     qDebug() << "444444444444444444444 " << QString("%1:%2").arg(loop->name().get().c_str()).arg(strname.c_str()) << ":" <<__LINE__;
-                    doAirLoop(CentralACList, CentralACDetail, &sattLoop.get(), listName, duplicate);
+                    doAirLoop(CentralACList, CentralACDetail, &sattLoop.get(), loopName, duplicate);
                 }
                 break;
             }
@@ -1428,6 +1441,7 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
                 double power = tower.designFanPower().get_value_or(0.0f)/1000;
 
                 createTagWithText(CentralACD, "CentralACDetailListName", listName);
+                createTagWithText(CentralACD, "CentralACDetailLoopName", loopName);
                 createTagWithText(CentralACD, "CentralACDetailName", hvac.name().get().c_str());
                 createTagWithText(CentralACD, "CentralACDetailEQType", "Air Handling Unit");
                 createTagWithText(CentralACD, "CentralACDetailChillerType", "All");
@@ -1448,6 +1462,7 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
             {
                 QDomElement CentralACD = createTagWithText(CentralACDetail, "CentralACD_UNKNOW");
                 createTagWithText(CentralACD, "CentralACDetailListName", listName);
+                createTagWithText(CentralACD, "CentralACDetailLoopName", loopName);
                 createTagWithText(CentralACD, "CentralACD_idd_name", hvac.name().get().c_str());
                 createTagWithText(CentralACD, "CentralACD_idd_iddname", hvac.iddObject().name().c_str());
                 break;

@@ -112,7 +112,7 @@ namespace bec {
     void doHotWaterSystem(const model::Model &model, QDomElement& hotWaterSystem);
     void doOtherEquipment(const openstudio::model::Space& space, QDomElement& OtherEquipment, QHash<QString, bool>& checkDup);
     void doACSystem(const model::Model &model, QDomElement& ACSystem);
-    void doAirLoop(QDomElement &CentralACList, QDomElement CentralACDetail, model::Loop* loop, const QString customListName, QHash<QString, bool> &duplicate);
+    void doAirLoop(QDomElement &CentralACList, QDomElement CentralACDetail, model::Loop* loop, const QString loopName, QHash<QString, bool> &duplicate);
     void doPV(const model::Model &model, QDomElement& becInput);
 
     void doBuildingType(QDomElement& becInput, const QString &typeName);
