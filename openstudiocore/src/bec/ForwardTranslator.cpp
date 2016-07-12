@@ -1093,6 +1093,7 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
                 numstr = numls.at(numls.size()-1);
             }
             tmpParantLoopName = QString("Central A/C ") + numstr;
+            tmpParantLoopName = tmpParantLoopName.trimmed();
             doAirLoop(CentralACList, CentralACDetail, &airLoop, tmpParantLoopName, duplicateEq);
             continue;
         }
