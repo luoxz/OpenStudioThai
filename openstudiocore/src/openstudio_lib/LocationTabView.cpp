@@ -295,9 +295,12 @@ LocationView::LocationView(const model::Model & model,
 
 	//Set weather Thailand as default
 	boost::optional<model::WeatherFile> weaterFile = m_model.getOptionalUniqueModelObject<model::WeatherFile>();
-	if (!weaterFile){
-	setDefaultWeather(m_resourceDir + "/weather/THA_Bangkok.484560_IWEC.epw");
-	setDefaultDDY(m_resourceDir + "/weather/THA_Bangkok.484560_IWEC.ddy");
+	if (!weaterFile || !boost::filesystem::exists(weaterFile->path()->filename())){
+		setDefaultWeather(m_resourceDir + "/weather/THA_Bangkok.484560_IWEC.epw");
+	}
+	boost::optional<model::DesignDay> designDay = m_model.getOptionalUniqueModelObject<model::DesignDay>();
+	if (!designDay){
+		setDefaultDDY(m_resourceDir + "/weather/THA_Bangkok.484560_IWEC.ddy");
 	}
   update();
 }
@@ -705,12 +708,16 @@ void LocationView::onDesignDayBtnClicked()
 }
 
 void LocationView::setDefaultDDY(const QString fileName){
+	
+	openstudio::path epwPath = toPath(fileName);
+	openstudio::path newPath = toPath(m_modelTempDir) / toPath("resources/files") / epwPath.filename();
 
 	if (!fileName.isEmpty()){
 
 		boost::optional<IdfFile> ddyIdfFile = openstudio::IdfFile::load(toPath(fileName));
-		if (ddyIdfFile){
 
+		if (ddyIdfFile){
+			boost::filesystem::copy_file(epwPath, newPath, boost::filesystem::copy_option::overwrite_if_exists);
 			openstudio::Workspace ddyWorkspace(StrictnessLevel::None, IddFileType::EnergyPlus);
 			for (IdfObject idfObject : ddyIdfFile->objects()){
 				IddObjectType iddObjectType = idfObject.iddObject().type();
