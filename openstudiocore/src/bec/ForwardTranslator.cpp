@@ -697,9 +697,10 @@ void ForwardTranslator::doComponentOfSection(openstudio::model::Surface& surface
             boost::optional<model::Construction> construction = scon->optionalCast<model::Construction>();
             if (construction){
                 std::vector<model::Material> layers = construction->layers();
-                if (!layers.empty()){
-                    if (layers[0].optionalCast<model::StandardOpaqueMaterial>()){
-                        model::StandardOpaqueMaterial outerMaterial = layers[0].cast<model::StandardOpaqueMaterial>();
+                for (size_t i = 0; i < layers.size(); ++i)
+                {
+                    if (layers[i].optionalCast<model::StandardOpaqueMaterial>()){
+                        model::StandardOpaqueMaterial outerMaterial = layers[i].cast<model::StandardOpaqueMaterial>();
 
                         QDomElement OpaqueDetail = createTagWithText(OpaqueComponentDetail, "OpaqueDetail");
                         createTagWithText(OpaqueDetail, "OpaqueComponentDetailListName", name.c_str());
@@ -725,8 +726,8 @@ void ForwardTranslator::doComponentOfSection(openstudio::model::Surface& surface
                         createTagWithText(OpaqueList, "OpaqueComponentListInnerSurfaceType", "UNKNOW");
                         createTagWithText(OpaqueList, "OpaqueComponentListDescription", "???");
                     }
-                    else if (layers[0].optionalCast<model::SimpleGlazing>()){
-                        model::SimpleGlazing glass = layers[0].cast<model::SimpleGlazing>();
+                    else if (layers[i].optionalCast<model::SimpleGlazing>()){
+                        model::SimpleGlazing glass = layers[i].cast<model::SimpleGlazing>();
 
                         QDomElement TransparentList = createTagWithText(transparentComponentList, "TransparentList");
                         createTagWithText(TransparentList, "TransparentComponentListName", glass.name().get().c_str());
@@ -757,15 +758,16 @@ void ForwardTranslator::doComponentOfSection(openstudio::model::Surface& surface
                 boost::optional<model::Construction> construction = scon->optionalCast<model::Construction>();
                 if (construction){
                     std::vector<model::Material> layers = construction->layers();
-                    if (!layers.empty()){
-                        if (layers[0].optionalCast<model::StandardOpaqueMaterial>()){
-                            model::StandardOpaqueMaterial outerMaterial = layers[0].cast<model::StandardOpaqueMaterial>();
+                    for (size_t i = 0; i < layers.size(); ++i)
+                    {
+                        if (layers[i].optionalCast<model::StandardOpaqueMaterial>()){
+                            model::StandardOpaqueMaterial outerMaterial = layers[i].cast<model::StandardOpaqueMaterial>();
 
                             QDomElement OpaqueDetail = createTagWithText(OpaqueComponentDetail, "OpaqueDetail");
                             createTagWithText(OpaqueDetail, "OpaqueComponentDetailListName", name.c_str());
                             createTagWithText(OpaqueDetail, "OpaqueComponentDetailMaterialName", outerMaterial.name().get().c_str());
                             createTagWithText(OpaqueDetail, "OpaqueComponentDetailThickness", QString::number(outerMaterial.thickness()));
-                            //createTagWithText(OpaqueDetail, "IsOpaque", QString(layers[0]->isOpaque()));
+                            //createTagWithText(OpaqueDetail, "IsOpaque", QString(layers[i]->isOpaque()));
                             createTagWithText(OpaqueDetail, "OpaqueComponentDetailThicknessUnit", "m");
 
                             QDomElement OpaqueList = createTagWithText(OpaqueComponentList, "OpaqueList");
@@ -783,15 +785,15 @@ void ForwardTranslator::doComponentOfSection(openstudio::model::Surface& surface
                             createTagWithText(OpaqueList, "OpaqueComponentListInnerSurfaceType", "UNKNOW");
                             createTagWithText(OpaqueList, "OpaqueComponentListDescription", "???");
                         }
-                        else if (layers[0].optionalCast<model::SimpleGlazing>()){
-                            model::SimpleGlazing glass = layers[0].cast<model::SimpleGlazing>();
+                        else if (layers[i].optionalCast<model::SimpleGlazing>()){
+                            model::SimpleGlazing glass = layers[i].cast<model::SimpleGlazing>();
 
                             QDomElement TransparentList = createTagWithText(transparentComponentList, "TransparentList");
                             createTagWithText(TransparentList, "TransparentComponentListName", glass.name().get().c_str());
                             createTagWithText(TransparentList, "TransparentComponentListType", stype.c_str());
                             createTagWithText(TransparentList, "TransparentComponentListSHGC", QString::number(glass.solarHeatGainCoefficient()));
                             createTagWithText(TransparentList, "TransparentComponentListTransmittance", QString::number(glass.visibleTransmittance().get()));
-                            //createTagWithText(TransparentList, "IsOpaque", QString(layers[0]->isOpaque()));
+                            //createTagWithText(TransparentList, "IsOpaque", QString(layers[i]->isOpaque()));
                             createTagWithText(TransparentList, "TransparentComponentListDescription", "???");
                         }
                         else{
