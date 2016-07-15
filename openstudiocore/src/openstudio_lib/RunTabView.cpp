@@ -1015,7 +1015,7 @@ bool RunView::doBecInput(const QString &path, const model::Model &model, QString
     m_outputWindow->appendPlainText(QString("Create input.xml at %1").arg(path));
 
     std::string bvn;
-    bool success = trans.modelTobec(model, path.toStdString().c_str(), NULL, &bvn);
+    bool success = trans.modelTobec(model, path.toStdString().c_str(), NULL, &bvn, &sunlits);
     bvName = bvn.c_str();
 
 	std::string bvsdefault = resourcesPath().string() + "/" + "default_building_standard.bvs";
@@ -1649,6 +1649,52 @@ void RunView::playButtonClicked(bool t_checked)
           if (!dir.exists()) {
               dir.mkpath(".");
           }
+
+          //////////////////////////
+          QFile file(outpath+"../5-EnergyPlus-0/eplustbl.htm");
+          sunlits.clear();
+          if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+          {
+              m_outputWindow->appendHtml(QString("<font color=\"blue\">Start read eblustbl.htm</font>"));
+              QTextStream in(&file);
+              QString str = in.readAll();
+              int start = str.indexOf("<b>Sunlit Fraction</b>");
+              int table_start_idx = str.indexOf("<table", start);
+              int table_end_idx = str.indexOf("</table>", table_start_idx+6);
+
+              m_outputWindow->appendPlainText(QString("table sidx:%1->%2:%3").arg(start).arg(table_start_idx).arg(table_end_idx));
+
+              str = str.mid(table_start_idx, table_end_idx-table_start_idx);
+              str = str.replace("\r", "");
+			  str = str.replace("\n", "");
+              str = str.replace(QRegExp("<table[^>]*>"), "");
+              str = str.replace("</table>", "");
+              str = str.replace(QRegExp("<td[^>]*>"), "");
+              str = str.replace(QRegExp("<tr[^>]*>"), "");
+
+              QStringList rowls = str.split("</tr>");
+
+              m_outputWindow->appendHtml("<h3>Sunlit Fraction</h3>");
+              for (int irow = 1; irow < rowls.size(); ++irow) {
+                  QStringList cols = rowls.at(irow).split("</td>");
+
+                  if(cols.size()<1)
+                      break;
+
+                  QString sfname = cols.at(0);
+                  QString msg = sfname+":";
+                  for (int icol = 1; icol < cols.size(); ++icol) {
+                      double num = cols.at(icol).trimmed().toDouble();
+                      sunlits[sfname.toUpper().trimmed()].append(num);
+                      msg += QString::number(num)+",";
+                  }
+                  m_outputWindow->appendHtml(QString("<font color=\"green\">%1</font>\n").arg(msg));
+              }
+              m_outputWindow->appendHtml(QString("<font color=\"blue\">SF:%1</font>").arg(QString::number(sunlits.size())));
+          }else{
+            m_outputWindow->appendHtml(QString("<font color=\"red\">ERROR:Can't read eblustbl.htm</font>"));
+          }
+          ///////////////////////////
 
           becoutputPath = outpath+"output.xml";
 

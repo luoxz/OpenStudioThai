@@ -168,6 +168,234 @@
 #include <QRegularExpression>
 #include <QRegExp>
 
+
+#include <cmath>
+# define M_PI 3.14159265358979323846  /* pi */
+
+enum CALTIME {_06_00=0, _07_00, _08_00, _09_00, _10_00, _11_00, _12_00, _13_00, _14_00, _15_00, _16_00, _17_00, _18_00, TIME_SIZE};
+enum CALDATE {cd21_Mar=0, cd22_Jun, cd23_Sep, cd22_Dec, MONTH_SIZE};
+enum SUNLITE_FC_COL {FC_MARCH_9AM=0, FC_MARCH_NOON, FC_MARCH_3PM, FC_JUNE_9AM, FC_JUNE_NOON, FC_JUNE_3PM, FC_DEC_9AM, FC_DEC_NOON, FC_DEC_3PM};
+
+QString toStringArray(double* array, size_t maxrow, size_t maxcol){
+    QString out;
+    for (size_t row = 0; row < maxrow; ++row) {
+        for (size_t col = 0; col < maxcol; ++col) {
+            int idx = row*maxcol+col;
+            //qDebug() << QString("row:%1, col:%2, idx:%3").arg(row).arg(col).arg(idx);
+            out.append(QString::number(array[idx]));
+            out.append(", ");
+        }
+        out.append("\n");
+    }
+    out.append("\n");
+    return out;
+}
+
+double absd(double val){
+    if(val<0.0)
+        val = val*-1.0;
+    return val;
+}
+
+void setval2d(double* array, size_t maxcol, int row, int col, double val){
+    array[(row*maxcol)+col] = val;
+}
+
+double getval2d(double* array, size_t maxcol, int row, int col){
+    return array[(row*maxcol)+col];
+}
+
+double rad(double degrees){
+    return ( degrees * M_PI ) / 180 ;
+}
+
+double calsc(double azimuth, double tilt, QList<double>& sunlit_fraction
+    , QString* safu_af=NULL
+    , QString* scal5_beam=NULL, QString* scal5_diffue=NULL
+    , QString* scal6_beam=NULL, QString* scal6_diffue=NULL){
+
+    if(sunlit_fraction.size()<9){
+        return 1.0;
+    }
+
+    const double sun_azimuth[] = {-89.79081568,-113.7169952,-89.40377855,-0.2526566894,
+                               -86.60369907,-110.979335,-87.02129226,-64.75112846,
+                               -82.54808643,-109.4640409,-83.10886989,-59.94994306,
+                               -77.26492041,-109.4117206,-78.18611135,-52.97593149,
+                               -68.99680892,-111.8999348,-70.86686641,-42.69075554,
+                               -52.32881004,-121.1567293,-57.26338338,-27.54591276,
+                               -10.31331604,-159.0154984,-24.66495519,-7.014620915,
+                               42.18338726,134.8912916,29.99550998,15.3686876,
+                               64.8000326,115.4833634,59.37844888,33.98572993,
+                               74.94615016,110.3095054,71.89344656,47.09950791,
+                               80.95279801,109.2156129,78.82414669,55.95224768,
+                               85.31047509,110.0007506,83.58463374,61.99294854,
+                               89.00579293,112.0774302,87.43164219,66.15793962};
+
+    const double sun_altitude[] = {0.00,1.77,0.00,0.00,
+                                12.00,15.26,7.86,3.79,
+                                26.51,28.94,22.38,16.71,
+                                40.86,42.70,36.76,28.88,
+                                54.82,56.36,50.82,39.73,
+                                67.62,69.49,63.98,48.18,
+                                75.67,79.52,73.88,52.58,
+                                71.26,75.79,73.13,51.50,
+                                59.36,63.62,62.59,45.33,
+                                45.65,50.14,49.26,35.80,
+                                31.39,36.41,35.15,24.36,
+                                16.92,22.67,20.75,11.85,
+                                2.37,9.06,6.22,0.00};
+
+    double cosqs[TIME_SIZE*MONTH_SIZE];
+
+    int iloop = TIME_SIZE*MONTH_SIZE;
+
+    for (int i = 0; i < iloop; ++i) {
+        cosqs[i] = ((sin(rad(sun_altitude[i]))*(cos(rad(tilt))))
+                    +(cos(rad(sun_altitude[i]))*sin(rad(sun_azimuth[i]))*sin(rad(tilt))*sin(rad(azimuth)))
+                    +(cos(rad(sun_altitude[i]))*cos(rad(sun_azimuth[i]))*sin(rad(tilt))*cos(rad(azimuth))));
+    }
+
+    qDebug() << "--------------cosqs---------------\n" << toStringArray(cosqs, TIME_SIZE, MONTH_SIZE);
+
+    double afu_af[TIME_SIZE*MONTH_SIZE];
+
+    double afu_af_diffue[] = {
+        0.00, 1.00, 0.00, 0.00,
+        1.00, 1.00, 1.00, 1.00,
+        1.00, 1.00, 1.00, 1.00,
+        1.00, 1.00, 1.00, 1.00,
+        1.00, 1.00, 1.00, 1.00,
+        1.00, 1.00, 1.00, 1.00,
+        1.00, 1.00, 1.00, 1.00,
+        1.00, 1.00, 1.00, 1.00,
+        1.00, 1.00, 1.00, 1.00,
+        1.00, 1.00, 1.00, 1.00,
+        1.00, 1.00, 1.00, 1.00,
+        1.00, 1.00, 1.00, 1.00,
+        1.00, 1.00, 1.00, 0.00
+    };
+
+    setval2d(afu_af, MONTH_SIZE, _09_00, cd21_Mar, sunlit_fraction[0]);
+    setval2d(afu_af, MONTH_SIZE, _12_00, cd21_Mar, sunlit_fraction[1]);
+    setval2d(afu_af, MONTH_SIZE, _15_00, cd21_Mar, sunlit_fraction[2]);
+
+    setval2d(afu_af, MONTH_SIZE, _09_00, cd22_Jun, sunlit_fraction[3]);
+    setval2d(afu_af, MONTH_SIZE, _12_00, cd22_Jun, sunlit_fraction[4]);
+    setval2d(afu_af, MONTH_SIZE, _15_00, cd22_Jun, sunlit_fraction[5]);
+
+    setval2d(afu_af, MONTH_SIZE, _09_00, cd23_Sep, sunlit_fraction[0]);
+    setval2d(afu_af, MONTH_SIZE, _12_00, cd23_Sep, sunlit_fraction[1]);
+    setval2d(afu_af, MONTH_SIZE, _15_00, cd23_Sep, sunlit_fraction[2]);
+
+    setval2d(afu_af, MONTH_SIZE, _09_00, cd22_Dec, sunlit_fraction[6]);
+    setval2d(afu_af, MONTH_SIZE, _12_00, cd22_Dec, sunlit_fraction[7]);
+    setval2d(afu_af, MONTH_SIZE, _15_00, cd22_Dec, sunlit_fraction[8]);
+
+    for (int col = 0; col < 4; ++col) {
+        setval2d(afu_af, MONTH_SIZE, _06_00, col, getval2d(afu_af, MONTH_SIZE, _09_00, col));//6
+        setval2d(afu_af, MONTH_SIZE, _07_00, col, getval2d(afu_af, MONTH_SIZE, _09_00, col));//7
+        setval2d(afu_af, MONTH_SIZE, _08_00, col, getval2d(afu_af, MONTH_SIZE, _09_00, col));//8
+
+        double v12 = getval2d(afu_af, MONTH_SIZE, _12_00, col);
+        double v9 = getval2d(afu_af, MONTH_SIZE, _09_00, col);
+        double v10 = v9-((v9-v12)/3);
+        double v11 = v10-(v9-v10);
+        setval2d(afu_af, MONTH_SIZE, _10_00, col, v10);//10
+        setval2d(afu_af, MONTH_SIZE, _11_00, col, v11);//11
+
+        double v15 = getval2d(afu_af, MONTH_SIZE, _15_00, col);
+        double v13 = v12-((v12-v15)/3);
+        double v14 = v13-(v12-v13);
+        setval2d(afu_af, MONTH_SIZE, _13_00, col, v13);//13
+        setval2d(afu_af, MONTH_SIZE, _14_00, col, v14);//14
+
+        setval2d(afu_af, MONTH_SIZE, _16_00, col, v15);//16
+        setval2d(afu_af, MONTH_SIZE, _17_00, col, v15);//17
+        setval2d(afu_af, MONTH_SIZE, _18_00, col, v15);//18
+    }
+
+    setval2d(afu_af, MONTH_SIZE, _06_00, cd21_Mar, 0.0);
+    setval2d(afu_af, MONTH_SIZE, _06_00, cd23_Sep, 0.0);
+
+    if(safu_af)
+        (*safu_af) = QString("--------------afu_af---------------\n%1").arg(toStringArray(afu_af, TIME_SIZE, MONTH_SIZE));
+
+    double ees_eed_beam[] = {
+        0.0, 7.5, 0.0, 0.0,
+        68.5, 105.0, 94.4, 64.4,
+        185.7, 196.2, 202.3, 270.0,
+        290.1, 275.6, 296.2, 454.4,
+        374.8, 338.6, 369.9, 603.3,
+        433.8, 381.2, 418.3, 704.9,
+        463.2, 401.1, 437.9, 751.3,
+        461.0, 397.0, 427.6, 738.9,
+        427.3, 369.1, 388.0, 668.7,
+        364.5, 319.1, 321.7, 546.1,
+        276.7, 250.0, 233.5, 380.8,
+        170.0, 165.9, 129.2, 185.6,
+        51.7, 72.0, 16.1, 0.0
+    };
+
+
+//    double ees_eed_diffue[] = {
+//        0.0, 5.6, 0.0, 0.0,
+//        44.9, 77.8, 77.1, 19.9,
+//        121.6, 145.4, 165.1, 83.5,
+//        190.0, 204.3, 241.8, 140.5,
+//        245.5, 250.9, 302.0, 186.5,
+//        284.1, 282.6, 341.4, 217.9,
+//        303.4, 297.3, 357.5, 232.2,
+//        301.9, 294.2, 349.0, 228.4,
+//        279.8, 273.6, 316.7, 206.7,
+//        238.7, 236.5, 262.6, 168.8,
+//        181.2, 185.3, 190.6, 117.7,
+//        111.3, 123.0, 105.5, 57.4,
+//        33.9, 53.3, 13.1, 0.0
+//    };
+
+    double cal6_beam[TIME_SIZE*MONTH_SIZE];
+    double cal6_diffue[TIME_SIZE*MONTH_SIZE];
+    double cal5_beam[TIME_SIZE*MONTH_SIZE];
+    double cal5_diffue[TIME_SIZE*MONTH_SIZE];
+
+    double sumcal6 = 0.0;
+    for (int i = 0; i < iloop; ++i) {
+        cal6_beam[i] = absd(afu_af[i]*cosqs[i]*ees_eed_beam[i]);
+        sumcal6 += cal6_beam[i];
+    }
+
+    if(scal6_beam)
+        (*scal6_beam) = QString("--------------cal6_beam---------------\n%1").arg(toStringArray(cal6_beam, TIME_SIZE, MONTH_SIZE));
+
+    for (int i = 0; i < iloop; ++i) {
+        cal6_diffue[i] = absd(afu_af_diffue[i]*(1+cos(tilt))/2);
+        sumcal6 += cal6_diffue[i];
+    }
+
+    if(scal6_diffue)
+        (*scal6_diffue) = QString("--------------cal6_diffue---------------\n%1").arg(toStringArray(cal6_diffue, TIME_SIZE, MONTH_SIZE));
+
+    double sumcal5 = 0.0;
+    for (int i = 0; i < iloop; ++i) {
+        cal5_beam[i] = absd(ees_eed_beam[i]*cosqs[i]);
+        sumcal5 += cal5_beam[i];
+    }
+
+    if(scal5_beam)
+        (*scal5_beam) = QString("--------------cal5_beam---------------\n%1").arg(toStringArray(cal5_beam, TIME_SIZE, MONTH_SIZE));
+
+    for (int i = 0; i < iloop; ++i) {
+        cal5_diffue[i] = absd(cal6_diffue[i]);
+        sumcal5 += cal5_diffue[i];
+    }
+
+    if(scal5_diffue)
+        (*scal5_diffue) = QString("--------------cal5_diffue---------------\n%1").arg(toStringArray(cal5_diffue, TIME_SIZE, MONTH_SIZE));
+
+    return sumcal6/sumcal5;
+}
+
 double rtod(double rad){
     return rad*180/3.141592653589793;
 }
@@ -177,6 +405,7 @@ namespace bec {
 
 ForwardTranslator::ForwardTranslator()
 {
+    _sunlits = NULL;
     m_logSink.setLogLevel(Warn);
     m_logSink.setChannelRegex(boost::regex("openstudio\\.bec\\.ForwardTranslator"));
     m_logSink.setThreadId(QThread::currentThread());
@@ -189,9 +418,11 @@ ForwardTranslator::~ForwardTranslator()
 bool ForwardTranslator::modelTobec(const openstudio::model::Model& model
                                    , const openstudio::path& path
                                    , ProgressBar* progressBar
-                                   , std::string *bvName)
+                                   , std::string *bvName
+                                   , QHash<QString, QList<double>>* sunlits)
 {
     QInputDialog inputBuildingType;
+    _sunlits = sunlits;
     inputBuildingType.setOption(QInputDialog::UseListViewForComboBoxItems);
     inputBuildingType.setWindowTitle("What is building type.");
     inputBuildingType.setLabelText("Selection:");
@@ -664,22 +895,40 @@ void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &
                     createTagWithText(SectionD, "SectionDetailAreaUnit", "m^2");
 
                     QDomElement WallL = createTagWithText(WallList,"WallL");
-                    createTagWithText(WallL, "WallListName", surface.name().get().c_str());
+                    QString sfName = surface.name().get().c_str();
+                    createTagWithText(WallL, "WallListName", sfName);
                     createTagWithText(WallL, "WallListType", surfaceType);
                     createTagWithText(WallL, "WallListPlanAzimuth", QString::number(rtod(surface.azimuth())));
                     createTagWithText(WallL, "WallListInclination", QString::number(rtod(surface.tilt())));
                     createTagWithText(WallL, "WallListDescription", "???");
 
+                    double sc = 1.0;
+                    if(_sunlits!=NULL){
+                        if(_sunlits->contains(sfName.toUpper().trimmed())){
+                            sc = calsc(surface.azimuth(), surface.tilt(), (*_sunlits)[sfName.toUpper().trimmed()]);
+                        }else{
+                            //TODO:ERROR
+                        }
+                    }else{
+                        //TODO:ERROR
+                    }
                     QDomElement WallD = createTagWithText(WallDetail,"WallD");
-                    createTagWithText(WallD, "WallDetailWallListName", surface.name().get().c_str());
-                    createTagWithText(WallD, "WallDetailSectionName", surface.name().get().c_str());
-                    createTagWithText(WallD, "WallDetailSC", "1");
+                    createTagWithText(WallD, "WallDetailWallListName", sfName);
+                    createTagWithText(WallD, "WallDetailSectionName", sfName);
+                    createTagWithText(WallD, "WallDetailSC", QString::number(sc));
 
                     openstudio::model::SubSurfaceVector subs = surface.subSurfaces();
 
                     for (openstudio::model::SubSurface& sub : subs){
+                        QString ssfName = sub.name().get().c_str();
+                        QDomElement SectionL = createTagWithText(SectionList,"SectionL");
+                        createTagWithText(SectionL, "SectionListName", ssfName);
+                        createTagWithText(SectionL, "SectionListType", surfaceType);
+                        QString boundCon = sub.outsideBoundaryCondition().c_str();
+                        createTagWithText(SectionL, "SectionListDescription", boundCon);
+
                         QDomElement SectionD = createTagWithText(SectionDetail,"SectionD");
-                        createTagWithText(SectionD, "SectionDetailSectionListName", surface.name().get().c_str());
+                        createTagWithText(SectionD, "SectionDetailSectionListName", ssfName);
 
                         QString componentName = sub.construction().get().name().get().c_str();
                         boost::optional<model::ConstructionBase> scon = sub.construction();
@@ -699,6 +948,30 @@ void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &
                         createTagWithText(SectionD, "SectionDetailComponentName", componentName);
                         createTagWithText(SectionD, "SectionDetailArea", QString::number(sub.netArea()));
                         createTagWithText(SectionD, "SectionDetailAreaUnit", "m^2");
+
+                        /////////////
+                        QDomElement WallL = createTagWithText(WallList,"WallL");
+
+                        createTagWithText(WallL, "WallListName", ssfName);
+                        createTagWithText(WallL, "WallListType", surfaceType);
+						createTagWithText(WallL, "WallListPlanAzimuth", QString::number(rtod(sub.azimuth())));
+						createTagWithText(WallL, "WallListInclination", QString::number(rtod(sub.tilt())));
+                        createTagWithText(WallL, "WallListDescription", "???");
+
+                        double sc = 1.0;
+                        if(_sunlits!=NULL){
+                            if(_sunlits->contains(ssfName.toUpper().trimmed())){
+                                sc = calsc(sub.azimuth(), sub.tilt(), (*_sunlits)[ssfName.toUpper().trimmed()]);
+                            }else{
+                                //TODO:ERROR
+                            }
+                        }else{
+                            //TODO:ERROR
+                        }
+                        QDomElement WallD = createTagWithText(WallDetail,"WallD");
+                        createTagWithText(WallD, "WallDetailWallListName", ssfName);
+                        createTagWithText(WallD, "WallDetailSectionName", ssfName);
+                        createTagWithText(WallD, "WallDetailSC", QString::number(sc));
                     }
                 }
                 else{
@@ -864,7 +1137,7 @@ bool isSkip(model::ModelObject model){
     return false;
 }
 
-QString ForwardTranslator::LoopName(const QString &parantLoopName)
+QString ForwardTranslator::GenParantLoopName(const QString &parantLoopName)
 {
     const QRegExp rx("(\\d+)");
     QString numstr;
@@ -1099,7 +1372,7 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
                 }
             }
 
-            QString loopName = LoopName(parantLoopName.c_str());
+            QString loopName = GenParantLoopName(parantLoopName.c_str());
             doAirLoop(CentralACList, CentralACDetail, &airLoop, loopName, duplicateEq);
             continue;
         }
@@ -1119,6 +1392,7 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
 {
     QString listName = loop->name().get().c_str();
     QString baseLoop = listName;
+
     if(duplicate.contains(listName)){
         return;
     }
@@ -1126,7 +1400,7 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
         duplicate.insert(listName, true);
         if(listName.indexOf("Chilled ")>=0){
             QDomElement CentralACL = createTagWithText(CentralACList, "CentralACL");
-            createTagWithText(CentralACL, "CentralACListName", LoopName(listName));
+            createTagWithText(CentralACL, "CentralACListName", GenParantLoopName(listName));
 			createTagWithText(CentralACL, "CentralACListType", loop->iddObject().name().c_str());
             int size = chilledEq[listName].size();
             createTagWithText(CentralACL, "CentralACListEQ", QString::number(size));
@@ -1657,7 +1931,7 @@ void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElemen
                                 QDomElement BuildingZoneCentralAC
                                         = createTagWithText(BuildingZoneCentralACEQ, "BuildingZoneCentralAC");
                                 createTagWithText(BuildingZoneCentralAC, "BuildingZoneCentralACListName", space.name().get().c_str());
-                                createTagWithText(BuildingZoneCentralAC, "BuildingZoneCentralACSystemName", parantLoopName.c_str());
+                                createTagWithText(BuildingZoneCentralAC, "BuildingZoneCentralACSystemName", GenParantLoopName(parantLoopName.c_str()));
                                 createTagWithText(BuildingZoneCentralAC, "BuildingZoneCentralACEQName", hvac.name().get().c_str());
                                 createTagWithText(BuildingZoneCentralAC, "BuildingZoneCentralACQuantity", QString::number(1));
                                 createTagWithText(BuildingZoneCentralAC, "BuildingZoneCentralACType", "LoopAir");
@@ -1720,16 +1994,26 @@ void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElemen
                     //createTagWithText(buildingZoneWall, "BuildingZoneWallWallName", surface.surfaceType().c_str());
                     createTagWithText(buildingZoneWall, "BuildingZoneWallWallName", surface.name().get().c_str());
                     //TODO:LINK TO MATERIAL.
+                    double area = surface.netArea();
                     createTagWithText(buildingZoneWall, "BuildingZoneWallSectionName", surface.name().get().c_str());
+                    createTagWithText(buildingZoneWall, "BuildingZoneWallArea", QString::number(area));
+                    createTagWithText(buildingZoneWall, "BuildingZoneWallAreaUnit", "m^2");
 
                     openstudio::model::SubSurfaceVector subs = surface.subSurfaces();
 
-                    double area = surface.netArea();
                     for (openstudio::model::SubSurface& sub : subs){
-                        area+=sub.netArea();
+                        double area = sub.netArea();
+                        //buildingZoneExteriorWall
+                        QDomElement buildingZoneWall = createTagWithText(buildingZoneExteriorWall, "BuildingZoneWall");
+                        createTagWithText(buildingZoneWall, "BuildingZoneWallListName", zonelistName.c_str());
+                        //createTagWithText(buildingZoneWall, "BuildingZoneWallWallName", surface.surfaceType().c_str());
+                        createTagWithText(buildingZoneWall, "BuildingZoneWallWallName", sub.name().get().c_str());
+                        //TODO:LINK TO MATERIAL.
+                        createTagWithText(buildingZoneWall, "BuildingZoneWallSectionName", sub.name().get().c_str());
+                        createTagWithText(buildingZoneWall, "BuildingZoneWallArea", QString::number(area));
+                        createTagWithText(buildingZoneWall, "BuildingZoneWallAreaUnit", "m^2");
                     }
-                    createTagWithText(buildingZoneWall, "BuildingZoneWallArea", QString::number(area));
-                    createTagWithText(buildingZoneWall, "BuildingZoneWallAreaUnit", "m^2");
+
                 }
                 else{ //RoofCeiling
 
