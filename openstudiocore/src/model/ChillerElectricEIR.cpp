@@ -713,6 +713,8 @@ namespace detail {
 
     chiller.setElectricInputToCoolingOutputRatioFunctionOfPLR(curve);
 
+	chiller.setCompressorType("Reciprocating");
+
     return chiller;
   }
 
