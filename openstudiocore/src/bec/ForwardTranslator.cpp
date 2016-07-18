@@ -690,8 +690,8 @@ void ForwardTranslator::doComponentOfSection(openstudio::model::Surface& surface
     if(stype == "RoofCeiling"){
         stype = "Roof";
     }
-    if(!((name.empty())|| componentCheck.contains(name.c_str()))){
-        componentCheck.insert(name.c_str(), 1);
+
+    if(!componentCheck.contains(name.c_str())){
         boost::optional<model::ConstructionBase> scon = surface.construction();
         if (scon){
             boost::optional<model::Construction> construction = scon->optionalCast<model::Construction>();
@@ -709,22 +709,25 @@ void ForwardTranslator::doComponentOfSection(openstudio::model::Surface& surface
                         //createTagWithText(OpaqueDetail, "IsOpaque", QString(layers[0]->isOpaque()));
                         createTagWithText(OpaqueDetail, "OpaqueComponentDetailThicknessUnit", "m");
 
-                        QDomElement OpaqueList = createTagWithText(OpaqueComponentList, "OpaqueList");
-                        createTagWithText(OpaqueList, "OpaqueComponentListName", name.c_str());
-                        createTagWithText(OpaqueList, "OpaqueComponentListType", stype.c_str());
+                        if(!componentCheck.contains(name.c_str())){
+                            componentCheck.insert(name.c_str(), 1);
+                            QDomElement OpaqueList = createTagWithText(OpaqueComponentList, "OpaqueList");
+                            createTagWithText(OpaqueList, "OpaqueComponentListName", name.c_str());
+                            createTagWithText(OpaqueList, "OpaqueComponentListType", stype.c_str());
 
-                        QString colorName = outerMaterial.roughness().c_str();
-                        if(colorName.indexOf("Rough")>0){
-                            colorName.replace("Rough", " Rough");
-                        }else if(colorName.indexOf("Smooth")>0){
-                            colorName.replace("Smooth", " Smooth");
+                            QString colorName = outerMaterial.roughness().c_str();
+                            if(colorName.indexOf("Rough")>0){
+                                colorName.replace("Rough", " Rough");
+                            }else if(colorName.indexOf("Smooth")>0){
+                                colorName.replace("Smooth", " Smooth");
+                            }
+
+                            double solarAbsoupTance = outerMaterial.solarAbsorptance();
+
+                            createTagWithText(OpaqueList, "OpaqueComponentListOuterSurfaceColor", QString::number(solarAbsoupTance));
+                            createTagWithText(OpaqueList, "OpaqueComponentListInnerSurfaceType", "UNKNOW");
+                            createTagWithText(OpaqueList, "OpaqueComponentListDescription", "???");
                         }
-
-                        double solarAbsoupTance = outerMaterial.solarAbsorptance();
-
-                        createTagWithText(OpaqueList, "OpaqueComponentListOuterSurfaceColor", QString::number(solarAbsoupTance));
-                        createTagWithText(OpaqueList, "OpaqueComponentListInnerSurfaceType", "UNKNOW");
-                        createTagWithText(OpaqueList, "OpaqueComponentListDescription", "???");
                     }
                     else if (layers[i].optionalCast<model::SimpleGlazing>()){
                         model::SimpleGlazing glass = layers[i].cast<model::SimpleGlazing>();
@@ -751,7 +754,7 @@ void ForwardTranslator::doComponentOfSection(openstudio::model::Surface& surface
         model::SubSurface sub = (*it);
         std::string name = sub.construction().get().name().get();
         std::string stype = sub.subSurfaceType();
-        if(!((name.empty())|| componentCheck.contains(name.c_str()))){
+        if(!componentCheck.contains(name.c_str())){
             componentCheck.insert(name.c_str(), 1);
             boost::optional<model::ConstructionBase> scon = sub.construction();
             if (scon){
@@ -770,20 +773,23 @@ void ForwardTranslator::doComponentOfSection(openstudio::model::Surface& surface
                             //createTagWithText(OpaqueDetail, "IsOpaque", QString(layers[i]->isOpaque()));
                             createTagWithText(OpaqueDetail, "OpaqueComponentDetailThicknessUnit", "m");
 
-                            QDomElement OpaqueList = createTagWithText(OpaqueComponentList, "OpaqueList");
-                            createTagWithText(OpaqueList, "OpaqueComponentListName", name.c_str());
-                            createTagWithText(OpaqueList, "OpaqueComponentListType", stype.c_str());
+                            if(!componentCheck.contains(name.c_str())){
+                                componentCheck.insert(name.c_str(), 1);
+                                QDomElement OpaqueList = createTagWithText(OpaqueComponentList, "OpaqueList");
+                                createTagWithText(OpaqueList, "OpaqueComponentListName", name.c_str());
+                                createTagWithText(OpaqueList, "OpaqueComponentListType", stype.c_str());
 
-                            QString colorName = outerMaterial.roughness().c_str();
-                            if(colorName.indexOf("Rough")>0){
-                                colorName.replace("Rough", " Rough");
-                            }else if(colorName.indexOf("Smooth")>0){
-                                colorName.replace("Smooth", " Smooth");
+                                QString colorName = outerMaterial.roughness().c_str();
+                                if(colorName.indexOf("Rough")>0){
+                                    colorName.replace("Rough", " Rough");
+                                }else if(colorName.indexOf("Smooth")>0){
+                                    colorName.replace("Smooth", " Smooth");
+                                }
+
+                                createTagWithText(OpaqueList, "OpaqueComponentListOuterSurfaceColor", colorName);
+                                createTagWithText(OpaqueList, "OpaqueComponentListInnerSurfaceType", "UNKNOW");
+                                createTagWithText(OpaqueList, "OpaqueComponentListDescription", "???");
                             }
-
-                            createTagWithText(OpaqueList, "OpaqueComponentListOuterSurfaceColor", colorName);
-                            createTagWithText(OpaqueList, "OpaqueComponentListInnerSurfaceType", "UNKNOW");
-                            createTagWithText(OpaqueList, "OpaqueComponentListDescription", "???");
                         }
                         else if (layers[i].optionalCast<model::SimpleGlazing>()){
                             model::SimpleGlazing glass = layers[i].cast<model::SimpleGlazing>();
