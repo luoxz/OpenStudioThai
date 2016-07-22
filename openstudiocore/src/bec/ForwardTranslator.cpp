@@ -1025,44 +1025,55 @@ void ForwardTranslator::doModelLoop(const model::Model &model, QDomElement &becI
 
 }
 
-void ForwardTranslator::doLightingSystem(const model::Space &space, QDomElement &LightingSystem, QHash<QString, bool>& checkDup)
+void ForwardTranslator::DoLighting(QDomElement &LightingSystem
+                        , const std::vector<model::Lights>& lights
+                        , QHash<QString, bool>& checkDup)
 {
-    if(true){
-        std::vector<model::Lights> lights = space.spaceType().get().lights();
-        createTagWithText(LightingSystem, "LightingCount", QString::number(lights.size()));
-        for (const model::Lights& light : lights){
-            QString name = light.lightsDefinition().name().get().c_str();
-            if(checkDup.contains(name)){
-                continue;
-            }
-            else{
-                checkDup.insert(name, true);
-            }
-            if(light.lightingLevel()){
-                QDomElement Lighting = createTagWithText(LightingSystem, "Lighting");
-                createTagWithText(Lighting, "LightingSystemName"
-                                  , light.lightsDefinition().name().get().c_str());
-                createTagWithText(Lighting, "LightingSystemPower", QString::number(light.lightingLevel().get()));
-                createTagWithText(Lighting, "LightingSystemPowerUnit", "watt");
-                createTagWithText(Lighting, "LightingSystemDescription", "???");
-            }
-            else if(light.powerPerFloorArea()){
-                QDomElement Lighting = createTagWithText(LightingSystem, "Lighting");
-                createTagWithText(Lighting, "LightingSystemName"
-                                  , light.lightsDefinition().name().get().c_str());
-                createTagWithText(Lighting, "LightingSystemPower", QString::number(light.powerPerFloorArea().get()));
-                createTagWithText(Lighting, "LightingSystemPowerUnit", "W/m2");
-                createTagWithText(Lighting, "LightingSystemDescription", "???");
-            }else if(light.powerPerPerson()){
-                QDomElement Lighting = createTagWithText(LightingSystem, "Lighting");
-                createTagWithText(Lighting, "LightingSystemName"
-                                  , light.lightsDefinition().name().get().c_str());
-                createTagWithText(Lighting, "LightingSystemPower", QString::number(light.powerPerPerson().get()));
-                createTagWithText(Lighting, "LightingSystemPowerUnit", "W/person");
-                createTagWithText(Lighting, "LightingSystemDescription", "???");
-            }
+    for (const model::Lights& light : lights){
+        QString name = light.lightsDefinition().name().get().c_str();
+        if(checkDup.contains(name)){
+            continue;
+        }
+        else{
+            checkDup.insert(name, true);
+        }
+        if(light.lightingLevel()){
+            QDomElement Lighting = createTagWithText(LightingSystem, "Lighting");
+            createTagWithText(Lighting, "LightingSystemName"
+                              , light.lightsDefinition().name().get().c_str());
+            createTagWithText(Lighting, "LightingSystemPower", QString::number(light.lightingLevel().get()));
+            createTagWithText(Lighting, "LightingSystemPowerUnit", "watt");
+            createTagWithText(Lighting, "LightingSystemDescription", "???");
+        }
+        else if(light.powerPerFloorArea()){
+            QDomElement Lighting = createTagWithText(LightingSystem, "Lighting");
+            createTagWithText(Lighting, "LightingSystemName"
+                              , light.lightsDefinition().name().get().c_str());
+            createTagWithText(Lighting, "LightingSystemPower", QString::number(light.powerPerFloorArea().get()));
+            createTagWithText(Lighting, "LightingSystemPowerUnit", "W/m2");
+            createTagWithText(Lighting, "LightingSystemDescription", "???");
+        }else if(light.powerPerPerson()){
+            QDomElement Lighting = createTagWithText(LightingSystem, "Lighting");
+            createTagWithText(Lighting, "LightingSystemName"
+                              , light.lightsDefinition().name().get().c_str());
+            createTagWithText(Lighting, "LightingSystemPower", QString::number(light.powerPerPerson().get()));
+            createTagWithText(Lighting, "LightingSystemPowerUnit", "W/person");
+            createTagWithText(Lighting, "LightingSystemDescription", "???");
+        }
+        else{
+            QDomElement Lighting = createTagWithText(LightingSystem, "Lighting_error");
+            createTagWithText(Lighting, "LightingSystemName"
+                              , light.lightsDefinition().name().get().c_str());
+            createTagWithText(Lighting, "LightingSystemPower", QString::number(light.powerPerPerson().get()));
+            createTagWithText(Lighting, "LightingSystemPowerUnit", "unknow");
+            createTagWithText(Lighting, "LightingSystemDescription", "???");
         }
     }
+}
+void ForwardTranslator::doLightingSystem(const model::Space &space, QDomElement &LightingSystem, QHash<QString, bool>& checkDup)
+{
+    DoLighting(LightingSystem, space.spaceType().get().lights(), checkDup);
+    DoLighting(LightingSystem, space.lights(), checkDup);
 }
 
 void ForwardTranslator::doOtherEquipment(const model::Space &space, QDomElement &OtherEquipment, QHash<QString, bool>& checkDup)
@@ -1344,7 +1355,7 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
                         createTagWithText(SplitType, "SplitTypeCoolingCapacity"
                                           , QString::number(coolcap));
                         createTagWithText(SplitType, "SplitTypeCoolingCapacityUnit"
-                                          , "W");
+                                          , "kW");
                         createTagWithText(SplitType, "SplitTypePower"
                                           , QString::number(power));
                         createTagWithText(SplitType, "SplitTypePowerUnit", "kW");
@@ -1450,8 +1461,8 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
                 createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "W");
                 createTagWithText(CentralACD, "CentralACDetailPower", QString::number(power));
                 createTagWithText(CentralACD, "CentralACDetailPowerUnit", "W");
-                createTagWithText(CentralACD, "CentralACDetailCOP", QString::number(cop));
-                createTagWithText(CentralACD, "CentralACDetailkWth", QString::number(power));
+                createTagWithText(CentralACD, "CentralACDetailCOP", QString::number(0.0f));
+                createTagWithText(CentralACD, "CentralACDetailkWth", QString::number(0.0f));
                 createTagWithText(CentralACD, "BaseLoop", baseLoop);
                 createTagWithText(CentralACD, "CentralACD_idd_name", hvac.name().get().c_str());
                 createTagWithText(CentralACD, "CentralACD_idd_iddname", hvac.iddObject().name().c_str());
@@ -1486,8 +1497,8 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
                 createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "W");
                 createTagWithText(CentralACD, "CentralACDetailPower", QString::number(power.get_value_or(0.0f)));
                 createTagWithText(CentralACD, "CentralACDetailPowerUnit", "kW");
-                createTagWithText(CentralACD, "CentralACDetailCOP", QString::number(cop.get_value_or(0.0f)));
-                createTagWithText(CentralACD, "CentralACDetailkWth", QString::number(power.get_value_or(0.0f)));
+                createTagWithText(CentralACD, "CentralACDetailCOP", QString::number(0.0f));
+                createTagWithText(CentralACD, "CentralACDetailkWth", QString::number(0.0f));
                 createTagWithText(CentralACD, "BaseLoop", baseLoop);
                 createTagWithText(CentralACD, "CentralACD_idd_name", hvac.name().get().c_str());
                 createTagWithText(CentralACD, "CentralACD_idd_iddname", hvac.iddObject().name().c_str());
@@ -1525,10 +1536,13 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
                 createTagWithText(CentralACD, "CentralACDetailCOP", QString::number(0.0f));
                 createTagWithText(CentralACD, "CentralACDetailkWth", QString::number(0.0f));
                 createTagWithText(CentralACD, "BaseLoop", baseLoop);
+                createTagWithText(CentralACD, "CentralACD_idd_name", hvac.name().get().c_str());
+                createTagWithText(CentralACD, "CentralACD_idd_iddname", hvac.iddObject().name().c_str());
                 break;
             }
             case openstudio::IddObjectType::OS_Coil_Cooling_Water:
             {
+            // TODO 004 COOLING TOWER
                 model::CoilCoolingWater coolw = hvac.cast<model::CoilCoolingWater>();
                 QString name = coolw.name().get().c_str();
                 size_t inx = i+1;
@@ -1570,13 +1584,15 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
                 createTagWithText(CentralACD, "CentralACDetailEQType", "Fan Coil Unit");
                 createTagWithText(CentralACD, "CentralACDetailChillerType", "None");
                 createTagWithText(CentralACD, "CentralACDetailQuantity", "1");
-                createTagWithText(CentralACD, "CentralACDetailCoolingCapacity", QString::number(coolcap/1000.0));
-                createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "W");
+                createTagWithText(CentralACD, "CentralACDetailCoolingCapacity", QString::number(coolcap));
+                createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "kW");
                 createTagWithText(CentralACD, "CentralACDetailPower", QString::number(power));
                 createTagWithText(CentralACD, "CentralACDetailPowerUnit", "kW");
                 createTagWithText(CentralACD, "CentralACDetailCOP", QString::number(0.0f));
                 createTagWithText(CentralACD, "CentralACDetailkWth", QString::number(0.0f));
                 createTagWithText(CentralACD, "BaseLoop", baseLoop);
+                createTagWithText(CentralACD, "CentralACD_idd_name", hvac.name().get().c_str());
+                createTagWithText(CentralACD, "CentralACD_idd_iddname", hvac.iddObject().name().c_str());
 
                 boost::optional<model::PlantLoop> attLoop = coolw.plantLoop();
                 if(attLoop){
@@ -1594,39 +1610,16 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
 
                 break;
             }
-            case openstudio::IddObjectType::OS_Pump_VariableSpeed:
-            {
-                QDomElement CentralACD = createTagWithText(CentralACDetail, "CentralACD");
-                model::PumpVariableSpeed pump = hvac.cast<model::PumpVariableSpeed>();
-                createTagWithText(CentralACD, "CentralACDetailListName", parantLoopName);
-                createTagWithText(CentralACD, "CentralACDetailLoopName", listName);
-				QString name = hvac.name().get().c_str();
-                createTagWithText(CentralACD, "CentralACDetailName", name);
-                chilledEq[listName].append(name);
-
-                createTagWithText(CentralACD, "CentralACDetailEQType", "Chilled Water Pump");
-                createTagWithText(CentralACD, "CentralACDetailChillerType", "None");
-                createTagWithText(CentralACD, "CentralACDetailQuantity", "1");
-                createTagWithText(CentralACD, "CentralACDetailCoolingCapacity"
-                                  , QString::number(pump.ratedPowerConsumption().get_value_or(0.0f)));
-                createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "W");
-                createTagWithText(CentralACD, "CentralACDetailPower"
-                                  , QString::number(pump.ratedPowerConsumption().get_value_or(0.0f)));
-                createTagWithText(CentralACD, "CentralACDetailPowerUnit", "kW");
-                createTagWithText(CentralACD, "CentralACDetailCOP", "0");
-                createTagWithText(CentralACD, "CentralACDetailkWth", "0");
-                createTagWithText(CentralACD, "BaseLoop", baseLoop);
-                break;
-            }
             case IddObjectType::OS_Chiller_Electric_EIR:
             {
+            // TODO 001 CHILLER
                 QDomElement CentralACD = createTagWithText(CentralACDetail, "CentralACD");
                 model::ChillerElectricEIR chiller = hvac.cast<model::ChillerElectricEIR>();
                 double cop = chiller.referenceCOP();
                 double refcap = chiller.referenceCapacity().get_value_or(0.0f);
 
                 if(cop==0.0)
-                    cop = 0.0000001;
+                    break;
 
 				QString name = hvac.name().get().c_str();
                 createTagWithText(CentralACD, "CentralACDetailListName", parantLoopName);
@@ -1648,14 +1641,16 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
                 createTagWithText(CentralACD, "CentralACDetailEQType", strType);
                 createTagWithText(CentralACD, "CentralACDetailChillerType", chiller.compressorType().c_str());
                 createTagWithText(CentralACD, "CentralACDetailQuantity", "1");
-                createTagWithText(CentralACD, "CentralACDetailCoolingCapacity", QString::number(refcap));
-                createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "W");
+                createTagWithText(CentralACD, "CentralACDetailCoolingCapacity", QString::number(refcap/1000));
+                createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "kW");
                 createTagWithText(CentralACD, "CentralACDetailPower"
-                                  , QString::number(refcap/cop));
+                                  , QString::number(refcap/(1000*cop)));
                 createTagWithText(CentralACD, "CentralACDetailPowerUnit", "kW");
                 createTagWithText(CentralACD, "CentralACDetailCOP", QString::number(cop));
                 createTagWithText(CentralACD, "CentralACDetailkWth", "0");
                 createTagWithText(CentralACD, "BaseLoop", baseLoop);
+                createTagWithText(CentralACD, "CentralACD_idd_name", hvac.name().get().c_str());
+                createTagWithText(CentralACD, "CentralACD_idd_iddname", hvac.iddObject().name().c_str());
 
                 boost::optional<model::PlantLoop> attLoop = chiller.plantLoop();
                 if(attLoop){
@@ -1671,60 +1666,93 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
                 }
                 break;
             }
-//            case IddObjectType::OS_CoolingTower_SingleSpeed:
-//            {
-//                QDomElement CentralACD = createTagWithText(CentralACDetail, "CentralACD");
-//                model::CoolingTowerSingleSpeed tower = hvac.cast<model::CoolingTowerSingleSpeed>();
-//                double coolcap = 1190.0 * 3.51685 * tower.designWaterFlowRate().get_value_or(0.0f) * tower.designRangeTemperature().get_value_or(0.0f);
-//                double power = tower.fanPoweratDesignAirFlowRate().get_value_or(0.0f)/1000;
+            case openstudio::IddObjectType::OS_Pump_VariableSpeed:
+            {
+            // TODO 002 PUMP
+                QDomElement CentralACD = createTagWithText(CentralACDetail, "CentralACD");
+                model::PumpVariableSpeed pump = hvac.cast<model::PumpVariableSpeed>();
+                createTagWithText(CentralACD, "CentralACDetailListName", parantLoopName);
+                createTagWithText(CentralACD, "CentralACDetailLoopName", listName);
+                QString name = hvac.name().get().c_str();
+                createTagWithText(CentralACD, "CentralACDetailName", name);
+                chilledEq[listName].append(name);
 
-//                createTagWithText(CentralACD, "CentralACDetailListName", parantLoopName);
-//            createTagWithText(CentralACD, "CentralACDetailLoopName", listName);
-//                QString name = hvac.name().get().c_str();
-//                createTagWithText(CentralACD, "CentralACDetailName", name);
-//                chilledEq[listName].append(name);
+                createTagWithText(CentralACD, "CentralACDetailEQType", "Chilled Water Pump");
+                createTagWithText(CentralACD, "CentralACDetailChillerType", "None");
+                createTagWithText(CentralACD, "CentralACDetailQuantity", "1");
+                createTagWithText(CentralACD, "CentralACDetailCoolingCapacity"
+                                  , QString::number(0));
+                createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "kW");
+                createTagWithText(CentralACD, "CentralACDetailPower"
+                                  , QString::number(pump.ratedPowerConsumption().get_value_or(0.0f)/1000));
+                createTagWithText(CentralACD, "CentralACDetailPowerUnit", "kW");
+                createTagWithText(CentralACD, "CentralACDetailCOP", "0");
+                createTagWithText(CentralACD, "CentralACDetailkWth", "0");
+                createTagWithText(CentralACD, "BaseLoop", baseLoop);
+                createTagWithText(CentralACD, "CentralACD_idd_name", hvac.name().get().c_str());
+                createTagWithText(CentralACD, "CentralACD_idd_iddname", hvac.iddObject().name().c_str());
+                break;
+            }
+            // TODO 003 COOLING TOWER
+            case IddObjectType::OS_CoolingTower_SingleSpeed:
+            {
+                QDomElement CentralACD = createTagWithText(CentralACDetail, "CentralACD");
+                model::CoolingTowerSingleSpeed tower = hvac.cast<model::CoolingTowerSingleSpeed>();
 
-//                createTagWithText(CentralACD, "CentralACDetailEQType", "Chilled Water Pump");
-//                createTagWithText(CentralACD, "CentralACDetailChillerType", "None");
-//                createTagWithText(CentralACD, "CentralACDetailQuantity", "1");
-//                createTagWithText(CentralACD, "CentralACDetailCoolingCapacity"
-//                                  , QString::number(coolcap));
-//                createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "W");
-//                createTagWithText(CentralACD, "CentralACDetailPower"
-//                                  , QString::number(power));
-//                createTagWithText(CentralACD, "CentralACDetailPowerUnit", "W");
-//                createTagWithText(CentralACD, "CentralACDetailCOP", "0");
-//                createTagWithText(CentralACD, "CentralACDetailkWth", "0");
-//                createTagWithText(CentralACD, "BaseLoop", baseLoop);
-//                break;
-//            }
+                double coolcap = tower.designWaterFlowRate().get_value_or(0.0f) * 18592.915;;
+                double power = tower.fanPoweratDesignAirFlowRate().get_value_or(0.0f)/1000;
 
-//            case IddObjectType::OS_CoolingTower_TwoSpeed:{
-//                QDomElement CentralACD = createTagWithText(CentralACDetail, "CentralACD");
-//                model::CoolingTowerTwoSpeed tower = model.cast<model::CoolingTowerTwoSpeed>();
+                createTagWithText(CentralACD, "CentralACDetailListName", parantLoopName);
+                createTagWithText(CentralACD, "CentralACDetailLoopName", listName);
+                createTagWithText(CentralACD, "CentralACDetailName", hvac.name().get().c_str());
+                createTagWithText(CentralACD, "CentralACDetailEQType", "Air Handling Unit");
+                createTagWithText(CentralACD, "CentralACDetailChillerType", "All");
+                createTagWithText(CentralACD, "CentralACDetailQuantity", "1");
+                createTagWithText(CentralACD, "CentralACDetailCoolingCapacity"
+                                  , QString::number(coolcap));
+                createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "kW");
+                createTagWithText(CentralACD, "CentralACDetailPower"
+                                  , QString::number(power));
+                createTagWithText(CentralACD, "CentralACDetailPowerUnit", "kW");
+                createTagWithText(CentralACD, "CentralACDetailCOP", QString::number(0));
+                createTagWithText(CentralACD, "CentralACDetailkWth", "0");
+                createTagWithText(CentralACD, "plantLoop_name_success", hvac.name().get().c_str());
+                createTagWithText(CentralACD, "iddname", hvac.iddObject().name().c_str());
+                createTagWithText(CentralACD, "CentralACD_idd_name", hvac.name().get().c_str());
+                createTagWithText(CentralACD, "CentralACD_idd_iddname", hvac.iddObject().name().c_str());
+                break;
+            }
 
-//                double coolcap = 1190.0 * 3.51685 * tower.designWaterFlowRate().get_value_or(0.0f) * tower.designRangeTemperature().get_value_or(0.0f);
-//                double power = tower.designFanPower().get_value_or(0.0f)/1000;
+            // TODO 003 COOLING TOWER
+            case IddObjectType::OS_CoolingTower_TwoSpeed:{
+                QDomElement CentralACD = createTagWithText(CentralACDetail, "CentralACD");
+                model::CoolingTowerTwoSpeed tower = hvac.cast<model::CoolingTowerTwoSpeed>();
 
-//            createTagWithText(CentralACD, "CentralACDetailListName", parantLoopName);
-//            createTagWithText(CentralACD, "CentralACDetailLoopName", listName);
-//                createTagWithText(CentralACD, "CentralACDetailName", model.name().get().c_str());
-//                createTagWithText(CentralACD, "CentralACDetailEQType", "Air Handling Unit");
-//                createTagWithText(CentralACD, "CentralACDetailChillerType", "All");
-//                createTagWithText(CentralACD, "CentralACDetailQuantity", "1");
-//                createTagWithText(CentralACD, "CentralACDetailCoolingCapacity"
-//                                  , QString::number(coolcap));
-//                createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "W");
-//                createTagWithText(CentralACD, "CentralACDetailPower"
-//                                  , QString::number(power));
-//                createTagWithText(CentralACD, "CentralACDetailPowerUnit", "kW");
-//                createTagWithText(CentralACD, "CentralACDetailCOP", QString::number(0));
-//                createTagWithText(CentralACD, "CentralACDetailkWth", "0");
-//                createTagWithText(CentralACD, "plantLoop_name_success", model.name().get().c_str());
-//                createTagWithText(CentralACD, "iddname", model.iddObject().name().c_str());
-//                break;
-//            }
+                double coolcap = tower.designWaterFlowRate().get_value_or(0.0f) * 18592.915;;
+                double power = (tower.highFanSpeedFanPower().get_value_or(0.0f)+tower.lowFanSpeedFanPower().get_value_or(0.0f))/1000;
+
+                createTagWithText(CentralACD, "CentralACDetailListName", parantLoopName);
+                createTagWithText(CentralACD, "CentralACDetailLoopName", listName);
+                createTagWithText(CentralACD, "CentralACDetailName", hvac.name().get().c_str());
+                createTagWithText(CentralACD, "CentralACDetailEQType", "Air Handling Unit");
+                createTagWithText(CentralACD, "CentralACDetailChillerType", "All");
+                createTagWithText(CentralACD, "CentralACDetailQuantity", "1");
+                createTagWithText(CentralACD, "CentralACDetailCoolingCapacity"
+                                  , QString::number(coolcap));
+                createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "kW");
+                createTagWithText(CentralACD, "CentralACDetailPower"
+                                  , QString::number(power));
+                createTagWithText(CentralACD, "CentralACDetailPowerUnit", "kW");
+                createTagWithText(CentralACD, "CentralACDetailCOP", QString::number(0));
+                createTagWithText(CentralACD, "CentralACDetailkWth", "0");
+                createTagWithText(CentralACD, "plantLoop_name_success", hvac.name().get().c_str());
+                createTagWithText(CentralACD, "iddname", hvac.iddObject().name().c_str());
+                createTagWithText(CentralACD, "CentralACD_idd_name", hvac.name().get().c_str());
+                createTagWithText(CentralACD, "CentralACD_idd_iddname", hvac.iddObject().name().c_str());
+                break;
+            }
             case IddObjectType::OS_CoolingTower_VariableSpeed:{
+            // TODO 003 COOLING TOWER
                 QDomElement CentralACD = createTagWithText(CentralACDetail, "CentralACD");
                 model::CoolingTowerVariableSpeed tower = hvac.cast<model::CoolingTowerVariableSpeed>();
 
@@ -1739,7 +1767,7 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
                 createTagWithText(CentralACD, "CentralACDetailQuantity", "1");
                 createTagWithText(CentralACD, "CentralACDetailCoolingCapacity"
                                   , QString::number(coolcap));
-                createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "W");
+                createTagWithText(CentralACD, "CentralACDetailCoolingCapacityUnit", "kW");
                 createTagWithText(CentralACD, "CentralACDetailPower"
                                   , QString::number(power));
                 createTagWithText(CentralACD, "CentralACDetailPowerUnit", "kW");
@@ -1747,11 +1775,13 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
                 createTagWithText(CentralACD, "CentralACDetailkWth", "0");
                 createTagWithText(CentralACD, "plantLoop_name_success", hvac.name().get().c_str());
                 createTagWithText(CentralACD, "iddname", hvac.iddObject().name().c_str());
+                createTagWithText(CentralACD, "CentralACD_idd_name", hvac.name().get().c_str());
+                createTagWithText(CentralACD, "CentralACD_idd_iddname", hvac.iddObject().name().c_str());
                 break;
             }
             default:
             {
-                QDomElement CentralACD = createTagWithText(CentralACDetail, "CentralACD_UNKNOW");
+                QDomElement CentralACD = createTagWithText(CentralACDetail, "CentralACD_ERROR");
                 createTagWithText(CentralACD, "CentralACDetailListName", parantLoopName);
                 createTagWithText(CentralACD, "CentralACDetailLoopName", listName);
                 createTagWithText(CentralACD, "CentralACD_idd_name", hvac.name().get().c_str());
@@ -1828,6 +1858,45 @@ void ForwardTranslator::doHotWaterSystem(const model::Model &model, QDomElement 
     }
 }
 
+void ForwardTranslator::DoLightBuilidingZone(const std::string & zonelistName
+                                  , const std::vector<model::Lights>& lights
+                                  , const std::vector<model::OtherEquipment>& others
+                                  , const std::vector<model::ElectricEquipment>& elects){
+
+    if(lights.size()>0){
+        for (const model::Lights& light : lights){
+            QDomElement BuildingZoneLighting = createTagWithText(BuildingZoneLightingEQ, "BuildingZoneLighting");
+            createTagWithText(BuildingZoneLighting, "BuildingZoneLightingListName"
+                              , zonelistName.c_str());
+            createTagWithText(BuildingZoneLighting, "BuildingZoneLightingName"
+                              , light.lightsDefinition().name().get().c_str());
+            createTagWithText(BuildingZoneLighting, "BuildingZoneLightingQuantity"
+                              , QString::number(light.quantity()));
+            createTagWithText(BuildingZoneLighting, "BuildingZoneLightingDaylighted", "0");
+        }
+    }
+
+    for (const model::OtherEquipment& other : others){
+        QDomElement BuildingZoneOtherEQ = createTagWithText(BuildingZoneOtherEquipment, "BuildingZoneOtherEQ");
+        createTagWithText(BuildingZoneOtherEQ, "BuildingZoneOtherEQListName"
+                          , zonelistName.c_str());
+        createTagWithText(BuildingZoneOtherEQ, "BuildingZoneOtherEQName"
+                          , other.otherEquipmentDefinition().name().get().c_str());
+        createTagWithText(BuildingZoneOtherEQ, "BuildingZoneOtherEQQuantity"
+                          , QString::number(other.quantity()));
+    }
+
+    for (const model::ElectricEquipment& other : elects){
+        QDomElement BuildingZoneOtherEQ = createTagWithText(BuildingZoneOtherEquipment, "BuildingZoneOtherEQ");
+        createTagWithText(BuildingZoneOtherEQ, "BuildingZoneOtherEQListName"
+                          , zonelistName.c_str());
+        createTagWithText(BuildingZoneOtherEQ, "BuildingZoneOtherEQName"
+                          , other.electricEquipmentDefinition().name().get().c_str());
+        createTagWithText(BuildingZoneOtherEQ, "BuildingZoneOtherEQQuantity"
+                          , QString::number(other.quantity()));
+    }
+}
+
 void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElement &becInput)
 {
     // Get stories
@@ -1846,42 +1915,15 @@ void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElemen
             //createTagWithText(buildingZoneL, "BuildingZoneListIsGround", QString::number(surface.isGroundSurface()));
             std::string zonelistName = space.name().get();
 
-            std::vector<model::Lights> lights = space.spaceType().get().lights();
+            DoLightBuilidingZone(zonelistName
+                                  , space.spaceType().get().lights()
+                                  , space.spaceType().get().otherEquipment()
+                                  , space.spaceType().get().electricEquipment());
 
-            if(lights.size()>0){
-                for (const model::Lights& light : lights){
-                    QDomElement BuildingZoneLighting = createTagWithText(BuildingZoneLightingEQ, "BuildingZoneLighting");
-                    createTagWithText(BuildingZoneLighting, "BuildingZoneLightingListName"
-                                      , zonelistName.c_str());
-                    createTagWithText(BuildingZoneLighting, "BuildingZoneLightingName"
-                                      , light.lightsDefinition().name().get().c_str());
-                    createTagWithText(BuildingZoneLighting, "BuildingZoneLightingQuantity"
-                                      , QString::number(light.quantity()));
-                    createTagWithText(BuildingZoneLighting, "BuildingZoneLightingDaylighted", "0");
-                }
-            }
-
-            std::vector<model::OtherEquipment> others = space.spaceType().get().otherEquipment();
-            for (const model::OtherEquipment& other : others){
-                QDomElement BuildingZoneOtherEQ = createTagWithText(BuildingZoneOtherEquipment, "BuildingZoneOtherEQ");
-                createTagWithText(BuildingZoneOtherEQ, "BuildingZoneOtherEQListName"
-                                  , zonelistName.c_str());
-                createTagWithText(BuildingZoneOtherEQ, "BuildingZoneOtherEQName"
-                                  , other.otherEquipmentDefinition().name().get().c_str());
-                createTagWithText(BuildingZoneOtherEQ, "BuildingZoneOtherEQQuantity"
-                                  , QString::number(other.quantity()));
-            }
-
-            std::vector<model::ElectricEquipment> elects = space.spaceType().get().electricEquipment();
-            for (const model::ElectricEquipment& other : elects){
-                QDomElement BuildingZoneOtherEQ = createTagWithText(BuildingZoneOtherEquipment, "BuildingZoneOtherEQ");
-                createTagWithText(BuildingZoneOtherEQ, "BuildingZoneOtherEQListName"
-                                  , zonelistName.c_str());
-                createTagWithText(BuildingZoneOtherEQ, "BuildingZoneOtherEQName"
-                                  , other.electricEquipmentDefinition().name().get().c_str());
-                createTagWithText(BuildingZoneOtherEQ, "BuildingZoneOtherEQQuantity"
-                                  , QString::number(other.quantity()));
-            }
+            DoLightBuilidingZone(zonelistName
+                                  , space.lights()
+                                  , space.otherEquipment()
+                                  , space.electricEquipment());
 
             if(boost::optional<model::ThermalZone> thermal = space.thermalZone()){
 
