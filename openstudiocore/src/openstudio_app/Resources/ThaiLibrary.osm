@@ -4,13 +4,14 @@
 !- Supported By	: To-Be-One Technology Co, Ltd.
 !- Craated Date : 22/05/2015
 !- Modified By  : Narongsak Mala (narongsak.mala@gmail.com)
-!- Modified Date : 12/07/2016
+!- Modified Date : 24/07/2016
 !-----------------------------------------------------------------
 
 
 !- Revision 		Details
-!- 1.0.2-000        Changed Solar Absorptance value from 5.0 to 3.0
-!-                  Added Air Gap material.
+!- 1.0.3-000    Added Construction set
+!- 1.0.2-000    Changed Solar Absorptance value from 5.0 to 3.0
+!-              Added Air Gap material.
 !- 1.0.1-000		Removed SplitTypes that is in the other equipment.
 !- 1.0.0-000	    Released official version.
 !- 0.0.6-000		Completed schedule ruleset.
@@ -18589,3 +18590,384 @@ OS:Construction,
   Air Wall,                               !- Name
   ,                                       !- Surface Rendering Name
   {9c2e9d3e-294f-43b6-a35a-50ee1f5a6da4}; !- Layer 1
+OS:Material,
+  {d81e1b78-e03c-40ae-b706-25daca0bb8f9}, !- Handle
+  184 กระจก,                    !- Name
+  Smooth,                                 !- Roughness
+  0.006,                                  !- Thickness {m}
+  0.96,                                   !- Conductivity {W/m-K}
+  2500,                                   !- Density {kg/m3}
+  880,                                    !- Specific Heat {J/kg-K}
+  0.9,                                    !- Thermal Absorptance
+  0.3,                                    !- Solar Absorptance
+  0.5;                                    !- Visible Absorptance
+OS:StandardsInformation:Material,
+  {dfc87299-3e2d-4c08-a9bc-873dfdda417a}, !- Handle
+  {d81e1b78-e03c-40ae-b706-25daca0bb8f9}; !- Material Name
+OS:Material,
+  {17bb8193-346b-4028-8dcb-8295838813ab}, !- Handle
+  129 อิฐมอญฉาบปูนสองหน้า 1, !- Name
+  Smooth,                                 !- Roughness
+  0.1,                                    !- Thickness {m}
+  1.102,                                  !- Conductivity {W/m-K}
+  1700,                                   !- Density {kg/m3}
+  790,                                    !- Specific Heat {J/kg-K}
+  0.9,                                    !- Thermal Absorptance
+  0.3,                                    !- Solar Absorptance
+  0.5;                                    !- Visible Absorptance
+OS:StandardsInformation:Material,
+  {507a3f78-c9e1-4417-896f-11526028f47b}, !- Handle
+  {17bb8193-346b-4028-8dcb-8295838813ab}; !- Material Name
+OS:Construction,
+  {02810892-a280-4789-93b5-2b2368dc48f7}, !- Handle
+  02 Thai Autoclave Aerated Concrete Wall, !- Name
+  ,                                       !- Surface Rendering Name
+  {3b283fe3-bba5-431b-bd00-8433bf717b89}, !- Layer 1
+  {95b8dbf1-7d45-4dd5-a3f8-38df40a46240}, !- Layer 2
+  {45018e4f-0f6a-4365-8077-5c3d89595594}; !- Layer 3
+OS:StandardsInformation:Construction,
+  {4844fcb3-4118-43b1-a5bd-cf58c4e92873}, !- Handle
+  {02810892-a280-4789-93b5-2b2368dc48f7}, !- Construction Name
+  ,                                       !- Intended Surface Type
+  ,                                       !- Standards Construction Type
+  ,                                       !- Perturbable Layer
+  ,                                       !- Perturbable Layer Type
+  ,                                       !- Other Perturbable Layer Type
+  ,                                       !- Construction Standard
+  ,                                       !- Construction Standard Source
+  ,                                       !- Fenestration Type
+  ,                                       !- Fenestration Assembly Context
+  ,                                       !- Fenestration Number of Panes
+  ,                                       !- Fenestration Frame Type
+  ,                                       !- Fenestration Divider Type
+  ,                                       !- Fenestration Tint
+  ;                                       !- Fenestration Gas Fill
+OS:Material,
+  {3b283fe3-bba5-431b-bd00-8433bf717b89}, !- Handle
+  112 ปูนฉาบสำหรับคอนกรีตมวลเบา 1, !- Name
+  Smooth,                                 !- Roughness
+  0.01,                                   !- Thickness {m}
+  0.326,                                  !- Conductivity {W/m-K}
+  1200,                                   !- Density {kg/m3}
+  840,                                    !- Specific Heat {J/kg-K}
+  0.9,                                    !- Thermal Absorptance
+  0.3,                                    !- Solar Absorptance
+  0.5;                                    !- Visible Absorptance
+OS:StandardsInformation:Material,
+  {371781d4-1bed-47e8-af32-2905b9060ded}, !- Handle
+  {3b283fe3-bba5-431b-bd00-8433bf717b89}; !- Material Name
+OS:Material,
+  {95b8dbf1-7d45-4dd5-a3f8-38df40a46240}, !- Handle
+  32 คอนกรีตมวลเบา ความหนาแน่น 700 กก./ลบ.ม. 1, !- Name
+  Smooth,                                 !- Roughness
+  0.08,                                   !- Thickness {m}
+  0.21,                                   !- Conductivity {W/m-K}
+  700,                                    !- Density {kg/m3}
+  840,                                    !- Specific Heat {J/kg-K}
+  0.9,                                    !- Thermal Absorptance
+  0.3,                                    !- Solar Absorptance
+  0.5;                                    !- Visible Absorptance
+OS:StandardsInformation:Material,
+  {27d0ee4a-ebbf-4863-9d47-b93bf61b97ff}, !- Handle
+  {95b8dbf1-7d45-4dd5-a3f8-38df40a46240}; !- Material Name
+OS:Material,
+  {45018e4f-0f6a-4365-8077-5c3d89595594}, !- Handle
+  112 ปูนฉาบสำหรับคอนกรีตมวลเบา 2, !- Name
+  Smooth,                                 !- Roughness
+  0.01,                                   !- Thickness {m}
+  0.326,                                  !- Conductivity {W/m-K}
+  1200,                                   !- Density {kg/m3}
+  840,                                    !- Specific Heat {J/kg-K}
+  0.9,                                    !- Thermal Absorptance
+  0.3,                                    !- Solar Absorptance
+  0.5;                                    !- Visible Absorptance
+OS:StandardsInformation:Material,
+  {390b6ab1-3b18-4904-8960-622e6e2a5397}, !- Handle
+  {45018e4f-0f6a-4365-8077-5c3d89595594}; !- Material Name
+OS:Construction,
+  {540b37ff-af76-4209-93f7-1c60e726f414}, !- Handle
+  03 Thai Precast Concrete Wall 10 cm,    !- Name
+  ,                                       !- Surface Rendering Name
+  {4fc279b1-32ab-4524-a992-37783549a183}; !- Layer 1
+OS:StandardsInformation:Construction,
+  {b0d3cf69-9055-41d9-987d-974356e127e4}, !- Handle
+  {540b37ff-af76-4209-93f7-1c60e726f414}, !- Construction Name
+  ,                                       !- Intended Surface Type
+  ,                                       !- Standards Construction Type
+  ,                                       !- Perturbable Layer
+  ,                                       !- Perturbable Layer Type
+  ,                                       !- Other Perturbable Layer Type
+  ,                                       !- Construction Standard
+  ,                                       !- Construction Standard Source
+  ,                                       !- Fenestration Type
+  ,                                       !- Fenestration Assembly Context
+  ,                                       !- Fenestration Number of Panes
+  ,                                       !- Fenestration Frame Type
+  ,                                       !- Fenestration Divider Type
+  ,                                       !- Fenestration Tint
+  ;                                       !- Fenestration Gas Fill
+OS:Material,
+  {4fc279b1-32ab-4524-a992-37783549a183}, !- Handle
+  35 คอนกรีต หนา 10 ซม. 1, !- Name
+  Smooth,                                 !- Roughness
+  0.1,                                    !- Thickness {m}
+  1.442,                                  !- Conductivity {W/m-K}
+  2400,                                   !- Density {kg/m3}
+  920,                                    !- Specific Heat {J/kg-K}
+  0.9,                                    !- Thermal Absorptance
+  0.5,                                    !- Solar Absorptance
+  0.7;                                    !- Visible Absorptance
+OS:StandardsInformation:Material,
+  {877810ba-09ec-4fde-8af3-efb48438b552}, !- Handle
+  {4fc279b1-32ab-4524-a992-37783549a183}; !- Material Name
+OS:Construction,
+  {90f80150-aea1-4f0d-9126-6d2b4430ff7f}, !- Handle
+  04 Thai Curtain Wall with Insulation,   !- Name
+  ,                                       !- Surface Rendering Name
+  {d2fae266-9375-40d9-a411-0000c88c3ce8}, !- Layer 1
+  {35585a26-39cc-4155-b7cf-297b92835c0d}, !- Layer 2
+  {de2180c9-2fad-45e9-a974-89a5952bb336}, !- Layer 3
+  {6182216d-8c83-46fe-b9a0-0d59471cc870}; !- Layer 4
+OS:StandardsInformation:Construction,
+  {91863ea4-604c-4b02-8d14-0ff27c922355}, !- Handle
+  {90f80150-aea1-4f0d-9126-6d2b4430ff7f}, !- Construction Name
+  ,                                       !- Intended Surface Type
+  ,                                       !- Standards Construction Type
+  ,                                       !- Perturbable Layer
+  ,                                       !- Perturbable Layer Type
+  ,                                       !- Other Perturbable Layer Type
+  ,                                       !- Construction Standard
+  ,                                       !- Construction Standard Source
+  ,                                       !- Fenestration Type
+  ,                                       !- Fenestration Assembly Context
+  ,                                       !- Fenestration Number of Panes
+  ,                                       !- Fenestration Frame Type
+  ,                                       !- Fenestration Divider Type
+  ,                                       !- Fenestration Tint
+  ;                                       !- Fenestration Gas Fill
+OS:Material,
+  {d2fae266-9375-40d9-a411-0000c88c3ce8}, !- Handle
+  184 กระจก 1,                  !- Name
+  Smooth,                                 !- Roughness
+  0.006,                                  !- Thickness {m}
+  0.96,                                   !- Conductivity {W/m-K}
+  2500,                                   !- Density {kg/m3}
+  880,                                    !- Specific Heat {J/kg-K}
+  0.9,                                    !- Thermal Absorptance
+  0.3,                                    !- Solar Absorptance
+  0.5;                                    !- Visible Absorptance
+OS:Material:AirGap,
+  {35585a26-39cc-4155-b7cf-297b92835c0d}, !- Handle
+  TH : Wall Air Space Resistance 100mm Hi 1, !- Name
+  0.16;                                   !- Thermal Resistance {m2-K/W}
+OS:StandardsInformation:Material,
+  {add2f0b9-ca1d-44dd-92bb-c2bc51364a64}, !- Handle
+  {35585a26-39cc-4155-b7cf-297b92835c0d}; !- Material Name
+OS:Material,
+  {de2180c9-2fad-45e9-a974-89a5952bb336}, !- Handle
+  90 ฉนวนใยแก้ว ความหนาแน่น 48 กก./ลบ.ม.หนา 25 มม. 1, !- Name
+  Smooth,                                 !- Roughness
+  0.025,                                  !- Thickness {m}
+  0.033,                                  !- Conductivity {W/m-K}
+  48,                                     !- Density {kg/m3}
+  960,                                    !- Specific Heat {J/kg-K}
+  0.9,                                    !- Thermal Absorptance
+  0.3,                                    !- Solar Absorptance
+  0.3;                                    !- Visible Absorptance
+OS:Material,
+  {6182216d-8c83-46fe-b9a0-0d59471cc870}, !- Handle
+  146 แผ่นยิบซัมตราช้างชนิดธรรมดา หนา 12 มม. 1, !- Name
+  Smooth,                                 !- Roughness
+  0.012,                                  !- Thickness {m}
+  0.318,                                  !- Conductivity {W/m-K}
+  760,                                    !- Density {kg/m3}
+  1090,                                   !- Specific Heat {J/kg-K}
+  0.9,                                    !- Thermal Absorptance
+  0.3,                                    !- Solar Absorptance
+  0.5;                                    !- Visible Absorptance
+OS:Construction,
+  {b12b5364-40c0-4750-85b8-5bd3a93ce22b}, !- Handle
+  06 Thai Roof Deck,                      !- Name
+  ,                                       !- Surface Rendering Name
+  {bfbfb346-2b47-4c21-9d47-c67d51e2d027}, !- Layer 1
+  {7094af00-c14d-4cb8-ab38-d2237326176c}, !- Layer 2
+  {18380dc3-e44a-427a-ba27-f76cef83ed2b}, !- Layer 3
+  {5d29fd10-1f2e-4fc8-bdb0-cccd522e4b09}; !- Layer 4
+OS:StandardsInformation:Construction,
+  {fe670833-24b1-4321-95d5-9ed2382be56a}, !- Handle
+  {b12b5364-40c0-4750-85b8-5bd3a93ce22b}, !- Construction Name
+  ,                                       !- Intended Surface Type
+  ,                                       !- Standards Construction Type
+  ,                                       !- Perturbable Layer
+  ,                                       !- Perturbable Layer Type
+  ,                                       !- Other Perturbable Layer Type
+  ,                                       !- Construction Standard
+  ,                                       !- Construction Standard Source
+  ,                                       !- Fenestration Type
+  ,                                       !- Fenestration Assembly Context
+  ,                                       !- Fenestration Number of Panes
+  ,                                       !- Fenestration Frame Type
+  ,                                       !- Fenestration Divider Type
+  ,                                       !- Fenestration Tint
+  ;                                       !- Fenestration Gas Fill
+OS:Material,
+  {bfbfb346-2b47-4c21-9d47-c67d51e2d027}, !- Handle
+  114 ปูนซีเมนต์ หนา 5 ซม. 1, !- Name
+  Smooth,                                 !- Roughness
+  0.05,                                   !- Thickness {m}
+  0.533,                                  !- Conductivity {W/m-K}
+  1568,                                   !- Density {kg/m3}
+  840,                                    !- Specific Heat {J/kg-K}
+  0.9,                                    !- Thermal Absorptance
+  0.5,                                    !- Solar Absorptance
+  0.5;                                    !- Visible Absorptance
+OS:StandardsInformation:Material,
+  {976d5162-1756-4d69-92d6-aa4e5152bc8b}, !- Handle
+  {bfbfb346-2b47-4c21-9d47-c67d51e2d027}; !- Material Name
+OS:Material,
+  {7094af00-c14d-4cb8-ab38-d2237326176c}, !- Handle
+  35 คอนกรีต หนา 10 ซม. 2, !- Name
+  Smooth,                                 !- Roughness
+  0.1,                                    !- Thickness {m}
+  1.442,                                  !- Conductivity {W/m-K}
+  2400,                                   !- Density {kg/m3}
+  920,                                    !- Specific Heat {J/kg-K}
+  0.9,                                    !- Thermal Absorptance
+  0.5,                                    !- Solar Absorptance
+  0.7;                                    !- Visible Absorptance
+OS:StandardsInformation:Material,
+  {5b50cc42-c922-4057-8645-fb1f2b97c430}, !- Handle
+  {7094af00-c14d-4cb8-ab38-d2237326176c}; !- Material Name
+OS:Material:AirGap,
+  {18380dc3-e44a-427a-ba27-f76cef83ed2b}, !- Handle
+  TH : Roof Air Space Resistance 0 Degree 100mm Hi 1, !- Name
+  0.174;                                  !- Thermal Resistance {m2-K/W}
+OS:StandardsInformation:Material,
+  {a6a30599-ec37-4beb-9f72-a0b6eb113eb5}, !- Handle
+  {18380dc3-e44a-427a-ba27-f76cef83ed2b}; !- Material Name
+OS:Material,
+  {5d29fd10-1f2e-4fc8-bdb0-cccd522e4b09}, !- Handle
+  151 แผ่นยิปซั่มบอร์ด หนา 9 มม. 1, !- Name
+  Smooth,                                 !- Roughness
+  0.009,                                  !- Thickness {m}
+  0.191,                                  !- Conductivity {W/m-K}
+  880,                                    !- Density {kg/m3}
+  1090,                                   !- Specific Heat {J/kg-K}
+  0.9,                                    !- Thermal Absorptance
+  0.3,                                    !- Solar Absorptance
+  0.5;                                    !- Visible Absorptance
+OS:StandardsInformation:Material,
+  {11ed6951-644c-428d-b372-41586c38bc91}, !- Handle
+  {5d29fd10-1f2e-4fc8-bdb0-cccd522e4b09}; !- Material Name
+OS:Construction,
+  {b3915616-ea05-49ed-817e-d5825f6f5aeb}, !- Handle
+  07 Thai Roof Deck with 3" Glass Wool,   !- Name
+  ,                                       !- Surface Rendering Name
+  {bfbfb346-2b47-4c21-9d47-c67d51e2d027}, !- Layer 1
+  {7094af00-c14d-4cb8-ab38-d2237326176c}, !- Layer 2
+  {40d0bd43-23b8-4f37-ab1b-25c07f55edcb}, !- Layer 3
+  {006e45f5-2b6d-4d07-82b1-2be0e57ddafa}, !- Layer 4
+  {39f23198-28f7-435a-ad56-f19443a7d11a}; !- Layer 5
+OS:StandardsInformation:Construction,
+  {81cadc91-212c-422e-8433-a37af4c324b8}, !- Handle
+  {b3915616-ea05-49ed-817e-d5825f6f5aeb}, !- Construction Name
+  ,                                       !- Intended Surface Type
+  ,                                       !- Standards Construction Type
+  ,                                       !- Perturbable Layer
+  ,                                       !- Perturbable Layer Type
+  ,                                       !- Other Perturbable Layer Type
+  ,                                       !- Construction Standard
+  ,                                       !- Construction Standard Source
+  ,                                       !- Fenestration Type
+  ,                                       !- Fenestration Assembly Context
+  ,                                       !- Fenestration Number of Panes
+  ,                                       !- Fenestration Frame Type
+  ,                                       !- Fenestration Divider Type
+  ,                                       !- Fenestration Tint
+  ;                                       !- Fenestration Gas Fill
+OS:Material:AirGap,
+  {40d0bd43-23b8-4f37-ab1b-25c07f55edcb}, !- Handle
+  TH : Roof Air Space Resistance 0 Degree 100mm Lo 1, !- Name
+  1.423;                                  !- Thermal Resistance {m2-K/W}
+OS:StandardsInformation:Material,
+  {a936e588-b1ac-474e-90e4-4a2cc946226c}, !- Handle
+  {40d0bd43-23b8-4f37-ab1b-25c07f55edcb}; !- Material Name
+OS:Material,
+  {006e45f5-2b6d-4d07-82b1-2be0e57ddafa}, !- Handle
+  68 ฉนวนใยแก้วที่ได้รับฉลากประสิทธิภาพสูง Stay Cool 3" Super Save 1, !- Name
+  Smooth,                                 !- Roughness
+  0.075,                                  !- Thickness {m}
+  0.039,                                  !- Conductivity {W/m-K}
+  12,                                     !- Density {kg/m3}
+  960,                                    !- Specific Heat {J/kg-K}
+  0.9,                                    !- Thermal Absorptance
+  0.1,                                    !- Solar Absorptance
+  0.3;                                    !- Visible Absorptance
+OS:StandardsInformation:Material,
+  {c3896ea2-7eb7-4215-bedf-a1c47e815615}, !- Handle
+  {006e45f5-2b6d-4d07-82b1-2be0e57ddafa}; !- Material Name
+OS:Material,
+  {39f23198-28f7-435a-ad56-f19443a7d11a}, !- Handle
+  151 แผ่นยิปซั่มบอร์ด หนา 9 มม. 2, !- Name
+  Smooth,                                 !- Roughness
+  0.009,                                  !- Thickness {m}
+  0.191,                                  !- Conductivity {W/m-K}
+  880,                                    !- Density {kg/m3}
+  1090,                                   !- Specific Heat {J/kg-K}
+  0.9,                                    !- Thermal Absorptance
+  0.3,                                    !- Solar Absorptance
+  0.5;                                    !- Visible Absorptance
+OS:StandardsInformation:Material,
+  {1c7fe8ce-68e7-4b7c-affc-c924ee0c1459}, !- Handle
+  {39f23198-28f7-435a-ad56-f19443a7d11a}; !- Material Name
+OS:Construction,
+  {2f828cfb-85b0-4ec0-8126-68235f66ea31}, !- Handle
+  08 Thai Metal Sheet Roof with 1" PU Insulation, !- Name
+  ,                                       !- Surface Rendering Name
+  {e6fec05c-31e1-468d-89f6-1d0f7e9e1177}, !- Layer 1
+  {2e3b7e1b-0932-44d0-ab97-d22ae6f16523}; !- Layer 2
+OS:StandardsInformation:Construction,
+  {ac42f6ee-4d94-48b6-b981-3a762518be14}, !- Handle
+  {2f828cfb-85b0-4ec0-8126-68235f66ea31}, !- Construction Name
+  ,                                       !- Intended Surface Type
+  ,                                       !- Standards Construction Type
+  ,                                       !- Perturbable Layer
+  ,                                       !- Perturbable Layer Type
+  ,                                       !- Other Perturbable Layer Type
+  ,                                       !- Construction Standard
+  ,                                       !- Construction Standard Source
+  ,                                       !- Fenestration Type
+  ,                                       !- Fenestration Assembly Context
+  ,                                       !- Fenestration Number of Panes
+  ,                                       !- Fenestration Frame Type
+  ,                                       !- Fenestration Divider Type
+  ,                                       !- Fenestration Tint
+  ;                                       !- Fenestration Gas Fill
+OS:Material,
+  {e6fec05c-31e1-468d-89f6-1d0f7e9e1177}, !- Handle
+  164 โลหะผสมของอลูมิเนียม แบบธรรมดา  หนา 1 มม. 1, !- Name
+  Smooth,                                 !- Roughness
+  0.001,                                  !- Thickness {m}
+  211,                                    !- Conductivity {W/m-K}
+  2672,                                   !- Density {kg/m3}
+  896,                                    !- Specific Heat {J/kg-K}
+  0.9,                                    !- Thermal Absorptance
+  0.1,                                    !- Solar Absorptance
+  0.3;                                    !- Visible Absorptance
+OS:StandardsInformation:Material,
+  {f3393f6a-f2c7-481d-90a7-500beee083a5}, !- Handle
+  {e6fec05c-31e1-468d-89f6-1d0f7e9e1177}; !- Material Name
+OS:Material,
+  {2e3b7e1b-0932-44d0-ab97-d22ae6f16523}, !- Handle
+  158 โฟมโพลียูรีเทน ความหนาแน่น 24 กก./ลบ.ม.หนา 25 มม. 1, !- Name
+  Smooth,                                 !- Roughness
+  0.025,                                  !- Thickness {m}
+  0.023,                                  !- Conductivity {W/m-K}
+  24,                                     !- Density {kg/m3}
+  1590,                                   !- Specific Heat {J/kg-K}
+  0.9,                                    !- Thermal Absorptance
+  0.3,                                    !- Solar Absorptance
+  0.5;                                    !- Visible Absorptance
+OS:StandardsInformation:Material,
+  {5a52264c-673e-4774-8afc-1c9449bcf167}, !- Handle
+  {2e3b7e1b-0932-44d0-ab97-d22ae6f16523}; !- Material Name
