@@ -1581,7 +1581,7 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
                 createTagWithText(CentralACD, "CentralACDetailName", name);
                 chilledEq[listName].append(name);
 
-                createTagWithText(CentralACD, "CentralACDetailEQType", "Fan Coil Unit");
+                createTagWithText(CentralACD, "CentralACDetailEQType", "Air Handling Unit");
                 createTagWithText(CentralACD, "CentralACDetailChillerType", "None");
                 createTagWithText(CentralACD, "CentralACDetailQuantity", "1");
                 createTagWithText(CentralACD, "CentralACDetailCoolingCapacity", QString::number(coolcap));
@@ -1705,7 +1705,7 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
                 createTagWithText(CentralACD, "CentralACDetailListName", parantLoopName);
                 createTagWithText(CentralACD, "CentralACDetailLoopName", listName);
                 createTagWithText(CentralACD, "CentralACDetailName", hvac.name().get().c_str());
-                createTagWithText(CentralACD, "CentralACDetailEQType", "Air Handling Unit");
+                createTagWithText(CentralACD, "CentralACDetailEQType", "Cooling Tower");
                 createTagWithText(CentralACD, "CentralACDetailChillerType", "All");
                 createTagWithText(CentralACD, "CentralACDetailQuantity", "1");
                 createTagWithText(CentralACD, "CentralACDetailCoolingCapacity"
@@ -1734,7 +1734,7 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
                 createTagWithText(CentralACD, "CentralACDetailListName", parantLoopName);
                 createTagWithText(CentralACD, "CentralACDetailLoopName", listName);
                 createTagWithText(CentralACD, "CentralACDetailName", hvac.name().get().c_str());
-                createTagWithText(CentralACD, "CentralACDetailEQType", "Air Handling Unit");
+                createTagWithText(CentralACD, "CentralACDetailEQType", "Cooling Tower");
                 createTagWithText(CentralACD, "CentralACDetailChillerType", "All");
                 createTagWithText(CentralACD, "CentralACDetailQuantity", "1");
                 createTagWithText(CentralACD, "CentralACDetailCoolingCapacity"
@@ -1762,7 +1762,7 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
                 createTagWithText(CentralACD, "CentralACDetailListName", parantLoopName);
                 createTagWithText(CentralACD, "CentralACDetailLoopName", listName);
                 createTagWithText(CentralACD, "CentralACDetailName", hvac.name().get().c_str());
-                createTagWithText(CentralACD, "CentralACDetailEQType", "Air Handling Unit");
+                createTagWithText(CentralACD, "CentralACDetailEQType", "Cooling Tower");
                 createTagWithText(CentralACD, "CentralACDetailChillerType", "All");
                 createTagWithText(CentralACD, "CentralACDetailQuantity", "1");
                 createTagWithText(CentralACD, "CentralACDetailCoolingCapacity"
