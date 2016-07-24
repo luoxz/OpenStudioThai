@@ -26,7 +26,9 @@
 #include "../utilities/core/Optional.hpp"
 #include "../utilities/core/Logger.hpp"
 #include "../utilities/core/StringStreamLogSink.hpp"
-
+#include "../model/OtherEquipment.hpp"
+#include "../model/Lights.hpp"
+#include "../model/ElectricEquipment.hpp"
 #include "../model/ModelObject.hpp"
 
 #include <map>
@@ -124,6 +126,13 @@ namespace bec {
 //    void doHotWaterSystem(const openstudio::model::Model& model, QDomElement& root);
 //    void doOtherEquipment(const openstudio::model::Model& model, QDomElement& root);
 
+    void DoLighting(QDomElement &LightingSystem
+                            , const std::vector<model::Lights>& lights
+                            , QHash<QString, bool>& checkDup);
+    void DoLightBuilidingZone(const std::string & zonelistName
+                                      , const std::vector<model::Lights>& lights
+                                      , const std::vector<model::OtherEquipment>& others
+                                      , const std::vector<model::ElectricEquipment>& elects);
     void doBuildingEnvelope(const openstudio::model::Model& model, QDomElement& becInput);
 
     // listed in translation order
