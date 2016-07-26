@@ -2046,13 +2046,13 @@ void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElemen
                     //TODO:LINK TO MATERIAL.
                     double area = surface.netArea();
                     createTagWithText(buildingZoneWall, "BuildingZoneWallSectionName", surface.name().get().c_str());
-                    createTagWithText(buildingZoneWall, "BuildingZoneWallArea", QString::number(area));
-                    createTagWithText(buildingZoneWall, "BuildingZoneWallAreaUnit", "m^2");
 
                     openstudio::model::SubSurfaceVector subs = surface.subSurfaces();
 
                     for (openstudio::model::SubSurface& sub : subs){
-                        double area = sub.netArea();
+                        area += sub.netArea();
+
+                        /*
                         //buildingZoneExteriorWall
                         QDomElement buildingZoneWall = createTagWithText(buildingZoneExteriorWall, "BuildingZoneWall");
                         createTagWithText(buildingZoneWall, "BuildingZoneWallListName", zonelistName.c_str());
@@ -2061,8 +2061,11 @@ void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElemen
                         //TODO:LINK TO MATERIAL.
                         createTagWithText(buildingZoneWall, "BuildingZoneWallSectionName", sub.name().get().c_str());
                         createTagWithText(buildingZoneWall, "BuildingZoneWallArea", QString::number(area));
-                        createTagWithText(buildingZoneWall, "BuildingZoneWallAreaUnit", "m^2");
+                        createTagWithText(buildingZoneWall, "BuildingZoneWallAreaUnit", "m^2");*/
                     }
+
+                    createTagWithText(buildingZoneWall, "BuildingZoneWallArea", QString::number(area));
+                    createTagWithText(buildingZoneWall, "BuildingZoneWallAreaUnit", "m^2");
 
                 }
                 else{ //RoofCeiling
