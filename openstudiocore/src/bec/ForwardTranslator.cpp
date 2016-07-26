@@ -1009,10 +1009,10 @@ void ForwardTranslator::doModelLoop(const model::Model &model, QDomElement &becI
     QHash<QString, bool> light_checkDup;
     QHash<QString, bool> oeq_checkDup;
     for (const openstudio::model::BuildingStory& buildingStory : stories) {
-
+		qDebug() << "++ PROCESS BUILDING STORY : " << buildingStory.name().get().c_str();
         std::vector<openstudio::model::Space> spaces = buildingStory.spaces();
         for (openstudio::model::Space& space : spaces){
-
+			qDebug() << "++ PROCESS BUILDING SPACE : " << space.name().get().c_str();
             doLightingSystem(space, LightingSystem, light_checkDup);
             doOtherEquipment(space, OtherEquipment, oeq_checkDup);
 
@@ -1072,13 +1072,19 @@ void ForwardTranslator::DoLighting(QDomElement &LightingSystem
 }
 void ForwardTranslator::doLightingSystem(const model::Space &space, QDomElement &LightingSystem, QHash<QString, bool>& checkDup)
 {
-    DoLighting(LightingSystem, space.spaceType().get().lights(), checkDup);
-    DoLighting(LightingSystem, space.lights(), checkDup);
+	if(space.spaceType())
+		DoLighting(LightingSystem, space.spaceType().get().lights(), checkDup);
+	else
+	{
+		qDebug() << "DO LIGHTNG SPACE TYPE ERROR AT:" << space.name().get().c_str();
+	}
+    
+	DoLighting(LightingSystem, space.lights(), checkDup);
 }
 
 void ForwardTranslator::doOtherEquipment(const model::Space &space, QDomElement &OtherEquipment, QHash<QString, bool>& checkDup)
 {
-    if(true){
+	if (space.spaceType()){
         std::vector<model::ElectricEquipment> others = space.spaceType().get().electricEquipment();
         for (const model::ElectricEquipment& other : others){
             QString name = other.electricEquipmentDefinition().name().get().c_str();
@@ -1136,7 +1142,11 @@ void ForwardTranslator::doOtherEquipment(const model::Space &space, QDomElement 
             createTagWithText(OtherEQ, "OtherEQPowerUnit", unit);
             createTagWithText(OtherEQ, "OtherEQDescription", "???");
         }
-    }
+	}
+	else
+	{
+		qDebug() << "OTHER EQUEPMENT ERROR AT SPACE:" << space.name().get().c_str();
+	}
 }
 
 bool isSkip(model::ModelObject model){
