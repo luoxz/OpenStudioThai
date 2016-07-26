@@ -962,8 +962,8 @@ void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &
 
                         createTagWithText(WallL, "WallListName", ssfName);
                         createTagWithText(WallL, "WallListType", surfaceType);
-						createTagWithText(WallL, "WallListPlanAzimuth", QString::number(rtod(sub.azimuth())));
-						createTagWithText(WallL, "WallListInclination", QString::number(rtod(sub.tilt())));
+                        createTagWithText(WallL, "WallListPlanAzimuth", QString::number(rtod(sub.azimuth())));
+                        createTagWithText(WallL, "WallListInclination", QString::number(rtod(sub.tilt())));
                         createTagWithText(WallL, "WallListDescription", "???");
 
                         double sc = 1.0;
@@ -977,7 +977,7 @@ void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &
                             //TODO:ERROR
                         }
                         QDomElement WallD = createTagWithText(WallDetail,"WallD");
-                        createTagWithText(WallD, "WallDetailWallListName", ssfName);
+                        createTagWithText(WallD, "WallDetailWallListName", sfName);
                         createTagWithText(WallD, "WallDetailSectionName", ssfName);
                         createTagWithText(WallD, "WallDetailSC", QString::number(sc));
                     }
@@ -2057,7 +2057,7 @@ void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElemen
                         QDomElement buildingZoneWall = createTagWithText(buildingZoneExteriorWall, "BuildingZoneWall");
                         createTagWithText(buildingZoneWall, "BuildingZoneWallListName", zonelistName.c_str());
                         //createTagWithText(buildingZoneWall, "BuildingZoneWallWallName", surface.surfaceType().c_str());
-                        createTagWithText(buildingZoneWall, "BuildingZoneWallWallName", sub.name().get().c_str());
+                        createTagWithText(buildingZoneWall, "BuildingZoneWallWallName", surface.name().get().c_str());
                         //TODO:LINK TO MATERIAL.
                         createTagWithText(buildingZoneWall, "BuildingZoneWallSectionName", sub.name().get().c_str());
                         createTagWithText(buildingZoneWall, "BuildingZoneWallArea", QString::number(area));
