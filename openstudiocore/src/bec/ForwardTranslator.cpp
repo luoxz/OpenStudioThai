@@ -936,7 +936,7 @@ void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &
                         createTagWithText(SectionL, "SectionListDescription", boundCon);
 
                         QDomElement SectionD = createTagWithText(SectionDetail,"SectionD");
-                        createTagWithText(SectionD, "SectionDetailSectionListName", ssfName);
+                        createTagWithText(SectionD, "SectionDetailSectionListName", sfName);
 
                         QString componentName = sub.construction().get().name().get().c_str();
                         boost::optional<model::ConstructionBase> scon = sub.construction();
