@@ -523,9 +523,9 @@ static QString doTableV2(QDomNode& root){
     tables.append(QStringList()<<"EnvelopeSystem" << "BuildingOTTVwall" << "TransparentComponentWall" << "TransparentComponentByWall", insertSpaceInTag("TransparentComponentByWall"), TableDataList::ARRAYTABLE);
     tables.append(QStringList()<<"EnvelopeSystem" << "BuildingOTTVwall" << "ComponentAreaWall" << "ComponentAreaPerWall", insertSpaceInTag("ComponentAreaPerWall"), TableDataList::ARRAYTABLE);
     tables.append(QStringList()<<"LightingSystem" << "LightingSystemPerformance", insertSpaceInTag("LightingSystemPerformance"), TableDataList::TABLE);
-    tables.append(QStringList()<<"DXAirUnitSystem" << "DXAirUnit", insertSpaceInTag("DXAirUnit"), TableDataList::ARRAYTABLE);
     tables.append(QStringList()<<"LightingSystem" << "LightingSystemFloor" << "LightingSystemByFloor", insertSpaceInTag("LightingSystemByFloor"), TableDataList::ARRAYTABLE);
     tables.append(QStringList()<<"LightingSystem" << "LightingSystemZone" << "LightingSystemByZone", insertSpaceInTag("LightingSystemByZone"), TableDataList::ARRAYTABLE);
+    tables.append(QStringList()<<"DXAirUnitSystem" << "DXAirUnit", insertSpaceInTag("DXAirUnit"), TableDataList::ARRAYTABLE);
     tables.append(QStringList()<<"CentralACSystem" << "WaterChilledReport", insertSpaceInTag("WaterChillerReport"), TableDataList::ARRAYTABLE);
     tables.append(QStringList()<<"CentralACSystem" << "CentralACOtherEQReport", insertSpaceInTag("CentralACOtherEQReport"), TableDataList::ARRAYTABLE);
     tables.append(QStringList()<<"CentralACSystem" << "CentralACEQList", insertSpaceInTag("CentralACEQList"), TableDataList::ARRAYTABLE);

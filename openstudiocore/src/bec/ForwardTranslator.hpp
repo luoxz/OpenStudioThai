@@ -119,6 +119,9 @@ namespace bec {
     void doAirLoop(QDomElement &CentralACList, QDomElement CentralACDetail, model::Loop* loop, const QString parantLoopName, QHash<QString, bool> &duplicate);
     void doPV(const model::Model &model, QDomElement& becInput);
 
+    void DoOtherEquipment(std::vector<model::OtherEquipment>& electris, QDomElement &OtherEquipment, QHash<QString, bool>& checkDup);
+    void DoElectricEquipment(std::vector<model::ElectricEquipment>& others, QDomElement &OtherEquipment, QHash<QString, bool>& checkDup);
+
     void doBuildingType(QDomElement& becInput, const QString &typeName);
 
 //    void doACSystem(const openstudio::model::Model& model, QDomElement& root);

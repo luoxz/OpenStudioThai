@@ -109,6 +109,7 @@
 #include "../model/ChillerElectricEIR.hpp"
 #include "../model/ChillerElectricEIR_Impl.hpp"
 
+#include "../model/BuildingStory.hpp"
 
 ///////////////////////////////////////////////////////
 #include "../model/CoolingTowerVariableSpeed_Impl.hpp"
@@ -1082,71 +1083,79 @@ void ForwardTranslator::doLightingSystem(const model::Space &space, QDomElement 
 	DoLighting(LightingSystem, space.lights(), checkDup);
 }
 
+void ForwardTranslator::DoElectricEquipment(std::vector<model::ElectricEquipment>& others, QDomElement &OtherEquipment, QHash<QString, bool>& checkDup){
+    for (const model::ElectricEquipment& other : others){
+        QString name = other.electricEquipmentDefinition().name().get().c_str();
+
+        if(checkDup.contains(name)){
+            continue;
+        }
+        else{
+            checkDup.insert(name, true);
+        }
+
+        QString unit = "W";
+        QDomElement OtherEQ = createTagWithText(OtherEquipment, "OtherEQ");
+        createTagWithText(OtherEQ, "OtherEQName"
+                          , name);
+        if(other.electricEquipmentDefinition().designLevel()){
+            createTagWithText(OtherEQ, "OtherEQPower", QString::number(other.electricEquipmentDefinition().designLevel().get()));
+            unit = "watt";
+        }else if(other.electricEquipmentDefinition().wattsperPerson()){
+            createTagWithText(OtherEQ, "OtherEQPower", QString::number(other.electricEquipmentDefinition().wattsperPerson().get()));
+            unit = "W/person";
+        }else if(other.electricEquipmentDefinition().wattsperSpaceFloorArea()){
+            createTagWithText(OtherEQ, "OtherEQPower", QString::number(other.electricEquipmentDefinition().wattsperSpaceFloorArea().get()));
+            unit = "W/m2";
+        }
+        createTagWithText(OtherEQ, "OtherEQPowerUnit", unit);
+        createTagWithText(OtherEQ, "OtherEQDescription", "???");
+    }
+}
+
+void ForwardTranslator::DoOtherEquipment(std::vector<model::OtherEquipment>& electris, QDomElement &OtherEquipment, QHash<QString, bool>& checkDup){
+    for (const model::OtherEquipment& other : electris){
+        QString name = other.otherEquipmentDefinition().name().get().c_str();
+
+        if(checkDup.contains(name)){
+            continue;
+        }
+        else{
+            checkDup.insert(name, true);
+        }
+
+        QString unit;
+        QDomElement OtherEQ = createTagWithText(OtherEquipment, "OtherEQ");
+        createTagWithText(OtherEQ, "OtherEQName"
+                          , name);
+        if(other.otherEquipmentDefinition().designLevel()){
+            createTagWithText(OtherEQ, "OtherEQPower", QString::number(other.otherEquipmentDefinition().designLevel().get()));
+            unit = "watt";
+        }else if(other.otherEquipmentDefinition().wattsperPerson()){
+            createTagWithText(OtherEQ, "OtherEQPower", QString::number(other.otherEquipmentDefinition().wattsperPerson().get()));
+            unit = "W/person";
+        }else if(other.otherEquipmentDefinition().wattsperSpaceFloorArea()){
+            createTagWithText(OtherEQ, "OtherEQPower", QString::number(other.otherEquipmentDefinition().wattsperSpaceFloorArea().get()));
+            unit = "W/m2";
+        }
+        createTagWithText(OtherEQ, "OtherEQPowerUnit", unit);
+        createTagWithText(OtherEQ, "OtherEQDescription", "???");
+    }
+}
+
 void ForwardTranslator::doOtherEquipment(const model::Space &space, QDomElement &OtherEquipment, QHash<QString, bool>& checkDup)
 {
 	if (space.spaceType()){
-        std::vector<model::ElectricEquipment> others = space.spaceType().get().electricEquipment();
-        for (const model::ElectricEquipment& other : others){
-            QString name = other.electricEquipmentDefinition().name().get().c_str();
-
-            if(checkDup.contains(name)){
-                continue;
-            }
-            else{
-                checkDup.insert(name, true);
-            }
-
-            QString unit = "W";
-            QDomElement OtherEQ = createTagWithText(OtherEquipment, "OtherEQ");
-            createTagWithText(OtherEQ, "OtherEQName"
-                              , name);
-            if(other.electricEquipmentDefinition().designLevel()){
-                createTagWithText(OtherEQ, "OtherEQPower", QString::number(other.electricEquipmentDefinition().designLevel().get()));
-                unit = "watt";
-            }else if(other.electricEquipmentDefinition().wattsperPerson()){
-                createTagWithText(OtherEQ, "OtherEQPower", QString::number(other.electricEquipmentDefinition().wattsperPerson().get()));
-                unit = "W/person";
-            }else if(other.electricEquipmentDefinition().wattsperSpaceFloorArea()){
-                createTagWithText(OtherEQ, "OtherEQPower", QString::number(other.electricEquipmentDefinition().wattsperSpaceFloorArea().get()));
-                unit = "W/m2";
-            }
-            createTagWithText(OtherEQ, "OtherEQPowerUnit", unit);
-            createTagWithText(OtherEQ, "OtherEQDescription", "???");
-        }
-
-        std::vector<model::OtherEquipment> electris = space.spaceType().get().otherEquipment();
-        for (const model::OtherEquipment& other : electris){
-            QString name = other.otherEquipmentDefinition().name().get().c_str();
-
-            if(checkDup.contains(name)){
-                continue;
-            }
-            else{
-                checkDup.insert(name, true);
-            }
-
-            QString unit;
-            QDomElement OtherEQ = createTagWithText(OtherEquipment, "OtherEQ");
-            createTagWithText(OtherEQ, "OtherEQName"
-                              , name);
-            if(other.otherEquipmentDefinition().designLevel()){
-                createTagWithText(OtherEQ, "OtherEQPower", QString::number(other.otherEquipmentDefinition().designLevel().get()));
-                unit = "watt";
-            }else if(other.otherEquipmentDefinition().wattsperPerson()){
-                createTagWithText(OtherEQ, "OtherEQPower", QString::number(other.otherEquipmentDefinition().wattsperPerson().get()));
-                unit = "W/person";
-            }else if(other.otherEquipmentDefinition().wattsperSpaceFloorArea()){
-                createTagWithText(OtherEQ, "OtherEQPower", QString::number(other.otherEquipmentDefinition().wattsperSpaceFloorArea().get()));
-                unit = "W/m2";
-            }
-            createTagWithText(OtherEQ, "OtherEQPowerUnit", unit);
-            createTagWithText(OtherEQ, "OtherEQDescription", "???");
-        }
+       DoElectricEquipment(space.spaceType().get().electricEquipment(), OtherEquipment, checkDup);
+       DoOtherEquipment(space.spaceType().get().otherEquipment(), OtherEquipment, checkDup);
 	}
 	else
 	{
 		qDebug() << "OTHER EQUEPMENT ERROR AT SPACE:" << space.name().get().c_str();
 	}
+
+    DoElectricEquipment(space.electricEquipment(), OtherEquipment, checkDup);
+    DoOtherEquipment(space.otherEquipment(), OtherEquipment, checkDup);
 }
 
 bool isSkip(model::ModelObject model){
@@ -1339,10 +1348,11 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
                                     model::CoilCoolingWater coolw = nextItem.cast<model::CoilCoolingWater>();
                                     name = coolw.name().get().c_str();
                                     //name = QString("%1 And %2").arg(name).arg(coolw.name().get().c_str());
+
                                     coolcap = ((1.230*coolw.designAirFlowRate().get_value_or(0.0f))
                                                      *(coolw.designInletAirTemperature().get_value_or(0.0f)-coolw.designOutletAirTemperature().get_value_or(0.0f)))
                                                      +(3010*coolw.designAirFlowRate().get_value_or(0.0f)
-                                                     *(coolw.designOutletAirHumidityRatio().get_value_or(0.0f)-coolw.designInletAirHumidityRatio().get_value_or(0.0f)));
+                                                     *(coolw.designInletAirHumidityRatio().get_value_or(0.0f)-coolw.designOutletAirHumidityRatio().get_value_or(0.0f)));
                                     i = inx;
                                 }
                                 else{
@@ -1397,6 +1407,7 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
                         else if(hLoop){
                             parantLoopName = hLoop.get().name().get();
                         }
+                        break;
                     }
                 }
             }
@@ -1580,10 +1591,24 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList, QDomElement Centra
                     }
                 }
 
-                double coolcap = ((1.230*coolw.designAirFlowRate().get_value_or(0.0f))
-                                 *(coolw.designInletAirTemperature().get_value_or(0.0f)-coolw.designOutletAirTemperature().get_value_or(0.0f)))
-                                 +(3010*coolw.designAirFlowRate().get_value_or(0.0f)
-                                 *(coolw.designOutletAirHumidityRatio().get_value_or(0.0f)-coolw.designInletAirHumidityRatio().get_value_or(0.0f)));
+                 qDebug() << "\n\n\n\nname:" << coolw.name().get().c_str();
+                qDebug() << QString("+++++++++++++++++++\ndesignAirFlowRate:%1\ndesignInletAirTemperature:%2\ndesignOutletAirTemperature:%3\ndesignOutletAirHumidityRatio:%4\n designInletAirHumidityRatio:%5")
+                            .arg(coolw.designAirFlowRate().get_value_or(0.0))
+                            .arg(coolw.designInletAirTemperature().get_value_or(0.0))
+                            .arg(coolw.designOutletAirTemperature().get_value_or(0.0))
+                            .arg(coolw.designOutletAirHumidityRatio().get_value_or(0.0))
+                            .arg(coolw.designInletAirHumidityRatio().get_value_or(0.0));
+
+                qDebug() << QString("XXXXXXXXXXXXXXXXXXXXX+\n1.230*designAirFlowRate:%1\ndesignInletAirTemperature-designOutletAirTemperature:%2\n 3010.0*coolw.designAirFlowRate():%3\ncoolw.designOutletAirHumidityRatio().get_value_or(0.0)-coolw.designInletAirHumidityRatio().get_value_or(0.0):%4")
+                            .arg(1.230*coolw.designAirFlowRate().get_value_or(0.0))
+                            .arg((coolw.designInletAirTemperature().get_value_or(0.0)-coolw.designOutletAirTemperature().get_value_or(0.0)))
+                            .arg(3010.0*coolw.designAirFlowRate().get_value_or(0.0))
+                            .arg(coolw.designInletAirHumidityRatio().get_value_or(0.0)-coolw.designOutletAirHumidityRatio().get_value_or(0.0));
+
+                double coolcap = ((1.230*coolw.designAirFlowRate().get_value_or(0.0))
+                                 *(coolw.designInletAirTemperature().get_value_or(0.0)-coolw.designOutletAirTemperature().get_value_or(0.0)))
+                                 +(3010.0*coolw.designAirFlowRate().get_value_or(0.0)
+                                 *(coolw.designInletAirHumidityRatio().get_value_or(0.0)-coolw.designOutletAirHumidityRatio().get_value_or(0.0)));
 
                 QDomElement CentralACD = createTagWithText(CentralACDetail, "CentralACD");
                 createTagWithText(CentralACD, "CentralACDetailListName", parantLoopName);
@@ -2038,7 +2063,7 @@ void ForwardTranslator::doBuildingEnvelope(const model::Model &model, QDomElemen
                 zonelistName = std::string("ZONE_") + QString::number(floor).toStdString();
 
             createTagWithText(buildingZoneL, "BuildingZoneListName", zonelistName.c_str());
-            createTagWithText(buildingZoneL, "BuildingZoneListFloor", QString::number(floor));
+            createTagWithText(buildingZoneL, "BuildingZoneListFloor", buildingStory.name().get().c_str());
             createTagWithText(buildingZoneL, "BuildingZoneListDescription", "???");
 
             double floorArea = 0.0;
