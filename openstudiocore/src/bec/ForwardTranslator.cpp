@@ -219,6 +219,14 @@ double calsc(double azimuth, double tilt, QList<double>& sunlit_fraction
         return 1.0;
     }
 
+    qDebug() << "--------------sunlit_fraction---------------\n";
+    QString ssfs;
+    for (int i = 0; i < sunlit_fraction.size(); ++i) {
+        ssfs += QString::number(sunlit_fraction.at(i))+",";
+    }
+
+    qDebug() << "[" << ssfs << "]";
+
     const double sun_azimuth[] = {-89.79081568,-113.7169952,-89.40377855,-0.2526566894,
                                -86.60369907,-110.979335,-87.02129226,-64.75112846,
                                -82.54808643,-109.4640409,-83.10886989,-59.94994306,
@@ -914,7 +922,14 @@ void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &
                     double sc = 1.0;
                     if(_sunlits!=NULL){
                         if(_sunlits->contains(sfName.toUpper().trimmed())){
-                            sc = calsc(surface.azimuth(), surface.tilt(), (*_sunlits)[sfName.toUpper().trimmed()]);
+                            double degree_azimuth = surface.azimuth()*180.0/M_PI;
+                            double degree_tilt = surface.tilt()*180.0/M_PI;
+                            qDebug() << QString("\n\n\n--- cal sc for : %1 , azimuth:%2, tilt:%3 ---")
+                                        .arg(sfName)
+                                        .arg(degree_azimuth)
+                                        .arg(degree_tilt);
+                            sc = calsc(degree_azimuth, degree_tilt, (*_sunlits)[sfName.toUpper().trimmed()]);
+                            qDebug() << QString("################################");
                         }else{
                             //TODO:ERROR
                         }
@@ -970,7 +985,14 @@ void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &
                         double sc = 1.0;
                         if(_sunlits!=NULL){
                             if(_sunlits->contains(ssfName.toUpper().trimmed())){
-                                sc = calsc(sub.azimuth(), sub.tilt(), (*_sunlits)[ssfName.toUpper().trimmed()]);
+                                double degree_azimuth = sub.azimuth()*180.0/M_PI;
+                                double degree_tilt = sub.tilt()*180.0/M_PI;
+                                qDebug() << QString("\n\n\n--- cal sc for : %1 , azimuth:%2, tilt:%3 ---")
+                                            .arg(ssfName)
+                                            .arg(degree_azimuth)
+                                            .arg(degree_tilt);
+                                sc = calsc(degree_azimuth, degree_tilt, (*_sunlits)[ssfName.toUpper().trimmed()]);
+                                qDebug() << QString("################################");
                             }else{
                                 //TODO:ERROR
                             }
