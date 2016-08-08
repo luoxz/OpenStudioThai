@@ -939,7 +939,6 @@ void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &
                     QDomElement WallD = createTagWithText(WallDetail,"WallD");
                     createTagWithText(WallD, "WallDetailWallListName", sfName);
                     createTagWithText(WallD, "WallDetailSectionName", sfName);
-                    createTagWithText(WallD, "WallDetailSC", QString::number(sc));
 
                     openstudio::model::SubSurfaceVector subs = surface.subSurfaces();
 
@@ -952,7 +951,7 @@ void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &
                         createTagWithText(SectionL, "SectionListDescription", boundCon);
 
                         QDomElement SectionD = createTagWithText(SectionDetail,"SectionD");
-                        createTagWithText(SectionD, "SectionDetailSectionListName", ssfName);
+                        createTagWithText(SectionD, "SectionDetailSectionListName", sfName);
 
                         QString componentName = sub.construction().get().name().get().c_str();
                         boost::optional<model::ConstructionBase> scon = sub.construction();
@@ -982,7 +981,6 @@ void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &
                         createTagWithText(WallL, "WallListInclination", QString::number(rtod(sub.tilt())));
                         createTagWithText(WallL, "WallListDescription", "???");
 
-                        double sc = 1.0;
                         if(_sunlits!=NULL){
                             if(_sunlits->contains(ssfName.toUpper().trimmed())){
                                 double degree_azimuth = sub.azimuth()*180.0/M_PI;
@@ -1004,6 +1002,7 @@ void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &
                         createTagWithText(WallD, "WallDetailSectionName", ssfName);
                         createTagWithText(WallD, "WallDetailSC", QString::number(sc));
                     }
+                    createTagWithText(WallD, "WallDetailSC", QString::number(sc));
                 }
                 else{
                     QDomElement SectionUNKNOW = createTagWithText(SectionList,"SectionUNKNOW");
