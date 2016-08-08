@@ -112,9 +112,9 @@ SectionEnd
 Section "OpenStudio" SEC003
   SetOutPath "$INSTDIR"
   SetOutPath "$APPDATA"
-  File "D:\OpenStudio\build\_CPack_Packages\win32\NSIS\OpenStudio-1.7.0.0c1b718d24-Windows.exe"
+  File "D:\OpenStudio\build\_CPack_Packages\win32\NSIS\OpenStudio-1.7.0.94ef0987a2-Windows.exe"
   SetOutPath "$APPDATA"
-  ExecWait '"$APPDATA\OpenStudio-1.7.0.0c1b718d24-Windows.exe"'
+  ExecWait '"$APPDATA\OpenStudio-1.7.0.94ef0987a2-Windows.exe"'
 SectionEnd
 
 
@@ -178,7 +178,7 @@ Section -Post
 	;Delete '"$APPDATA\dotNetFx40_Client_x86_x64.exe"'
 	Delete '"$APPDATA\SketchUp2015-x86.msi"'
 	Delete '"$APPDATA\EnergyPlus-8.2.0-8397c2e30b-Windows-i386.exe"'
-	Delete '"$APPDATA\OpenStudio-1.7.0.0c1b718d24-Windows.exe"'
+	Delete '"$APPDATA\OpenStudio-1.7.0.94ef0987a2-Windows.exe"'
 SectionEnd
 
 ; Section descriptions
