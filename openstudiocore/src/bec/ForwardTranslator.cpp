@@ -867,7 +867,7 @@ void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &
 
         std::vector<openstudio::model::Space> spaces = buildingStory.spaces();
         for (openstudio::model::Space& space : spaces){
-
+			double directionRelativeToNorth = space.directionofRelativeNorth();
             openstudio::model::SurfaceVector surfaces = space.surfaces();
             for (model::Surface& surface : surfaces){
                 if(surface.surfaceType() == "Wall" || surface.surfaceType() == "RoofCeiling"){
@@ -915,8 +915,8 @@ void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &
                     QString sfName = surface.name().get().c_str();
                     createTagWithText(WallL, "WallListName", sfName);
                     createTagWithText(WallL, "WallListType", surfaceType);
-                    createTagWithText(WallL, "WallListPlanAzimuth", QString::number(rtod(surface.azimuth())));
-                    createTagWithText(WallL, "WallListInclination", QString::number(rtod(surface.tilt())));
+					createTagWithText(WallL, "WallListPlanAzimuth", QString::number(rtod(surface.azimuth()) + directionRelativeToNorth));
+					createTagWithText(WallL, "WallListInclination", QString::number(rtod(surface.tilt())));
                     createTagWithText(WallL, "WallListDescription", "???");
 
                     double sc = 1.0;
@@ -977,7 +977,7 @@ void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &
 
                         createTagWithText(WallL, "WallListName", ssfName);
                         createTagWithText(WallL, "WallListType", surfaceType);
-                        createTagWithText(WallL, "WallListPlanAzimuth", QString::number(rtod(sub.azimuth())));
+						createTagWithText(WallL, "WallListPlanAzimuth", QString::number(rtod(sub.azimuth()) + directionRelativeToNorth));
                         createTagWithText(WallL, "WallListInclination", QString::number(rtod(sub.tilt())));
                         createTagWithText(WallL, "WallListDescription", "???");
 
