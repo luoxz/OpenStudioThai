@@ -1367,6 +1367,7 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
                     break;
                     case openstudio::IddObjectType::OS_Fan_VariableVolume:
                     {
+						/*
                         model::FanVariableVolume fanv = hvac.cast<model::FanVariableVolume>();
                         QString name = fanv.name().get().c_str();
                         size_t inx = iloop+1;
@@ -1414,6 +1415,7 @@ void ForwardTranslator::doACSystem(const model::Model &model, QDomElement &ACSys
                         createTagWithText(SplitType, "SplitTypeDescription", "?");
                         createTagWithText(SplitType, "SplitTypeCOP", "0");
                         createTagWithText(SplitType, "SplitTypekWth", "0");
+						*/
                         break;
                     }
                 }
@@ -1564,6 +1566,7 @@ void ForwardTranslator::DoSupply(std::vector<model::ModelObject>& supplys
             }
             case openstudio::IddObjectType::OS_Fan_VariableVolume:
             {
+				/*
                 model::FanVariableVolume fanv = hvac.cast<model::FanVariableVolume>();
                 //////////////////////////////////////////////////
                 std::string name = fanv.name().get();
@@ -1595,6 +1598,7 @@ void ForwardTranslator::DoSupply(std::vector<model::ModelObject>& supplys
                 createTagWithText(CentralACD, "CentralACDetailkWth", QString::number(0.0f));
                 createTagWithText(CentralACD, "CentralACD_idd_name", hvac.name().get().c_str());
                 createTagWithText(CentralACD, "CentralACD_idd_iddname", hvac.iddObject().name().c_str());
+				*/
                 break;
             }
             case openstudio::IddObjectType::OS_Coil_Cooling_Water:
