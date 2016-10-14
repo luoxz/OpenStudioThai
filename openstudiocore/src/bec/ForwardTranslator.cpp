@@ -1478,20 +1478,34 @@ void ForwardTranslator::DoSupply(std::vector<model::ModelObject>& supplys
 
     for(size_t i=0;i<supplys.size();i++){
         model::ModelObject & hvac = supplys.at(i);
+
         if(isSkip(hvac)){
             continue;
         }
 
-        qDebug() << QString("[%5]--------------- supply:'%1', name:'%2', listname:'%3', relation[%4]")
+        qDebug() << QString("[==]--------------- iddobj:'%1', name:'%2', listname:'%3', relation[%4], supply:%5")
                                .arg(hvac.iddObject().name().c_str())
                                .arg(hvac.name().get().c_str())
                                .arg(listName.c_str())
-                                .arg(i);
+                                .arg(i)
+                                .arg(supplys.size());
+
+        //"[==]--------------- iddobj:'OS:Coil:Cooling:Water', name:'1AHU-01', listname:'Thai Chilled Water Loop', relation[3], supply:22"
+        // case openstudio::IddObjectType::OS_Coil_Cooling_Water:
+
+        if(hvac.iddObject().type().value() == openstudio::IddObjectType::OS_Coil_Cooling_Water
+                && listName.find("Air Loop") == std::string::npos){
+            qDebug() << "NOTE:Coil Cooling Water is on " << listName.c_str();
+            continue;
+        }
 
         QString cname = hvac.name().get().c_str();
-        if(subitemDuplicate.contains(cname))
+        if(subitemDuplicate.contains(cname)){
+            qDebug() << "IS DUPLATEED:" << cname;
             continue;
+        }
         else{
+            qDebug() << "ADD DUPLATE:" << cname;
             subitemDuplicate.insert(cname, true);
         }
 
@@ -1603,32 +1617,32 @@ void ForwardTranslator::DoSupply(std::vector<model::ModelObject>& supplys
             }
             case openstudio::IddObjectType::OS_Coil_Cooling_Water:
             {
-            // TODO 004 COOLING TOWER
+				
+                // TODO 004 COOLING TOWER
                 model::CoilCoolingWater coolw = hvac.cast<model::CoilCoolingWater>();
                 QString name = coolw.name().get().c_str();
-                size_t inx = i+1;
+                size_t inx = 0;
                 double power=0.0;
                 while(inx < supplys.size()){
-                    model::ModelObject & nextItem = supplys.at(inx);
+                    model::ModelObject & nextItem = supplys.at(inx); 
+					qDebug() << "---------------- loop on supply:" << coolw.name().get().c_str() << ":" << nextItem.name().get().c_str() << "----------------" << QString::number(inx) << "\n";
                     if(isSkip(nextItem)){
-                        inx++;
+                        
                     }else{
                         if(nextItem.iddObject().type().value() == openstudio::IddObjectType::OS_Fan_VariableVolume){
+							qDebug() << "!!! FOUND FOUND !!!! >> " <<  nextItem.name().get().c_str() << "\n";
                             model::FanVariableVolume fanv = nextItem.cast<model::FanVariableVolume>();
                             //name = QString("%1 And %2").arg(name).arg(fanv.name().get().c_str());
                             double maximumFlowRate = fanv.maximumFlowRate().get_value_or(1.0f);
                             double rfanv = fanv.fanEfficiency();
 
-                            if(rfanv==0.0)
-                                continue;
-
-                            power = (maximumFlowRate*fanv.pressureRise())/(rfanv*1000);
-                            i = inx;
-                        }else{
-                            i = inx-1;
+							if (rfanv != 0.0){
+								power += (maximumFlowRate*fanv.pressureRise()) / (rfanv * 1000);
+								qDebug() << "!!! POWER >>>>>  " << QString::number(power) << "\n";
+							}
                         }
-                        break;
                     }
+					inx++;
                 }
 
                 qDebug() << "\n\n\n\nname:" << coolw.name().get().c_str();
@@ -1671,7 +1685,7 @@ void ForwardTranslator::DoSupply(std::vector<model::ModelObject>& supplys
                 boost::optional<model::PlantLoop> attLoop = coolw.plantLoop();
                 if(attLoop){
 					std::string strname = attLoop.get().name().get();
-                    qDebug() << "ccc Do air loop at ccc " << QString("%1:%2").arg(loopName.c_str()).arg(strname.c_str()) << ":" <<__LINE__;
+					qDebug() << "ccc Do air loop at ccc " << QString("%1:%2").arg(attLoop->name().get().c_str()).arg(strname.c_str()) << ":" << __LINE__;
 					nextPlantLoopHavc.push_back(attLoop);
                 }
 
@@ -1897,9 +1911,9 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList
                                   , QHash<QString, bool>& duplicate
                                   , QHash<QString, bool>& subitemDuplicate)
 {
-	qDebug() << "SSSSSSSSSSSSSSSSSSS start imcomming to ForwardTranslator::doAirLoop";
     QString listName = loop->name().get().c_str();
     QString baseLoop = listName;
+    qDebug() << "SSSSSSSSSSSSSSSSSSS start doAirLoop:" << baseLoop;
 
     if(listName.indexOf("Condenser") >= 0){
         qDebug() << "Break here..." << listName << ", baseloop:" << baseLoop;
@@ -1910,6 +1924,7 @@ void ForwardTranslator::doAirLoop(QDomElement& CentralACList
     }
     else{
         duplicate.insert(listName, true);
+        qDebug() << "Add duplicate list name:" << listName << ", baseloop:" << baseLoop;
         if(listName.indexOf("Chilled ")>=0){
             QDomElement CentralACL = createTagWithText(CentralACList, "CentralACL");
             createTagWithText(CentralACL, "CentralACListName", GenParantLoopName(listName));
