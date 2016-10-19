@@ -2,9 +2,9 @@
 
 #define OPENSTUDIO_ABOUTBOX \
 "<h2>OpenStudio Thai Edition</h2> \
-<p>Version: ${CMAKE_VERSION_MAJOR}.${CMAKE_VERSION_MINOR}.${CMAKE_VERSION_PATCH}-TH Release 4 - update 5</p> \
+<p>Version: ${CMAKE_VERSION_MAJOR}.${CMAKE_VERSION_MINOR}.${CMAKE_VERSION_PATCH}-TH Release 4 - update 7</p> \
 <p>Build Number: ${CMAKE_VERSION_BUILD}</p> \
-<p>Build Date: 17/09/2016</p> \
+<p>Build Date: 20/10/2016</p> \
 <p>Compiler: ${ABOUT_COMPILER}</p> \
 <p>Copyright &copy; 2015 National Renewable Energy Laboratory</p> \
 <p>OpenStudio is a cross-platform tool to support whole building energy and daylight modeling using <a href='http://apps1.eere.energy.gov/buildings/energyplus/'>EnergyPlus</a> and <a href='http://www.radiance-online.org/'>Radiance</a>.</p>"

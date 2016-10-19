@@ -4,11 +4,12 @@
 !- Supported By	: To-Be-One Technology Co, Ltd.
 !- Craated Date : 22/05/2015
 !- Modified By  : Narongsak Mala (narongsak.mala@gmail.com)
-!- Modified Date : 24/07/2016
+!- Modified Date : 20/10/2016
 !-----------------------------------------------------------------
 
 
 !- Revision 		Details
+!- 1.0.4-000	Removed duplicate library
 !- 1.0.3-000    Added Construction set
 !- 1.0.2-000    Changed Solar Absorptance value from 5.0 to 3.0
 !-              Added Air Gap material.
@@ -2244,13 +2245,13 @@ OS:Rendering:Color,
 
 OS:DefaultConstructionSet,
   {ef7d7aaf-6ca2-4925-a323-095751cea629}, !- Handle
-  001 Thai Constructions,                  !- Name
+  001 Thai Default Constructions,         !- Name
   {c8657ed0-123d-44c0-a607-522cdebc3277}, !- Default Exterior Surface Constructions Name
   {21cfafbd-d4a5-47e5-9b1d-4008c52d5679}, !- Default Interior Surface Constructions Name
   {8ca495ac-3933-47cc-be8a-ca802056012d}, !- Default Ground Contact Surface Constructions Name
   {934dc260-60a4-48c0-80a0-a9c1d6e32a49}, !- Default Exterior SubSurface Constructions Name
   {8bfb7436-9838-4e36-b821-ede94524fd75}, !- Default Interior SubSurface Constructions Name
-  {d2cc1c98-90a4-475e-b39f-b6637a25efc5}, !- Interior Partition Construction Name
+  ,                                       !- Interior Partition Construction Name
   ,                                       !- Space Shading Construction Name
   ,                                       !- Building Shading Construction Name
   ;                                       !- Site Shading Construction Name
@@ -2265,9 +2266,9 @@ OS:DefaultSurfaceConstructions,
 OS:DefaultSurfaceConstructions,
   {21cfafbd-d4a5-47e5-9b1d-4008c52d5679}, !- Handle
   Default Surface Constructions 2,        !- Name
-  {80c9d67f-5ed2-4cf1-ac81-16d51d1cd489}, !- Floor Construction Name
-  {6fa4af26-e939-4c96-a6ba-43bae870f7ab}, !- Wall Construction Name
-  {f7a7b863-f6d0-4bc6-ba36-ded36445bca8}; !- Roof Ceiling Construction Name
+  {5241e674-b36c-4e9d-8613-0fa40f590384}, !- Floor Construction Name
+  {892966ac-5247-46b1-b3b2-e01e7eccbf07}, !- Wall Construction Name
+  {ddf1758a-427b-41c5-b4b3-794a1ab0c407}; !- Roof Ceiling Construction Name
 
 OS:DefaultSurfaceConstructions,
   {8ca495ac-3933-47cc-be8a-ca802056012d}, !- Handle
@@ -2411,7 +2412,7 @@ OS:Construction,
   {e6a75b10-9fb0-4024-a56f-097b23010883}, !- Handle
   01 Thai Brick Wall,                     !- Name
   ,                                       !- Surface Rendering Name
-  {17bb8193-346b-4028-8dcb-8295838813ab}; !- Layer 1
+  {b758faa0-aa74-494b-a7a2-642e766d00b7}; !- Layer 1
 
 OS:Material,
   {73a73b7e-1ea6-4c59-9ac4-b2cad0c7954c}, !- Handle
@@ -2505,39 +2506,12 @@ OS:WindowMaterial:SimpleGlazingSystem,
   0.39,                                   !- Solar Heat Gain Coefficient
   0.6;                                    !- Visible Transmittance
 
-OS:StandardsInformation:Construction,
-  {2241b9e1-5843-4bbc-b903-4414bdf77312}, !- Handle
-  {c85d751d-12e4-4b70-a328-2b48063b2c2e}, !- Construction Name
-  ,                                       !- Intended Surface Type
-  ,                                       !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ,                                       !- Construction Standard
-  ,                                       !- Construction Standard Source
-  ,                                       !- Fenestration Type
-  ,                                       !- Fenestration Assembly Context
-  ,                                       !- Fenestration Number of Panes
-  ,                                       !- Fenestration Frame Type
-  ,                                       !- Fenestration Divider Type
-  ,                                       !- Fenestration Tint
-  ;                                       !- Fenestration Gas Fill
 
 OS:StandardsInformation:Material,
   {a5b66322-5515-4cde-9c88-e7caa82bad6a}, !- Handle
   {81709dcb-9629-43ac-b77c-36b0480ae87b}; !- Material Name
 
-OS:Construction,
-  {f7a7b863-f6d0-4bc6-ba36-ded36445bca8}, !- Handle
-  Thai Interior Ceiling,                  !- Name
-  ,                                       !- Surface Rendering Name
-  {24c05331-4ae1-4451-8600-402640bdf65b}, !- Layer 1
-  {9b860ce6-d87b-4aab-84a2-a4d88ee46620}, !- Layer 2
-  {b5b2f727-1af7-40fe-a3c5-75d30c074c3a}; !- Layer 3
 
-OS:StandardsInformation:Construction,
-  {74a7be5f-665f-492d-8456-463cbcde9af7}, !- Handle
-  {f7a7b863-f6d0-4bc6-ba36-ded36445bca8}; !- Construction Name
 
 OS:Construction,
   {2552be44-24f7-4e0b-8a1d-f54ed78ce3dd}, !- Handle
@@ -2554,35 +2528,11 @@ OS:Material,
   608,                                    !- Density {kg/m3}
   1630;                                   !- Specific Heat {J/kg-K}
 
-OS:StandardsInformation:Construction,
-  {14ac76b0-471d-4388-af04-92a327c0e170}, !- Handle
-  {2552be44-24f7-4e0b-8a1d-f54ed78ce3dd}; !- Construction Name
 
-OS:StandardsInformation:Material,
-  {25f97338-d321-4563-ab77-83efbf3465b1}, !- Handle
-  {6ea0174a-06eb-4bfc-b29b-32012de9a2f2}; !- Material Name
 
-OS:Construction,
-  {80c9d67f-5ed2-4cf1-ac81-16d51d1cd489}, !- Handle
-  Thai Interior Floor,                    !- Name
-  ,                                       !- Surface Rendering Name
-  {b5b2f727-1af7-40fe-a3c5-75d30c074c3a}, !- Layer 1
-  {9b860ce6-d87b-4aab-84a2-a4d88ee46620}, !- Layer 2
-  {24c05331-4ae1-4451-8600-402640bdf65b}; !- Layer 3
 
-OS:StandardsInformation:Construction,
-  {4005d4f8-4159-4027-bc8c-c9fcffdb47ad}, !- Handle
-  {80c9d67f-5ed2-4cf1-ac81-16d51d1cd489}; !- Construction Name
 
-OS:Construction,
-  {d2cc1c98-90a4-475e-b39f-b6637a25efc5}, !- Handle
-  Thai Interior Partition,                !- Name
-  ,                                       !- Surface Rendering Name
-  {6ea0174a-06eb-4bfc-b29b-32012de9a2f2}; !- Layer 1
 
-OS:StandardsInformation:Construction,
-  {08fb05a7-58fb-4d6d-a8f6-a74cc5dcc717}, !- Handle
-  {d2cc1c98-90a4-475e-b39f-b6637a25efc5}; !- Construction Name
 
 OS:Construction,
   {7dbfddf8-0287-4087-810d-45faf71e4afe}, !- Handle
@@ -2590,30 +2540,7 @@ OS:Construction,
   ,                                       !- Surface Rendering Name
   {81709dcb-9629-43ac-b77c-36b0480ae87b}; !- Layer 1
 
-OS:StandardsInformation:Construction,
-  {1e77a774-d635-4e06-960c-d0400f1e8fe7}, !- Handle
-  {7dbfddf8-0287-4087-810d-45faf71e4afe}, !- Construction Name
-  ,                                       !- Intended Surface Type
-  ,                                       !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ,                                       !- Construction Standard
-  ,                                       !- Construction Standard Source
-  ,                                       !- Fenestration Type
-  ,                                       !- Fenestration Assembly Context
-  ,                                       !- Fenestration Number of Panes
-  ,                                       !- Fenestration Frame Type
-  ,                                       !- Fenestration Divider Type
-  ,                                       !- Fenestration Tint
-  ;                                       !- Fenestration Gas Fill
 
-OS:Construction,
-  {f029b75a-347a-4c7a-a6a2-bca5d9a3c2eb}, !- Handle
-  Thai Slab,                              !- Name
-  ,                                       !- Surface Rendering Name
-  {d3370d71-c5af-49ec-94ee-94c22eb66070}, !- Layer 1
-  {dde49c5b-0755-4f04-a193-e4e95e00a83d}; !- Layer 2
 
 OS:Material,
   {d3370d71-c5af-49ec-94ee-94c22eb66070}, !- Handle
@@ -2636,9 +2563,6 @@ OS:Material:NoMass,
   0.7,                                    !- Solar Absorptance
   0.8;                                    !- Visible Absorptance
 
-OS:StandardsInformation:Construction,
-  {10aea964-9d33-4ad6-b363-ce5293542c09}, !- Handle
-  {f029b75a-347a-4c7a-a6a2-bca5d9a3c2eb}; !- Construction Name
 
 OS:StandardsInformation:Material,
   {8ee9f16f-f359-481c-ad48-b549f5ee0330}, !- Handle
@@ -4013,7 +3937,7 @@ OS:Material,
   {106704ec-96f4-4d8f-bae8-b15c6031c4fd}, !- Handle
   029 คอนกรีตมวลเบา 80 มม., !- Name
   Smooth,                                 !- Roughness
-  0.008,                                  !- Thickness {m}
+  0.08,                                   !- Thickness {m}
   0.476,                                  !- Conductivity {W/m-K}
   1280,                                   !- Density {kg/m3}
   840,                                    !- Specific Heat {J/kg-K}
@@ -7823,14 +7747,6 @@ OS:Lights:Definition,
   ; 									!- Watts per Person {W/person}
 
 OS:Lights:Definition,
-  {b9140649-b756-4f52-b6db-a0e22b6a023f},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ EVE LIGHTING STANDARD CFL เดย์ไลท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  8,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
   {4ddbbeb6-e5d5-4d8c-9982-d391df821e8a},	!- Handle
   TH : คอมแพคฟลูออเรสเซนต์ EVE LIGHTING STANDARD CFL เดย์ไลท์,	!- Name
   LightingLevel,								!- Design Level Calculation Method
@@ -8871,50 +8787,10 @@ OS:Lights:Definition,
   ; 									!- Watts per Person {W/person}
 
 OS:Lights:Definition,
-  {cfbd1a0a-0d45-42ca-8c97-edd58b08b29a},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR เดย์ไลท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  20,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
   {45295317-b62a-4059-88bf-7cc398dc7540},	!- Handle
   TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR เดย์ไลท์,	!- Name
   LightingLevel,								!- Design Level Calculation Method
   23,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {76a60b3d-8896-4cf8-b289-f3295cd27146},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR COMPACT เดย์ไลท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  5,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {ce066226-6742-4bea-8fc9-f086c5301242},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR COMPACT วอร์มไวท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  5,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {88f2b81f-e9a5-4b42-9b9a-f369f7c2a36e},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR COMPACT เดย์ไลท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  8,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {76f871b5-6524-40ab-9efa-5f4d93e35e20},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR COMPACT วอร์มไวท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  8,									!- Lighting Level {W}
   , 									!- Watts per Space Floor Area {W/m2}
   ; 									!- Watts per Person {W/person}
 
@@ -8934,67 +8810,12 @@ OS:Lights:Definition,
   , 									!- Watts per Space Floor Area {W/m2}
   ; 									!- Watts per Person {W/person}
 
-OS:Lights:Definition,
-  {f6be5e0a-d916-44d5-af5a-39b5101870d9},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR MINITWIST เดย์ไลท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  5,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {f1785387-a273-494e-a77a-04d8463fab28},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR MINITWIST วอร์มไวท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  5,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
 
 OS:Lights:Definition,
   {0c8c4ac6-9f6c-4ed6-9a7a-3a9d2e1fc761},	!- Handle
   TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR MINITWIST เดย์ไลท์,	!- Name
   LightingLevel,								!- Design Level Calculation Method
   8,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {f2bb1eb5-dfed-4384-9230-1d40c5a7af8f},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR MINITWIST วอร์มไวท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  8,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {758f9e82-58c1-4cb0-944f-88ca83f3250d},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR MINITWIST เดย์ไลท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  11,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {55cfe66a-be70-4b97-bfcf-b071ece72d06},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR MINITWIST เดย์ไลท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  13,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {2a5e47a0-c55b-4e47-9831-81118731c724},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR MINITWIST วอร์มไวท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  13,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {342dc027-80f3-4f1d-98aa-70bfa0c0d1e0},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ OSRAM DULUXSTAR MINITWIST เดย์ไลท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  18,									!- Lighting Level {W}
   , 									!- Watts per Space Floor Area {W/m2}
   ; 									!- Watts per Person {W/person}
 
@@ -9103,62 +8924,6 @@ OS:Lights:Definition,
   ; 									!- Watts per Person {W/person}
 
 OS:Lights:Definition,
-  {576c7783-63d5-4505-9d4f-2169188927c1},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ECOTONE HS คูลเดย์ไลท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  8,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {87294bfe-cae9-4b93-8554-a33e87dc6b59},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ECOTONE HS วอร์มไวท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  8,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {ccd17a22-13f8-42d9-b549-5c5656f8e45d},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ECOTONE HS วอร์มไวท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  11,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {5c763e42-6080-4246-b789-d14fe3cbe7ba},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ECOTONE HS วอร์มไวท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  14,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {f86b976f-5235-47e5-ae83-7b34fbdbfed9},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ECOTONE HS คูลเดย์ไลท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  20,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {6516cd84-db98-4978-ae22-5942b3bc58a1},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ECOTONE HS วอร์มไวท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  20,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {ee303032-510e-4bbd-8a9f-7b464f1e469a},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ECOTONE HS คูลเดย์ไลท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  23,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
   {0582ea08-613a-4cda-b235-6030ee4c566b},	!- Handle
   TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ECOTONE HS วอร์มไวท์,	!- Name
   LightingLevel,								!- Design Level Calculation Method
@@ -9183,14 +8948,6 @@ OS:Lights:Definition,
   ; 									!- Watts per Person {W/person}
 
 OS:Lights:Definition,
-  {fec92367-6f73-4f58-9fba-f8759f2fd335},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ESSENTIAL วอร์มไวท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  8,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
   {4477e51d-0dda-41c0-9449-e801811e0ecc},	!- Handle
   TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ESSENTIAL คูลเดย์ไลท์,	!- Name
   LightingLevel,								!- Design Level Calculation Method
@@ -9206,35 +8963,13 @@ OS:Lights:Definition,
   , 									!- Watts per Space Floor Area {W/m2}
   ; 									!- Watts per Person {W/person}
 
-OS:Lights:Definition,
-  {6154361e-d8d8-4219-8d52-72af01de9a3d},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ESSENTIAL คูลเดย์ไลท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  18,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {78316cfa-3fe6-4553-863f-c956b7b95d1c},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ESSENTIAL ซูเปอร์คุ้ม วอร์มไวท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  18,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
+									!- Watts per Person {W/person}
 
 OS:Lights:Definition,
   {7755d90f-710c-48f1-a52f-e5285941cc01},	!- Handle
   TH : คอมแพคฟลูออเรสเซนต์ PHILIPS ESSENTIAL ซูเปอร์คุ้ม วอร์มไวท์,	!- Name
   LightingLevel,								!- Design Level Calculation Method
   23,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {f9db5a38-d971-4545-b73b-21dfa2f8e62a},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS GENIE คูลไวท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  5,									!- Lighting Level {W}
   , 									!- Watts per Space Floor Area {W/m2}
   ; 									!- Watts per Person {W/person}
 
@@ -9246,29 +8981,7 @@ OS:Lights:Definition,
   , 									!- Watts per Space Floor Area {W/m2}
   ; 									!- Watts per Person {W/person}
 
-OS:Lights:Definition,
-  {6ddf8ac5-9ead-48e5-b4f0-663140f9857d},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS TORNADO วอร์มไวท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  12,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
 
-OS:Lights:Definition,
-  {7b27b031-67b5-4bc4-acd0-2605ce43919f},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS TORNADO คูลเดย์ไลท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  15,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {dc7004d2-8642-40b9-b27b-a901c3769967},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS TORNADO วอร์มไวท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  15,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
 
 OS:Lights:Definition,
   {024f1828-ace4-416a-b5c0-b1ec2fe4ff5d},	!- Handle
@@ -9283,22 +8996,6 @@ OS:Lights:Definition,
   TH : คอมแพคฟลูออเรสเซนต์ PHILIPS TORNADO วอร์มไวท์,	!- Name
   LightingLevel,								!- Design Level Calculation Method
   20,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {7aed9009-6bdd-4081-b368-78c40429018c},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS จีนี่ คูลเดย์ไลท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  5,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {635b32c9-1f18-49aa-9f7c-4e5df3b520da},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS จีนี่ คูลเดย์ไลท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  8,									!- Lighting Level {W}
   , 									!- Watts per Space Floor Area {W/m2}
   ; 									!- Watts per Person {W/person}
 
@@ -9318,21 +9015,6 @@ OS:Lights:Definition,
   , 									!- Watts per Space Floor Area {W/m2}
   ; 									!- Watts per Person {W/person}
 
-OS:Lights:Definition,
-  {6978d9bd-b6ce-47d4-a2b8-0ecd4e7f323d},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS จีนี่ คูลเดย์ไลท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  14,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {8c1ed0b9-1c5d-43c2-840d-c38b9c9ec384},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ PHILIPS จีนี่ วอร์มไวท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  14,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
 
 OS:Lights:Definition,
   {76ef7987-3305-4a5d-8b5d-52a1cefc0457},	!- Handle
@@ -9657,14 +9339,6 @@ OS:Lights:Definition,
 OS:Lights:Definition,
   {94c09fd7-eb8a-4920-ba35-9719f9080d66},	!- Handle
   TH : คอมแพคฟลูออเรสเซนต์ SYLVANIA Minilynx Economy 3U เดย์ไลท์,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  20,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {fdfa7191-b619-4de7-8b04-5c1b1ec1b75d},	!- Handle
-  TH : คอมแพคฟลูออเรสเซนต์ SYLVANIA Minilynx Economy 3U วอร์มไวท์,	!- Name
   LightingLevel,								!- Design Level Calculation Method
   20,									!- Lighting Level {W}
   , 									!- Watts per Space Floor Area {W/m2}
@@ -10855,39 +10529,7 @@ OS:Lights:Definition,
   ; 									!- Watts per Person {W/person}
 
 OS:Lights:Definition,
-  {f3b8c503-fc96-4ea1-a53b-2893737266cf},	!- Handle
-  TH : แอลอีดี (E27) HIET A60,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  8,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {955e9a48-d9ee-4270-a5a6-69e68064030e},	!- Handle
-  TH : แอลอีดี (E27) HIET A60,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  7,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {acd4eafd-07c7-49ee-a645-204e2e1a72ff},	!- Handle
-  TH : แอลอีดี (E27) HIET A60,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  8,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
   {2a181598-b8a3-457a-9ffd-110de8f0b5ba},	!- Handle
-  TH : แอลอีดี (MR16) HIGHLIGHT P04-MR16-12V,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  4.5,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {aabd2d09-1df1-40c4-97b7-30e24e0e092c},	!- Handle
   TH : แอลอีดี (MR16) HIGHLIGHT P04-MR16-12V,	!- Name
   LightingLevel,								!- Design Level Calculation Method
   4.5,									!- Lighting Level {W}
@@ -10958,21 +10600,6 @@ OS:Lights:Definition,
   , 									!- Watts per Space Floor Area {W/m2}
   ; 									!- Watts per Person {W/person}
 
-OS:Lights:Definition,
-  {b68b1a67-5714-4ced-b943-bb2751caf917},	!- Handle
-  TH : แอลอีดี (E27) L&E LED-BULB-800LM,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  9.5,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {af6928d8-b4b2-4c4b-8d63-f2de8e8de8d7},	!- Handle
-  TH : แอลอีดี (E27) L&E LED-BULB-800LM,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  9.5,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
 
 OS:Lights:Definition,
   {8ca3b36e-fd24-4fd7-bc50-944695629d91},	!- Handle
@@ -11487,14 +11114,6 @@ OS:Lights:Definition,
   ; 									!- Watts per Person {W/person}
 
 OS:Lights:Definition,
-  {e98dc07c-525e-4371-8abe-fb3b3c4be24c},	!- Handle
-  TH : แอลอีดี (E27) PHILIPS LEDBULB 10W,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  10,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
   {0f0180ba-7992-4e09-91ac-a8341ae90354},	!- Handle
   TH : แอลอีดี (E27) PHILIPS LEDBULB 13W,	!- Name
   LightingLevel,								!- Design Level Calculation Method
@@ -11502,21 +11121,6 @@ OS:Lights:Definition,
   , 									!- Watts per Space Floor Area {W/m2}
   ; 									!- Watts per Person {W/person}
 
-OS:Lights:Definition,
-  {f76f3706-b366-4580-b5b8-cfc57d05a5cd},	!- Handle
-  TH : แอลอีดี (E27) PHILIPS LEDBULB 13W,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  13,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {b13cc9a0-b629-4b25-9d78-86126e1c3b28},	!- Handle
-  TH : แอลอีดี (E27) PHILIPS LEDBULB 5W,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  5,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
 
 OS:Lights:Definition,
   {a9fda5fd-c35e-4382-8cee-cd38237aacc5},	!- Handle
@@ -11567,34 +11171,10 @@ OS:Lights:Definition,
   ; 									!- Watts per Person {W/person}
 
 OS:Lights:Definition,
-  {649a4ab6-ae19-43d5-a838-a47fc4c9dfca},	!- Handle
-  TH : แอลอีดี (MR16) PHILIPS MASTER LED,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  4,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
   {0dd2b90c-7c89-435b-9304-7fc831c4a3cc},	!- Handle
   TH : แอลอีดี (MR16) PHILIPS MASTER LED,	!- Name
   LightingLevel,								!- Design Level Calculation Method
   4,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {9896bb43-534c-43ff-9f8b-6e8a756c45cd},	!- Handle
-  TH : แอลอีดี (MR16) PHILIPS MASTER LED,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  5.5,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {93160c70-1c45-42da-ab5e-33efb40aa10c},	!- Handle
-  TH : แอลอีดี (MR16) PHILIPS MASTER LED,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  6.5,									!- Lighting Level {W}
   , 									!- Watts per Space Floor Area {W/m2}
   ; 									!- Watts per Person {W/person}
 
@@ -11646,37 +11226,6 @@ OS:Lights:Definition,
   , 									!- Watts per Space Floor Area {W/m2}
   ; 									!- Watts per Person {W/person}
 
-OS:Lights:Definition,
-  {eeb0c936-26e8-4a8c-9aaa-86dba1a0fb13},	!- Handle
-  TH : แอลอีดี (E27) RACER KATIE LED A60,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  5,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {93123385-a7c2-448f-aa8b-d27c81af3a6e},	!- Handle
-  TH : แอลอีดี (E27) RACER KATIE LED A60,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  8,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {54cddba1-33ea-4cba-85b9-46d2ad248a72},	!- Handle
-  TH : แอลอีดี (E27) RACER KATIE LED A60,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  8,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {75127e0b-5bd3-4e65-9a5a-62f6d870acfe},	!- Handle
-  TH : แอลอีดี (MR16) RACER DECTOP,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  6,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
 
 OS:Lights:Definition,
   {02e81e20-563d-468c-ac69-2b0f8004d988},	!- Handle
@@ -11711,34 +11260,10 @@ OS:Lights:Definition,
   ; 									!- Watts per Person {W/person}
 
 OS:Lights:Definition,
-  {e0fbe454-c633-416a-a161-5949ed666efe},	!- Handle
-  TH : แอลอีดี (T8) RACER KIMMIE LED RETRO,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  20,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
   {4843f0e9-8608-486e-a72f-58326ebc46b0},	!- Handle
   TH : แอลอีดี (E27) SILVER LIGHT LED-A 5W,	!- Name
   LightingLevel,								!- Design Level Calculation Method
   5,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {d2b69505-9d05-4d94-aaff-3591b188b9c0},	!- Handle
-  TH : แอลอีดี (E27) SILVER LIGHT LED-A 5W,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  5,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {b02f9cef-03bd-40b5-979f-2070ad7beeb4},	!- Handle
-  TH : แอลอีดี (E27) SILVER LIGHT LED-A 7W,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  7,									!- Lighting Level {W}
   , 									!- Watts per Space Floor Area {W/m2}
   ; 									!- Watts per Person {W/person}
 
@@ -11750,13 +11275,6 @@ OS:Lights:Definition,
   , 									!- Watts per Space Floor Area {W/m2}
   ; 									!- Watts per Person {W/person}
 
-OS:Lights:Definition,
-  {ad011070-9e12-401e-9640-636caea7d436},	!- Handle
-  TH : แอลอีดี (E27) SILVER LIGHT LED-A 8W,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  8,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
 
 OS:Lights:Definition,
   {3042d230-769b-4efc-ad49-aa721a2bf087},	!- Handle
@@ -11771,22 +11289,6 @@ OS:Lights:Definition,
   TH : แอลอีดี (E27) SILVER LIGHT LED-B 5W,	!- Name
   LightingLevel,								!- Design Level Calculation Method
   5,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {ae8dee23-96da-4c3f-a737-c28eb563a74c},	!- Handle
-  TH : แอลอีดี (E27) SILVER LIGHT LED-B 5W,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  5,									!- Lighting Level {W}
-  , 									!- Watts per Space Floor Area {W/m2}
-  ; 									!- Watts per Person {W/person}
-
-OS:Lights:Definition,
-  {a6f6435a-689e-4aff-a86a-a3f62fa4dfcf},	!- Handle
-  TH : แอลอีดี (E27) SILVER LIGHT LED-B 8W,	!- Name
-  LightingLevel,								!- Design Level Calculation Method
-  8,									!- Lighting Level {W}
   , 									!- Watts per Space Floor Area {W/m2}
   ; 									!- Watts per Person {W/person}
 
@@ -12784,7 +12286,7 @@ OS:Building,
   ,                                       !- North Axis {deg}
   ,                                       !- Nominal Floor to Floor Height {m}
   {5db4db79-bc99-4052-9ada-702a715bdd5e}, !- Space Type Name
-  {c843ac02-1e81-40be-b7ce-59ca34e6922f}, !- Default Construction Set Name
+  ,                                       !- Default Construction Set Name
   ;                                       !- Default Schedule Set Name
 
 OS:SpaceType,
@@ -15323,7 +14825,7 @@ OS:Schedule:Ruleset,
 
 OS:ScheduleTypeLimits,
   {53148dd4-84bd-4672-a23f-d1e6e10976bd}, !- Handle
-  Temperature 4,                          !- Name
+  Temperature 38,                         !- Name
   ,                                       !- Lower Limit Value {BasedOnField A4}
   ,                                       !- Upper Limit Value {BasedOnField A4}
   Continuous,                             !- Numeric Type
@@ -17039,42 +16541,9 @@ OS:ThermostatSetpoint:DualSetpoint,
   {d8a34998-a5ca-4870-9760-87f84853d622}, !- Heating Setpoint Temperature Schedule Name
   {6d6b07e6-b80d-494b-b4cf-1e4365d94ea0}; !- Cooling Setpoint Temperature Schedule Name
 
-OS:DefaultConstructionSet,
-  {27470cb4-b423-4cb9-aca2-f94779fff746}, !- Handle
-  189.1-2009 - CZ1 - Office,              !- Name
-  {47c9a601-105b-47ab-aff7-fa0032269a4b}, !- Default Exterior Surface Constructions Name
-  {32e4372b-a322-497a-a41b-f66cc58404d5}, !- Default Interior Surface Constructions Name
-  {024b7039-3d2d-48ed-ba4d-c432086cff83}, !- Default Ground Contact Surface Constructions Name
-  {61f9e5be-b60a-43a2-8c08-e3766da489f6}, !- Default Exterior SubSurface Constructions Name
-  {3682ca85-0d78-41bd-a395-7cb1aef773d6}, !- Default Interior SubSurface Constructions Name
-  {b9ac6245-26b5-4f64-93ef-6f6c00c376f5}, !- Interior Partition Construction Name
-  ,                                       !- Space Shading Construction Name
-  ,                                       !- Building Shading Construction Name
-  ;                                       !- Site Shading Construction Name
 
-OS:DefaultSurfaceConstructions,
-  {47c9a601-105b-47ab-aff7-fa0032269a4b}, !- Handle
-  Default Surface Constructions 1,        !- Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}, !- Floor Construction Name
-  {53efab9d-1ed9-4a39-b30f-22a0abc482ae}, !- Wall Construction Name
-  {673452b6-43fd-47bf-80e6-bc038113682f}; !- Roof Ceiling Construction Name
 
-OS:Construction,
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}, !- Handle
-  ExtSlabCarpet 4in ClimateZone 1-8,      !- Name
-  ,                                       !- Surface Rendering Name
-  {7311a74e-33cf-47e9-a28c-a9a6c74f4083}, !- Layer 1
-  {f9d8d3d0-67dd-44ee-b650-ac57d9c4fdc9}; !- Layer 2
 
-OS:StandardsInformation:Construction,
-  {f84c35d2-f1ea-430e-86a5-40f829e6bf82}, !- Handle
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}, !- Construction Name
-  ExteriorFloor,                          !- Intended Surface Type
-  ,                                       !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ;                                       !- Construction Standard
 
 OS:Material,
   {7311a74e-33cf-47e9-a28c-a9a6c74f4083}, !- Handle
@@ -17091,38 +16560,6 @@ OS:Material,
 OS:StandardsInformation:Material,
   {b86a039d-4ab4-4e94-aec8-6e50a3e39fef}, !- Handle
   {7311a74e-33cf-47e9-a28c-a9a6c74f4083}; !- Material Name
-
-OS:Material:NoMass,
-  {f9d8d3d0-67dd-44ee-b650-ac57d9c4fdc9}, !- Handle
-  CP02 CARPET PAD,                        !- Name
-  Smooth,                                 !- Roughness
-  0.1,                                    !- Thermal Resistance {m2-K/W}
-  0.9,                                    !- Thermal Absorptance
-  0.8,                                    !- Solar Absorptance
-  0.8;                                    !- Visible Absorptance
-
-OS:StandardsInformation:Material,
-  {c379f087-1159-45ad-a5ee-77aeed34b608}, !- Handle
-  {f9d8d3d0-67dd-44ee-b650-ac57d9c4fdc9}; !- Material Name
-
-OS:Construction,
-  {53efab9d-1ed9-4a39-b30f-22a0abc482ae}, !- Handle
-  ASHRAE 189.1-2009 ExtWall Mass ClimateZone 1, !- Name
-  ,                                       !- Surface Rendering Name
-  {f599e234-5bef-4b8b-a29e-b0e66ba90d1c}, !- Layer 1
-  {86ce4850-8b71-4fc3-8156-58e01dd0d672}, !- Layer 2
-  {139997b3-f812-4db0-bf69-d7f13ed976c1}, !- Layer 3
-  {adfa9abe-33e8-4914-a062-5f8dacc4064e}; !- Layer 4
-
-OS:StandardsInformation:Construction,
-  {377b771c-be01-4263-858d-e6aea663ac15}, !- Handle
-  {53efab9d-1ed9-4a39-b30f-22a0abc482ae}, !- Construction Name
-  ExteriorWall,                           !- Intended Surface Type
-  Mass,                                   !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ASHRAE 189.1-2009;                      !- Construction Standard
 
 OS:Material,
   {f599e234-5bef-4b8b-a29e-b0e66ba90d1c}, !- Handle
@@ -17188,23 +16625,7 @@ OS:StandardsInformation:Material,
   {fb853046-b735-487f-80f5-3b870ff8f926}, !- Handle
   {adfa9abe-33e8-4914-a062-5f8dacc4064e}; !- Material Name
 
-OS:Construction,
-  {673452b6-43fd-47bf-80e6-bc038113682f}, !- Handle
-  ASHRAE 189.1-2009 ExtRoof IEAD ClimateZone 1, !- Name
-  ,                                       !- Surface Rendering Name
-  {637f69c7-a2cd-4b1e-b4e9-15cbad7076da}, !- Layer 1
-  {f27f75a0-f278-4334-bb8d-02dc483d51cb}, !- Layer 2
-  {50421cc9-2708-4aab-9ca0-83f0f97fc06a}; !- Layer 3
 
-OS:StandardsInformation:Construction,
-  {8cd26ae1-dad9-4538-aef0-6736111c7a12}, !- Handle
-  {673452b6-43fd-47bf-80e6-bc038113682f}, !- Construction Name
-  ExteriorRoof,                           !- Intended Surface Type
-  IEAD,                                   !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ASHRAE 189.1-2009;                      !- Construction Standard
 
 OS:Material,
   {637f69c7-a2cd-4b1e-b4e9-15cbad7076da}, !- Handle
@@ -17254,76 +16675,16 @@ OS:StandardsInformation:Material,
   {6d9af7c9-f72e-4927-8284-937d2342b37d}, !- Handle
   {50421cc9-2708-4aab-9ca0-83f0f97fc06a}; !- Material Name
 
-OS:DefaultSurfaceConstructions,
-  {32e4372b-a322-497a-a41b-f66cc58404d5}, !- Handle
-  Default Surface Constructions 2,        !- Name
-  {0b0018dc-e472-468b-a845-7af44941b4e4}, !- Floor Construction Name
-  {53884ea6-a192-41b5-81c2-1408e285d41a}, !- Wall Construction Name
-  {5ec6d64f-0911-4526-a0bf-dc24257386ae}; !- Roof Ceiling Construction Name
 
-OS:Construction,
-  {0b0018dc-e472-468b-a845-7af44941b4e4}, !- Handle
-  Interior Floor,                         !- Name
-  ,                                       !- Surface Rendering Name
-  {f35e4ce9-d5ea-4f23-b69d-7ba4ccb2817f}, !- Layer 1
-  {2a614ed8-fa53-404f-bed4-f1093e6c32d5}, !- Layer 2
-  {0ed2a254-f2fa-403e-8ba1-79175fd0ed3d}; !- Layer 3
 
-OS:StandardsInformation:Construction,
-  {ebd8e846-4b74-484c-bd74-a4236031e331}, !- Handle
-  {0b0018dc-e472-468b-a845-7af44941b4e4}, !- Construction Name
-  InteriorFloor,                          !- Intended Surface Type
-  ,                                       !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ;                                       !- Construction Standard
 
-OS:Material,
-  {f35e4ce9-d5ea-4f23-b69d-7ba4ccb2817f}, !- Handle
-  F16 Acoustic tile,                      !- Name
-  MediumSmooth,                           !- Roughness
-  0.0191,                                 !- Thickness {m}
-  0.06,                                   !- Conductivity {W/m-K}
-  368,                                    !- Density {kg/m3}
-  590.000000000002,                       !- Specific Heat {J/kg-K}
-  0.9,                                    !- Thermal Absorptance
-  0.3,                                    !- Solar Absorptance
-  0.3;                                    !- Visible Absorptance
 
-OS:StandardsInformation:Material,
-  {d60c6a28-e870-4cd1-a49b-31d604f0abdc}, !- Handle
-  {f35e4ce9-d5ea-4f23-b69d-7ba4ccb2817f}; !- Material Name
 
-OS:Material:AirGap,
-  {2a614ed8-fa53-404f-bed4-f1093e6c32d8}, !- Handle
-  TH : Wall Air Space Resistance 5mm Hi,  !- Name
-  0.11;                                   !- Thermal Resistance {m2-K/W}  
 
-OS:Material:AirGap,
-  {2a614ed8-fa53-404f-bed4-f1193e6c32d5}, !- Handle
-  TH : Wall Air Space Resistance 20mm Hi, !- Name
-  0.148;                                  !- Thermal Resistance {m2-K/W} 
 
-OS:Material:AirGap,
-  {2a614ed8-fa53-404f-bed4-f1293e6c32d5}, !- Handle
-  TH : Wall Air Space Resistance 100mm Hi,!- Name
-  0.16;                                   !- Thermal Resistance {m2-K/W} 
 
-OS:Material:AirGap,
-  {2a614ed8-fa53-404f-bed4-f1393e6c32d5}, !- Handle
-  TH : Wall Air Space Resistance 5mm Lo,  !- Name
-  0.25;                                   !- Thermal Resistance {m2-K/W}
 
-OS:Material:AirGap,
-  {2a614ed8-fa53-404f-bed4-f1493e6c32d5}, !- Handle
-  TH : Wall Air Space Resistance 20mm Lo, !- Name
-  0.578;                                  !- Thermal Resistance {m2-K/W}
 
-OS:Material:AirGap,
-  {2a614ed8-fa53-404f-bed4-f1593e6c32d5},   !- Handle
-  TH : Wall Air Space Resistance 100mm Lo,  !- Name
-  0.606;                                    !- Thermal Resistance {m2-K/W}
 
 OS:Material:AirGap,
   {2a614ed8-fa53-404f-bed4-f6693e6c32d5},           !- Handle
@@ -17443,101 +16804,17 @@ OS:StandardsInformation:Material,
   {c6bb8f7b-dff1-4814-9cd3-13319696813c}, !- Handle
   {0ed2a254-f2fa-403e-8ba1-79175fd0ed3d}; !- Material Name
 
-OS:Construction,
-  {53884ea6-a192-41b5-81c2-1408e285d41a}, !- Handle
-  Interior Wall,                          !- Name
-  ,                                       !- Surface Rendering Name
-  {8850cc38-8245-483b-8e4e-5b6f1e5b6292}, !- Layer 1
-  {d1f8070f-6ca4-4646-a468-2ea72351c34f}, !- Layer 2
-  {8850cc38-8245-483b-8e4e-5b6f1e5b6292}; !- Layer 3
 
-OS:StandardsInformation:Construction,
-  {45108b41-acd8-479b-9872-a6a347e65f3e}, !- Handle
-  {53884ea6-a192-41b5-81c2-1408e285d41a}, !- Construction Name
-  InteriorWall,                           !- Intended Surface Type
-  ,                                       !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ;                                       !- Construction Standard
 
-OS:Material,
-  {8850cc38-8245-483b-8e4e-5b6f1e5b6292}, !- Handle
-  G01a 19mm gypsum board,                 !- Name
-  MediumSmooth,                           !- Roughness
-  0.019,                                  !- Thickness {m}
-  0.16,                                   !- Conductivity {W/m-K}
-  800,                                    !- Density {kg/m3}
-  1090,                                   !- Specific Heat {J/kg-K}
-  0.9,                                    !- Thermal Absorptance
-  0.4,                                    !- Solar Absorptance
-  0.4;                                    !- Visible Absorptance
 
-OS:StandardsInformation:Material,
-  {cf820310-55e8-41e7-88e3-dbd28419050f}, !- Handle
-  {8850cc38-8245-483b-8e4e-5b6f1e5b6292}; !- Material Name
 
-OS:Material:AirGap,
-  {d1f8070f-6ca4-4646-a468-2ea72351c34f}, !- Handle
-  F04 Wall air space resistance,          !- Name
-  0.15;                                   !- Thermal Resistance {m2-K/W}
 
-OS:StandardsInformation:Material,
-  {8d2ea389-7bd9-4546-ae34-6680cbe58334}, !- Handle
-  {d1f8070f-6ca4-4646-a468-2ea72351c34f}; !- Material Name
 
-OS:Construction,
-  {5ec6d64f-0911-4526-a0bf-dc24257386ae}, !- Handle
-  Interior Ceiling,                       !- Name
-  ,                                       !- Surface Rendering Name
-  {0ed2a254-f2fa-403e-8ba1-79175fd0ed3d}, !- Layer 1
-  {2a614ed8-fa53-404f-bed4-f1093e6c32d5}, !- Layer 2
-  {f35e4ce9-d5ea-4f23-b69d-7ba4ccb2817f}; !- Layer 3
 
-OS:StandardsInformation:Construction,
-  {8deb4e7f-8a9b-4e73-bf92-5cd6dbabcf04}, !- Handle
-  {5ec6d64f-0911-4526-a0bf-dc24257386ae}, !- Construction Name
-  InteriorCeiling,                        !- Intended Surface Type
-  ,                                       !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ;                                       !- Construction Standard
 
-OS:DefaultSurfaceConstructions,
-  {024b7039-3d2d-48ed-ba4d-c432086cff83}, !- Handle
-  Default Surface Constructions 3,        !- Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}, !- Floor Construction Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}, !- Wall Construction Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}; !- Roof Ceiling Construction Name
 
-OS:DefaultSubSurfaceConstructions,
-  {61f9e5be-b60a-43a2-8c08-e3766da489f6}, !- Handle
-  Default Sub Surface Constructions 1,    !- Name
-  {657a409f-20c9-42ba-8563-484eca759acc}, !- Fixed Window Construction Name
-  {657a409f-20c9-42ba-8563-484eca759acc}, !- Operable Window Construction Name
-  {d2ff3f72-9ebc-4a16-a5c6-797a25521b72}, !- Door Construction Name
-  ,                                       !- Glass Door Construction Name
-  ,                                       !- Overhead Door Construction Name
-  ,                                       !- Skylight Construction Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}, !- Tubular Daylight Dome Construction Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}; !- Tubular Daylight Diffuser Construction Name
 
-OS:Construction,
-  {657a409f-20c9-42ba-8563-484eca759acc}, !- Handle
-  ASHRAE 189.1-2009 ExtWindow ClimateZone 1, !- Name
-  ,                                       !- Surface Rendering Name
-  {c51ec9e3-f684-42f4-b67d-591666991784}; !- Layer 1
 
-OS:StandardsInformation:Construction,
-  {94da1ded-221e-4e82-a17d-9f6f034ec8b5}, !- Handle
-  {657a409f-20c9-42ba-8563-484eca759acc}, !- Construction Name
-  ExteriorWindow,                         !- Intended Surface Type
-  ,                                       !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ASHRAE 189.1-2009;                      !- Construction Standard
 
 OS:WindowMaterial:Glazing,
   {c51ec9e3-f684-42f4-b67d-591666991784}, !- Handle
@@ -17562,38 +16839,9 @@ OS:StandardsInformation:Material,
   {c83efe52-5ee7-4bb9-8aca-7cbd030b1945}, !- Handle
   {c51ec9e3-f684-42f4-b67d-591666991784}; !- Material Name
 
-OS:Construction,
-  {d2ff3f72-9ebc-4a16-a5c6-797a25521b72}, !- Handle
-  Exterior Door,                          !- Name
-  ,                                       !- Surface Rendering Name
-  {e6c0a63c-155c-4168-98b4-c0a281d363a5}, !- Layer 1
-  {8493fef8-9809-4979-a024-8dfc82421565}; !- Layer 2
 
-OS:StandardsInformation:Construction,
-  {d7a1623e-90c7-4903-8582-a2e46a6b6974}, !- Handle
-  {d2ff3f72-9ebc-4a16-a5c6-797a25521b72}, !- Construction Name
-  ExteriorDoor,                           !- Intended Surface Type
-  ,                                       !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ;                                       !- Construction Standard
 
-OS:Material,
-  {e6c0a63c-155c-4168-98b4-c0a281d363a5}, !- Handle
-  F08 Metal surface,                      !- Name
-  Smooth,                                 !- Roughness
-  0.0008,                                 !- Thickness {m}
-  45.2800000000001,                       !- Conductivity {W/m-K}
-  7823.99999999999,                       !- Density {kg/m3}
-  500,                                    !- Specific Heat {J/kg-K}
-  0.9,                                    !- Thermal Absorptance
-  0.7,                                    !- Solar Absorptance
-  0.7;                                    !- Visible Absorptance
 
-OS:StandardsInformation:Material,
-  {5aa9d211-92a4-4760-8d63-3654f3ef3ed7}, !- Handle
-  {e6c0a63c-155c-4168-98b4-c0a281d363a5}; !- Material Name
 
 OS:Material,
   {8493fef8-9809-4979-a024-8dfc82421565}, !- Handle
@@ -17611,21 +16859,7 @@ OS:StandardsInformation:Material,
   {d7765207-3392-4b22-8f8b-97f640b435f4}, !- Handle
   {8493fef8-9809-4979-a024-8dfc82421565}; !- Material Name
 
-OS:Construction,
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}, !- Handle
-  Interior Window,                        !- Name
-  ,                                       !- Surface Rendering Name
-  {32f534d4-997e-48dd-9996-adc31dca1449}; !- Layer 1
 
-OS:StandardsInformation:Construction,
-  {2fdb7a9e-e1d9-4d67-9d55-1b28f47895ab}, !- Handle
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}, !- Construction Name
-  InteriorWindow,                         !- Intended Surface Type
-  ,                                       !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ;                                       !- Construction Standard
 
 OS:WindowMaterial:Glazing,
   {32f534d4-997e-48dd-9996-adc31dca1449}, !- Handle
@@ -17650,33 +16884,8 @@ OS:StandardsInformation:Material,
   {0f9193bf-9f04-461d-997b-ca2cb6f9e99b}, !- Handle
   {32f534d4-997e-48dd-9996-adc31dca1449}; !- Material Name
 
-OS:DefaultSubSurfaceConstructions,
-  {3682ca85-0d78-41bd-a395-7cb1aef773d6}, !- Handle
-  Default Sub Surface Constructions 2,    !- Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}, !- Fixed Window Construction Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}, !- Operable Window Construction Name
-  {70882ec4-63fb-4f06-bb2d-0eda19c6cd5a}, !- Door Construction Name
-  ,                                       !- Glass Door Construction Name
-  ,                                       !- Overhead Door Construction Name
-  ,                                       !- Skylight Construction Name
-  ,                                       !- Tubular Daylight Dome Construction Name
-  ;                                       !- Tubular Daylight Diffuser Construction Name
 
-OS:Construction,
-  {70882ec4-63fb-4f06-bb2d-0eda19c6cd5a}, !- Handle
-  Interior Door,                          !- Name
-  ,                                       !- Surface Rendering Name
-  {20dd75fb-bb93-4254-b788-10a83a075663}; !- Layer 1
 
-OS:StandardsInformation:Construction,
-  {46338993-c4f9-4a0c-a18b-6870a5bf0534}, !- Handle
-  {70882ec4-63fb-4f06-bb2d-0eda19c6cd5a}, !- Construction Name
-  InteriorDoor,                           !- Intended Surface Type
-  ,                                       !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ;                                       !- Construction Standard
 
 OS:Material,
   {20dd75fb-bb93-4254-b788-10a83a075663}, !- Handle
@@ -17694,60 +16903,11 @@ OS:StandardsInformation:Material,
   {a7209dda-e47f-4988-b30d-a79d2ce9f3c0}, !- Handle
   {20dd75fb-bb93-4254-b788-10a83a075663}; !- Material Name
 
-OS:Construction,
-  {b9ac6245-26b5-4f64-93ef-6f6c00c376f5}, !- Handle
-  Interior Partition,                     !- Name
-  ,                                       !- Surface Rendering Name
-  {20dd75fb-bb93-4254-b788-10a83a075663}; !- Layer 1
 
-OS:StandardsInformation:Construction,
-  {50314cbe-df16-4669-b9e9-abc0d50c119d}, !- Handle
-  {b9ac6245-26b5-4f64-93ef-6f6c00c376f5}, !- Construction Name
-  InteriorPartition,                      !- Intended Surface Type
-  ,                                       !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ;                                       !- Construction Standard
 
-OS:DefaultConstructionSet,
-  {b9894e3e-ecfd-4837-8063-23b808ce4501}, !- Handle
-  189.1-2009 - CZ2 - Office,              !- Name
-  {482afdb1-0c2e-4032-880c-35b1a7d9ffa6}, !- Default Exterior Surface Constructions Name
-  {2545e544-aab8-4f31-97a4-37549ad312af}, !- Default Interior Surface Constructions Name
-  {2967102c-4df9-4e0e-9a36-cd23bd900b78}, !- Default Ground Contact Surface Constructions Name
-  {9ea9901d-06c4-4ae7-bfc9-601ca5aba8fc}, !- Default Exterior SubSurface Constructions Name
-  {715e162f-2d4a-4963-b2b9-25e91185e2c1}, !- Default Interior SubSurface Constructions Name
-  {b9ac6245-26b5-4f64-93ef-6f6c00c376f5}, !- Interior Partition Construction Name
-  ,                                       !- Space Shading Construction Name
-  ,                                       !- Building Shading Construction Name
-  ;                                       !- Site Shading Construction Name
 
-OS:DefaultSurfaceConstructions,
-  {482afdb1-0c2e-4032-880c-35b1a7d9ffa6}, !- Handle
-  Default Surface Constructions 4,        !- Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}, !- Floor Construction Name
-  {f902f50f-be47-4e57-a2ad-80ab0542896b}, !- Wall Construction Name
-  {f01c2998-dc2a-40e4-92ac-634289a393bd}; !- Roof Ceiling Construction Name
 
-OS:Construction,
-  {f902f50f-be47-4e57-a2ad-80ab0542896b}, !- Handle
-  ASHRAE 189.1-2009 ExtWall Mass ClimateZone 2, !- Name
-  ,                                       !- Surface Rendering Name
-  {f599e234-5bef-4b8b-a29e-b0e66ba90d1c}, !- Layer 1
-  {86ce4850-8b71-4fc3-8156-58e01dd0d672}, !- Layer 2
-  {15233567-5d6a-4edf-a404-3fe317404d70}, !- Layer 3
-  {adfa9abe-33e8-4914-a062-5f8dacc4064e}; !- Layer 4
 
-OS:StandardsInformation:Construction,
-  {f6cbf37a-113e-4a20-aeaf-c19cf8152eec}, !- Handle
-  {f902f50f-be47-4e57-a2ad-80ab0542896b}, !- Construction Name
-  ExteriorWall,                           !- Intended Surface Type
-  Mass,                                   !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ASHRAE 189.1-2009;                      !- Construction Standard
 
 OS:Material,
   {15233567-5d6a-4edf-a404-3fe317404d70}, !- Handle
@@ -17765,23 +16925,7 @@ OS:StandardsInformation:Material,
   {8dad66d4-cf25-49d5-80e3-0f5f030c8463}, !- Handle
   {15233567-5d6a-4edf-a404-3fe317404d70}; !- Material Name
 
-OS:Construction,
-  {f01c2998-dc2a-40e4-92ac-634289a393bd}, !- Handle
-  ASHRAE 189.1-2009 ExtRoof IEAD ClimateZone 2-5, !- Name
-  ,                                       !- Surface Rendering Name
-  {637f69c7-a2cd-4b1e-b4e9-15cbad7076da}, !- Layer 1
-  {d685b838-3ae4-4a0b-8303-51c9297985dd}, !- Layer 2
-  {50421cc9-2708-4aab-9ca0-83f0f97fc06a}; !- Layer 3
 
-OS:StandardsInformation:Construction,
-  {bc22eb42-34e7-443a-824b-ce264b72bb05}, !- Handle
-  {f01c2998-dc2a-40e4-92ac-634289a393bd}, !- Construction Name
-  ExteriorRoof,                           !- Intended Surface Type
-  IEAD,                                   !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ASHRAE 189.1-2009;                      !- Construction Standard
 
 OS:Material,
   {d685b838-3ae4-4a0b-8303-51c9297985dd}, !- Handle
@@ -17799,47 +16943,10 @@ OS:StandardsInformation:Material,
   {11995df0-bac9-4f66-9303-a832ee083dcf}, !- Handle
   {d685b838-3ae4-4a0b-8303-51c9297985dd}; !- Material Name
 
-OS:DefaultSurfaceConstructions,
-  {2545e544-aab8-4f31-97a4-37549ad312af}, !- Handle
-  Default Surface Constructions 5,        !- Name
-  {0b0018dc-e472-468b-a845-7af44941b4e4}, !- Floor Construction Name
-  {53884ea6-a192-41b5-81c2-1408e285d41a}, !- Wall Construction Name
-  {5ec6d64f-0911-4526-a0bf-dc24257386ae}; !- Roof Ceiling Construction Name
 
-OS:DefaultSurfaceConstructions,
-  {2967102c-4df9-4e0e-9a36-cd23bd900b78}, !- Handle
-  Default Surface Constructions 6,        !- Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}, !- Floor Construction Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}, !- Wall Construction Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}; !- Roof Ceiling Construction Name
 
-OS:DefaultSubSurfaceConstructions,
-  {9ea9901d-06c4-4ae7-bfc9-601ca5aba8fc}, !- Handle
-  Default Sub Surface Constructions 3,    !- Name
-  {7306ff70-92f0-4093-a23c-e0a6acc89ae7}, !- Fixed Window Construction Name
-  {7306ff70-92f0-4093-a23c-e0a6acc89ae7}, !- Operable Window Construction Name
-  {d2ff3f72-9ebc-4a16-a5c6-797a25521b72}, !- Door Construction Name
-  ,                                       !- Glass Door Construction Name
-  ,                                       !- Overhead Door Construction Name
-  ,                                       !- Skylight Construction Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}, !- Tubular Daylight Dome Construction Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}; !- Tubular Daylight Diffuser Construction Name
 
-OS:Construction,
-  {7306ff70-92f0-4093-a23c-e0a6acc89ae7}, !- Handle
-  ASHRAE 189.1-2009 ExtWindow ClimateZone 2, !- Name
-  ,                                       !- Surface Rendering Name
-  {0fb74a22-0b3c-44c3-9ecb-fdedafb63fda}; !- Layer 1
 
-OS:StandardsInformation:Construction,
-  {2517da8a-f471-47e4-bc3b-83b866b189f0}, !- Handle
-  {7306ff70-92f0-4093-a23c-e0a6acc89ae7}, !- Construction Name
-  ExteriorWindow,                         !- Intended Surface Type
-  ,                                       !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ASHRAE 189.1-2009;                      !- Construction Standard
 
 OS:WindowMaterial:Glazing,
   {0fb74a22-0b3c-44c3-9ecb-fdedafb63fda}, !- Handle
@@ -17864,56 +16971,10 @@ OS:StandardsInformation:Material,
   {7c1eec51-2f97-4855-b2d1-dee396b10b9a}, !- Handle
   {0fb74a22-0b3c-44c3-9ecb-fdedafb63fda}; !- Material Name
 
-OS:DefaultSubSurfaceConstructions,
-  {715e162f-2d4a-4963-b2b9-25e91185e2c1}, !- Handle
-  Default Sub Surface Constructions 4,    !- Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}, !- Fixed Window Construction Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}, !- Operable Window Construction Name
-  {70882ec4-63fb-4f06-bb2d-0eda19c6cd5a}, !- Door Construction Name
-  ,                                       !- Glass Door Construction Name
-  ,                                       !- Overhead Door Construction Name
-  ,                                       !- Skylight Construction Name
-  ,                                       !- Tubular Daylight Dome Construction Name
-  ;                                       !- Tubular Daylight Diffuser Construction Name
 
-OS:DefaultConstructionSet,
-  {c9df4618-7985-4034-9c29-d5cb15979ec6}, !- Handle
-  189.1-2009 - CZ3 - Office,              !- Name
-  {d6af2b3b-28db-4bf2-a9dc-1c4fd0f824dd}, !- Default Exterior Surface Constructions Name
-  {a9f2b24e-5a9d-4ccc-8575-c17a7ab8f5d5}, !- Default Interior Surface Constructions Name
-  {58aba3b0-680a-4a55-ad12-8789ae1a4996}, !- Default Ground Contact Surface Constructions Name
-  {729ad613-65a7-459d-9bb5-bf9d1e92302d}, !- Default Exterior SubSurface Constructions Name
-  {20427276-762a-46a3-a4f6-13921c067cab}, !- Default Interior SubSurface Constructions Name
-  {b9ac6245-26b5-4f64-93ef-6f6c00c376f5}, !- Interior Partition Construction Name
-  ,                                       !- Space Shading Construction Name
-  ,                                       !- Building Shading Construction Name
-  ;                                       !- Site Shading Construction Name
 
-OS:DefaultSurfaceConstructions,
-  {d6af2b3b-28db-4bf2-a9dc-1c4fd0f824dd}, !- Handle
-  Default Surface Constructions 7,        !- Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}, !- Floor Construction Name
-  {9a6d1d24-5c4d-4c7a-8152-e08f0adc89b0}, !- Wall Construction Name
-  {f01c2998-dc2a-40e4-92ac-634289a393bd}; !- Roof Ceiling Construction Name
 
-OS:Construction,
-  {9a6d1d24-5c4d-4c7a-8152-e08f0adc89b0}, !- Handle
-  ASHRAE 189.1-2009 ExtWall Mass ClimateZone 3, !- Name
-  ,                                       !- Surface Rendering Name
-  {f599e234-5bef-4b8b-a29e-b0e66ba90d1c}, !- Layer 1
-  {86ce4850-8b71-4fc3-8156-58e01dd0d672}, !- Layer 2
-  {86c63f48-004b-41fa-9082-ef9d67605dd6}, !- Layer 3
-  {adfa9abe-33e8-4914-a062-5f8dacc4064e}; !- Layer 4
 
-OS:StandardsInformation:Construction,
-  {c0b1cd8b-b7f7-46e8-b5c9-7a5f868444ac}, !- Handle
-  {9a6d1d24-5c4d-4c7a-8152-e08f0adc89b0}, !- Construction Name
-  ExteriorWall,                           !- Intended Surface Type
-  Mass,                                   !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ASHRAE 189.1-2009;                      !- Construction Standard
 
 OS:Material,
   {86c63f48-004b-41fa-9082-ef9d67605dd6}, !- Handle
@@ -17931,47 +16992,10 @@ OS:StandardsInformation:Material,
   {a1bfd3aa-6d57-47e7-85c0-00b50a6c291a}, !- Handle
   {86c63f48-004b-41fa-9082-ef9d67605dd6}; !- Material Name
 
-OS:DefaultSurfaceConstructions,
-  {a9f2b24e-5a9d-4ccc-8575-c17a7ab8f5d5}, !- Handle
-  Default Surface Constructions 8,        !- Name
-  {0b0018dc-e472-468b-a845-7af44941b4e4}, !- Floor Construction Name
-  {53884ea6-a192-41b5-81c2-1408e285d41a}, !- Wall Construction Name
-  {5ec6d64f-0911-4526-a0bf-dc24257386ae}; !- Roof Ceiling Construction Name
 
-OS:DefaultSurfaceConstructions,
-  {58aba3b0-680a-4a55-ad12-8789ae1a4996}, !- Handle
-  Default Surface Constructions 9,        !- Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}, !- Floor Construction Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}, !- Wall Construction Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}; !- Roof Ceiling Construction Name
 
-OS:DefaultSubSurfaceConstructions,
-  {729ad613-65a7-459d-9bb5-bf9d1e92302d}, !- Handle
-  Default Sub Surface Constructions 5,    !- Name
-  {c1099696-431f-459f-9d2a-4b0605f508c8}, !- Fixed Window Construction Name
-  {c1099696-431f-459f-9d2a-4b0605f508c8}, !- Operable Window Construction Name
-  {d2ff3f72-9ebc-4a16-a5c6-797a25521b72}, !- Door Construction Name
-  ,                                       !- Glass Door Construction Name
-  ,                                       !- Overhead Door Construction Name
-  ,                                       !- Skylight Construction Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}, !- Tubular Daylight Dome Construction Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}; !- Tubular Daylight Diffuser Construction Name
 
-OS:Construction,
-  {c1099696-431f-459f-9d2a-4b0605f508c8}, !- Handle
-  ASHRAE 189.1-2009 ExtWindow ClimateZone 3, !- Name
-  ,                                       !- Surface Rendering Name
-  {8e3b0056-5c77-4812-936e-a0acb51c8d43}; !- Layer 1
 
-OS:StandardsInformation:Construction,
-  {a166dfeb-8c8b-49c7-90b8-0a951ed134db}, !- Handle
-  {c1099696-431f-459f-9d2a-4b0605f508c8}, !- Construction Name
-  ExteriorWindow,                         !- Intended Surface Type
-  ,                                       !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ASHRAE 189.1-2009;                      !- Construction Standard
 
 OS:WindowMaterial:Glazing,
   {8e3b0056-5c77-4812-936e-a0acb51c8d43}, !- Handle
@@ -17996,56 +17020,10 @@ OS:StandardsInformation:Material,
   {384d3391-bf2d-4019-8c1f-e8ec3fd12fa4}, !- Handle
   {8e3b0056-5c77-4812-936e-a0acb51c8d43}; !- Material Name
 
-OS:DefaultSubSurfaceConstructions,
-  {20427276-762a-46a3-a4f6-13921c067cab}, !- Handle
-  Default Sub Surface Constructions 6,    !- Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}, !- Fixed Window Construction Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}, !- Operable Window Construction Name
-  {70882ec4-63fb-4f06-bb2d-0eda19c6cd5a}, !- Door Construction Name
-  ,                                       !- Glass Door Construction Name
-  ,                                       !- Overhead Door Construction Name
-  ,                                       !- Skylight Construction Name
-  ,                                       !- Tubular Daylight Dome Construction Name
-  ;                                       !- Tubular Daylight Diffuser Construction Name
 
-OS:DefaultConstructionSet,
-  {b7c810dd-2bb4-4df7-9ab0-237fa5eab081}, !- Handle
-  189.1-2009 - CZ4 - Office,              !- Name
-  {c592de20-015b-46b7-9ed9-9a7c6492d96b}, !- Default Exterior Surface Constructions Name
-  {9a13ea0d-2b28-4891-87bf-b092834613e6}, !- Default Interior Surface Constructions Name
-  {3b839530-d650-41dc-9ba7-2d83a24f15be}, !- Default Ground Contact Surface Constructions Name
-  {3ec46966-9ca9-40d8-b5eb-808bbe484749}, !- Default Exterior SubSurface Constructions Name
-  {aeab02be-5a62-4b63-99ee-8f2a6b50cc67}, !- Default Interior SubSurface Constructions Name
-  {b9ac6245-26b5-4f64-93ef-6f6c00c376f5}, !- Interior Partition Construction Name
-  ,                                       !- Space Shading Construction Name
-  ,                                       !- Building Shading Construction Name
-  ;                                       !- Site Shading Construction Name
 
-OS:DefaultSurfaceConstructions,
-  {c592de20-015b-46b7-9ed9-9a7c6492d96b}, !- Handle
-  Default Surface Constructions 10,       !- Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}, !- Floor Construction Name
-  {2beb5de0-7c8e-47e6-912c-93d5c1452753}, !- Wall Construction Name
-  {f01c2998-dc2a-40e4-92ac-634289a393bd}; !- Roof Ceiling Construction Name
 
-OS:Construction,
-  {2beb5de0-7c8e-47e6-912c-93d5c1452753}, !- Handle
-  ASHRAE 189.1-2009 ExtWall Mass ClimateZone 4, !- Name
-  ,                                       !- Surface Rendering Name
-  {f599e234-5bef-4b8b-a29e-b0e66ba90d1c}, !- Layer 1
-  {86ce4850-8b71-4fc3-8156-58e01dd0d672}, !- Layer 2
-  {797c89e5-49d2-4929-878d-c01c2d4f65bf}, !- Layer 3
-  {adfa9abe-33e8-4914-a062-5f8dacc4064e}; !- Layer 4
 
-OS:StandardsInformation:Construction,
-  {96035a8d-886a-494e-8ace-681e6f2993a0}, !- Handle
-  {2beb5de0-7c8e-47e6-912c-93d5c1452753}, !- Construction Name
-  ExteriorWall,                           !- Intended Surface Type
-  Mass,                                   !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ASHRAE 189.1-2009;                      !- Construction Standard
 
 OS:Material,
   {797c89e5-49d2-4929-878d-c01c2d4f65bf}, !- Handle
@@ -18063,47 +17041,10 @@ OS:StandardsInformation:Material,
   {f6035342-0149-4ea4-a2d6-cb31e0096655}, !- Handle
   {797c89e5-49d2-4929-878d-c01c2d4f65bf}; !- Material Name
 
-OS:DefaultSurfaceConstructions,
-  {9a13ea0d-2b28-4891-87bf-b092834613e6}, !- Handle
-  Default Surface Constructions 11,       !- Name
-  {0b0018dc-e472-468b-a845-7af44941b4e4}, !- Floor Construction Name
-  {53884ea6-a192-41b5-81c2-1408e285d41a}, !- Wall Construction Name
-  {5ec6d64f-0911-4526-a0bf-dc24257386ae}; !- Roof Ceiling Construction Name
 
-OS:DefaultSurfaceConstructions,
-  {3b839530-d650-41dc-9ba7-2d83a24f15be}, !- Handle
-  Default Surface Constructions 12,       !- Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}, !- Floor Construction Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}, !- Wall Construction Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}; !- Roof Ceiling Construction Name
 
-OS:DefaultSubSurfaceConstructions,
-  {3ec46966-9ca9-40d8-b5eb-808bbe484749}, !- Handle
-  Default Sub Surface Constructions 7,    !- Name
-  {7b0057cf-d08e-4a45-99ec-87f0eb94b1bd}, !- Fixed Window Construction Name
-  {7b0057cf-d08e-4a45-99ec-87f0eb94b1bd}, !- Operable Window Construction Name
-  {d2ff3f72-9ebc-4a16-a5c6-797a25521b72}, !- Door Construction Name
-  ,                                       !- Glass Door Construction Name
-  ,                                       !- Overhead Door Construction Name
-  ,                                       !- Skylight Construction Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}, !- Tubular Daylight Dome Construction Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}; !- Tubular Daylight Diffuser Construction Name
 
-OS:Construction,
-  {7b0057cf-d08e-4a45-99ec-87f0eb94b1bd}, !- Handle
-  ASHRAE 189.1-2009 ExtWindow ClimateZone 4-5, !- Name
-  ,                                       !- Surface Rendering Name
-  {6b986149-4d27-4395-8784-6f01e63a470b}; !- Layer 1
 
-OS:StandardsInformation:Construction,
-  {52ddd8d8-d1ab-4466-8ad1-d6af18358010}, !- Handle
-  {7b0057cf-d08e-4a45-99ec-87f0eb94b1bd}, !- Construction Name
-  ExteriorWindow,                         !- Intended Surface Type
-  ,                                       !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ASHRAE 189.1-2009;                      !- Construction Standard
 
 OS:WindowMaterial:Glazing,
   {6b986149-4d27-4395-8784-6f01e63a470b}, !- Handle
@@ -18128,56 +17069,10 @@ OS:StandardsInformation:Material,
   {4396f391-93ca-4fe4-af94-05cf696c9435}, !- Handle
   {6b986149-4d27-4395-8784-6f01e63a470b}; !- Material Name
 
-OS:DefaultSubSurfaceConstructions,
-  {aeab02be-5a62-4b63-99ee-8f2a6b50cc67}, !- Handle
-  Default Sub Surface Constructions 8,    !- Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}, !- Fixed Window Construction Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}, !- Operable Window Construction Name
-  {70882ec4-63fb-4f06-bb2d-0eda19c6cd5a}, !- Door Construction Name
-  ,                                       !- Glass Door Construction Name
-  ,                                       !- Overhead Door Construction Name
-  ,                                       !- Skylight Construction Name
-  ,                                       !- Tubular Daylight Dome Construction Name
-  ;                                       !- Tubular Daylight Diffuser Construction Name
 
-OS:DefaultConstructionSet,
-  {c843ac02-1e81-40be-b7ce-59ca34e6922f}, !- Handle
-  189.1-2009 - CZ5 - Office,              !- Name
-  {5087102c-c07c-40d4-acaf-15aea71334e6}, !- Default Exterior Surface Constructions Name
-  {9077730e-2e9e-40da-bde3-f6dccf02df74}, !- Default Interior Surface Constructions Name
-  {ab3fedaf-36af-4082-a9eb-bf2c9086fdf9}, !- Default Ground Contact Surface Constructions Name
-  {2708fc51-1b62-41e8-a280-a10f13e07cb0}, !- Default Exterior SubSurface Constructions Name
-  {79a07fa0-d367-4700-91ec-6cb78907d458}, !- Default Interior SubSurface Constructions Name
-  {b9ac6245-26b5-4f64-93ef-6f6c00c376f5}, !- Interior Partition Construction Name
-  ,                                       !- Space Shading Construction Name
-  ,                                       !- Building Shading Construction Name
-  ;                                       !- Site Shading Construction Name
 
-OS:DefaultSurfaceConstructions,
-  {5087102c-c07c-40d4-acaf-15aea71334e6}, !- Handle
-  Default Surface Constructions 13,       !- Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}, !- Floor Construction Name
-  {d5c64026-fa3b-4ab3-bb89-7b01cf2c44f5}, !- Wall Construction Name
-  {f01c2998-dc2a-40e4-92ac-634289a393bd}; !- Roof Ceiling Construction Name
 
-OS:Construction,
-  {d5c64026-fa3b-4ab3-bb89-7b01cf2c44f5}, !- Handle
-  ASHRAE 189.1-2009 ExtWall Mass ClimateZone 5, !- Name
-  ,                                       !- Surface Rendering Name
-  {f599e234-5bef-4b8b-a29e-b0e66ba90d1c}, !- Layer 1
-  {86ce4850-8b71-4fc3-8156-58e01dd0d672}, !- Layer 2
-  {4a8d2e13-f63a-4207-9dda-3f2e6e1de10d}, !- Layer 3
-  {adfa9abe-33e8-4914-a062-5f8dacc4064e}; !- Layer 4
 
-OS:StandardsInformation:Construction,
-  {df82085e-4812-49e2-ae52-5a48096fc3c4}, !- Handle
-  {d5c64026-fa3b-4ab3-bb89-7b01cf2c44f5}, !- Construction Name
-  ExteriorWall,                           !- Intended Surface Type
-  Mass,                                   !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ASHRAE 189.1-2009;                      !- Construction Standard
 
 OS:Material,
   {4a8d2e13-f63a-4207-9dda-3f2e6e1de10d}, !- Handle
@@ -18195,82 +17090,13 @@ OS:StandardsInformation:Material,
   {9e8cba4f-4037-42f6-84ee-5779fcec866b}, !- Handle
   {4a8d2e13-f63a-4207-9dda-3f2e6e1de10d}; !- Material Name
 
-OS:DefaultSurfaceConstructions,
-  {9077730e-2e9e-40da-bde3-f6dccf02df74}, !- Handle
-  Default Surface Constructions 14,       !- Name
-  {0b0018dc-e472-468b-a845-7af44941b4e4}, !- Floor Construction Name
-  {53884ea6-a192-41b5-81c2-1408e285d41a}, !- Wall Construction Name
-  {5ec6d64f-0911-4526-a0bf-dc24257386ae}; !- Roof Ceiling Construction Name
 
-OS:DefaultSurfaceConstructions,
-  {ab3fedaf-36af-4082-a9eb-bf2c9086fdf9}, !- Handle
-  Default Surface Constructions 15,       !- Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}, !- Floor Construction Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}, !- Wall Construction Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}; !- Roof Ceiling Construction Name
 
-OS:DefaultSubSurfaceConstructions,
-  {2708fc51-1b62-41e8-a280-a10f13e07cb0}, !- Handle
-  Default Sub Surface Constructions 9,    !- Name
-  {7b0057cf-d08e-4a45-99ec-87f0eb94b1bd}, !- Fixed Window Construction Name
-  {7b0057cf-d08e-4a45-99ec-87f0eb94b1bd}, !- Operable Window Construction Name
-  {d2ff3f72-9ebc-4a16-a5c6-797a25521b72}, !- Door Construction Name
-  ,                                       !- Glass Door Construction Name
-  ,                                       !- Overhead Door Construction Name
-  ,                                       !- Skylight Construction Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}, !- Tubular Daylight Dome Construction Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}; !- Tubular Daylight Diffuser Construction Name
 
-OS:DefaultSubSurfaceConstructions,
-  {79a07fa0-d367-4700-91ec-6cb78907d458}, !- Handle
-  Default Sub Surface Constructions 10,   !- Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}, !- Fixed Window Construction Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}, !- Operable Window Construction Name
-  {70882ec4-63fb-4f06-bb2d-0eda19c6cd5a}, !- Door Construction Name
-  ,                                       !- Glass Door Construction Name
-  ,                                       !- Overhead Door Construction Name
-  ,                                       !- Skylight Construction Name
-  ,                                       !- Tubular Daylight Dome Construction Name
-  ;                                       !- Tubular Daylight Diffuser Construction Name
 
-OS:DefaultConstructionSet,
-  {768a1d20-cb5a-45f3-b5f5-21692829b455}, !- Handle
-  189.1-2009 - CZ6 - Office,              !- Name
-  {376d4f07-37bd-46e5-a15e-aae6bc33d029}, !- Default Exterior Surface Constructions Name
-  {8890292a-451c-4995-bec9-4b0511b57d9b}, !- Default Interior Surface Constructions Name
-  {af07c9fc-0233-4fc8-af94-9041f0d92856}, !- Default Ground Contact Surface Constructions Name
-  {dc0a7fc7-8205-4131-ba30-f396685be8e8}, !- Default Exterior SubSurface Constructions Name
-  {89ecbd20-2b1a-446c-ae91-ff22b17c1b89}, !- Default Interior SubSurface Constructions Name
-  {b9ac6245-26b5-4f64-93ef-6f6c00c376f5}, !- Interior Partition Construction Name
-  ,                                       !- Space Shading Construction Name
-  ,                                       !- Building Shading Construction Name
-  ;                                       !- Site Shading Construction Name
 
-OS:DefaultSurfaceConstructions,
-  {376d4f07-37bd-46e5-a15e-aae6bc33d029}, !- Handle
-  Default Surface Constructions 16,       !- Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}, !- Floor Construction Name
-  {202d8a78-0453-447c-a6fb-e98dfbcfbee1}, !- Wall Construction Name
-  {c5684fc0-fc27-4375-9757-4248e099b538}; !- Roof Ceiling Construction Name
 
-OS:Construction,
-  {202d8a78-0453-447c-a6fb-e98dfbcfbee1}, !- Handle
-  ASHRAE 189.1-2009 ExtWall Mass ClimateZone 6, !- Name
-  ,                                       !- Surface Rendering Name
-  {f599e234-5bef-4b8b-a29e-b0e66ba90d1c}, !- Layer 1
-  {86ce4850-8b71-4fc3-8156-58e01dd0d672}, !- Layer 2
-  {ad3c59b6-6b6c-4d1d-a9e7-ef32980023e5}, !- Layer 3
-  {adfa9abe-33e8-4914-a062-5f8dacc4064e}; !- Layer 4
 
-OS:StandardsInformation:Construction,
-  {909777b8-2e17-496f-baad-fa2538eae760}, !- Handle
-  {202d8a78-0453-447c-a6fb-e98dfbcfbee1}, !- Construction Name
-  ExteriorWall,                           !- Intended Surface Type
-  Mass,                                   !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ASHRAE 189.1-2009;                      !- Construction Standard
 
 OS:Material,
   {ad3c59b6-6b6c-4d1d-a9e7-ef32980023e5}, !- Handle
@@ -18288,23 +17114,7 @@ OS:StandardsInformation:Material,
   {84c2fb4a-35ab-4a41-aa92-ba7dcdcd5049}, !- Handle
   {ad3c59b6-6b6c-4d1d-a9e7-ef32980023e5}; !- Material Name
 
-OS:Construction,
-  {c5684fc0-fc27-4375-9757-4248e099b538}, !- Handle
-  ASHRAE 189.1-2009 ExtRoof Metal ClimateZone 6, !- Name
-  ,                                       !- Surface Rendering Name
-  {974c10e4-1777-4808-8bac-f8c8cacb9690}, !- Layer 1
-  {481c1af1-c048-42f6-83eb-e22390f48e53}, !- Layer 2
-  {50421cc9-2708-4aab-9ca0-83f0f97fc06a}; !- Layer 3
 
-OS:StandardsInformation:Construction,
-  {3fd5ec91-3d06-40da-b0d1-0eb28aff3d8f}, !- Handle
-  {c5684fc0-fc27-4375-9757-4248e099b538}, !- Construction Name
-  ExteriorRoof,                           !- Intended Surface Type
-  Metal,                                  !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ASHRAE 189.1-2009;                      !- Construction Standard
 
 OS:Material,
   {974c10e4-1777-4808-8bac-f8c8cacb9690}, !- Handle
@@ -18338,47 +17148,10 @@ OS:StandardsInformation:Material,
   {31302a45-351e-47f5-8ba5-cd86bb1e7daf}, !- Handle
   {481c1af1-c048-42f6-83eb-e22390f48e53}; !- Material Name
 
-OS:DefaultSurfaceConstructions,
-  {8890292a-451c-4995-bec9-4b0511b57d9b}, !- Handle
-  Default Surface Constructions 17,       !- Name
-  {0b0018dc-e472-468b-a845-7af44941b4e4}, !- Floor Construction Name
-  {53884ea6-a192-41b5-81c2-1408e285d41a}, !- Wall Construction Name
-  {5ec6d64f-0911-4526-a0bf-dc24257386ae}; !- Roof Ceiling Construction Name
 
-OS:DefaultSurfaceConstructions,
-  {af07c9fc-0233-4fc8-af94-9041f0d92856}, !- Handle
-  Default Surface Constructions 18,       !- Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}, !- Floor Construction Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}, !- Wall Construction Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}; !- Roof Ceiling Construction Name
 
-OS:DefaultSubSurfaceConstructions,
-  {dc0a7fc7-8205-4131-ba30-f396685be8e8}, !- Handle
-  Default Sub Surface Constructions 11,   !- Name
-  {f8756568-0e66-4799-a5bf-77a579335010}, !- Fixed Window Construction Name
-  {f8756568-0e66-4799-a5bf-77a579335010}, !- Operable Window Construction Name
-  {d2ff3f72-9ebc-4a16-a5c6-797a25521b72}, !- Door Construction Name
-  ,                                       !- Glass Door Construction Name
-  ,                                       !- Overhead Door Construction Name
-  ,                                       !- Skylight Construction Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}, !- Tubular Daylight Dome Construction Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}; !- Tubular Daylight Diffuser Construction Name
 
-OS:Construction,
-  {f8756568-0e66-4799-a5bf-77a579335010}, !- Handle
-  ASHRAE 189.1-2009 ExtWindow ClimateZone 6, !- Name
-  ,                                       !- Surface Rendering Name
-  {8fb7ea74-e85a-45a7-b167-4b76e2fea79e}; !- Layer 1
 
-OS:StandardsInformation:Construction,
-  {42f3aa61-3865-4745-8f37-47fadd7a0c04}, !- Handle
-  {f8756568-0e66-4799-a5bf-77a579335010}, !- Construction Name
-  ExteriorWindow,                         !- Intended Surface Type
-  ,                                       !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ASHRAE 189.1-2009;                      !- Construction Standard
 
 OS:WindowMaterial:Glazing,
   {8fb7ea74-e85a-45a7-b167-4b76e2fea79e}, !- Handle
@@ -18403,56 +17176,10 @@ OS:StandardsInformation:Material,
   {c85bff12-19de-453f-b9bf-7ee6e3f75853}, !- Handle
   {8fb7ea74-e85a-45a7-b167-4b76e2fea79e}; !- Material Name
 
-OS:DefaultSubSurfaceConstructions,
-  {89ecbd20-2b1a-446c-ae91-ff22b17c1b89}, !- Handle
-  Default Sub Surface Constructions 12,   !- Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}, !- Fixed Window Construction Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}, !- Operable Window Construction Name
-  {70882ec4-63fb-4f06-bb2d-0eda19c6cd5a}, !- Door Construction Name
-  ,                                       !- Glass Door Construction Name
-  ,                                       !- Overhead Door Construction Name
-  ,                                       !- Skylight Construction Name
-  ,                                       !- Tubular Daylight Dome Construction Name
-  ;                                       !- Tubular Daylight Diffuser Construction Name
 
-OS:DefaultConstructionSet,
-  {1835a363-7e47-4a66-b2c0-8ed42d45f36d}, !- Handle
-  189.1-2009 - CZ7-8 - Office,            !- Name
-  {7785fac6-0917-4b78-a353-f104f131e302}, !- Default Exterior Surface Constructions Name
-  {87c161ff-81ad-4508-913f-4c75f59a9437}, !- Default Interior Surface Constructions Name
-  {b5e4cef0-92d1-442a-ac5c-5ecb7fb455ae}, !- Default Ground Contact Surface Constructions Name
-  {db97ea77-0c3a-4669-8b9d-5090287ccadc}, !- Default Exterior SubSurface Constructions Name
-  {99c3e67d-a4d1-4109-9849-560725541b8e}, !- Default Interior SubSurface Constructions Name
-  {b9ac6245-26b5-4f64-93ef-6f6c00c376f5}, !- Interior Partition Construction Name
-  ,                                       !- Space Shading Construction Name
-  ,                                       !- Building Shading Construction Name
-  ;                                       !- Site Shading Construction Name
 
-OS:DefaultSurfaceConstructions,
-  {7785fac6-0917-4b78-a353-f104f131e302}, !- Handle
-  Default Surface Constructions 19,       !- Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}, !- Floor Construction Name
-  {ddf18f57-4b8a-48e7-b983-1d63e02d5f46}, !- Wall Construction Name
-  {6d4a72a5-b0fe-4670-8a61-37e0423f58dc}; !- Roof Ceiling Construction Name
 
-OS:Construction,
-  {ddf18f57-4b8a-48e7-b983-1d63e02d5f46}, !- Handle
-  ASHRAE 189.1-2009 ExtWall Mass ClimateZone 7-8, !- Name
-  ,                                       !- Surface Rendering Name
-  {f599e234-5bef-4b8b-a29e-b0e66ba90d1c}, !- Layer 1
-  {86ce4850-8b71-4fc3-8156-58e01dd0d672}, !- Layer 2
-  {8958248e-c613-47d9-811f-c2093667a433}, !- Layer 3
-  {adfa9abe-33e8-4914-a062-5f8dacc4064e}; !- Layer 4
 
-OS:StandardsInformation:Construction,
-  {4fe27789-079e-4272-9cd1-e246428f3aa6}, !- Handle
-  {ddf18f57-4b8a-48e7-b983-1d63e02d5f46}, !- Construction Name
-  ExteriorWall,                           !- Intended Surface Type
-  Mass,                                   !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ASHRAE 189.1-2009;                      !- Construction Standard
 
 OS:Material,
   {8958248e-c613-47d9-811f-c2093667a433}, !- Handle
@@ -18470,23 +17197,7 @@ OS:StandardsInformation:Material,
   {3bfd7a00-ab4b-4a57-812d-1fa15e435b1d}, !- Handle
   {8958248e-c613-47d9-811f-c2093667a433}; !- Material Name
 
-OS:Construction,
-  {6d4a72a5-b0fe-4670-8a61-37e0423f58dc}, !- Handle
-  ASHRAE 189.1-2009 ExtRoof IEAD ClimateZone 7-8, !- Name
-  ,                                       !- Surface Rendering Name
-  {637f69c7-a2cd-4b1e-b4e9-15cbad7076da}, !- Layer 1
-  {0d28c5d8-2c41-4f8f-8c5a-3e5e258dc5b8}, !- Layer 2
-  {50421cc9-2708-4aab-9ca0-83f0f97fc06a}; !- Layer 3
 
-OS:StandardsInformation:Construction,
-  {595f424f-9d44-4037-b234-eec766eac0bb}, !- Handle
-  {6d4a72a5-b0fe-4670-8a61-37e0423f58dc}, !- Construction Name
-  ExteriorRoof,                           !- Intended Surface Type
-  IEAD,                                   !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ASHRAE 189.1-2009;                      !- Construction Standard
 
 OS:Material,
   {0d28c5d8-2c41-4f8f-8c5a-3e5e258dc5b8}, !- Handle
@@ -18504,47 +17215,10 @@ OS:StandardsInformation:Material,
   {a06e9d8d-3928-416b-9c1e-63829bbcdcb1}, !- Handle
   {0d28c5d8-2c41-4f8f-8c5a-3e5e258dc5b8}; !- Material Name
 
-OS:DefaultSurfaceConstructions,
-  {87c161ff-81ad-4508-913f-4c75f59a9437}, !- Handle
-  Default Surface Constructions 20,       !- Name
-  {0b0018dc-e472-468b-a845-7af44941b4e4}, !- Floor Construction Name
-  {53884ea6-a192-41b5-81c2-1408e285d41a}, !- Wall Construction Name
-  {5ec6d64f-0911-4526-a0bf-dc24257386ae}; !- Roof Ceiling Construction Name
 
-OS:DefaultSurfaceConstructions,
-  {b5e4cef0-92d1-442a-ac5c-5ecb7fb455ae}, !- Handle
-  Default Surface Constructions 21,       !- Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}, !- Floor Construction Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}, !- Wall Construction Name
-  {ca0b8402-a973-458c-a138-eacbdf3dea5d}; !- Roof Ceiling Construction Name
 
-OS:DefaultSubSurfaceConstructions,
-  {db97ea77-0c3a-4669-8b9d-5090287ccadc}, !- Handle
-  Default Sub Surface Constructions 13,   !- Name
-  {a02420de-79de-483d-8152-c9b55559e2eb}, !- Fixed Window Construction Name
-  {a02420de-79de-483d-8152-c9b55559e2eb}, !- Operable Window Construction Name
-  {d2ff3f72-9ebc-4a16-a5c6-797a25521b72}, !- Door Construction Name
-  ,                                       !- Glass Door Construction Name
-  ,                                       !- Overhead Door Construction Name
-  ,                                       !- Skylight Construction Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}, !- Tubular Daylight Dome Construction Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}; !- Tubular Daylight Diffuser Construction Name
 
-OS:Construction,
-  {a02420de-79de-483d-8152-c9b55559e2eb}, !- Handle
-  ASHRAE 189.1-2009 ExtWindow ClimateZone 7-8, !- Name
-  ,                                       !- Surface Rendering Name
-  {1ef57f0c-fcc7-4d22-aceb-27f65b882b32}; !- Layer 1
 
-OS:StandardsInformation:Construction,
-  {565fcb21-a496-4e27-82b0-2c29e2574bdc}, !- Handle
-  {a02420de-79de-483d-8152-c9b55559e2eb}, !- Construction Name
-  ExteriorWindow,                         !- Intended Surface Type
-  ,                                       !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ASHRAE 189.1-2009;                      !- Construction Standard
 
 OS:WindowMaterial:Glazing,
   {1ef57f0c-fcc7-4d22-aceb-27f65b882b32}, !- Handle
@@ -18569,27 +17243,14 @@ OS:StandardsInformation:Material,
   {ac2c1735-2d57-4704-b274-13338f136c51}, !- Handle
   {1ef57f0c-fcc7-4d22-aceb-27f65b882b32}; !- Material Name
 
-OS:DefaultSubSurfaceConstructions,
-  {99c3e67d-a4d1-4109-9849-560725541b8e}, !- Handle
-  Default Sub Surface Constructions 14,   !- Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}, !- Fixed Window Construction Name
-  {22386d01-690a-424f-a2bf-fa63e2a9dd0c}, !- Operable Window Construction Name
-  {70882ec4-63fb-4f06-bb2d-0eda19c6cd5a}, !- Door Construction Name
-  ,                                       !- Glass Door Construction Name
-  ,                                       !- Overhead Door Construction Name
-  ,                                       !- Skylight Construction Name
-  ,                                       !- Tubular Daylight Dome Construction Name
-  ;                                       !- Tubular Daylight Diffuser Construction Name
 
-OS:Material:AirWall,
-  {9c2e9d3e-294f-43b6-a35a-50ee1f5a6da4}, !- Handle
-  Air Wall Material;                      !- Name
 
 OS:Construction,
   {c2015e14-8a99-41b4-a8b9-ca08a758e5b5}, !- Handle
   Air Wall,                               !- Name
   ,                                       !- Surface Rendering Name
-  {9c2e9d3e-294f-43b6-a35a-50ee1f5a6da4}; !- Layer 1
+  ;                                       !- Layer 1
+
 OS:Material,
   {d81e1b78-e03c-40ae-b706-25daca0bb8f9}, !- Handle
   184 กระจก,                    !- Name
@@ -18604,27 +17265,14 @@ OS:Material,
 OS:StandardsInformation:Material,
   {dfc87299-3e2d-4c08-a9bc-873dfdda417a}, !- Handle
   {d81e1b78-e03c-40ae-b706-25daca0bb8f9}; !- Material Name
-OS:Material,
-  {17bb8193-346b-4028-8dcb-8295838813ab}, !- Handle
-  129 อิฐมอญฉาบปูนสองหน้า 1, !- Name
-  Smooth,                                 !- Roughness
-  0.1,                                    !- Thickness {m}
-  1.102,                                  !- Conductivity {W/m-K}
-  1700,                                   !- Density {kg/m3}
-  790,                                    !- Specific Heat {J/kg-K}
-  0.9,                                    !- Thermal Absorptance
-  0.3,                                    !- Solar Absorptance
-  0.5;                                    !- Visible Absorptance
-OS:StandardsInformation:Material,
-  {507a3f78-c9e1-4417-896f-11526028f47b}, !- Handle
-  {17bb8193-346b-4028-8dcb-8295838813ab}; !- Material Name
+
 OS:Construction,
   {02810892-a280-4789-93b5-2b2368dc48f7}, !- Handle
   02 Thai Autoclave Aerated Concrete Wall, !- Name
   ,                                       !- Surface Rendering Name
-  {3b283fe3-bba5-431b-bd00-8433bf717b89}, !- Layer 1
-  {95b8dbf1-7d45-4dd5-a3f8-38df40a46240}, !- Layer 2
-  {45018e4f-0f6a-4365-8077-5c3d89595594}; !- Layer 3
+  {bac984f9-2b67-4925-9b7a-147d74e5b855}, !- Layer 1
+  {106704ec-96f4-4d8f-bae8-b15c6031c4fd}, !- Layer 2
+  {bac984f9-2b67-4925-9b7a-147d74e5b855}; !- Layer 3
 OS:StandardsInformation:Construction,
   {4844fcb3-4118-43b1-a5bd-cf58c4e92873}, !- Handle
   {02810892-a280-4789-93b5-2b2368dc48f7}, !- Construction Name
@@ -18642,53 +17290,12 @@ OS:StandardsInformation:Construction,
   ,                                       !- Fenestration Divider Type
   ,                                       !- Fenestration Tint
   ;                                       !- Fenestration Gas Fill
-OS:Material,
-  {3b283fe3-bba5-431b-bd00-8433bf717b89}, !- Handle
-  112 ปูนฉาบสำหรับคอนกรีตมวลเบา 1, !- Name
-  Smooth,                                 !- Roughness
-  0.01,                                   !- Thickness {m}
-  0.326,                                  !- Conductivity {W/m-K}
-  1200,                                   !- Density {kg/m3}
-  840,                                    !- Specific Heat {J/kg-K}
-  0.9,                                    !- Thermal Absorptance
-  0.3,                                    !- Solar Absorptance
-  0.5;                                    !- Visible Absorptance
-OS:StandardsInformation:Material,
-  {371781d4-1bed-47e8-af32-2905b9060ded}, !- Handle
-  {3b283fe3-bba5-431b-bd00-8433bf717b89}; !- Material Name
-OS:Material,
-  {95b8dbf1-7d45-4dd5-a3f8-38df40a46240}, !- Handle
-  32 คอนกรีตมวลเบา ความหนาแน่น 700 กก./ลบ.ม. 1, !- Name
-  Smooth,                                 !- Roughness
-  0.08,                                   !- Thickness {m}
-  0.21,                                   !- Conductivity {W/m-K}
-  700,                                    !- Density {kg/m3}
-  840,                                    !- Specific Heat {J/kg-K}
-  0.9,                                    !- Thermal Absorptance
-  0.3,                                    !- Solar Absorptance
-  0.5;                                    !- Visible Absorptance
-OS:StandardsInformation:Material,
-  {27d0ee4a-ebbf-4863-9d47-b93bf61b97ff}, !- Handle
-  {95b8dbf1-7d45-4dd5-a3f8-38df40a46240}; !- Material Name
-OS:Material,
-  {45018e4f-0f6a-4365-8077-5c3d89595594}, !- Handle
-  112 ปูนฉาบสำหรับคอนกรีตมวลเบา 2, !- Name
-  Smooth,                                 !- Roughness
-  0.01,                                   !- Thickness {m}
-  0.326,                                  !- Conductivity {W/m-K}
-  1200,                                   !- Density {kg/m3}
-  840,                                    !- Specific Heat {J/kg-K}
-  0.9,                                    !- Thermal Absorptance
-  0.3,                                    !- Solar Absorptance
-  0.5;                                    !- Visible Absorptance
-OS:StandardsInformation:Material,
-  {390b6ab1-3b18-4904-8960-622e6e2a5397}, !- Handle
-  {45018e4f-0f6a-4365-8077-5c3d89595594}; !- Material Name
+
 OS:Construction,
   {540b37ff-af76-4209-93f7-1c60e726f414}, !- Handle
   03 Thai Precast Concrete Wall 10 cm,    !- Name
   ,                                       !- Surface Rendering Name
-  {4fc279b1-32ab-4524-a992-37783549a183}; !- Layer 1
+  {9128b6e7-f71b-4f97-8209-6f95a5104f01}; !- Layer 1
 OS:StandardsInformation:Construction,
   {b0d3cf69-9055-41d9-987d-974356e127e4}, !- Handle
   {540b37ff-af76-4209-93f7-1c60e726f414}, !- Construction Name
@@ -18706,28 +17313,16 @@ OS:StandardsInformation:Construction,
   ,                                       !- Fenestration Divider Type
   ,                                       !- Fenestration Tint
   ;                                       !- Fenestration Gas Fill
-OS:Material,
-  {4fc279b1-32ab-4524-a992-37783549a183}, !- Handle
-  35 คอนกรีต หนา 10 ซม. 1, !- Name
-  Smooth,                                 !- Roughness
-  0.1,                                    !- Thickness {m}
-  1.442,                                  !- Conductivity {W/m-K}
-  2400,                                   !- Density {kg/m3}
-  920,                                    !- Specific Heat {J/kg-K}
-  0.9,                                    !- Thermal Absorptance
-  0.5,                                    !- Solar Absorptance
-  0.7;                                    !- Visible Absorptance
-OS:StandardsInformation:Material,
-  {877810ba-09ec-4fde-8af3-efb48438b552}, !- Handle
-  {4fc279b1-32ab-4524-a992-37783549a183}; !- Material Name
+
 OS:Construction,
   {90f80150-aea1-4f0d-9126-6d2b4430ff7f}, !- Handle
   04 Thai Curtain Wall with Insulation,   !- Name
   ,                                       !- Surface Rendering Name
-  {d2fae266-9375-40d9-a411-0000c88c3ce8}, !- Layer 1
-  {35585a26-39cc-4155-b7cf-297b92835c0d}, !- Layer 2
-  {de2180c9-2fad-45e9-a974-89a5952bb336}, !- Layer 3
-  {6182216d-8c83-46fe-b9a0-0d59471cc870}; !- Layer 4
+  {d81e1b78-e03c-40ae-b706-25daca0bb8f9}, !- Layer 1
+  ,                                       !- Layer 2
+  {a98de7e3-df43-4c25-a8ac-135be76a96e6}, !- Layer 3
+  {46ee1a35-986b-432d-9148-9a6339f2f048}; !- Layer 4
+
 OS:StandardsInformation:Construction,
   {91863ea4-604c-4b02-8d14-0ff27c922355}, !- Handle
   {90f80150-aea1-4f0d-9126-6d2b4430ff7f}, !- Construction Name
@@ -18745,54 +17340,15 @@ OS:StandardsInformation:Construction,
   ,                                       !- Fenestration Divider Type
   ,                                       !- Fenestration Tint
   ;                                       !- Fenestration Gas Fill
-OS:Material,
-  {d2fae266-9375-40d9-a411-0000c88c3ce8}, !- Handle
-  184 กระจก 1,                  !- Name
-  Smooth,                                 !- Roughness
-  0.006,                                  !- Thickness {m}
-  0.96,                                   !- Conductivity {W/m-K}
-  2500,                                   !- Density {kg/m3}
-  880,                                    !- Specific Heat {J/kg-K}
-  0.9,                                    !- Thermal Absorptance
-  0.3,                                    !- Solar Absorptance
-  0.5;                                    !- Visible Absorptance
-OS:Material:AirGap,
-  {35585a26-39cc-4155-b7cf-297b92835c0d}, !- Handle
-  TH : Wall Air Space Resistance 100mm Hi 1, !- Name
-  0.16;                                   !- Thermal Resistance {m2-K/W}
-OS:StandardsInformation:Material,
-  {add2f0b9-ca1d-44dd-92bb-c2bc51364a64}, !- Handle
-  {35585a26-39cc-4155-b7cf-297b92835c0d}; !- Material Name
-OS:Material,
-  {de2180c9-2fad-45e9-a974-89a5952bb336}, !- Handle
-  90 ฉนวนใยแก้ว ความหนาแน่น 48 กก./ลบ.ม.หนา 25 มม. 1, !- Name
-  Smooth,                                 !- Roughness
-  0.025,                                  !- Thickness {m}
-  0.033,                                  !- Conductivity {W/m-K}
-  48,                                     !- Density {kg/m3}
-  960,                                    !- Specific Heat {J/kg-K}
-  0.9,                                    !- Thermal Absorptance
-  0.3,                                    !- Solar Absorptance
-  0.3;                                    !- Visible Absorptance
-OS:Material,
-  {6182216d-8c83-46fe-b9a0-0d59471cc870}, !- Handle
-  146 แผ่นยิบซัมตราช้างชนิดธรรมดา หนา 12 มม. 1, !- Name
-  Smooth,                                 !- Roughness
-  0.012,                                  !- Thickness {m}
-  0.318,                                  !- Conductivity {W/m-K}
-  760,                                    !- Density {kg/m3}
-  1090,                                   !- Specific Heat {J/kg-K}
-  0.9,                                    !- Thermal Absorptance
-  0.3,                                    !- Solar Absorptance
-  0.5;                                    !- Visible Absorptance
+
 OS:Construction,
   {b12b5364-40c0-4750-85b8-5bd3a93ce22b}, !- Handle
   06 Thai Roof Deck,                      !- Name
   ,                                       !- Surface Rendering Name
-  {bfbfb346-2b47-4c21-9d47-c67d51e2d027}, !- Layer 1
-  {7094af00-c14d-4cb8-ab38-d2237326176c}, !- Layer 2
-  {18380dc3-e44a-427a-ba27-f76cef83ed2b}, !- Layer 3
-  {5d29fd10-1f2e-4fc8-bdb0-cccd522e4b09}; !- Layer 4
+  {4df36f9b-995e-4e2e-b70f-9b2fcae100ab}, !- Layer 1
+  {9128b6e7-f71b-4f97-8209-6f95a5104f01}, !- Layer 2
+  {2a614ed8-fa53-404f-bed4-f1893e6c32d5}, !- Layer 3
+  {abc74710-066f-4760-b2d3-e76b2e71133e}; !- Layer 4
 OS:StandardsInformation:Construction,
   {fe670833-24b1-4321-95d5-9ed2382be56a}, !- Handle
   {b12b5364-40c0-4750-85b8-5bd3a93ce22b}, !- Construction Name
@@ -18863,11 +17419,11 @@ OS:Construction,
   {b3915616-ea05-49ed-817e-d5825f6f5aeb}, !- Handle
   07 Thai Roof Deck with 3" Glass Wool,   !- Name
   ,                                       !- Surface Rendering Name
-  {bfbfb346-2b47-4c21-9d47-c67d51e2d027}, !- Layer 1
-  {7094af00-c14d-4cb8-ab38-d2237326176c}, !- Layer 2
-  {40d0bd43-23b8-4f37-ab1b-25c07f55edcb}, !- Layer 3
-  {006e45f5-2b6d-4d07-82b1-2be0e57ddafa}, !- Layer 4
-  {39f23198-28f7-435a-ad56-f19443a7d11a}; !- Layer 5
+  {4df36f9b-995e-4e2e-b70f-9b2fcae100ab}, !- Layer 1
+  {9128b6e7-f71b-4f97-8209-6f95a5104f01}, !- Layer 2
+  {2a614ed8-fa53-404f-bed4-f9093e6c32d5}, !- Layer 3
+  {1275b73e-0452-4fb2-a103-6c67db414dc8}, !- Layer 4
+  {96fd29bb-a17d-4beb-a9f1-a76718594334}; !- Layer 5
 OS:StandardsInformation:Construction,
   {81cadc91-212c-422e-8433-a37af4c324b8}, !- Handle
   {b3915616-ea05-49ed-817e-d5825f6f5aeb}, !- Construction Name
@@ -18885,47 +17441,13 @@ OS:StandardsInformation:Construction,
   ,                                       !- Fenestration Divider Type
   ,                                       !- Fenestration Tint
   ;                                       !- Fenestration Gas Fill
-OS:Material:AirGap,
-  {40d0bd43-23b8-4f37-ab1b-25c07f55edcb}, !- Handle
-  TH : Roof Air Space Resistance 0 Degree 100mm Lo 1, !- Name
-  1.423;                                  !- Thermal Resistance {m2-K/W}
-OS:StandardsInformation:Material,
-  {a936e588-b1ac-474e-90e4-4a2cc946226c}, !- Handle
-  {40d0bd43-23b8-4f37-ab1b-25c07f55edcb}; !- Material Name
-OS:Material,
-  {006e45f5-2b6d-4d07-82b1-2be0e57ddafa}, !- Handle
-  68 ฉนวนใยแก้วที่ได้รับฉลากประสิทธิภาพสูง Stay Cool 3" Super Save 1, !- Name
-  Smooth,                                 !- Roughness
-  0.075,                                  !- Thickness {m}
-  0.039,                                  !- Conductivity {W/m-K}
-  12,                                     !- Density {kg/m3}
-  960,                                    !- Specific Heat {J/kg-K}
-  0.9,                                    !- Thermal Absorptance
-  0.1,                                    !- Solar Absorptance
-  0.3;                                    !- Visible Absorptance
-OS:StandardsInformation:Material,
-  {c3896ea2-7eb7-4215-bedf-a1c47e815615}, !- Handle
-  {006e45f5-2b6d-4d07-82b1-2be0e57ddafa}; !- Material Name
-OS:Material,
-  {39f23198-28f7-435a-ad56-f19443a7d11a}, !- Handle
-  151 แผ่นยิปซั่มบอร์ด หนา 9 มม. 2, !- Name
-  Smooth,                                 !- Roughness
-  0.009,                                  !- Thickness {m}
-  0.191,                                  !- Conductivity {W/m-K}
-  880,                                    !- Density {kg/m3}
-  1090,                                   !- Specific Heat {J/kg-K}
-  0.9,                                    !- Thermal Absorptance
-  0.3,                                    !- Solar Absorptance
-  0.5;                                    !- Visible Absorptance
-OS:StandardsInformation:Material,
-  {1c7fe8ce-68e7-4b7c-affc-c924ee0c1459}, !- Handle
-  {39f23198-28f7-435a-ad56-f19443a7d11a}; !- Material Name
+
 OS:Construction,
   {2f828cfb-85b0-4ec0-8126-68235f66ea31}, !- Handle
   08 Thai Metal Sheet Roof with 1" PU Insulation, !- Name
   ,                                       !- Surface Rendering Name
-  {e6fec05c-31e1-468d-89f6-1d0f7e9e1177}, !- Layer 1
-  {2e3b7e1b-0932-44d0-ab97-d22ae6f16523}; !- Layer 2
+  {0ec0855a-b7e9-462a-9cd2-c624177e112f}, !- Layer 1
+  {970bf0c8-6a34-4f34-9e0f-60c7998bcf56}; !- Layer 2
 OS:StandardsInformation:Construction,
   {ac42f6ee-4d94-48b6-b981-3a762518be14}, !- Handle
   {2f828cfb-85b0-4ec0-8126-68235f66ea31}, !- Construction Name
@@ -18943,31 +17465,270 @@ OS:StandardsInformation:Construction,
   ,                                       !- Fenestration Divider Type
   ,                                       !- Fenestration Tint
   ;                                       !- Fenestration Gas Fill
-OS:Material,
-  {e6fec05c-31e1-468d-89f6-1d0f7e9e1177}, !- Handle
-  164 โลหะผสมของอลูมิเนียม แบบธรรมดา  หนา 1 มม. 1, !- Name
-  Smooth,                                 !- Roughness
-  0.001,                                  !- Thickness {m}
-  211,                                    !- Conductivity {W/m-K}
-  2672,                                   !- Density {kg/m3}
-  896,                                    !- Specific Heat {J/kg-K}
-  0.9,                                    !- Thermal Absorptance
-  0.1,                                    !- Solar Absorptance
-  0.3;                                    !- Visible Absorptance
+
 OS:StandardsInformation:Material,
-  {f3393f6a-f2c7-481d-90a7-500beee083a5}, !- Handle
-  {e6fec05c-31e1-468d-89f6-1d0f7e9e1177}; !- Material Name
-OS:Material,
-  {2e3b7e1b-0932-44d0-ab97-d22ae6f16523}, !- Handle
-  158 โฟมโพลียูรีเทน ความหนาแน่น 24 กก./ลบ.ม.หนา 25 มม. 1, !- Name
-  Smooth,                                 !- Roughness
-  0.025,                                  !- Thickness {m}
-  0.023,                                  !- Conductivity {W/m-K}
-  24,                                     !- Density {kg/m3}
-  1590,                                   !- Specific Heat {J/kg-K}
-  0.9,                                    !- Thermal Absorptance
-  0.3,                                    !- Solar Absorptance
-  0.5;                                    !- Visible Absorptance
+  {49e4c52c-eea8-4cc5-a80c-1c2f2601808e}, !- Handle
+  {b758faa0-aa74-494b-a7a2-642e766d00b7}; !- Material Name
+
 OS:StandardsInformation:Material,
-  {5a52264c-673e-4774-8afc-1c9449bcf167}, !- Handle
-  {2e3b7e1b-0932-44d0-ab97-d22ae6f16523}; !- Material Name
+  {50f04504-5d20-43bb-8744-c8024228cfb0}, !- Handle
+  {a732e4da-f945-4630-b833-2cebc386c853}; !- Material Name
+
+OS:StandardsInformation:Material,
+  {8ff24b62-67a1-4eda-b3dd-8b52183cb9d3}, !- Handle
+  {106704ec-96f4-4d8f-bae8-b15c6031c4fd}; !- Material Name
+
+OS:StandardsInformation:Material,
+  {105d1a32-7660-47cb-b8d2-fd4deca54377}, !- Handle
+  {10dd9eb5-aa47-46b1-adb9-471eec277918}; !- Material Name
+
+OS:StandardsInformation:Material,
+  {e765acc9-fc29-4fb3-8b8f-189b12981a2a}, !- Handle
+  {b60d4385-0d12-46a2-b432-4c3811e8848c}; !- Material Name
+
+OS:StandardsInformation:Material,
+  {aa1e8bd3-0d7d-420f-b3b6-9e1a67d896e0}, !- Handle
+  {9128b6e7-f71b-4f97-8209-6f95a5104f01}; !- Material Name
+
+OS:StandardsInformation:Material,
+  {82ff279a-b2a3-4b02-be52-b7093688ffee}, !- Handle
+  {c4f2cf63-d809-4fae-9984-4919b9d9e22e}; !- Material Name
+
+OS:StandardsInformation:Material,
+  {45f1d885-8e3f-4135-8065-c4e0f0a9ef49}, !- Handle
+  {cf6d650f-751c-4b66-9dcd-e9ee5514571d}; !- Material Name
+
+OS:StandardsInformation:Material,
+  {e6fb4a04-5c86-4d8b-ad42-614c065fb342}, !- Handle
+  {61be5653-6c5e-483d-8561-633c7b9e4d57}; !- Material Name
+
+OS:StandardsInformation:Material,
+  {1494dbc6-f353-4a76-a7ca-4ab55f778628}, !- Handle
+  {b93f4ec5-c2ee-4ee1-92c1-9af29ae7c268}; !- Material Name
+OS:StandardsInformation:Construction,
+  {17b0c5d4-2b79-4808-b5a4-fdedd9035cca}, !- Handle
+  {c2015e14-8a99-41b4-a8b9-ca08a758e5b5}; !- Construction Name
+OS:Construction,
+  {5a091563-e9e2-47cf-b40f-9b34cb4f846c}, !- Handle
+  09 Thai Exterior Door,                  !- Name
+  ,                                       !- Surface Rendering Name
+  {ce1e1b02-56c0-478e-9e05-0a4f8f64553b}; !- Layer 1
+OS:StandardsInformation:Construction,
+  {a38265ab-1e60-4e80-ac09-48e96a633d53}, !- Handle
+  {5a091563-e9e2-47cf-b40f-9b34cb4f846c}, !- Construction Name
+  ,                                       !- Intended Surface Type
+  ,                                       !- Standards Construction Type
+  ,                                       !- Perturbable Layer
+  ,                                       !- Perturbable Layer Type
+  ,                                       !- Other Perturbable Layer Type
+  ,                                       !- Construction Standard
+  ,                                       !- Construction Standard Source
+  ,                                       !- Fenestration Type
+  ,                                       !- Fenestration Assembly Context
+  ,                                       !- Fenestration Number of Panes
+  ,                                       !- Fenestration Frame Type
+  ,                                       !- Fenestration Divider Type
+  ,                                       !- Fenestration Tint
+  ;                                       !- Fenestration Gas Fill
+OS:Construction,
+  {ddf1758a-427b-41c5-b4b3-794a1ab0c407}, !- Handle
+  10 Thai Interior Ceiling,               !- Name
+  ,                                       !- Surface Rendering Name
+  {abc74710-066f-4760-b2d3-e76b2e71133e}; !- Layer 1
+OS:StandardsInformation:Construction,
+  {1872ac18-5c37-4efa-a2b0-3b471b7604e8}, !- Handle
+  {ddf1758a-427b-41c5-b4b3-794a1ab0c407}, !- Construction Name
+  ,                                       !- Intended Surface Type
+  ,                                       !- Standards Construction Type
+  ,                                       !- Perturbable Layer
+  ,                                       !- Perturbable Layer Type
+  ,                                       !- Other Perturbable Layer Type
+  ,                                       !- Construction Standard
+  ,                                       !- Construction Standard Source
+  ,                                       !- Fenestration Type
+  ,                                       !- Fenestration Assembly Context
+  ,                                       !- Fenestration Number of Panes
+  ,                                       !- Fenestration Frame Type
+  ,                                       !- Fenestration Divider Type
+  ,                                       !- Fenestration Tint
+  ;                                       !- Fenestration Gas Fill
+OS:Construction,
+  {01c79824-4cdc-45fe-b494-176e70187f7e}, !- Handle
+  11 Thai Interior Door,                  !- Name
+  ,                                       !- Surface Rendering Name
+  {4e9b9ee5-f517-4df6-8d8f-6c0098435770}, !- Layer 1
+  {4e9b9ee5-f517-4df6-8d8f-6c0098435770}; !- Layer 2
+OS:StandardsInformation:Construction,
+  {c35a5ed4-11ed-4c1c-b823-0e3fa6628b95}, !- Handle
+  {01c79824-4cdc-45fe-b494-176e70187f7e}, !- Construction Name
+  ,                                       !- Intended Surface Type
+  ,                                       !- Standards Construction Type
+  ,                                       !- Perturbable Layer
+  ,                                       !- Perturbable Layer Type
+  ,                                       !- Other Perturbable Layer Type
+  ,                                       !- Construction Standard
+  ,                                       !- Construction Standard Source
+  ,                                       !- Fenestration Type
+  ,                                       !- Fenestration Assembly Context
+  ,                                       !- Fenestration Number of Panes
+  ,                                       !- Fenestration Frame Type
+  ,                                       !- Fenestration Divider Type
+  ,                                       !- Fenestration Tint
+  ;                                       !- Fenestration Gas Fill
+OS:Construction,
+  {5241e674-b36c-4e9d-8613-0fa40f590384}, !- Handle
+  12 Thai Interior Floor,                 !- Name
+  ,                                       !- Surface Rendering Name
+  {7bf14561-34bb-4f81-9c35-b2cf21089a8b}, !- Layer 1
+  {9128b6e7-f71b-4f97-8209-6f95a5104f01}; !- Layer 2
+OS:StandardsInformation:Construction,
+  {878d6bdc-60cb-423e-8218-1d443c6fc1e6}, !- Handle
+  {5241e674-b36c-4e9d-8613-0fa40f590384}, !- Construction Name
+  ,                                       !- Intended Surface Type
+  ,                                       !- Standards Construction Type
+  ,                                       !- Perturbable Layer
+  ,                                       !- Perturbable Layer Type
+  ,                                       !- Other Perturbable Layer Type
+  ,                                       !- Construction Standard
+  ,                                       !- Construction Standard Source
+  ,                                       !- Fenestration Type
+  ,                                       !- Fenestration Assembly Context
+  ,                                       !- Fenestration Number of Panes
+  ,                                       !- Fenestration Frame Type
+  ,                                       !- Fenestration Divider Type
+  ,                                       !- Fenestration Tint
+  ;                                       !- Fenestration Gas Fill
+OS:Construction,
+  {892966ac-5247-46b1-b3b2-e01e7eccbf07}, !- Handle
+  13 Thai Interior Partition,             !- Name
+  ,                                       !- Surface Rendering Name
+  {46ee1a35-986b-432d-9148-9a6339f2f048}, !- Layer 1
+  ,                                       !- Layer 2
+  {46ee1a35-986b-432d-9148-9a6339f2f048}; !- Layer 3
+OS:StandardsInformation:Construction,
+  {7be67b28-b23f-4e0d-8759-4f95fa02dc04}, !- Handle
+  {892966ac-5247-46b1-b3b2-e01e7eccbf07}, !- Construction Name
+  ,                                       !- Intended Surface Type
+  ,                                       !- Standards Construction Type
+  ,                                       !- Perturbable Layer
+  ,                                       !- Perturbable Layer Type
+  ,                                       !- Other Perturbable Layer Type
+  ,                                       !- Construction Standard
+  ,                                       !- Construction Standard Source
+  ,                                       !- Fenestration Type
+  ,                                       !- Fenestration Assembly Context
+  ,                                       !- Fenestration Number of Panes
+  ,                                       !- Fenestration Frame Type
+  ,                                       !- Fenestration Divider Type
+  ,                                       !- Fenestration Tint
+  ;                                       !- Fenestration Gas Fill
+OS:Construction,
+  {97c93edc-02d7-4758-908a-a5277d4a7b20}, !- Handle
+  14 Thai Interior Wall,                  !- Name
+  ,                                       !- Surface Rendering Name
+  {b758faa0-aa74-494b-a7a2-642e766d00b7}; !- Layer 1
+OS:StandardsInformation:Construction,
+  {cc74fea5-4a7a-42ea-bce3-be86e41520e5}, !- Handle
+  {97c93edc-02d7-4758-908a-a5277d4a7b20}, !- Construction Name
+  ,                                       !- Intended Surface Type
+  ,                                       !- Standards Construction Type
+  ,                                       !- Perturbable Layer
+  ,                                       !- Perturbable Layer Type
+  ,                                       !- Other Perturbable Layer Type
+  ,                                       !- Construction Standard
+  ,                                       !- Construction Standard Source
+  ,                                       !- Fenestration Type
+  ,                                       !- Fenestration Assembly Context
+  ,                                       !- Fenestration Number of Panes
+  ,                                       !- Fenestration Frame Type
+  ,                                       !- Fenestration Divider Type
+  ,                                       !- Fenestration Tint
+  ;                                       !- Fenestration Gas Fill
+OS:Construction,
+  {b8c0e398-4fe8-436f-b0e1-2d71ee74dc0d}, !- Handle
+  15 Thai Interior Window,                !- Name
+  ,                                       !- Surface Rendering Name
+  {dc9a0568-6bc8-4eae-84ae-9134134be597}; !- Layer 1
+OS:StandardsInformation:Construction,
+  {61c174f9-f654-49ed-a362-8e1048d36a53}, !- Handle
+  {b8c0e398-4fe8-436f-b0e1-2d71ee74dc0d}, !- Construction Name
+  ,                                       !- Intended Surface Type
+  ,                                       !- Standards Construction Type
+  ,                                       !- Perturbable Layer
+  ,                                       !- Perturbable Layer Type
+  ,                                       !- Other Perturbable Layer Type
+  ,                                       !- Construction Standard
+  ,                                       !- Construction Standard Source
+  ,                                       !- Fenestration Type
+  ,                                       !- Fenestration Assembly Context
+  ,                                       !- Fenestration Number of Panes
+  ,                                       !- Fenestration Frame Type
+  ,                                       !- Fenestration Divider Type
+  ,                                       !- Fenestration Tint
+  ;                                       !- Fenestration Gas Fill
+OS:Construction,
+  {a2a679e3-66cc-400a-8ec3-906b23a4e871}, !- Handle
+  16 Thai Exterior Window - Clear,        !- Name
+  ,                                       !- Surface Rendering Name
+  {dc9a0568-6bc8-4eae-84ae-9134134be597}; !- Layer 1
+OS:StandardsInformation:Construction,
+  {39717c88-9ad8-4e7f-a819-18e089618eea}, !- Handle
+  {a2a679e3-66cc-400a-8ec3-906b23a4e871}, !- Construction Name
+  ,                                       !- Intended Surface Type
+  ,                                       !- Standards Construction Type
+  ,                                       !- Perturbable Layer
+  ,                                       !- Perturbable Layer Type
+  ,                                       !- Other Perturbable Layer Type
+  ,                                       !- Construction Standard
+  ,                                       !- Construction Standard Source
+  ,                                       !- Fenestration Type
+  ,                                       !- Fenestration Assembly Context
+  ,                                       !- Fenestration Number of Panes
+  ,                                       !- Fenestration Frame Type
+  ,                                       !- Fenestration Divider Type
+  ,                                       !- Fenestration Tint
+  ;                                       !- Fenestration Gas Fill
+OS:Construction,
+  {98b933bc-dc9f-4943-a204-25652537801b}, !- Handle
+  17 Thai Exterior Window - Green,        !- Name
+  ,                                       !- Surface Rendering Name
+  {eb1033de-3fa4-4300-88f2-609aed710dea}; !- Layer 1
+OS:StandardsInformation:Construction,
+  {dab6398e-9192-4762-a9cf-08b17db76c9d}, !- Handle
+  {98b933bc-dc9f-4943-a204-25652537801b}, !- Construction Name
+  ,                                       !- Intended Surface Type
+  ,                                       !- Standards Construction Type
+  ,                                       !- Perturbable Layer
+  ,                                       !- Perturbable Layer Type
+  ,                                       !- Other Perturbable Layer Type
+  ,                                       !- Construction Standard
+  ,                                       !- Construction Standard Source
+  ,                                       !- Fenestration Type
+  ,                                       !- Fenestration Assembly Context
+  ,                                       !- Fenestration Number of Panes
+  ,                                       !- Fenestration Frame Type
+  ,                                       !- Fenestration Divider Type
+  ,                                       !- Fenestration Tint
+  ;                                       !- Fenestration Gas Fill
+OS:Construction,
+  {80392511-5a59-4d56-af68-870c9c894ff7}, !- Handle
+  18 Thai Exterior Glass Door 12 mm,      !- Name
+  ,                                       !- Surface Rendering Name
+  {760785e0-e526-4e39-a74e-23704f67c4ad}; !- Layer 1
+OS:StandardsInformation:Construction,
+  {58437e83-3bb3-4d25-afa3-e7e305791275}, !- Handle
+  {80392511-5a59-4d56-af68-870c9c894ff7}, !- Construction Name
+  ,                                       !- Intended Surface Type
+  ,                                       !- Standards Construction Type
+  ,                                       !- Perturbable Layer
+  ,                                       !- Perturbable Layer Type
+  ,                                       !- Other Perturbable Layer Type
+  ,                                       !- Construction Standard
+  ,                                       !- Construction Standard Source
+  ,                                       !- Fenestration Type
+  ,                                       !- Fenestration Assembly Context
+  ,                                       !- Fenestration Number of Panes
+  ,                                       !- Fenestration Frame Type
+  ,                                       !- Fenestration Divider Type
+  ,                                       !- Fenestration Tint
+  ;                                       !- Fenestration Gas Fill
