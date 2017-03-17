@@ -286,7 +286,7 @@ OSDocument::OSDocument( openstudio::model::Model library,
   if (!m_simpleProject) {
     LOG(Debug, "Creating new project");
     m_simpleProject = openstudio::analysisdriver::SimpleProject::create(
-        openstudio::toPath(m_modelTempDir) / openstudio::toPath("resources"), 
+        modelTempDir / openstudio::toPath("resources"),
         options,
         true);
 

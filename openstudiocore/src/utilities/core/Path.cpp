@@ -79,7 +79,7 @@ std::string toString(const path& p)
 /** path to QString. */
 QString toQString(const path& p) 
 {
-  return toQString(toString(p));
+  return QString::fromLocal8Bit(p.string().c_str());
 }
 
 /** UTF-8 encoded char* to path*/

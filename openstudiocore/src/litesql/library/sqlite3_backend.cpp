@@ -8,6 +8,7 @@
 #include "compatibility.hpp"
 #include "sqlite3.hpp"
 #include "sqlite3.h"
+#include <QString>
 
 #include <string>
 #ifdef HAVE_LIBSQLITE3
@@ -89,8 +90,9 @@ SQLite3::SQLite3(const string& connInfo) : db(NULL), transaction(false) {
     if (database.empty())
         throw DatabaseError("no database-param specified");
 
-    if (sqlite3_open(database.c_str(), &db)) {
-        throw DatabaseError(sqlite3_errmsg(db));
+    QString f8bit = QString::fromLocal8Bit(database.c_str());
+    if (sqlite3_open(f8bit.toUtf8().constData(), &db)) {
+		throw DatabaseError(sqlite3_errmsg(db));
     }
 
 }

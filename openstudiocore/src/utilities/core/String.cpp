@@ -52,7 +52,7 @@ std::string toString(const std::wstring& w)
 /** QString to UTF-8 encoded std::string. */
 std::string toString(const QString& q) 
 {
-  const QByteArray& qb = q.toUtf8();
+  const QByteArray& qb = q.toLocal8Bit();
   return std::string(qb.data());
 }
 
