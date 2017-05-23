@@ -152,6 +152,7 @@ namespace openstudio {
       //openstudio::path scriptsDir() const;
 
       QHash<QString, QList<double>> sunlits;
+	  float wwr_totoal;
       QWidget * m_runNavigatorWidget;
       QToolButton * m_playButton;
       QComboBox * m_chooser;

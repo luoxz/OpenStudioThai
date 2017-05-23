@@ -1233,7 +1233,7 @@ void OSDocument::exportFile(fileType type)
 	}
 	else if (type == BEC){
 		bec::ForwardTranslator trans;
-		trans.modelTobec(m, outDir);
+		trans.modelTobec(m, outDir, NULL, NULL, NULL, 0.0f);
 		translatorErrors = trans.errors();
 		translatorWarnings = trans.warnings();
 	}

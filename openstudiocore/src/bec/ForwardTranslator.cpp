@@ -415,6 +415,7 @@ namespace bec {
 ForwardTranslator::ForwardTranslator()
 {
     _sunlits = NULL;
+	_wwr_totoal = 0.0f;
     m_logSink.setLogLevel(Warn);
     m_logSink.setChannelRegex(boost::regex("openstudio\\.bec\\.ForwardTranslator"));
     m_logSink.setThreadId(QThread::currentThread());
@@ -428,10 +429,12 @@ bool ForwardTranslator::modelTobec(const openstudio::model::Model& model
                                    , const openstudio::path& path
                                    , ProgressBar* progressBar
                                    , std::string *bvName
-                                   , QHash<QString, QList<double>>* sunlits)
+                                   , QHash<QString, QList<double>>* sunlits
+								   , float wwr_totoal)
 {
     QInputDialog inputBuildingType;
     _sunlits = sunlits;
+	_wwr_totoal = wwr_totoal;
     inputBuildingType.setOption(QInputDialog::UseListViewForComboBoxItems);
     inputBuildingType.setWindowTitle("What is building type.");
     inputBuildingType.setLabelText("Selection:");
@@ -936,6 +939,7 @@ void ForwardTranslator::doSectionOfWall(const model::Model &model, QDomElement &
                     }else{
                         //TODO:ERROR
                     }
+
                     QDomElement WallD = createTagWithText(WallDetail,"WallD");
                     createTagWithText(WallD, "WallDetailWallListName", sfName);
                     createTagWithText(WallD, "WallDetailSectionName", sfName);

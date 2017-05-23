@@ -424,7 +424,7 @@ public:
                     QDomNode nd = nodes.at(idx);
                     QDomElement element = nd.toElement();
 
-                    if(element.tagName() == "WholeNetEnergyConsumptionRefPerArea"){
+                    if(element.tagName() == "WholeNetEnergyConsumptionPerArea"){
                         bool isOK = false;
                         WholeNetEnergyConsumptionPerArea = element.text().toDouble(&isOK);
                         if(!isOK){
@@ -625,7 +625,17 @@ static openstudio::path resourcesPath()
   }
 }
 
-static bool doBecReport(const QString &path, QString& outpath, QString &err){
+static QDomElement createTagWithText(QDomDocument* doc, QDomElement &parent, const QString &tag, const QString &text)
+{
+    QDomElement elm = doc->createElement(tag);
+    if(!text.isEmpty())
+        elm.appendChild(doc->createTextNode(text.toUtf8()));
+
+    parent.appendChild(elm);
+    return elm;
+}
+
+static bool doBecReport(const QString &path, QString& outpath, QString &err, float wwr_total){
     QDomDocument doc("becreport");
 
     QFileInfo fi(path);
@@ -714,6 +724,15 @@ background-color: #ffff99;\n\
 
     QDomElement docElem = doc.documentElement();
     //doTable(docElem.tagName(), docElem, file, 0);
+
+    QDomElement ottvReport = findElementOnPath(docElem, QStringList() << "EnvelopeSystem" << "BuildingOTTVReport");
+    if(!ottvReport.isNull()){
+        QString str = ottvReport.toDocument().toString();
+        str = str + "xxxx";
+        createTagWithText(&doc, ottvReport, "WWR", QString::number(wwr_total));
+        createTagWithText(&doc, ottvReport, "WWRUnit", "A/C");
+    }
+
     QString tables = doTableV2(docElem);
     file.write(tables.toUtf8());
 
@@ -1015,7 +1034,7 @@ bool RunView::doBecInput(const QString &path, const model::Model &model, QString
     m_outputWindow->appendPlainText(QString("Create input.xml at %1").arg(path));
 
     std::string bvn;
-    bool success = trans.modelTobec(model, path.toStdString().c_str(), NULL, &bvn, &sunlits);
+	bool success = trans.modelTobec(model, path.toStdString().c_str(), NULL, &bvn, &sunlits, wwr_totoal);
     bvName = bvn.c_str();
 
 	std::string bvsdefault = resourcesPath().string() + "/" + "default_building_standard.bvs";
@@ -1653,11 +1672,13 @@ void RunView::playButtonClicked(bool t_checked)
           //////////////////////////
           QFile file(outpath+"../5-EnergyPlus-0/eplustbl.htm");
           sunlits.clear();
+		  wwr_totoal = 0.0f;
           if (file.open(QIODevice::ReadOnly | QIODevice::Text))
           {
               m_outputWindow->appendHtml(QString("<font color=\"blue\">Start read eblustbl.htm</font>"));
               QTextStream in(&file);
               QString str = in.readAll();
+			  QString gwstr = str;
               int start = str.indexOf("<b>Sunlit Fraction</b>");
               int table_start_idx = str.indexOf("<table", start);
               int table_end_idx = str.indexOf("</table>", table_start_idx+6);
@@ -1691,6 +1712,30 @@ void RunView::playButtonClicked(bool t_checked)
                   m_outputWindow->appendHtml(QString("<font color=\"green\">%1</font>\n").arg(msg));
               }
               m_outputWindow->appendHtml(QString("<font color=\"blue\">SF:%1</font>").arg(QString::number(sunlits.size())));
+
+			  //Read Conditioned Window-Wall Ratio --> Gross Window-Wall Ratio [%] --> <td align="right">       35.20</td>
+			  int idx_of_wwrAll = gwstr.indexOf("Conditioned Window-Wall Ratio");
+			  int idx_of_wwrAll_end = -1;
+			  if (idx_of_wwrAll > -1){
+				  idx_of_wwrAll = gwstr.indexOf("Gross Window-Wall Ratio [%]", idx_of_wwrAll);
+				  const QString tdBegin("<td align=\"right\"> ");
+				  const QString tdEnd("</td>");
+				  idx_of_wwrAll = gwstr.indexOf(tdBegin, idx_of_wwrAll);
+				  if (idx_of_wwrAll > -1){
+					  idx_of_wwrAll += tdBegin.length();
+					  idx_of_wwrAll_end = gwstr.indexOf(tdEnd, idx_of_wwrAll);
+					  m_outputWindow->appendHtml(QString("idx0:%1, idx1:%2").arg(idx_of_wwrAll).arg(idx_of_wwrAll_end));
+					  if (idx_of_wwrAll_end > -1){
+						  gwstr = gwstr.mid(idx_of_wwrAll, idx_of_wwrAll_end - idx_of_wwrAll);
+						  m_outputWindow->appendHtml(QString("gwstr:[%1]").arg(gwstr));
+						  gwstr = gwstr.trimmed();
+                          wwr_totoal = gwstr.toFloat();
+                          wwr_totoal = wwr_totoal/100.0f;
+						  m_outputWindow->appendHtml(QString("wwr_totoal:[%1]").arg(wwr_totoal));
+						  m_outputWindow->appendHtml(QString("<font color=\"blue\"><b>wwr totoal:%1</b></font>").arg(gwstr));
+					  }
+				  }
+			  }
           }else{
             m_outputWindow->appendHtml(QString("<font color=\"red\">ERROR:Can't read eblustbl.htm</font>"));
           }
@@ -1848,7 +1893,7 @@ void RunView::becFinished(int exitCode, QProcess::ExitStatus exitStatus)
     m_outputWindow->appendPlainText("BEC Finished.");
     m_outputWindow->appendPlainText("Generate Report.");
     QString outpath, err;
-    if(!doBecReport(becoutputPath, outpath, err)){
+    if(!doBecReport(becoutputPath, outpath, err, wwr_totoal)){
         m_outputWindow->appendPlainText("Error BEC Report.");
         m_outputWindow->appendPlainText(err);
     }

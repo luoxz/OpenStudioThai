@@ -120,6 +120,7 @@ ResultsView::ResultsView(QWidget *t_parent)
   hLayout->addWidget(m_openResultsViewerBtn, 0, Qt::AlignVCenter);
 
   m_view = new ResultsWebView(this);
+  m_view->setLocale(QLocale(QLocale::Thai, QLocale::Thailand));
   m_view->setContextMenuPolicy(Qt::NoContextMenu);
   m_view->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
   mainLayout->addWidget(m_view, 0, Qt::AlignTop);
