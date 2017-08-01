@@ -95,6 +95,13 @@ static double lastPV;
 static QString bvName;
 static double bvVal;
 static double WholeNetEnergyConsumptionPerArea = 0.0;
+static QPlainTextEdit* _log = NULL;
+
+static void echo(const QString& msg){
+    if(_log){
+        _log->appendHtml(msg);
+    }
+}
 
 static QString doubleToMoney(double val){
     QLocale::setDefault(QLocale(QLocale::English, QLocale::UnitedStates));
@@ -266,6 +273,19 @@ class doTableArrayOnPath : public IDoTable
 {
 public:
     doTableArrayOnPath() {}
+    double TransparentComponentAreaSUM;
+    double ComponentAreaComponentAreaSUM;
+    void resetSUM(){
+        TransparentComponentAreaSUM = 0.0f;
+        ComponentAreaComponentAreaSUM = 0.0f;
+    }
+    double toWWR(){
+        if(ComponentAreaComponentAreaSUM < 0.00000000001)
+            return 0.0;
+        //echo(QString("----------- TransparentComponentAreaSUM / ComponentAreaComponentAreaSUM : %1/%2").arg(TransparentComponentAreaSUM).arg(ComponentAreaComponentAreaSUM));
+        return TransparentComponentAreaSUM / ComponentAreaComponentAreaSUM;
+    }
+
     QString process(QDomNode& root, const QStringList& fullpaths){
         bool initHeader = false;
         QString arrayTags = fullpaths.at(fullpaths.size()-1);
@@ -304,6 +324,15 @@ public:
 
                         if(ecol.tagName().endsWith("Unit"))
                             continue;
+
+                        if(ecol.tagName() == "TransparentComponentArea"){
+                            TransparentComponentAreaSUM += ecol.text().toDouble();
+                            //echo(QString("++++++++++++++++++++++++++++TransparentComponentAreaSUM [%1]:%2").arg(ecol.text()).arg(QString::number(TransparentComponentAreaSUM)));
+                        }
+                        if(ecol.tagName() == "ComponentAreaComponentArea"){
+                            ComponentAreaComponentAreaSUM += ecol.text().toDouble();
+                            //echo(QString("*****************************ComponentAreaComponentAreaSUM [%1]:%2").arg(ecol.text()).arg(QString::number(ComponentAreaComponentAreaSUM)));
+                        }
 
                         if(!initHeader){
                             QString header = insertSpaceInTag(ecol.tagName());
@@ -403,9 +432,11 @@ class doTableOnPath : public IDoTable
 {
 public:
     doTableOnPath() {}
+	double WWR;
     QString process(QDomNode& root, const QStringList& paths){
         QDomElement targetNode = findElementOnPath(root, paths);
         QString out;
+        bool isOnBuildingOTTVAC = false;
         if(targetNode.isNull()){
             out = "<table border=\"1\" cellpadding=\"4\" cellspacing=\"0\">"
                             "<tbody>"
@@ -431,6 +462,16 @@ public:
                             WholeNetEnergyConsumptionPerArea = 0;
                         }
                     }
+
+                    if(element.tagName() == "BuildingOTTVAC"){
+                        bool isOK = false;
+                        isOnBuildingOTTVAC = true;
+                        WholeNetEnergyConsumptionPerArea = element.text().toDouble(&isOK);
+                        if(!isOK){
+                            WholeNetEnergyConsumptionPerArea = 0;
+                        }
+                    }
+
                     if(element.tagName().endsWith("Unit"))
                         continue;
 
@@ -444,6 +485,10 @@ public:
 
                     row2.append(QString("<td>%1</td>\n").arg(stringToMoney(element.text())));
                 }
+                if (isOnBuildingOTTVAC) {
+					out.append("<td>WWR</td>\n");
+                    row2.append(QString("<td>%1</td>\n").arg(QString::number(WWR, 'f', 2)));
+				}
                 row2.append("</tr>\n");
                 out.append("</tr>\n");
                 out.append(row2);
@@ -461,11 +506,17 @@ class TableDataList
 {
 public:
     enum TABLETYPE { TABLE=0, VTABLE, ARRAYTABLE };
+    doTableOnPath* _doTableOnPath;
+    doVTableOnPath *_doVTableOnPath;
+    doTableArrayOnPath *_doTableArrayOnPath;
     TableDataList(QDomNode root) {
         this->root = root;
-        tableProcesser.insert(TABLE, new doTableOnPath());
-        tableProcesser.insert(VTABLE, new doVTableOnPath());
-        tableProcesser.insert(ARRAYTABLE, new doTableArrayOnPath());
+        _doTableOnPath = new doTableOnPath;
+        _doVTableOnPath = new doVTableOnPath;
+        _doTableArrayOnPath = new doTableArrayOnPath;
+        tableProcesser.insert(TABLE, _doTableOnPath);
+        tableProcesser.insert(VTABLE, _doVTableOnPath);
+        tableProcesser.insert(ARRAYTABLE, _doTableArrayOnPath);
     }
 
     ~TableDataList(){
@@ -484,6 +535,10 @@ public:
     }
 
     QString toString(){
+        _doTableArrayOnPath->resetSUM();
+        _doTableArrayOnPath->process(root, QStringList()<<"EnvelopeSystem" << "BuildingOTTVwall" << "TransparentComponentWall" << "TransparentComponentByWall");
+        _doTableArrayOnPath->process(root, QStringList()<<"EnvelopeSystem" << "BuildingOTTVwall" << "ComponentAreaWall" << "ComponentAreaPerWall");
+        _doTableOnPath->WWR = _doTableArrayOnPath->toWWR();
         QString out;
         for (int idx = 0; idx < sls.size(); ++idx) {
             QStringList path = sls.at(idx);
@@ -725,14 +780,6 @@ background-color: #ffff99;\n\
     QDomElement docElem = doc.documentElement();
     //doTable(docElem.tagName(), docElem, file, 0);
 
-    QDomElement ottvReport = findElementOnPath(docElem, QStringList() << "EnvelopeSystem" << "BuildingOTTVReport");
-    if(!ottvReport.isNull()){
-        QString str = ottvReport.toDocument().toString();
-        str = str + "xxxx";
-        createTagWithText(&doc, ottvReport, "WWR", QString::number(wwr_total));
-        createTagWithText(&doc, ottvReport, "WWRUnit", "A/C");
-    }
-
     QString tables = doTableV2(docElem);
     file.write(tables.toUtf8());
 
@@ -822,7 +869,6 @@ RunView::RunView(const model::Model & model,
   setLayout(mainLayout);
 
   // Run / Play button area
-
   m_playButton = new QToolButton();
   m_playButton->setText("     Run");
   m_playButton->setCheckable(true);
@@ -950,6 +996,7 @@ RunView::RunView(const model::Model & model,
   mainLayout->addWidget(m_errorsLabel, 4, 1);
   mainLayout->addWidget(new QLabel("Output"), 5, 1);
   m_outputWindow = new QPlainTextEdit();
+  _log = m_outputWindow;
   m_outputWindow->setReadOnly(true);
   mainLayout->addWidget(m_outputWindow, 6, 1);
 
